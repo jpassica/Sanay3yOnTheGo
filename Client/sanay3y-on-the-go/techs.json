@@ -1,0 +1,59 @@
+{
+  "technicians": [
+    {
+      "id": 1,
+      "name": "Ahmed Hamdy",
+      "service": "AC",
+      "rating":3
+
+    },
+    {
+      "id": 2,
+      "name": "Fatma Zain",
+      "service": "Plumber",
+      "rating":3
+
+    },
+    {
+      "id": 1,
+      "name": "Khaled Gammal",
+      "service": "Carpeneter",
+      "rating":3
+
+    },    {
+      "id": 1,
+      "name": "Hana Mostafa",
+      "service": "AC",
+      "rating":3
+
+    },
+    {
+      "id": 1,
+      "name": "Ahmed Hamdy",
+      "service": "AC",
+      "rating":3
+
+    },
+    {
+      "id": 2,
+      "name": "Fatma Zain",
+      "service": "Plumbing",
+      "rating":3
+
+    },
+    {
+      "id": 1,
+      "name": "Khaled Gammal",
+      "service": "Cleaning",
+      "rating":3
+
+    },    {
+      "id": 1,
+      "name": "Hana Mostafa",
+      "service": "Cleaning",
+      "rating":3
+
+    }
+
+  ]
+}
