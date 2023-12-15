@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
 
-import './components/TechList.css'
+import './TechnicianView/componentsTech/TechList.css'
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import NavBarCust from './components/NavBarCust';
-import Home from './components/Home';
+import NavBarCust from './TechnicianView/componentsTech/NavBarCust';
+import Home from './TechnicianView/componentsTech/Home';
 
 function App() {
 
