@@ -7,19 +7,18 @@ const Home = ({services,techData}) => {
 
     const[filter,setFilter]=useState('AC')
     console.log(techData)
-    const filterItem = (newFilter) => {
-        setFilter(newFilter);
-      };
      
       console.log(filter)
-   
+   console.log(services)
 
   return (
     <div className='home-container'>
         <div className='filter-buttons'>
-         <button onClick={()=>filterItem('AC')} className='button-17'>AC</button>
-         <button onClick={()=>filterItem('Cleaning') } className='button-17'>Cleaning</button>
-         <button onClick={()=>filterItem('Plumbing')} className='button-17'>Plumbing</button>
+               
+    {services.map((service,index)=>(
+      <button key={index}  onClick={()=>setFilter(service.name)} className='button-17'>{service.name}</button>
+    ))}  
+
         
         </div>
         <TechList TechData={techData} filter={filter}/>

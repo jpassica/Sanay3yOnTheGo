@@ -10,6 +10,7 @@ import Home from './components/Home';
 function App() {
 
   const[technicians,setTechnicians]=useState([])
+  const[services,setServices]=useState([])
   const fetchTechnicians=async ()=>
   {
     const res=await fetch('http://localhost:5000/technicians')
@@ -26,6 +27,24 @@ function App() {
     getTechs()
       },[])
       console.log(technicians)
+
+
+      const fetchServices=async ()=>
+      {
+        const res=await fetch('http://localhost:5000/services')
+        const data=await res.json()
+        console.log(data)
+        return data
+      }
+      useEffect(()=>
+        {
+          const getServices=async()=>{
+        const getServicesFromServer=await fetchServices()
+        setServices(getServicesFromServer)
+         }
+        getServices()
+          },[])
+          console.log(services)
   return (
     <>
 
@@ -33,7 +52,7 @@ function App() {
       <BrowserRouter>
       <NavBarCust />
       <Routes>
-        <Route path="/" element={<Home techData={technicians} />} />
+        <Route path="/" element={<Home techData={technicians} services={services} />} />
       </Routes>
     </BrowserRouter>
       </>
