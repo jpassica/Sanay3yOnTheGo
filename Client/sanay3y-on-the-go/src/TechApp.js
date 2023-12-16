@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import {useEffect} from 'react'
 import {Routes,Route} from 'react-router-dom'
-// import Home from './routes/Home'
-// import Account from './routes/Account'
-// import Orders from './routes/Orders'
+import Home from './TechRoutes/Home'
+import Account from './TechRoutes/Account'
+import Orders from './TechRoutes/Orders'
 // import Profile from './routes/Profile'
-// import FeaturedWork from './routes/FeaturedWork'
-// import Offers from './routes/Offers'
-// import Navbar from './components/Navbar'
-// import EditProfile from './routes/EditProfile'
+import FeaturedWork from './TechRoutes/FeaturedWork'
+import Offers from './TechRoutes/Offers'
+import Navbar from './TechComponents/Navbar'
+import EditProfile from './TechRoutes/EditProfile'
 
 
 
