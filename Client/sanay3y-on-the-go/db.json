@@ -21,13 +21,6 @@
   ],
   "offers": [
     {
-      "heading": "Installing tiles",
-      "content": "for 80m flats",
-      "preprice": "1500",
-      "price": "1200",
-      "id": 6
-    },
-    {
       "heading": "head",
       "content": "c",
       "preprice": "200",
@@ -40,6 +33,13 @@
       "preprice": "1500",
       "price": "1000",
       "id": 8
+    },
+    {
+      "heading": "new offer",
+      "content": "plumping",
+      "preprice": "750",
+      "price": "600",
+      "id": 9
     }
   ],
   "prevwork": [
@@ -48,7 +48,7 @@
       "header": "Leak Repair",
       "content": "content1",
       "price": 450,
-      "featured": false
+      "featured": true
     },
     {
       "id": 2,
@@ -69,7 +69,7 @@
       "header": "Water Heater Services",
       "content": "content4",
       "price": 500,
-      "featured": true
+      "featured": false
     },
     {
       "id": 5,
@@ -84,76 +84,63 @@
       "id": 1,
       "name": "Ahmed Hamdy",
       "service": "AC",
-      "rating":3
-
+      "rating": 3
     },
     {
       "id": 2,
       "name": "Fatma Zain",
       "service": "Plumber",
-      "rating":3
-
+      "rating": 3
     },
     {
       "id": 1,
       "name": "Khaled Gammal",
       "service": "Carpeneter",
-      "rating":3
-
-    },    {
+      "rating": 3
+    },
+    {
       "id": 1,
       "name": "Hana Mostafa",
       "service": "AC",
-      "rating":3
-
+      "rating": 3
     },
     {
       "id": 1,
       "name": "Ahmed Hamdy",
       "service": "AC",
-      "rating":3
-
+      "rating": 3
     },
     {
       "id": 2,
       "name": "Fatma Zain",
       "service": "Plumbing",
-      "rating":3
-
+      "rating": 3
     },
     {
       "id": 1,
       "name": "Khaled Gammal",
       "service": "Cleaning",
-      "rating":3
-
-    },    {
+      "rating": 3
+    },
+    {
       "id": 1,
       "name": "Hana Mostafa",
       "service": "Cleaning",
-      "rating":3
-
+      "rating": 3
     }
-
   ],
   "services": [
     {
       "id": 1,
       "name": "Cleaning"
-
-
     },
     {
       "id": 2,
       "name": "Plumbing"
-
     },
     {
       "id": 3,
       "name": "AC"
-
     }
-
   ]
-
 }

@@ -3,8 +3,9 @@ import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 
 function Navbar() {
   return (
-    <nav className='navbar'>
+    <nav className='navbartech'>
         <img/>
+        <div className='navtech-elements'>
         <ul className='navitems'>
             <li><Link to="/" className='Home'>
                 Home
@@ -14,6 +15,7 @@ function Navbar() {
             <CustomLink to="/FeaturedWork">Highlights</CustomLink>
             <CustomLink to="/Orders">Orders</CustomLink>
         </ul>
+        </div>
       
     </nav>
   )
