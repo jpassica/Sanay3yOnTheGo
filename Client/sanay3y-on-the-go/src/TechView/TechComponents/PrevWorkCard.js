@@ -1,8 +1,8 @@
 import React from 'react'
 import image1 from '../TechRoutes/img/profile.png'
 
-import './styles/general.css'
-import './styles/highlights.css'
+import '../styles/general.css'
+import '../styles/highlights.css'
 import '../styles/offers.css'
 
 
