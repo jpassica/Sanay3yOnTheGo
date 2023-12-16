@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Card from './Card'
-import './TechList.css'
+import '../styles/TechList.css'
 //assuming people data have a name,
 const TechList = ({TechData,filter}) => {
   

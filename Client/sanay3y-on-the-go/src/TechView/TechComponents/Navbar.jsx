@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
-import './styles/general.css'
-import './styles/navbar.css'
+import '../styles/general.css'
+import '../styles/navbar.css'
 
 function Navbar() {
   return (
