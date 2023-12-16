@@ -1,6 +1,6 @@
 import React from 'react'
-import OfferCard from '../TechComponents/OfferCard'
-import UploadOffer from '../TechComponents/UploadOffer'
+import OfferCard from '../components/OfferCard'
+import UploadOffer from '../components/UploadOffer'
 
 const Offers = ({offersdata,OnDelete,OnAdd}) => {
   return (

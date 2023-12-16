@@ -1,10 +1,10 @@
 import React from 'react'
 
-import './Card.css'
+import '../styles/Card.css'
 
 const Card = ({name,rating,photoURL}) => {
   return (
-    <div className='card'>
+    <div className='card-tech2'>
         <img src= {photoURL} width={100}/>
         <h3>{name}</h3>
       < div className='stars'>rating</div>
