@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
 import {useEffect} from 'react'
-import prosrc from './img/profile.png'
 
-import '../TechComponents/styles/home.css'
-import '../TechComponents/styles/account.css'
-import AccountDetails from '../TechComponents/AccountDetails'
+import '../styles/account.css'
+import '../styles/account.css'
+import AccountDetails from '../components/AccountDetails'
 
 
 const Account = ({techs}) => {

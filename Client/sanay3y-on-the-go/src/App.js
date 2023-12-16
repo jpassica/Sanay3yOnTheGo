@@ -47,8 +47,6 @@ function App() {
           console.log(services)
   return (
     <>
-
-    
       <BrowserRouter>
       <NavBarCust />
       <Routes>

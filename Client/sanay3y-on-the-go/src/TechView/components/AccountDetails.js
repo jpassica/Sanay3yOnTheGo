@@ -1,5 +1,5 @@
 import React from 'react'
-import prosrc from '../TechRoutes/img/profile.png'
+import prosrc from '../img/profile.png'
 import Rate from './Rate.js'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 
