@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
+
 import '../styles/general.css'
 import '../styles/highlights.css'
+
+import './styles/offers.css'
+
 
 function UploadOffer({OnAdd}) {
 
