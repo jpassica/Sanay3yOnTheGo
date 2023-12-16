@@ -1,0 +1,159 @@
+{
+  "techs": [
+    {
+      "id": 1,
+      "name": "fatma zain",
+      "phone": "+201103137078",
+      "email": "test@gmail.com",
+      "area": "cairo",
+      "service": "plumping",
+      "rating": 4
+    },
+    {
+      "id": 2,
+      "name": "ftoto zain",
+      "phone": "+111111111",
+      "email": "test@gmail.com",
+      "area": "cairo",
+      "service": "carpentering",
+      "rating": 3
+    }
+  ],
+  "offers": [
+    {
+      "heading": "Installing tiles",
+      "content": "for 80m flats",
+      "preprice": "1500",
+      "price": "1200",
+      "id": 6
+    },
+    {
+      "heading": "head",
+      "content": "c",
+      "preprice": "200",
+      "price": "50",
+      "id": 7
+    },
+    {
+      "heading": "header",
+      "content": "cc",
+      "preprice": "1500",
+      "price": "1000",
+      "id": 8
+    }
+  ],
+  "prevwork": [
+    {
+      "id": 1,
+      "header": "Leak Repair",
+      "content": "content1",
+      "price": 450,
+      "featured": false
+    },
+    {
+      "id": 2,
+      "header": "Pipe Repair and Replacement",
+      "content": "content2",
+      "price": 750,
+      "featured": true
+    },
+    {
+      "id": 3,
+      "header": "Drain Cleaning",
+      "content": "content3",
+      "price": 300,
+      "featured": true
+    },
+    {
+      "id": 4,
+      "header": "Water Heater Services",
+      "content": "content4",
+      "price": 500,
+      "featured": true
+    },
+    {
+      "id": 5,
+      "header": "Toilet Repair",
+      "content": "content5",
+      "price": 600,
+      "featured": false
+    }
+  ],
+  "technicians": [
+    {
+      "id": 1,
+      "name": "Ahmed Hamdy",
+      "service": "AC",
+      "rating":3
+
+    },
+    {
+      "id": 2,
+      "name": "Fatma Zain",
+      "service": "Plumber",
+      "rating":3
+
+    },
+    {
+      "id": 1,
+      "name": "Khaled Gammal",
+      "service": "Carpeneter",
+      "rating":3
+
+    },    {
+      "id": 1,
+      "name": "Hana Mostafa",
+      "service": "AC",
+      "rating":3
+
+    },
+    {
+      "id": 1,
+      "name": "Ahmed Hamdy",
+      "service": "AC",
+      "rating":3
+
+    },
+    {
+      "id": 2,
+      "name": "Fatma Zain",
+      "service": "Plumbing",
+      "rating":3
+
+    },
+    {
+      "id": 1,
+      "name": "Khaled Gammal",
+      "service": "Cleaning",
+      "rating":3
+
+    },    {
+      "id": 1,
+      "name": "Hana Mostafa",
+      "service": "Cleaning",
+      "rating":3
+
+    }
+
+  ],
+  "services": [
+    {
+      "id": 1,
+      "name": "Cleaning"
+
+
+    },
+    {
+      "id": 2,
+      "name": "Plumbing"
+
+    },
+    {
+      "id": 3,
+      "name": "AC"
+
+    }
+
+  ]
+
+}
