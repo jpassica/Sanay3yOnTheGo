@@ -3,20 +3,66 @@
     {
       "id": 1,
       "name": "fatma zain",
-      "phone": "+201103137078",
-      "email": "test@gmail.com",
+      "phone": "+201555555555",
+      "email": "test1@gmail.com",
       "area": "cairo",
       "service": "plumping",
-      "rating": 4
+      "rating": 2,
+      "logged":   false
     },
     {
       "id": 2,
-      "name": "ftoto zain",
-      "phone": "+111111111",
-      "email": "test@gmail.com",
-      "area": "cairo",
+      "name": "Hana Mostafa",
+      "phone": "+20111111111",
+      "email": "test2@gmail.com",
+      "area": "alexandria",
       "service": "carpentering",
-      "rating": 3
+      "rating": 5,
+      "logged":   false
+    },
+    {
+      "id": 3,
+      "name": "ali ali",
+      "phone": "+201222222222",
+      "email": "test3@gmail.com",
+      "area": "cairo",
+      "service": "AC",
+      "rating": 1,
+      "logged":   false
+
+    },
+    {
+      "id": 4,
+      "name": "Ahmed Hamdy",
+      "phone": "+2013333333",
+      "email": "test4@gmail.com",
+      "area": "alexandria",
+      "service": "carpentering",
+      "rating": 5,
+      "logged":   false
+
+    },
+    {
+      "id": 5,
+      "name": "Khaled Gammal",
+      "phone": "+2010000000",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "service": "carpentering",
+      "rating": 5,
+      "logged":   false
+
+    },
+    {
+      "id": 6,
+      "name": "Fatma Zain",
+      "phone": "+20111111111",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "service": "carpentering",
+      "rating": 5,
+      "logged":   true
+
     }
   ],
   "offers": [
