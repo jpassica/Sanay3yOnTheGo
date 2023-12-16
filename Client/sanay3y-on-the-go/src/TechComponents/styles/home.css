@@ -1,0 +1,16 @@
+.home 
+{
+  height: 455px;
+  background-color: #FFDD61;
+}
+.home *
+{
+  /* height: 455px; */
+  background-color: #FFDD61;
+}
+.Welcome
+{
+  position: absolute;
+  top: 33%;
+  left: 50%;
+}

@@ -1,5 +1,7 @@
 import React from 'react'
 import PrevWorkCard from './PrevWorkCard'
+import './styles/general.css'
+import './styles/highlights.css'
 
 const HighlightsList = ({filter,PrevWork,onToggle}) => {
   return (

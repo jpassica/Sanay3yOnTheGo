@@ -1,4 +1,6 @@
 import React from 'react'
+import './styles/general.css'
+import './styles/offers.css'
 
 function OfferCard({offer,OnDelete}) {
   return (

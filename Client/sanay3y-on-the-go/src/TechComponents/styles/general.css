@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    font-family: "Quicksand";
+    color: #333;
+    background-color: #FBF7E5;
+  }
+  
+  .content {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+  } 
+
+.probutton
+{
+background-color: #260F67;
+border: #260F67;
+}
+
+.editbtn
+{
+width: 200px;
+}
+
+.probtn
+{
+background-color: #260F67;
+border-radius: 6px;
+border-color: #260F67;
+color: aliceblue;
+height: 60px;
+width: 150px;
+margin-top: 40px;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.probtn:hover
+{
+background-color: aliceblue;
+color: #260F67;
+border: 2 solid #260F67;
+transition-duration: 0.2s;
+
+}
+
+.probtnclicked
+{
+background-color: aliceblue;
+color: #260F67;
+border: 2 solid #260F67;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.procontainer
+{
+display: flex;
+justify-content: center;
+justify-content: space-evenly;
+}
