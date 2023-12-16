@@ -1,7 +1,7 @@
 import React from 'react'
-import toolimg from './img/img1.png'
-import techimg from './img/tech.png'
-import eclipse from './img/Ellipse.png'
+import toolimg from '../img/img1.png'
+import techimg from '../img/tech.png'
+import eclipse from '../img/Ellipse.png'
 import '../styles/home.css'
 
 

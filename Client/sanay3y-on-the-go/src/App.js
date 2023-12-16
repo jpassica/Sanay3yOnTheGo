@@ -4,7 +4,7 @@ import './App.css';
 
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import NavBarCust from './CustView/componentCust/NavBarCust';
+import NavBarCust from './CustView/components/NavBarCust';
 import Home from './CustView/Routes/Home';
 
 function App() {

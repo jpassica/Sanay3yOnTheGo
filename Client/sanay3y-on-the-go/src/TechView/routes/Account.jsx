@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {useEffect} from 'react'
-import prosrc from './img/profile.png'
-import Rate from '../TechComponents/Rate'
+import prosrc from '../img/profile.png'
+import Rate from '../components/Rate'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 
 const Account = () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-import HighlightsList from '../TechComponents/HighlightsList.js'
+import HighlightsList from '../components/HighlightsList.js'
 // import HighlightsList from 'Client\sanay3y-on-the-go\src\TechComponents\HighlightsList.js'
 
 const FeaturedWork = ({PrevWork,onToggle}) => {

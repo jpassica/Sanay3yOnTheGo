@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import TechList from '../componentCust/TechList'
+import TechList from '../components/TechList'
 import '../styles/TechList.css'
 
 const Home = ({services,techData}) => {
