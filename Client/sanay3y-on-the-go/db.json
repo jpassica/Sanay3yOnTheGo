@@ -8,7 +8,7 @@
       "area": "cairo",
       "service": "plumping",
       "rating": 2,
-      "logged":   false
+      "logged": false
     },
     {
       "id": 2,
@@ -18,7 +18,7 @@
       "area": "alexandria",
       "service": "carpentering",
       "rating": 5,
-      "logged":   false
+      "logged": false
     },
     {
       "id": 3,
@@ -28,8 +28,7 @@
       "area": "cairo",
       "service": "AC",
       "rating": 1,
-      "logged":   false
-
+      "logged": false
     },
     {
       "id": 4,
@@ -39,8 +38,7 @@
       "area": "alexandria",
       "service": "carpentering",
       "rating": 5,
-      "logged":   false
-
+      "logged": false
     },
     {
       "id": 5,
@@ -50,8 +48,7 @@
       "area": "alexandria",
       "service": "carpentering",
       "rating": 5,
-      "logged":   false
-
+      "logged": false
     },
     {
       "id": 6,
@@ -61,18 +58,10 @@
       "area": "alexandria",
       "service": "carpentering",
       "rating": 5,
-      "logged":   true
-
+      "logged": true
     }
   ],
   "offers": [
-    {
-      "heading": "head",
-      "content": "c",
-      "preprice": "200",
-      "price": "50",
-      "id": 7
-    },
     {
       "heading": "header",
       "content": "cc",
@@ -86,6 +75,34 @@
       "preprice": "750",
       "price": "600",
       "id": 9
+    },
+    {
+      "heading": "header",
+      "content": "cc",
+      "preprice": "1500",
+      "price": "1000",
+      "id": 1
+    },
+    {
+      "heading": "new offer",
+      "content": "plumping",
+      "preprice": "750",
+      "price": "600",
+      "id": 2
+    },
+    {
+      "heading": "header",
+      "content": "cc",
+      "preprice": "1500",
+      "price": "1000",
+      "id": 2
+    },
+    {
+      "heading": "new offer",
+      "content": "plumping",
+      "preprice": "750",
+      "price": "600",
+      "id": 3
     }
   ],
   "prevwork": [
@@ -115,66 +132,17 @@
       "header": "Water Heater Services",
       "content": "content4",
       "price": 500,
-      "featured": false
+      "featured": true
     },
     {
       "id": 5,
       "header": "Toilet Repair",
       "content": "content5",
       "price": 600,
-      "featured": false
+      "featured": true
     }
   ],
-  "technicians": [
-    {
-      "id": 1,
-      "name": "Ahmed Hamdy",
-      "service": "AC",
-      "rating": 3
-    },
-    {
-      "id": 2,
-      "name": "Fatma Zain",
-      "service": "Plumber",
-      "rating": 3
-    },
-    {
-      "id": 1,
-      "name": "Khaled Gammal",
-      "service": "Carpeneter",
-      "rating": 3
-    },
-    {
-      "id": 1,
-      "name": "Hana Mostafa",
-      "service": "AC",
-      "rating": 3
-    },
-    {
-      "id": 1,
-      "name": "Ahmed Hamdy",
-      "service": "AC",
-      "rating": 3
-    },
-    {
-      "id": 2,
-      "name": "Fatma Zain",
-      "service": "Plumbing",
-      "rating": 3
-    },
-    {
-      "id": 1,
-      "name": "Khaled Gammal",
-      "service": "Cleaning",
-      "rating": 3
-    },
-    {
-      "id": 1,
-      "name": "Hana Mostafa",
-      "service": "Cleaning",
-      "rating": 3
-    }
-  ],
+
   "services": [
     {
       "id": 1,
@@ -182,11 +150,41 @@
     },
     {
       "id": 2,
-      "name": "Plumbing"
+      "name": "plumping"
     },
     {
       "id": 3,
       "name": "AC"
+    },
+    {
+      "id": 4,
+      "name": "carpentering"
+    }
+  ],
+  "reviews": [
+    {
+      "tech_id": 1,
+      "cust_id": 9,
+      "details": "shogh mo2ref",
+      "rating":0
+    },
+    {
+      "tech_id": 2,
+      "cust_id": 10,
+      "details": "shaghal",
+      "rating":3
+    },
+    {
+      "tech_id": 3,
+      "cust_id": 11,
+      "details": "10/10",
+      "rating":5
+    },
+    {
+      "tech_id": 4,
+      "cust_id": 12,
+      "details": "tohfa",
+      "rating":4
     }
   ]
 }
