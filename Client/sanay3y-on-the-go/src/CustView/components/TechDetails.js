@@ -122,13 +122,21 @@ const TechDetails = ({techID,technicians}) => {
             </form>
          </div>}
         <PrevWorkCarousel items={prevWork.filter(w=>w.id==id)}/>
-        <div className='offer-container'>
-          <h3>Special Offers</h3>
+        <div>
+        <h3 className='headingprev'>Special Offers</h3>
+        <div className='offer-container1'>
         {offers.filter(offer => offer.id==id).map((offer)=>(
-      <div className='offer-card'>
-       {offer.heading}
+        
+        <div className='offer-card1'>
+        <h2><b>{offer.heading}</b></h2>
+        <h4>Price: 
+        {offer.price} <del>{offer.preprice}</del></h4>
+        <p>{offer.content}</p>
+
+
       </div>
     ))}  
+    </div>
     </div>
         <ReviewCarousel reviews={reviews.filter(r=>r.tech_id==id)} />
         

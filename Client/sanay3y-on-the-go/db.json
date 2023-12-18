@@ -84,13 +84,6 @@
       "id": 1
     },
     {
-      "heading": "new offer",
-      "content": "plumping",
-      "preprice": "750",
-      "price": "600",
-      "id": 2
-    },
-    {
       "heading": "header",
       "content": "cc",
       "preprice": "1500",
@@ -103,6 +96,20 @@
       "preprice": "750",
       "price": "600",
       "id": 3
+    },
+    {
+      "heading": "new offer",
+      "content": "plumping",
+      "preprice": "750",
+      "price": "600",
+      "id": 3
+    },
+    {
+      "heading": "aa",
+      "content": "aa",
+      "preprice": "2",
+      "price": "2",
+      "id": 10
     }
   ],
   "prevwork": [
@@ -111,38 +118,56 @@
       "header": "Leak Repair",
       "content": "content1",
       "price": 450,
-      "featured": true
+      "featured": false,
+      "rating":4,
+      "date":"11/12/2020"
+    },
+    {
+      "id": 1,
+      "header": "prev work 2",
+      "content": "content1",
+      "price": 450,
+      "featured": true,
+      "rating":4,
+      "date":"11/12/2020"
     },
     {
       "id": 2,
       "header": "Pipe Repair and Replacement",
       "content": "content2",
       "price": 750,
-      "featured": true
+      "featured": true,
+      "rating":4,
+      "date":"11/12/2020"
     },
     {
       "id": 3,
       "header": "Drain Cleaning",
       "content": "content3",
       "price": 300,
-      "featured": true
+      "featured": true,
+      "rating":4,
+      "date":"11/12/2020"
     },
     {
       "id": 4,
       "header": "Water Heater Services",
       "content": "content4",
       "price": 500,
-      "featured": true
+      "featured": false,
+      "rating":4,
+      "date":"11/12/2020"
     },
     {
       "id": 5,
       "header": "Toilet Repair",
       "content": "content5",
       "price": 600,
-      "featured": true
+      "featured": true,
+      "rating":4,
+      "date":"11/12/2020"
     }
   ],
-
   "services": [
     {
       "id": 1,
@@ -166,25 +191,37 @@
       "tech_id": 1,
       "cust_id": 9,
       "details": "shogh mo2ref",
-      "rating":0
+      "rating": 0
+    },
+    {
+      "tech_id": 3,
+      "cust_id": 9,
+      "details": "wow",
+      "rating": 0
+    },
+    {
+      "tech_id": 3,
+      "cust_id": 9,
+      "details": "shogh mo2ref",
+      "rating": 0
     },
     {
       "tech_id": 2,
       "cust_id": 10,
       "details": "shaghal",
-      "rating":3
+      "rating": 3
     },
     {
       "tech_id": 3,
       "cust_id": 11,
       "details": "10/10",
-      "rating":5
+      "rating": 5
     },
     {
       "tech_id": 4,
       "cust_id": 12,
       "details": "tohfa",
-      "rating":4
+      "rating": 4
     }
   ]
 }

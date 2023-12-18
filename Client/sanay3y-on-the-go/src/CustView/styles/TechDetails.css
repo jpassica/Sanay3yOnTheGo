@@ -1,3 +1,8 @@
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Stick+No+Bills&family=Ubuntu&family=Unlock&display=swap');
+
+
 .techDetails-container
 {
     width: 100%;
@@ -10,7 +15,7 @@
 }
 .tech-card
 {
-    width:700px;
+    width:900px;
     margin:40px auto;
     display: flex;
     justify-content: space-around;
@@ -142,16 +147,111 @@ textarea
   border: none;
   
 }
-.carousel-card
+.carousel-card-prev
 {
-  background-color: #ffe54c;
-  width: 700px !important;
-  height: 200px;
+  background-color: #FFDD61;;
+  width: 900px !important;
+  height: 320px;
+  margin-top: 20px !important;
   border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+  margin: 30px;
+  margin-top: 50px !important;
+
+
+}
+.carousel-card-prev h4
+{
+  color: #1400FF;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+}
+.carousel-card-prev h2
+{
+  font-size: medium;
+  color: #3c3c3c;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
 }
 .carousel-container {
-  width: 800px !important; /* Adjust the width as needed */
-  margin: 20px;
+  width: 1100px !important; /* Adjust the width as needed */
+  margin: 50px;
+  padding: 20px;
   
+  
+}
+.prev-data
+{
+  
+}
+
+.offer-container1
+{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 1100px !important; /* Adjust the width as needed */
+  margin-top: 50px;
+
+  
+}
+.offer-card
+{
+  background-color: #ffe54c;
+  width:300px;
+  height: 300px;
+  border-radius: 20px;
+  margin: 10px;
+ 
+
+
+}
+.offer-card1
+{
+height: 300px;
+width: 300px;
+display: flex;
+align-items: center;
+flex-direction: column;
+padding: 40px;
+border-radius: 10px;
+margin: 30px;
+margin-left: 90px;
+background-color: #FFDD61;
+box-shadow: 0 8px 16px 0 rgba(251, 8, 8, 0.605);
+
+}
+.headingprev
+{
+  padding: 15px;
+  margin: 20px;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: 35px;
+  width: 300px;
+  border-bottom: 3px solid rgb(113, 113, 113);
+}
+.review-card
+{
+ 
+  background-color:#c6c4c4;
+  width: 400px !important;
+  height: 200px;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+
+}
+.review-container
+{
+  width: 1100px;
+  margin: 50px;
 }
 

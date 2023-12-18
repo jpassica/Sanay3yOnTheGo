@@ -15,9 +15,9 @@ const root = createRoot(rootElement);
 root.render(
   
   <React.StrictMode>
-    {/* <BrowserRouter>
+    {/*<BrowserRouter>
     <TechApp />
-</BrowserRouter> */}
+  </BrowserRouter> */}
      <App/>
   </React.StrictMode>
 );

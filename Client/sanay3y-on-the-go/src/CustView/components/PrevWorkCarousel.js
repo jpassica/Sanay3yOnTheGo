@@ -2,12 +2,13 @@ import React from 'react'
 import ReactSimplyCarousel from 'react-simply-carousel';
 import { useState } from 'react';
 import '../styles/TechDetails.css'
+import sample from '../images/test.png'
 
 const PrevWorkCarousel = ({items}) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   return (
         <div  className="carousel-container" >
-          <h3>previous work</h3>
+          <h3 className='headingprev'>previous work</h3>
           <ReactSimplyCarousel className="carousel-container"
             activeSlideIndex={activeSlideIndex}
             onRequestChange={setActiveSlideIndex}
@@ -27,6 +28,7 @@ const PrevWorkCarousel = ({items}) => {
                 lineHeight: 1,
                 textAlign: 'center',
                 width: 30,
+                margin: 10 ,
                 
               },
               children: <span>{`>`}</span>,
@@ -45,6 +47,7 @@ const PrevWorkCarousel = ({items}) => {
                 lineHeight: 1,
                 textAlign: 'center',
                 width: 30,
+                margin: 10 ,
               },
               children: <span>{`<`}</span>,
             }}
@@ -61,10 +64,13 @@ const PrevWorkCarousel = ({items}) => {
             {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
             
             {items.filter(item=> item.featured==1).map((item,index)=>(
-      <div key={index} className='carousel-card'>
-         {item.header}
-         <br/>
-         {item.price}
+      <div key={index} className='carousel-card-prev'>
+        <img src={sample} width="40%" height="90%" className='tech-img' />
+        <div className='prev-data'>
+        <h3> {item.header}</h3>
+        <h4>{item.price} EGP</h4> 
+        <h2>{item.date}</h2>
+        </div>
       </div >
     ))}  
             

@@ -2,17 +2,18 @@ import React from 'react'
 import ReactSimplyCarousel from 'react-simply-carousel';
 import { useState } from 'react';
 import '../styles/TechDetails.css'
+import sample from '../images/test.png'
 
 const ReviewCarousel = ({reviews}) => {
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   return (
-        <div  className="carousel-container" >
-          <h3>Reviews</h3>
-          <ReactSimplyCarousel className="carousel-container"
+        <div  className="review-container" >
+          <h3 className='headingprev'>Customer Reviews</h3>
+          <ReactSimplyCarousel className="review-container"
             activeSlideIndex={activeSlideIndex}
             onRequestChange={setActiveSlideIndex}
-            itemsToShow={1}
-            itemsToScroll={1}
+            itemsToShow={3}
+            itemsToScroll={3}
             forwardBtnProps={{
               //here you can also pass className, or any other button element attributes
               style: {
@@ -27,6 +28,7 @@ const ReviewCarousel = ({reviews}) => {
                 lineHeight: 1,
                 textAlign: 'center',
                 width: 30,
+                margin: 30 ,
                 
               },
               children: <span>{`>`}</span>,
@@ -45,6 +47,7 @@ const ReviewCarousel = ({reviews}) => {
                 lineHeight: 1,
                 textAlign: 'center',
                 width: 30,
+                margin: 30 ,
               },
               children: <span>{`<`}</span>,
             }}
@@ -61,10 +64,9 @@ const ReviewCarousel = ({reviews}) => {
             {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
             
             {reviews.map((review,index)=>(
-      <div key={index} className='carousel-card'>
-         {review.details}
-         <br/>
-         {review.rating}
+      <div key={index} className='review-card'>
+        <h4>{review.details}</h4> 
+         <h4>{review.rating}</h4>
       </div >
     ))}  
             
