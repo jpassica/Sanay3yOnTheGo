@@ -4,11 +4,10 @@ import { FaStar } from "react-icons/fa";
 import { Container, Radio, Rating } from "./RatingStyles";
 
 const Rate = ({rating}) => {
-    // const [rate, setRate] = useState(0);
-    const currrate={rating};
+    const currrate=rating;
     return (
         <div>
-         {/* <Container>
+         <Container>
              {[...Array(5)].map((item, index) => {
                  return (
                      <label>
@@ -20,7 +19,7 @@ const Rate = ({rating}) => {
                      </label>
                  );
              })}
-         </Container> */}
+         </Container>
         </div>
     );
 };

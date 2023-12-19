@@ -1,0 +1,25 @@
+
+
+ .editcontainer
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.leftside
+{
+    margin: 50px;
+    width: 50%;
+}
+
+.btn
+{
+    margin: 10px;
+}
+
+.rowbtn
+{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+}

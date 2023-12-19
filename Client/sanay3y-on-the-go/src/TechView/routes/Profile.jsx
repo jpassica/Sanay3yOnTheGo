@@ -14,7 +14,6 @@ const Profile = ({offersdata,OnDelete,OnAdd}) => {
         <button className='probtn' onClick={()=>setFilter('offers')}> Offers </button>
       </div>
       <div className='cards'>
-        {/* <CardList filter={filter} offersdata={offersdata} OnDelete={OnDelete} OnAdd={OnAdd}/> */}
 
       </div>
     </div>
