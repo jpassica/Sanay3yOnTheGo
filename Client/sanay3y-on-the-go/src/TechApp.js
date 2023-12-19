@@ -17,7 +17,26 @@ const TechApp = () =>
     const[offers,setoffers]=useState([])
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
+    const[orders,setorders]=useState([])
 
+
+    const fetchorders=async ()=>
+    {
+      const res=await fetch('http://localhost:5000/orders')
+      const data=await res.json()
+      console.log(data)
+      return data
+    }
+
+    useEffect(()=>
+      {
+        const getorders=async()=>{
+      const ordersfromserver=await fetchorders()
+      setorders(ordersfromserver)
+       }
+      getorders()
+        },[])
+      console.log(orders)
 
     const fetchtechs=async ()=>
     {
@@ -162,7 +181,7 @@ const TechApp = () =>
         <Routes>
         <Route exact path="/" element={<Home />}/>
         <Route exact path="/Account" element={<Account techs={techs} />}/>
-        <Route exact path="/Orders" element={<Orders/>}/>
+        <Route exact path="/Orders" element={<Orders orders={orders}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
         <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>

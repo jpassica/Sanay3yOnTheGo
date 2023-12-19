@@ -54,6 +54,38 @@
       "id": 6
     }
   ],
+  "orders":[
+      {
+        "status": "pending",
+        "header": "AC Repair",
+        "details": "furtherdetailspen",
+        "price":   750
+      },
+      {
+        "status": "pending",
+        "header": "AC Repair",
+        "details": "furtherdetailspen",
+        "price":   750
+      },
+      {
+        "status": "upcoming",
+        "header": "AC Repair",
+        "details": "furtherdetailsup",
+        "price":   750
+      },
+      {
+        "status": "upcoming",
+        "header": "AC Repair",
+        "details": "furtherdetailsup",
+        "price":   750
+      },
+      {
+        "status": "previous",
+        "header": "AC Repair",
+        "details": "furtherdetailspre",
+        "price":   750
+      }
+  ],
   "offers": [
     {
       "heading": "header",
@@ -75,6 +107,13 @@
       "preprice": "750",
       "price": "600",
       "id": 3
+    },
+    {
+      "heading": "new offer",
+      "content": "Cleaning",
+      "preprice": "500",
+      "price": "350",
+      "id": 4
     }
   ],
   "prevwork": [
@@ -101,7 +140,7 @@
       "header": "Pipe Repair and Replacement",
       "content": "content2",
       "price": 750,
-      "featured": false,
+      "featured": true,
       "rating": 4,
       "date": "11/12/2020"
     },
@@ -110,7 +149,7 @@
       "header": "Drain Cleaning",
       "content": "content3",
       "price": 300,
-      "featured": true,
+      "featured": false,
       "rating": 4,
       "date": "11/12/2020"
     },
@@ -119,7 +158,7 @@
       "header": "Water Heater Services",
       "content": "content4",
       "price": 500,
-      "featured": false,
+      "featured": true,
       "rating": 4,
       "date": "11/12/2020"
     },
@@ -128,7 +167,7 @@
       "header": "Toilet Repair",
       "content": "content5",
       "price": 600,
-      "featured": true,
+      "featured": false,
       "rating": 4,
       "date": "11/12/2020"
     }
