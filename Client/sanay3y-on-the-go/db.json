@@ -56,13 +56,6 @@
   ],
   "offers": [
     {
-      "heading": "new offer",
-      "content": "plumping",
-      "preprice": "750",
-      "price": "600",
-      "id": 9
-    },
-    {
       "heading": "header",
       "content": "cc",
       "preprice": "1500",
