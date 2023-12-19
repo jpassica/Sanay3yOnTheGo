@@ -229,9 +229,9 @@ box-shadow: 0 8px 16px 0 rgba(251, 8, 8, 0.605);
   padding: 15px;
   margin: 20px;
   font-family: 'Stick No Bills', sans-serif;
-  font-size: 35px;
-  width: 300px;
-  border-bottom: 3px solid rgb(113, 113, 113);
+  font-size: 30px;
+  width: 250px;
+  border-bottom: 2px solid rgb(113, 113, 113);
 }
 .review-card
 {

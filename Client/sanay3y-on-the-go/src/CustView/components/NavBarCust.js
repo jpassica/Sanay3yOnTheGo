@@ -23,7 +23,10 @@ const NavBarCust = () => {
             <NavLink to="/account">Account</NavLink>
           </li>
           <li>
-            <NavLink to="/contact">Contact</NavLink>
+            <NavLink to="/bundles">Bundles</NavLink>
+          </li>
+          <li>
+            <NavLink to="/feedback">Feedback</NavLink>
           </li>
         </ul>
       </div>

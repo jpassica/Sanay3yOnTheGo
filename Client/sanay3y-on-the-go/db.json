@@ -168,7 +168,7 @@
       "date":"11/12/2020"
     }
   ],
-  "services": [
+  "service_categories": [
     {
       "id": 1,
       "name": "Cleaning"
@@ -223,5 +223,58 @@
       "details": "tohfa",
       "rating": 4
     }
-  ]
+  ],
+  "services": [
+    {
+      "Service_status":"finished",
+      "Service_timestamp":"12/10/2022 11:59:00",
+      "price":500,
+      "details":"order carpenting and bla bla",
+      "tech_id":2,
+      "cust_id":2,
+      "header":"order example ff"
+
+    },
+    {
+      "Service_status":"upcoming",
+      "Service_timestamp":"12/10/2022 11:59:00",
+      "price":500,
+      "details":"order carpenting and bla bla",
+      "tech_id":1,
+      "cust_id":3,
+      "header":"order example uu"
+
+    },
+    {
+      "Service_status":"pending",
+      "Service_timestamp":"12/10/2022 11:59:00",
+      "price":500,
+      "details":"order carpenting and bla bla",
+      "tech_id":3,
+      "cust_id":3,
+      "header":"order example 1"
+
+    },
+    {
+      "Service_status":"upcoming",
+      "Service_timestamp":"12/10/2022 11:59:00",
+      "price":500,
+      "details":"order carpenting and bla bla",
+      "tech_id":1,
+      "cust_id":3,
+      "header":"order example uu"
+
+    },
+    {
+      "Service_status":"pending",
+      "Service_timestamp":"12/10/2022 11:59:00",
+      "price":500,
+      "details":"order carpenting and bla bla",
+      "tech_id":3,
+      "cust_id":3,
+      "header":"order example 1"
+
+    }
+    ]
+
 }
