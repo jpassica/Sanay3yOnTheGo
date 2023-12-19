@@ -80,6 +80,13 @@ const TechApp = () =>
         return data
       }
 
+      const fetchtech = async (id) => {
+        const res = await fetch(`http://localhost:5000/techs/${id}`)
+        const data = await res.json()
+    
+        return data
+      }
+
       const deleteOffer = async (id) => {
         const res = await fetch(`http://localhost:5000/offers/${id}`, {
           method: 'DELETE',
@@ -127,6 +134,28 @@ const TechApp = () =>
         )
       }
 
+      const edittech = async(id,newtech) =>{
+        const techtoupdate = await fetchtech(id)
+        const updtech ={...techtoupdate,...newtech}
+
+        const res = await fetch(`http://localhost:5000/techs/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(updtech),
+        })
+    
+        const data = await res.json()
+
+        settechs(
+          techs.map((item) =>
+            item.id === id ? { ...item, name: data.name } : item
+          )
+        )
+      }
+
+
 
     return (<div className='App'>
         <Navbar/>
@@ -136,7 +165,7 @@ const TechApp = () =>
         <Route exact path="/Orders" element={<Orders/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
-        <Route exact path="/EditProfile" element={<EditProfile/>}/>
+        <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
         </Routes>
     </div>)
 }

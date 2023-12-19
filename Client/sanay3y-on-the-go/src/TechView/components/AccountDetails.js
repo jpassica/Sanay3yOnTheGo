@@ -18,7 +18,7 @@ const AccountDetails = ({tech}) => {
                 </a></CustomLink>
               
                 </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-5 details">
                  <h4>Full Name</h4>
                  <p>{tech.name}</p>
      

@@ -8,7 +8,7 @@
       "area": "cairo",
       "service": "plumping",
       "rating": 2,
-      "logged": false
+      "logged": true
     },
     {
       "id": 2,
@@ -51,24 +51,10 @@
       "logged": false
     },
     {
-      "id": 6,
-      "name": "Fatma Zain",
-      "phone": "+20111111111",
-      "email": "test5@gmail.com",
-      "area": "alexandria",
-      "service": "carpentering",
-      "rating": 5,
-      "logged": true
+      "id": 6
     }
   ],
   "offers": [
-    {
-      "heading": "header",
-      "content": "cc",
-      "preprice": "1500",
-      "price": "1000",
-      "id": 8
-    },
     {
       "heading": "new offer",
       "content": "plumping",
@@ -84,13 +70,6 @@
       "id": 1
     },
     {
-      "heading": "header",
-      "content": "cc",
-      "preprice": "1500",
-      "price": "1000",
-      "id": 2
-    },
-    {
       "heading": "new offer",
       "content": "plumping",
       "preprice": "750",
@@ -103,13 +82,6 @@
       "preprice": "750",
       "price": "600",
       "id": 3
-    },
-    {
-      "heading": "aa",
-      "content": "aa",
-      "preprice": "2",
-      "price": "2",
-      "id": 10
     }
   ],
   "prevwork": [
@@ -119,8 +91,8 @@
       "content": "content1",
       "price": 450,
       "featured": false,
-      "rating":4,
-      "date":"11/12/2020"
+      "rating": 4,
+      "date": "11/12/2020"
     },
     {
       "id": 1,
@@ -128,17 +100,17 @@
       "content": "content1",
       "price": 450,
       "featured": true,
-      "rating":4,
-      "date":"11/12/2020"
+      "rating": 4,
+      "date": "11/12/2020"
     },
     {
       "id": 2,
       "header": "Pipe Repair and Replacement",
       "content": "content2",
       "price": 750,
-      "featured": true,
-      "rating":4,
-      "date":"11/12/2020"
+      "featured": false,
+      "rating": 4,
+      "date": "11/12/2020"
     },
     {
       "id": 3,
@@ -146,8 +118,8 @@
       "content": "content3",
       "price": 300,
       "featured": true,
-      "rating":4,
-      "date":"11/12/2020"
+      "rating": 4,
+      "date": "11/12/2020"
     },
     {
       "id": 4,
@@ -155,8 +127,8 @@
       "content": "content4",
       "price": 500,
       "featured": false,
-      "rating":4,
-      "date":"11/12/2020"
+      "rating": 4,
+      "date": "11/12/2020"
     },
     {
       "id": 5,
@@ -164,8 +136,8 @@
       "content": "content5",
       "price": 600,
       "featured": true,
-      "rating":4,
-      "date":"11/12/2020"
+      "rating": 4,
+      "date": "11/12/2020"
     }
   ],
   "services": [
