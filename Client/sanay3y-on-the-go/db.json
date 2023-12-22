@@ -54,66 +54,45 @@
       "id": 6
     }
   ],
-  "orders":[
-      {
-        "status": "pending",
-        "header": "AC Repair",
-        "details": "furtherdetailspen",
-        "price":   750
-      },
-      {
-        "status": "pending",
-        "header": "AC Repair",
-        "details": "furtherdetailspen",
-        "price":   750
-      },
-      {
-        "status": "upcoming",
-        "header": "AC Repair",
-        "details": "furtherdetailsup",
-        "price":   750
-      },
-      {
-        "status": "upcoming",
-        "header": "AC Repair",
-        "details": "furtherdetailsup",
-        "price":   750
-      },
-      {
-        "status": "previous",
-        "header": "AC Repair",
-        "details": "furtherdetailspre",
-        "price":   750
-      }
+  "orders": [
+    {
+      "status": "pending",
+      "header": "AC Repair",
+      "details": "furtherdetailspen",
+      "price": 750
+    },
+    {
+      "status": "pending",
+      "header": "AC Repair",
+      "details": "furtherdetailspen",
+      "price": 750
+    },
+    {
+      "status": "upcoming",
+      "header": "AC Repair",
+      "details": "furtherdetailsup",
+      "price": 750
+    },
+    {
+      "status": "upcoming",
+      "header": "AC Repair",
+      "details": "furtherdetailsup",
+      "price": 750
+    },
+    {
+      "status": "previous",
+      "header": "AC Repair",
+      "details": "furtherdetailspre",
+      "price": 750
+    }
   ],
   "offers": [
     {
-      "heading": "header",
-      "content": "cc",
-      "preprice": "1500",
-      "price": "1000",
-      "id": 1
-    },
-    {
       "heading": "new offer",
       "content": "plumping",
       "preprice": "750",
       "price": "600",
       "id": 3
-    },
-    {
-      "heading": "new offer",
-      "content": "plumping",
-      "preprice": "750",
-      "price": "600",
-      "id": 3
-    },
-    {
-      "heading": "new offer",
-      "content": "Cleaning",
-      "preprice": "500",
-      "price": "350",
-      "id": 4
     }
   ],
   "prevwork": [
@@ -228,7 +207,7 @@
       "rating": 4
     }
   ],
-  "customers":[
+  "customers": [
     {
       "id": 1,
       "name": "fatma zain",
@@ -278,7 +257,7 @@
       "logged": true
     }
   ],
-  "admins":[
+  "admins": [
     {
       "id": 1,
       "name": "fatma zain",
@@ -330,7 +309,7 @@
   ],
   "complaints": [
     {
-      "comp_id":1,
+      "comp_id": 1,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "customer_id": 1,
       "admin_id": 1,
@@ -338,7 +317,7 @@
       "time_stamp": "12-12-2023, 12:30 pm"
     },
     {
-      "comp_id":2,
+      "comp_id": 2,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "customer_id": 4,
       "admin_id": 1,
@@ -346,7 +325,7 @@
       "time_stamp": "12-12-2023, 12:30 pm"
     },
     {
-      "comp_id":3,
+      "comp_id": 3,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "customer_id": 5,
       "admin_id": 1,
@@ -354,7 +333,7 @@
       "time_stamp": "15-12-2023, 12:30 pm"
     },
     {
-      "comp_id":4,
+      "comp_id": 4,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "customer_id": 1,
       "admin_id": 2,
@@ -362,7 +341,7 @@
       "time_stamp": "01-12-2023, 12:30 pm"
     },
     {
-      "comp_id":5,
+      "comp_id": 5,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "customer_id": 1,
       "admin_id": 1,
@@ -372,92 +351,86 @@
   ],
   "feedbacks": [
     {
-      "feedback_id":1,
+      "feedback_id": 1,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "user_id": 1,
       "admin_id": 1,
       "time_stamp": "12-12-2023, 12:30 pm"
     },
     {
-      "feedback_id":3,
+      "feedback_id": 3,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "user_id": 4,
       "admin_id": 1,
       "time_stamp": "12-12-2023, 12:30 pm"
     },
     {
-      "feedback_id":4,
+      "feedback_id": 4,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "user_id": 5,
       "admin_id": 1,
       "time_stamp": "15-12-2023, 12:30 pm"
     },
     {
-      "feedback_id":5,
+      "feedback_id": 5,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "user_id": 1,
       "admin_id": 2,
       "time_stamp": "01-12-2023, 12:30 pm"
     },
     {
-      "feedback_id":6,
+      "feedback_id": 6,
       "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
       "user_id": 1,
       "admin_id": 1,
       "time_stamp": "12-11-2023, 12:30 pm"
     }
-  ]
+  ],
   "services": [
     {
-      "Service_status":"finished",
-      "Service_timestamp":"12/10/2022 11:59:00",
-      "price":500,
-      "details":"order carpenting and bla bla",
-      "tech_id":2,
-      "cust_id":2,
-      "header":"order example ff"
-
+      "Service_status": "finished",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 2,
+      "cust_id": 2,
+      "header": "order example ff"
     },
     {
-      "Service_status":"upcoming",
-      "Service_timestamp":"12/10/2022 11:59:00",
-      "price":500,
-      "details":"order carpenting and bla bla",
-      "tech_id":1,
-      "cust_id":3,
-      "header":"order example uu"
-
+      "Service_status": "upcoming",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 1,
+      "cust_id": 3,
+      "header": "order example uu"
     },
     {
-      "Service_status":"pending",
-      "Service_timestamp":"12/10/2022 11:59:00",
-      "price":500,
-      "details":"order carpenting and bla bla",
-      "tech_id":3,
-      "cust_id":3,
-      "header":"order example 1"
-
+      "Service_status": "pending",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 3,
+      "cust_id": 3,
+      "header": "order example 1"
     },
     {
-      "Service_status":"upcoming",
-      "Service_timestamp":"12/10/2022 11:59:00",
-      "price":500,
-      "details":"order carpenting and bla bla",
-      "tech_id":1,
-      "cust_id":3,
-      "header":"order example uu"
-
+      "Service_status": "upcoming",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 1,
+      "cust_id": 3,
+      "header": "order example uu"
     },
     {
-      "Service_status":"pending",
-      "Service_timestamp":"12/10/2022 11:59:00",
-      "price":500,
-      "details":"order carpenting and bla bla",
-      "tech_id":3,
-      "cust_id":3,
-      "header":"order example 1"
-
+      "Service_status": "pending",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 3,
+      "cust_id": 3,
+      "header": "order example 1"
     }
-    ]
-
+  ]
 }

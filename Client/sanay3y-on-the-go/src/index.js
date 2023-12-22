@@ -6,6 +6,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 
 import TechApp from './TechApp';
+import CustApp from './CustApp';
 
 
 const rootElement = document.getElementById('root');
@@ -15,10 +16,12 @@ const root = createRoot(rootElement);
 root.render(
   
   <React.StrictMode>
-    <BrowserRouter>
+     <BrowserRouter>
     <TechApp />
-  </BrowserRouter>
-     {/* <App/> */}
+   </BrowserRouter>
+  {/* 
+    <TechApp />
+      */}
   </React.StrictMode>
 );
 

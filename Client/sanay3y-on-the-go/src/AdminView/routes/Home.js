@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../styles/TechList.css'
+import '../styles/Home.css'
 import toolimg from '../../TechView/img/img1.png'
 import techimg from '../../TechView/img/tech.png'
 
