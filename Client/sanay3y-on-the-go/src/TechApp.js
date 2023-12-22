@@ -17,7 +17,26 @@ const TechApp = () =>
     const[offers,setoffers]=useState([])
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
+    const[orders,setorders]=useState([])
 
+
+    const fetchorders=async ()=>
+    {
+      const res=await fetch('http://localhost:5000/orders')
+      const data=await res.json()
+      console.log(data)
+      return data
+    }
+
+    useEffect(()=>
+      {
+        const getorders=async()=>{
+      const ordersfromserver=await fetchorders()
+      setorders(ordersfromserver)
+       }
+      getorders()
+        },[])
+      console.log(orders)
 
     const fetchtechs=async ()=>
     {
@@ -80,6 +99,13 @@ const TechApp = () =>
         return data
       }
 
+      const fetchtech = async (id) => {
+        const res = await fetch(`http://localhost:5000/techs/${id}`)
+        const data = await res.json()
+    
+        return data
+      }
+
       const deleteOffer = async (id) => {
         const res = await fetch(`http://localhost:5000/offers/${id}`, {
           method: 'DELETE',
@@ -127,16 +153,38 @@ const TechApp = () =>
         )
       }
 
+      const edittech = async(id,newtech) =>{
+        const techtoupdate = await fetchtech(id)
+        const updtech ={...techtoupdate,...newtech}
+
+        const res = await fetch(`http://localhost:5000/techs/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(updtech),
+        })
+    
+        const data = await res.json()
+
+        settechs(
+          techs.map((item) =>
+            item.id === id ? { ...item, name: data.name } : item
+          )
+        )
+      }
+
+
 
     return (<div className='App'>
         <Navbar/>
         <Routes>
         <Route exact path="/" element={<Home />}/>
         <Route exact path="/Account" element={<Account techs={techs} />}/>
-        <Route exact path="/Orders" element={<Orders/>}/>
+        <Route exact path="/Orders" element={<Orders orders={orders}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
-        <Route exact path="/EditProfile" element={<EditProfile/>}/>
+        <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
         </Routes>
     </div>)
 }

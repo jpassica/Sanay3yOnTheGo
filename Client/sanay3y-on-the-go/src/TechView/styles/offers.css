@@ -5,7 +5,7 @@ background-color: #FFDD61;
 
 .Offercard
 {
-height: 300px;
+height: 350px;
 width: 350px;
 display: flex;
 align-items: center;
@@ -22,7 +22,7 @@ box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
 
 .UpOffercard
 {
-height: 300px;
+height: 350px;
 width: 350px;
 display: flex;
 align-items: center;

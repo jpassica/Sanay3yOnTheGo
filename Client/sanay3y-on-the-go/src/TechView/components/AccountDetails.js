@@ -11,14 +11,14 @@ const AccountDetails = ({tech}) => {
         <div class="col-12 col-md-3">
         <figure class='avatar avatar-profile'>
                     <img class="rounded-circle img-fluid " src={prosrc} alt='' />
-                    <Rate rating={3}/>
+                    <Rate rating={tech.rating}/>
                 </figure>
                 <CustomLink to="/EditProfile"><a href="#" id="edit_profile" class="btn btn-primary btn-block my-5 probutton">
                     Edit Account Details
                 </a></CustomLink>
               
                 </div>
-      <div class="col-12 col-md-5">
+      <div class="col-12 col-md-5 details">
                  <h4>Full Name</h4>
                  <p>{tech.name}</p>
      
