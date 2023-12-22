@@ -1,0 +1,19 @@
+.yellow-stars-rating {
+    display: flex;
+  }
+  
+  .star {
+    font-size: 24px;
+    color: #ffeb3b; /* Yellow color */
+  }
+  
+  .star.filled {
+    color: #fdd835; /* Darker yellow for filled stars */
+  }
+  
+  .star:not(:last-child) {
+    margin-right: 4px; /* Adjust spacing between stars */
+  }
+  .star.empty {
+    color: #e0e0e0; /* Color for empty stars */
+  }  

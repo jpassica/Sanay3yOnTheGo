@@ -4,7 +4,8 @@ import { Route } from 'react-router-dom';
 
 import '../styles/Card.css'
 import TechDetails from '../Routes/TechDetails'
- 
+ import YellowStarsRating from './YellowStarsRating';
+ import sample from '../images/test.png'
 
 
 
@@ -14,13 +15,11 @@ const Card = ({tech}) => {
  
   return (
     <div className='card-tech2'>
-        <img src= {tech.photoURL} width={100}/>
-        <ul>
+        <img src= {sample} width={150} style={{marginBottom:10,borderRadius:10}}/>
         <NavLink to={`/TechDetails/${tech.id}`}  >
         <h3>{tech.name}</h3>
         </NavLink>
-        </ul>
-      < div className='stars'>{tech.rating}</div>
+      <YellowStarsRating rating={tech.rating} />
 
       
 
