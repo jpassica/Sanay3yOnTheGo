@@ -6,7 +6,7 @@ import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import NavBarCust from './CustView/components/NavBarCust';
 import Home from './CustView/Routes/Home';
-import TechDetails from './CustView/components/TechDetails';
+import TechDetails from './CustView/Routes/TechDetails';
 import Orders from './CustView/Routes/Orders';
 
 const CustApp=()=> {

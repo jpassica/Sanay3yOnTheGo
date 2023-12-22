@@ -171,36 +171,42 @@
   ],
   "reviews": [
     {
+      "order_id":1,
       "tech_id": 1,
       "cust_id": 9,
       "details": "shogh mo2ref",
       "rating": 0
     },
     {
+      "order_id":2,
       "tech_id": 3,
       "cust_id": 9,
       "details": "wow",
       "rating": 0
     },
     {
+      "order_id":3,
       "tech_id": 3,
       "cust_id": 9,
       "details": "shogh mo2ref",
       "rating": 0
     },
     {
+      "order_id":4,
       "tech_id": 2,
       "cust_id": 10,
       "details": "shaghal",
       "rating": 3
     },
     {
+      "order_id":5,
       "tech_id": 3,
       "cust_id": 11,
       "details": "10/10",
       "rating": 5
     },
     {
+      "order_id":6,
       "tech_id": 4,
       "cust_id": 12,
       "details": "tohfa",
@@ -388,6 +394,7 @@
   ],
   "services": [
     {
+      "order_id":1,
       "Service_status": "finished",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -397,6 +404,7 @@
       "header": "order example ff"
     },
     {
+      "order_id":2,
       "Service_status": "upcoming",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -406,6 +414,7 @@
       "header": "order example uu"
     },
     {
+      "order_id":3,
       "Service_status": "pending",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -415,6 +424,7 @@
       "header": "order example 1"
     },
     {
+      "order_id":4,
       "Service_status": "upcoming",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -422,8 +432,10 @@
       "tech_id": 1,
       "cust_id": 3,
       "header": "order example uu"
+     
     },
     {
+      "order_id":5,
       "Service_status": "pending",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -431,6 +443,7 @@
       "tech_id": 3,
       "cust_id": 3,
       "header": "order example 1"
+   
     }
   ]
 }

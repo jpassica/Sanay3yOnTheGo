@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Stick+No+Bills&family=Ubuntu&family=Unlock&display=swap');
+
+
 .order-container
 {
     
@@ -72,4 +75,53 @@
 .order-details-button:active {
   background-color: #0039D7;
   border-color: #0039D7;
+}
+.star-rating {
+  font-size: 2em;
+  margin: 30px;
+  width: 200px;
+}
+
+.star {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.filled {
+  color: rgb(236, 216, 0);
+}
+.star-rating p
+{
+  font-size: medium;
+}
+.review-page
+{
+  padding: 30px;
+}
+.review-form
+{
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  
+}
+.review-form label
+{
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: 30px;
+}
+.review-form textarea
+{
+  width: 500px;
+  height: 200px;
+}
+.review-form h2
+{
+  color: #D80000;
+font-family: Stick No Bills;
+font-size: 34px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+letter-spacing: 1.2px;
 }

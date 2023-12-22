@@ -3,7 +3,7 @@ import {Link,NavLink } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 
 import '../styles/Card.css'
-import TechDetails from './TechDetails'
+import TechDetails from '../Routes/TechDetails'
  
 
 

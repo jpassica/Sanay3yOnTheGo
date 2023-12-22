@@ -1,55 +1,43 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import '../styles/Orders.css'
+import ReviewOrder from '../Routes/ReviewOrder'
+import { useNavigate } from 'react-router-dom'
+
 
 const Order = ({order}) => {
-    const[show,setShow]=useState(0)
+    const navigate = useNavigate();
+
     const showDetails=()=>
     {
         if(order.Service_status=="pending")
-        setShow(1) //for pending
+        navigate(`/CancelOrder/${order.order_id}`);
         else if (order.Service_status=="upcoming")
-        setShow(2) //for upcoming
+        navigate(`/CancelOrder/${order.order_id}`);
         else
-        setShow(3) //for finished
-    console.log(show)
-    }
-    useEffect(()=>
-    {
-        setShow(0)
-    }
-        ,[order]
-    )
+        navigate(`/ReviewOrder/${order.order_id}`);
+    console.log(order.id)
+        
+            
+          }
+  
+        
+   
   return (
     <div className='order-container'>
         <div className='order-card'>
             <h3>{order.date}</h3>
             <h3>{order.header}</h3>
+            <h5>{order.tech_id}</h5>
+            <h5>{order.price} EGP</h5>
             <button className='order-details-button' onClick={showDetails}>details</button>
-            {
-            show==1&&
-            <div className='pending-details'>
-                pending
-                </div>
-        }
-        {
-            show==2&&
-            <div className='upcoming-details'>
-                upcoming
-                </div>
-        }
-        {
-            show==3&&
-            <div className='finished-details'>
-                finished
-
-                </div>
-        }
+      
         </div>
       
       
     </div>
   )
 }
+
 
 export default Order

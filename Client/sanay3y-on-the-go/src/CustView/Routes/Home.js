@@ -6,7 +6,7 @@ import toolimg from '../../TechView/img/img1.png'
 import techimg from '../../TechView/img/tech.png'
 import eclipse from '../../TechView/img/Ellipse.png'
 
-const Home = ({services,techData}) => {
+const Home = ({services,techData,reviews}) => {
 
     const[filter,setFilter]=useState('AC')
     console.log(techData)
@@ -35,7 +35,7 @@ const Home = ({services,techData}) => {
 
         
         </div>
-        <TechList TechData={techData} filter={filter} />
+        <TechList TechData={techData} filter={filter} reviews={reviews} />
     
        
 

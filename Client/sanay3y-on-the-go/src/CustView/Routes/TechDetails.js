@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { NavLink, useParams } from 'react-router-dom'
 import sample from '../images/test.png'
 import '../styles/TechDetails.css'
-import PrevWorkCarousel from './PrevWorkCarousel';
-import ReviewCarousel from './ReviewCarousel';
+import PrevWorkCarousel from '../components/PrevWorkCarousel';
+import ReviewCarousel from '../components/ReviewCarousel';
 
 
-const TechDetails = ({techID,technicians}) => {
+const TechDetails = ({techID,technicians,reviews}) => {
 
 
         console.log(technicians)
@@ -18,7 +18,7 @@ const TechDetails = ({techID,technicians}) => {
 
       const[prevWork,setPreviousWork]=useState([])
       const[offers,setOffers]=useState([])
-      const[reviews,setReviews]=useState([])
+     
 
       //tech id
       const {id}=useParams()
@@ -33,13 +33,7 @@ const TechDetails = ({techID,technicians}) => {
         console.log(data)
         return data
       }
-      const fetchReviews=async ()=>
-      {
-        const res=await fetch("http://localhost:5000/reviews")
-        const data=await res.json()
-        console.log(data)
-        return data
-      }
+      
       const fetchOffers=async ()=>
       {
         const res=await fetch("http://localhost:5000/offers")
@@ -57,17 +51,10 @@ const TechDetails = ({techID,technicians}) => {
           const getOffersFromServer=await fetchOffers()
           setOffers(getOffersFromServer)
            }
-           const getReviews=async()=>{
-            const getReviewsFromServer=await fetchReviews()
-            setReviews(getReviewsFromServer)
-            
-           
-             }
+          
         getOffers()
-        getReviews()
         getPrevWork()
-        console.log('reviews')
-        console.log(reviews)
+
           },[])
 
       const getTechbyID = () => {
