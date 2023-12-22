@@ -445,5 +445,29 @@
       "header": "order example 1"
    
     }
+  ],
+  "notifications":
+  [
+    {
+      "order_header": "Order #123",
+      "content": "Your order has been dispatched and is on its way.",
+      "timestamp": "12:45 PM"
+    },
+    {
+      "order_header": "Order #456",
+      "content": "A new item has been added to your wishlist.",
+      "timestamp": "2:30 PM"
+    },
+    {
+      "order_header": "Order #789",
+      "content": "You've received a new message from a seller.",
+      "timestamp": "4:15 PM"
+    },
+    {
+      "order_header": "Order #321",
+      "content": "Reminder: Your subscription will expire soon.",
+      "timestamp": "6:00 PM"
+    }
   ]
+  
 }

@@ -29,7 +29,7 @@ const NavBarCust = () => {
             <NavLink to="/feedback">Feedback</NavLink>
           </li>
           <li>
-            <NavLink to="/notification">Notifications</NavLink>
+            <NavLink to="/notifications">Notifications</NavLink>
           </li>
         </ul>
       </div>

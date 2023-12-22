@@ -20,6 +20,7 @@ function App() {
   const[services,setServices]=useState([])
   const[service,setService]=useState([])
   const[reviews,setReviews]=useState([])
+  const[notifications,setNotifications]=useState([])
   const fetchTechnicians=async ()=>
   {
     const res=await fetch('http://localhost:5000/techs')
@@ -48,6 +49,13 @@ function App() {
         console.log(data)
         return data
       }
+      const fetchNotifications=async ()=>
+      {
+        const res=await fetch("http://localhost:5000/notifications")
+        const data=await res.json()
+        console.log(data)
+        return data
+      }
   useEffect(()=>
     {
       const getTechs=async()=>{
@@ -68,10 +76,17 @@ function App() {
           
          
            }
+           const getNotifications=async()=>{
+            const getNotificationsFromServer=await fetchNotifications()
+            setNotifications(getNotificationsFromServer)
+            
+           
+             }
     getTechs()
     getServices()
     getOrders()
     getReviews()
+    getNotifications()
       },[])
       
 
@@ -94,7 +109,7 @@ function App() {
         <Route path="/wallet" element={<Wallet />} />
         <Route path="/bundles" element={<Bundles/>} />
         <Route path="/feedback" element={<Feedback/>} />
-        <Route path="/notifications" element={<Notifications/>} />
+        <Route path="/notifications" element={<Notifications notifications={notifications}/>} />
 
       </Routes>
     </BrowserRouter>

@@ -1,0 +1,33 @@
+.notification-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 30px;
+   
+   
+    
+  }
+  
+  .notification {
+    background-color: #fcd64d; /* Yellow */
+    border: 1px solid #c6a700; /* Darker yellow for border */
+    padding: 10px;
+    margin-bottom: 10px;
+    max-width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .order-header {
+    font-weight: bold;
+    color: #1976d2; /* Blue */
+  }
+  
+  .content {
+    margin-top: 5px;
+  }
+  
+  .timestamp {
+    font-size: 12px;
+    color: #757575; /* Grey */
+  }
+  
