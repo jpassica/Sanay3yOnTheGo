@@ -120,7 +120,9 @@ const TechDetails = ({techID,technicians,reviews}) => {
         {offer.price} <del>{offer.preprice}</del></h4>
         <p>{offer.content}</p>
 
-
+        <button className=' button-17' >
+            Book NOW!
+        </button>
       </div>
     ))}  
     </div>

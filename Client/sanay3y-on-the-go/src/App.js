@@ -10,7 +10,10 @@ import TechDetails from './CustView/Routes/TechDetails';
 import Orders from './CustView/Routes/Orders';
 import ReviewOrder from './CustView/Routes/ReviewOrder';
 import CancelOrder from './CustView/Routes/CancelOrder';
-
+import Wallet from './CustView/Routes/Wallet';
+import Bundles from './CustView/Routes/Bundles';
+import Feedback from './CustView/Routes/Feedback';
+import Notifications from './CustView/Routes/Notifications';
 function App() {
 
   const[technicians,setTechnicians]=useState([])
@@ -84,10 +87,14 @@ function App() {
       <NavBarCust />
       <Routes>
         <Route path="/" element={<Home techData={technicians} services={services} reviews={reviews} />} />
-        <Route path="/TechDetails/:id" element={<TechDetails technicians={technicians} />} />
+        <Route path="/TechDetails/:id" element={<TechDetails technicians={technicians} reviews={reviews} />} />
         <Route path="/Orders" element={<Orders orders={service} />} />
         <Route path="/ReviewOrder/:id" element={<ReviewOrder orders={service} reviews={reviews} />} />
         <Route path="/CancelOrder/:id" element={<CancelOrder />} />
+        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/bundles" element={<Bundles/>} />
+        <Route path="/feedback" element={<Feedback/>} />
+        <Route path="/notifications" element={<Notifications/>} />
 
       </Routes>
     </BrowserRouter>
