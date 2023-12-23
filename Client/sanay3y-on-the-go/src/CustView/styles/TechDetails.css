@@ -1,0 +1,257 @@
+
+
+  @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Stick+No+Bills&family=Ubuntu&family=Unlock&display=swap');
+
+
+.techDetails-container
+{
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.tech-card
+{
+    width:900px;
+    margin:40px auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+    
+    /* CSS */
+    .button-52 {
+      font-size: 16px;
+      font-weight: 200;
+      letter-spacing: 1px;
+      padding: 13px 20px 13px;
+      outline: 0;
+      border: 1px solid black;
+      cursor: pointer;
+      position: relative;
+      background-color: rgba(0, 0, 0, 0);
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      margin: 30px;
+    }
+    
+    .button-52:after {
+      content: "";
+      background-color: #ffe54c;
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      top: 7px;
+      left: 7px;
+      transition: 0.2s;
+    }
+    
+    .button-52:hover:after {
+      top: 0px;
+      left: 0px;
+    }
+    
+    @media (min-width: 768px) {
+      .button-52 {
+        padding: 13px 50px 13px;
+      }
+    }
+    .tech-img
+    {
+        border-radius: 30px;
+    }
+    .tech-info h4
+    {
+        font-size:large;
+    }
+    .tech-info h1
+    {
+        font-family:Verdana, Geneva, Tahoma, sans-serif;
+    }
+    .book-form
+    {
+      display: grid;
+      grid-template-columns: auto auto ;
+      width: 100%;
+      margin: auto;
+    }
+   .form-grid-item
+   {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+   }
+   .book-form-container
+   {
+    width: 60%;
+    margin: auto;
+   }
+   input {
+    border:none;
+    box-shadow: 0px 0px 5px rgb(236, 212, 0);
+    font-size: 14px;
+    font-weight: 600;
+    width: 300px;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgb(248, 247, 247);
+    width: 90%;
+    height: 55px;
+  }
+
+
+/* CSS */
+.button-53 {
+  background-color: #ffec19;
+  border: 0 solid #E5E7EB;
+  box-sizing: border-box;
+  color: #000000;
+  display: flex;
+  font-family: ui-sans-serif,system-ui,-apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+  font-size: 1rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1.75rem;
+  padding: .75rem 1.65rem;
+  position: relative;
+  text-align: center;
+  text-decoration: none #000000 solid;
+  text-decoration-thickness: auto;
+  width: 30%;
+  max-width: 460px;
+  position: relative;
+  cursor: pointer;
+  
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 30px;
+}
+textarea
+{
+  height: 70px;
+  box-shadow: 0px 0px 5px rgb(236, 212, 0);
+  font-size: 14px;
+  font-weight: 600;
+  width: 300px;
+  border-radius: 20px;
+  padding: 10px;
+  background-color: rgb(248, 247, 247);
+  width: 90%;
+  border: none;
+  
+}
+.carousel-card-prev
+{
+  background-color: #FFDD61;;
+  width: 900px !important;
+  height: 320px;
+  margin-top: 20px !important;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+  margin: 30px;
+  margin-top: 50px !important;
+
+
+}
+.carousel-card-prev h4
+{
+  color: #1400FF;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+}
+.carousel-card-prev h2
+{
+  font-size: medium;
+  color: #3c3c3c;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bolder;
+}
+.carousel-container {
+  width: 1100px !important; /* Adjust the width as needed */
+  margin: 50px;
+  padding: 20px;
+  
+  
+}
+.prev-data
+{
+  
+}
+
+.offer-container1
+{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  width: 1100px !important; /* Adjust the width as needed */
+  margin-top: 50px;
+
+  
+}
+.offer-card
+{
+  background-color: #ffe54c;
+  width:300px;
+  height: 300px;
+  border-radius: 20px;
+  margin: 10px;
+ 
+
+
+}
+.offer-card1
+{
+height: 300px;
+width: 300px;
+display: flex;
+align-items: center;
+flex-direction: column;
+padding: 40px;
+border-radius: 10px;
+margin: 30px;
+margin-left: 90px;
+background-color: #FFDD61;
+box-shadow: 0 8px 16px 0 rgba(251, 8, 8, 0.605);
+
+}
+.headingprev
+{
+  padding: 15px;
+  margin: 20px;
+  font-family: 'Stick No Bills', sans-serif;
+  font-size: 30px;
+  width: 250px;
+  border-bottom: 2px solid rgb(113, 113, 113);
+}
+.review-card
+{
+ 
+  background-color:#c6c4c4;
+  width: 400px !important;
+  height: 200px;
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content:space-around;
+  align-items: center;
+
+}
+.review-container
+{
+  width: 1100px;
+  margin: 50px;
+}
+

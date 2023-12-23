@@ -1,0 +1,63 @@
+.highlightsbtns
+{
+display: flex;
+justify-content: space-evenly;
+}
+
+.cards
+{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+}
+
+.workcard
+{
+background-color: #3d1d94;
+width: 450px;
+color: #cfcece;
+display: grid;
+grid-template-columns: 1fr 1fr;
+padding: 30px;
+border-radius: 10px;
+margin: 30px;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.5);
+}
+
+.workcard *
+{
+background-color: #3d1d94;
+color: #cfcece;
+}
+
+.removebtn
+{
+background-color: red;
+height: 35px;
+width: 35px;
+border-radius: 35px;
+margin: 5px;
+}
+
+.addbtn
+{
+background-color: rgb(0, 192, 0);
+height: 35px;
+width: 35px;
+border-radius: 35px;
+margin: 5px;
+}
+
+.removebtn *
+{
+background-color: red;
+}
+.addbtn *
+{
+background-color: rgb(0, 192, 0);
+}
+
+.workimg
+{
+border: 1px solid bisque;
+border-radius: 5px;
+}

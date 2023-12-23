@@ -1,0 +1,81 @@
+.Offercard *
+{
+background-color: #FFDD61;
+}
+
+.Offercard
+{
+height: 350px;
+width: 350px;
+display: flex;
+align-items: center;
+flex-direction: column;
+padding: 40px;
+border: 1px solid #260F67;
+border-radius: 10px;
+margin: 30px;
+margin-left: 90px;
+background-color: #FFDD61;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+
+}
+
+.UpOffercard
+{
+height: 350px;
+width: 350px;
+display: flex;
+align-items: center;
+flex-direction: column;
+padding: 30px;
+border: 1px solid #260F67;
+border-radius: 10px;
+margin: 30px;
+margin-left: 90px;
+background-color: #ffe895;
+box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
+
+}
+.UpOffercard *
+{
+background-color: #ffe895;
+}
+
+.cards
+{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+/* visibility: hidden; */
+}
+
+.showoffers
+{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+/* visibility: visible; */
+}
+
+.uploadfields
+{
+background-color: #cfcece;
+margin: 8px;
+border-radius: 6px;
+color: #333;
+}
+.uploadbtn
+{
+background-color: #260F67;
+color: aliceblue;
+padding: 8px;
+border-radius: 5px;
+width: 90px;
+}
+
+.addofferbtn
+{
+background-color: #260F67;
+color: aliceblue;
+padding: 8px;
+border-radius: 5px;
+width: 90px;
+}

@@ -1,0 +1,473 @@
+{
+  "techs": [
+    {
+      "id": 1,
+      "name": "fatma zain",
+      "phone": "+201555555555",
+      "email": "test1@gmail.com",
+      "area": "cairo",
+      "service": "plumping",
+      "rating": 2,
+      "logged": true
+    },
+    {
+      "id": 2,
+      "name": "Hana Mostafa",
+      "phone": "+20111111111",
+      "email": "test2@gmail.com",
+      "area": "alexandria",
+      "service": "carpentering",
+      "rating": 5,
+      "logged": false
+    },
+    {
+      "id": 3,
+      "name": "ali ali",
+      "phone": "+201222222222",
+      "email": "test3@gmail.com",
+      "area": "cairo",
+      "service": "AC",
+      "rating": 1,
+      "logged": false
+    },
+    {
+      "id": 4,
+      "name": "Ahmed Hamdy",
+      "phone": "+2013333333",
+      "email": "test4@gmail.com",
+      "area": "alexandria",
+      "service": "carpentering",
+      "rating": 5,
+      "logged": false
+    },
+    {
+      "id": 5,
+      "name": "Khaled Gammal",
+      "phone": "+2010000000",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "service": "carpentering",
+      "rating": 5,
+      "logged": false
+    },
+    {
+      "id": 6
+    }
+  ],
+  "orders": [
+    {
+      "status": "pending",
+      "header": "AC Repair",
+      "details": "furtherdetailspen",
+      "price": 750
+    },
+    {
+      "status": "pending",
+      "header": "AC Repair",
+      "details": "furtherdetailspen",
+      "price": 750
+    },
+    {
+      "status": "upcoming",
+      "header": "AC Repair",
+      "details": "furtherdetailsup",
+      "price": 750
+    },
+    {
+      "status": "upcoming",
+      "header": "AC Repair",
+      "details": "furtherdetailsup",
+      "price": 750
+    },
+    {
+      "status": "previous",
+      "header": "AC Repair",
+      "details": "furtherdetailspre",
+      "price": 750
+    }
+  ],
+  "offers": [
+    {
+      "heading": "new offer",
+      "content": "plumping",
+      "preprice": "750",
+      "price": "600",
+      "id": 3
+    }
+  ],
+  "prevwork": [
+    {
+      "id": 1,
+      "header": "Leak Repair",
+      "content": "content1",
+      "price": 450,
+      "featured": false,
+      "rating": 4,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 1,
+      "header": "prev work 2",
+      "content": "content1",
+      "price": 450,
+      "featured": true,
+      "rating": 4,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 2,
+      "header": "Pipe Repair and Replacement",
+      "content": "content2",
+      "price": 750,
+      "featured": true,
+      "rating": 4,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 3,
+      "header": "Drain Cleaning",
+      "content": "content3",
+      "price": 300,
+      "featured": false,
+      "rating": 4,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 4,
+      "header": "Water Heater Services",
+      "content": "content4",
+      "price": 500,
+      "featured": true,
+      "rating": 4,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 5,
+      "header": "Toilet Repair",
+      "content": "content5",
+      "price": 600,
+      "featured": false,
+      "rating": 4,
+      "date": "11/12/2020"
+    }
+  ],
+  "service_categories": [
+    {
+      "id": 1,
+      "name": "Cleaning"
+    },
+    {
+      "id": 2,
+      "name": "plumping"
+    },
+    {
+      "id": 3,
+      "name": "AC"
+    },
+    {
+      "id": 4,
+      "name": "carpentering"
+    }
+  ],
+  "reviews": [
+    {
+      "order_id":1,
+      "tech_id": 1,
+      "cust_id": 9,
+      "details": "shogh mo2ref",
+      "rating": 3
+    },
+    {
+      "order_id":2,
+      "tech_id": 3,
+      "cust_id": 9,
+      "details": "wow",
+      "rating": 0
+    },
+    {
+      "order_id":3,
+      "tech_id": 3,
+      "cust_id": 9,
+      "details": "shogh mo2ref",
+      "rating": 0
+    },
+    {
+      "order_id":4,
+      "tech_id": 2,
+      "cust_id": 10,
+      "details": "shaghal",
+      "rating": 3
+    },
+    {
+      "order_id":5,
+      "tech_id": 3,
+      "cust_id": 11,
+      "details": "10/10",
+      "rating": 5
+    },
+    {
+      "order_id":6,
+      "tech_id": 4,
+      "cust_id": 12,
+      "details": "tohfa",
+      "rating": 4
+    }
+  ],
+  "customers": [
+    {
+      "id": 1,
+      "name": "fatma zain",
+      "phone": "+201555555555",
+      "email": "test1@gmail.com",
+      "area": "cairo",
+      "logged": false
+    },
+    {
+      "id": 2,
+      "name": "Hana Mostafa",
+      "phone": "+20111111111",
+      "email": "test2@gmail.com",
+      "area": "alexandria",
+      "logged": false
+    },
+    {
+      "id": 3,
+      "name": "ali ali",
+      "phone": "+201222222222",
+      "email": "test3@gmail.com",
+      "area": "cairo",
+      "logged": false
+    },
+    {
+      "id": 4,
+      "name": "Ahmed Hamdy",
+      "phone": "+2013333333",
+      "email": "test4@gmail.com",
+      "area": "alexandria",
+      "logged": false
+    },
+    {
+      "id": 5,
+      "name": "Khaled Gammal",
+      "phone": "+2010000000",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "logged": false
+    },
+    {
+      "id": 6,
+      "name": "Fatma Zain",
+      "phone": "+20111111111",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "logged": true
+    }
+  ],
+  "admins": [
+    {
+      "id": 1,
+      "name": "fatma zain",
+      "phone": "+201555555555",
+      "email": "test1@gmail.com",
+      "area": "cairo",
+      "logged": false
+    },
+    {
+      "id": 2,
+      "name": "Hana Mostafa",
+      "phone": "+20111111111",
+      "email": "test2@gmail.com",
+      "area": "alexandria",
+      "logged": false
+    },
+    {
+      "id": 3,
+      "name": "ali ali",
+      "phone": "+201222222222",
+      "email": "test3@gmail.com",
+      "area": "cairo",
+      "logged": false
+    },
+    {
+      "id": 4,
+      "name": "Ahmed Hamdy",
+      "phone": "+2013333333",
+      "email": "test4@gmail.com",
+      "area": "alexandria",
+      "logged": false
+    },
+    {
+      "id": 5,
+      "name": "Khaled Gammal",
+      "phone": "+2010000000",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "logged": false
+    },
+    {
+      "id": 6,
+      "name": "Fatma Zain",
+      "phone": "+20111111111",
+      "email": "test5@gmail.com",
+      "area": "alexandria",
+      "logged": true
+    }
+  ],
+  "complaints": [
+    {
+      "comp_id": 1,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "customer_id": 1,
+      "admin_id": 1,
+      "order_id": 3,
+      "time_stamp": "12-12-2023, 12:30 pm"
+    },
+    {
+      "comp_id": 2,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "customer_id": 4,
+      "admin_id": 1,
+      "order_id": 1,
+      "time_stamp": "12-12-2023, 12:30 pm"
+    },
+    {
+      "comp_id": 3,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "customer_id": 5,
+      "admin_id": 1,
+      "order_id": 1,
+      "time_stamp": "15-12-2023, 12:30 pm"
+    },
+    {
+      "comp_id": 4,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "customer_id": 1,
+      "admin_id": 2,
+      "order_id": 1,
+      "time_stamp": "01-12-2023, 12:30 pm"
+    },
+    {
+      "comp_id": 5,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "customer_id": 1,
+      "admin_id": 1,
+      "order_id": 2,
+      "time_stamp": "12-11-2023, 12:30 pm"
+    }
+  ],
+  "feedbacks": [
+    {
+      "feedback_id": 1,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "user_id": 1,
+      "admin_id": 1,
+      "time_stamp": "12-12-2023, 12:30 pm"
+    },
+    {
+      "feedback_id": 3,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "user_id": 4,
+      "admin_id": 1,
+      "time_stamp": "12-12-2023, 12:30 pm"
+    },
+    {
+      "feedback_id": 4,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "user_id": 5,
+      "admin_id": 1,
+      "time_stamp": "15-12-2023, 12:30 pm"
+    },
+    {
+      "feedback_id": 5,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "user_id": 1,
+      "admin_id": 2,
+      "time_stamp": "01-12-2023, 12:30 pm"
+    },
+    {
+      "feedback_id": 6,
+      "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum",
+      "user_id": 1,
+      "admin_id": 1,
+      "time_stamp": "12-11-2023, 12:30 pm"
+    }
+  ],
+  "services": [
+    {
+      "order_id":1,
+      "Service_status": "finished",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 2,
+      "cust_id": 2,
+      "header": "order example ff"
+    },
+    {
+      "order_id":2,
+      "Service_status": "upcoming",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 1,
+      "cust_id": 3,
+      "header": "order example uu"
+    },
+    {
+      "order_id":3,
+      "Service_status": "pending",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 3,
+      "cust_id": 3,
+      "header": "order example 1"
+    },
+    {
+      "order_id":4,
+      "Service_status": "upcoming",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 1,
+      "cust_id": 3,
+      "header": "order example uu"
+     
+    },
+    {
+      "order_id":5,
+      "Service_status": "pending",
+      "Service_timestamp": "12/10/2022 11:59:00",
+      "price": 500,
+      "details": "order carpenting and bla bla",
+      "tech_id": 3,
+      "cust_id": 3,
+      "header": "order example 1"
+   
+    }
+  ],
+  "notifications":
+  [
+    {
+      "order_header": "Order #123",
+      "content": "Your order has been dispatched and is on its way.",
+      "timestamp": "12:45 PM"
+    },
+    {
+      "order_header": "Order #456",
+      "content": "A new item has been added to your wishlist.",
+      "timestamp": "2:30 PM"
+    },
+    {
+      "order_header": "Order #789",
+      "content": "You've received a new message from a seller.",
+      "timestamp": "4:15 PM"
+    },
+    {
+      "order_header": "Order #321",
+      "content": "Reminder: Your subscription will expire soon.",
+      "timestamp": "6:00 PM"
+    }
+  ]
+  
+}
