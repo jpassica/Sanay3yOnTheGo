@@ -3,14 +3,51 @@
 background-color: #FFDD61;
 }
 
+.btnpos
+{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.offerbtn
+{
+    background-color: #260F67;
+    color:aliceblue;
+    border-radius: 10px;
+    border-color: #260F67;
+    padding: 10px;
+    margin: 20px;
+
+}
+
+.offerbtn:hover
+{
+    background-color:aliceblue;
+    color:#260F67;
+}
+
+button.trashbtn
+{
+    background-color: red;
+    height: 35px;
+    width: 35px;
+    border-radius: 35px;
+    margin: 10px;
+}
+
+.trashbtn *
+{
+    background-color: red;
+}
+
 .Offercard
 {
-height: 350px;
+height: 240px;
 width: 350px;
 display: flex;
 align-items: center;
 flex-direction: column;
-padding: 40px;
+padding: 15px;
 border: 1px solid #260F67;
 border-radius: 10px;
 margin: 30px;
@@ -22,8 +59,7 @@ box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.4);
 
 .UpOffercard
 {
-height: 350px;
-width: 350px;
+width: 750px;
 display: flex;
 align-items: center;
 flex-direction: column;
@@ -71,11 +107,26 @@ border-radius: 5px;
 width: 90px;
 }
 
-.addofferbtn
+.offerbtncontainer
+{
+    display: flex;
+    flex-direction: row;
+    /* flex-basis: 50%; */
+}
+
+.upofferbtn
 {
 background-color: #260F67;
 color: aliceblue;
 padding: 8px;
 border-radius: 5px;
-width: 90px;
+width: 100%;
+}
+
+
+.formcontainer
+{
+    display: flex;
+    justify-content: center;
+    padding: 50px;
 }

@@ -142,6 +142,20 @@
       "preprice": "500",
       "price": "350",
       "id": 4
+    },
+    {
+      "heading": "offer2",
+      "content": "AC Repair",
+      "preprice": "1000",
+      "price": "850",
+      "id": 5
+    },
+    {
+      "heading": "offer3",
+      "content": "ay haga",
+      "preprice": "500",
+      "price": "250",
+      "id": 6
     }
   ],
   "prevwork": [

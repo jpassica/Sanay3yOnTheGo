@@ -9,6 +9,7 @@ import FeaturedWork from './TechView/routes/FeaturedWork'
 import Offers from './TechView/routes/Offers'
 import Navbar from './TechView/components/Navbar'
 import EditProfile from './TechView/routes/EditProfile'
+import AddOffer from './TechView/routes/AddOffer'
 
 
 
@@ -244,6 +245,7 @@ const TechApp = () =>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
         <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
+        <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
         </Routes>
     </div>)
 }

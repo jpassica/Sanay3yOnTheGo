@@ -4,6 +4,7 @@ import '../styles/general.css'
 import '../styles/highlights.css'
 
 import '../styles/offers.css'
+import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 
 
 function UploadOffer({OnAdd}) {
@@ -14,10 +15,10 @@ function UploadOffer({OnAdd}) {
   let [price,setPrice]=useState("")
 
   const onSubmit = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
 
-    if (!heading) {
-      alert('Please add a task')
+    if (!heading || !content || !preprice || !price) {
+      alert('Please add all details')
       return
     }
 
@@ -29,7 +30,8 @@ function UploadOffer({OnAdd}) {
   }
 
   return (
-    <form className='add-form' onSubmit={onSubmit}>
+    <div className='formcontainer'>
+    <form className='addofferform' onSubmit={onSubmit}>
     <div className='UpOffercard'>
         <h5><b>Add New Offer</b></h5>
         <input type="text" placeholder='heading'className='uploadfields' onChange={(e) => setHeading(e.target.value)}/>
@@ -37,10 +39,31 @@ function UploadOffer({OnAdd}) {
         <input type="text" placeholder='previous price'className='uploadfields' onChange={(e) => setPrePrice(e.target.value)}/>
         <input type="text" placeholder='new price' className='uploadfields' onChange={(e) => setPrice(e.target.value)}/>
 
-        <input type='submit' value='Add Offer' className='btn btn-block' />
+
+    <div className='offerbtncontainer'>
+        <input type='submit' value='Add Offer' className='btn btn-primary  my-4 upofferbtn' />
+        <CustomLink to="/Offers">
+          <input type='button' value='Back to Offers' className='btn btn-primary  my-4 upofferbtn' />
+          </CustomLink>
+        </div>
     </div>
     </form>
+    </div>
   )
 }
 
+function CustomLink({to,children,...props})
+{
+    const topath=useResolvedPath(to)
+    const isActive = useMatch({path: topath.pathname,end: true})
+    return(
+        <div className={isActive?"activate":""}>
+            <Link to={to} {...props}>
+                {children}
+            </Link>
+
+        </div>
+    )
+
+}
 export default UploadOffer
