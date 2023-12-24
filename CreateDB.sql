@@ -10,8 +10,8 @@ CREATE TABLE Client (
     Phone_Number CHAR(11) NOT NULL
 );
 
-CREATE TABLE ServiceCategory(
-    ServiceCategory_ID SERIAL PRIMARY KEY,
+CREATE TABLE service(
+    service_ID SERIAL PRIMARY KEY,
     Name VARCHAR(45) NOT NULL
 );
 
@@ -38,17 +38,17 @@ CREATE TABLE Technician(
     Tech_ID INT PRIMARY KEY REFERENCES Client(Client_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    ServiceCategory_ID INT NOT NULL REFERENCES ServiceCategory(ServiceCategory_ID)
+    service_ID INT NOT NULL REFERENCES service(service_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Rating INT CHECK (Rating > 0 AND Rating < 6)  
 );
 
-CREATE TABLE Service(
-    Service_ID SERIAL PRIMARY KEY,
-    Service_status CHAR (8) NOT NULL CHECK (Service_status = 'PENDING' OR Service_status= 'UPCOMING' OR Service_status = 'FINISHED') DEFAULT 'PENDING',
-    Service_type CHAR(10) NOT NULL DEFAULT 'REGULAR',
-    Service_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE orders(
+    order_id SERIAL PRIMARY KEY,
+    order_status CHAR (8) NOT NULL CHECK (order_status = 'PENDING' OR order_status= 'UPCOMING' OR order_status = 'FINISHED') DEFAULT 'PENDING',
+    order_type CHAR(10) NOT NULL DEFAULT 'REGULAR',
+    order_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     Duration INT,
     Customer_ID INT REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE 
@@ -87,13 +87,13 @@ CREATE TABLE Complaint(
     Reviewer_ID INT NOT NULL REFERENCES Admin(Admin_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    Service_ID INT NOT NULL REFERENCES Service(Service_ID)
+    order_id INT NOT NULL REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
 CREATE TABLE Offer(
-    Offer_ID INT PRIMARY KEY,
+    Offer_ID SERIAL PRIMARY KEY,
     Content TEXT,
     Price INT NOT NULL,
     Expiry_date DATE,
@@ -106,7 +106,7 @@ CREATE TABLE Offer(
 CREATE TABLE Review(
     Review_ID SERIAL PRIMARY KEY,
     Rating INT CHECK (Rating > 0 AND Rating < 6),
-    Service_ID INT NOT NULL REFERENCES Service(Service_ID) 
+    order_id INT NOT NULL REFERENCES orders(order_id) 
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Customer_ID INT NOT NULL REFERENCES Customer(Customer_ID)
@@ -126,16 +126,16 @@ CREATE TABLE Bundle(
 );
 
 CREATE TABLE ConsistOf(
-    Service_ID INT REFERENCES Service(Service_ID)
+    order_id INT REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    ServiceCategory_ID INT REFERENCES ServiceCategory(ServiceCategory_ID)
+    service_ID INT REFERENCES service(service_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Tech_ID INT REFERENCES Technician(Tech_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    PRIMARY KEY (Service_ID, ServiceCategory_ID, Tech_ID)
+    PRIMARY KEY (order_id, service_ID, Tech_ID)
 );
 
 CREATE TABLE Notification(
@@ -145,34 +145,34 @@ CREATE TABLE Notification(
     Notified_ID INT NOT NULL REFERENCES Client(Client_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    Service_ID INT NOT NULL REFERENCES Service(Service_ID)
+    order_id INT NOT NULL REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
 
 CREATE TABLE IsBundle(
-    Service_ID INT REFERENCES Service(Service_ID)
+    order_id INT REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Bundle_ID INT REFERENCES Bundle(Bundle_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    PRIMARY KEY (Service_ID, Bundle_ID)
+    PRIMARY KEY (order_id, Bundle_ID)
 );
 
-CREATE TABLE RegularService(
-    Service_ID INT REFERENCES Service(Service_ID)
+CREATE TABLE RegularOrder(
+    order_id INT REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Price INT NOT NULL
 );
 
 CREATE TABLE IsOffer(
-    Service_ID INT REFERENCES Service(Service_ID)
+    order_id INT REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Offer_ID INT REFERENCES Offer(Offer_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    PRIMARY KEY (Service_ID, Offer_ID)
+    PRIMARY KEY (order_id, Offer_ID)
 );
