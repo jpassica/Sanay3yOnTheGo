@@ -56,34 +56,76 @@
   ],
   "orders": [
     {
-      "status": "pending",
-      "header": "AC Repair",
-      "details": "furtherdetailspen",
-      "price": 750
-    },
-    {
-      "status": "pending",
-      "header": "AC Repair",
-      "details": "furtherdetailspen",
-      "price": 750
-    },
-    {
-      "status": "upcoming",
-      "header": "AC Repair",
-      "details": "furtherdetailsup",
-      "price": 750
-    },
-    {
-      "status": "upcoming",
-      "header": "AC Repair",
-      "details": "furtherdetailsup",
-      "price": 750
-    },
-    {
+      "id": 3,
       "status": "previous",
-      "header": "AC Repair",
+      "header": "AC Repair3",
+      "details": "furtherdetailsup",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 5,
+      "status": "previous",
+      "header": "AC Repair5",
       "details": "furtherdetailspre",
-      "price": 750
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 6,
+      "status": "upcoming",
+      "header": "AC Repair6",
+      "details": "furtherdetailspen",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 7,
+      "status": "previous",
+      "header": "AC Repair7",
+      "details": "furtherdetailspen",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 9,
+      "status": "pending",
+      "header": "AC Repair9",
+      "details": "furtherdetailsup",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 11,
+      "status": "previous",
+      "header": "AC Repair11",
+      "details": "furtherdetailspre",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 12,
+      "status": "upcoming",
+      "header": "AC Repair11",
+      "details": "furtherdetailspre",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 13,
+      "status": "previous",
+      "header": "AC Repair11",
+      "details": "furtherdetailspre",
+      "price": 750,
+      "date": "11/12/2020"
+    },
+    {
+      "id": 14,
+      "status": "pending",
+      "header": "AC Repair11",
+      "details": "furtherdetailspre",
+      "price": 750,
+      "date": "11/12/2020"
     }
   ],
   "offers": [
@@ -93,6 +135,27 @@
       "preprice": "750",
       "price": "600",
       "id": 3
+    },
+    {
+      "heading": "Offer1",
+      "content": "cleaning ",
+      "preprice": "500",
+      "price": "350",
+      "id": 4
+    },
+    {
+      "heading": "offer2",
+      "content": "AC Repair",
+      "preprice": "1000",
+      "price": "850",
+      "id": 5
+    },
+    {
+      "heading": "offer3",
+      "content": "ay haga",
+      "preprice": "500",
+      "price": "250",
+      "id": 6
     }
   ],
   "prevwork": [
@@ -171,42 +234,42 @@
   ],
   "reviews": [
     {
-      "order_id":1,
+      "order_id": 1,
       "tech_id": 1,
       "cust_id": 9,
       "details": "shogh mo2ref",
       "rating": 3
     },
     {
-      "order_id":2,
+      "order_id": 2,
       "tech_id": 3,
       "cust_id": 9,
       "details": "wow",
       "rating": 0
     },
     {
-      "order_id":3,
+      "order_id": 3,
       "tech_id": 3,
       "cust_id": 9,
       "details": "shogh mo2ref",
       "rating": 0
     },
     {
-      "order_id":4,
+      "order_id": 4,
       "tech_id": 2,
       "cust_id": 10,
       "details": "shaghal",
       "rating": 3
     },
     {
-      "order_id":5,
+      "order_id": 5,
       "tech_id": 3,
       "cust_id": 11,
       "details": "10/10",
       "rating": 5
     },
     {
-      "order_id":6,
+      "order_id": 6,
       "tech_id": 4,
       "cust_id": 12,
       "details": "tohfa",
@@ -394,7 +457,7 @@
   ],
   "services": [
     {
-      "order_id":1,
+      "order_id": 1,
       "Service_status": "finished",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -404,7 +467,7 @@
       "header": "order example ff"
     },
     {
-      "order_id":2,
+      "order_id": 2,
       "Service_status": "upcoming",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -414,7 +477,7 @@
       "header": "order example uu"
     },
     {
-      "order_id":3,
+      "order_id": 3,
       "Service_status": "pending",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -424,7 +487,7 @@
       "header": "order example 1"
     },
     {
-      "order_id":4,
+      "order_id": 4,
       "Service_status": "upcoming",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -432,10 +495,9 @@
       "tech_id": 1,
       "cust_id": 3,
       "header": "order example uu"
-     
     },
     {
-      "order_id":5,
+      "order_id": 5,
       "Service_status": "pending",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
@@ -443,11 +505,9 @@
       "tech_id": 3,
       "cust_id": 3,
       "header": "order example 1"
-   
     }
   ],
-  "notifications":
-  [
+  "notifications": [
     {
       "order_header": "Order #123",
       "content": "Your order has been dispatched and is on its way.",
@@ -469,5 +529,4 @@
       "timestamp": "6:00 PM"
     }
   ]
-  
 }

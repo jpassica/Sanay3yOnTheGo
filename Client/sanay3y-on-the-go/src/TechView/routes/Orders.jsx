@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import OrdersList from '../components/OrdersList';
 
 
-const Orders = ({orders}) => {
+const Orders = ({orders,ondelete,onDone,onAccept}) => {
   const [filter,setFilter]=useState('pending');
   return (
 
@@ -17,7 +17,7 @@ const Orders = ({orders}) => {
 
         </div>
 
-        <OrdersList filter={filter} orders={orders}/>
+        <OrdersList filter={filter} orders={orders} ondelete={ondelete} onDone={onDone} onAccept={onAccept}/>
         
     </div>
   )

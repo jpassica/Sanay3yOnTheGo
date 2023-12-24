@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/account.css'
 import '../styles/editpage.css';
 import Edit from '../components/Edit';
-// import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 
 function EditProfile({edittech,techs}) {

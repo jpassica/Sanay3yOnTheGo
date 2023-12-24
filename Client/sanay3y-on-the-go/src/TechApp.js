@@ -9,6 +9,7 @@ import FeaturedWork from './TechView/routes/FeaturedWork'
 import Offers from './TechView/routes/Offers'
 import Navbar from './TechView/components/Navbar'
 import EditProfile from './TechView/routes/EditProfile'
+import AddOffer from './TechView/routes/AddOffer'
 
 
 
@@ -99,6 +100,13 @@ const TechApp = () =>
         return data
       }
 
+      const fetchorder = async (id) => {
+        const res = await fetch(`http://localhost:5000/orders/${id}`)
+        const data = await res.json()
+    
+        return data
+      }
+
       const fetchtech = async (id) => {
         const res = await fetch(`http://localhost:5000/techs/${id}`)
         const data = await res.json()
@@ -131,6 +139,16 @@ const TechApp = () =>
         setoffers([...offers, data])
       }
 
+      const deleteorder = async (id) => {
+        const res = await fetch(`http://localhost:5000/orders/${id}`, {
+          method: 'DELETE',
+        })
+        //We should control the response status to decide if we will change the state or not.
+        res.status === 200
+          ? setorders(orders.filter((order) => order.id !== id))
+          : alert('Error Deleting This order')
+      }
+
 
       const togglehighlight = async (id) => {
         const worktotoggle = await fetchwork(id)
@@ -149,6 +167,48 @@ const TechApp = () =>
         setprevwork(
           prevwork.map((item) =>
             item.id === id ? { ...item, featured: data.featured } : item
+          )
+        )
+      }
+
+      const onDone = async (id) => {
+        const doneorder = await fetchorder(id)
+        const updorder = { ...doneorder, status: "previous" }
+    
+        const res = await fetch(`http://localhost:5000/orders/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(updorder),
+        })
+    
+        const data = await res.json()
+    
+        setorders(
+          orders.map((item) =>
+            item.id === id ? { ...item, status: data.status } : item
+          )
+        )
+      }
+
+      const onAccept = async (id) => {
+        const acceptedorder = await fetchorder(id)
+        const updorder2 = { ...acceptedorder, status: "upcoming" }
+    
+        const res = await fetch(`http://localhost:5000/orders/${id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-type': 'application/json',
+          },
+          body: JSON.stringify(updorder2),
+        })
+    
+        const data = await res.json()
+    
+        setorders(
+          orders.map((item) =>
+            item.id === id ? { ...item, status: data.status } : item
           )
         )
       }
@@ -181,10 +241,11 @@ const TechApp = () =>
         <Routes>
         <Route exact path="/" element={<Home />}/>
         <Route exact path="/Account" element={<Account techs={techs} />}/>
-        <Route exact path="/Orders" element={<Orders orders={orders}/>}/>
+        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
         <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
+        <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
         </Routes>
     </div>)
 }
