@@ -19,7 +19,14 @@ root.render(
     {/*<BrowserRouter>
     <TechApp />
   </BrowserRouter>*/}
-      <App />  
+    {/*
+    */}
+    <App />  
+    {/*
+
+<CustApp />  
+    */
+    }
   </React.StrictMode>
 );
 
