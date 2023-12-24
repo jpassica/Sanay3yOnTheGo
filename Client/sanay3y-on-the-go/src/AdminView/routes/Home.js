@@ -7,7 +7,7 @@ const Home = (complaints) => {
 
   return (
     <div className='home-container'>
-      
+       
       <div className='home'>
         <div className='Welcome'>
         

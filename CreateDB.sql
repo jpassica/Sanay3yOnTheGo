@@ -1,4 +1,4 @@
--- 
+-- create database "Sanay3y_DB" then run this script in the query tool. this will create all the tables.
 CREATE TABLE Client (
     Client_ID SERIAL PRIMARY KEY,
     FName VARCHAR(45) NOT NULL,

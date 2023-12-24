@@ -1,145 +1,174 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import techimg from './TechView/img/tech.png';
 import custimg from './img/customerIconSignUp.png';
-import  toolimg from './img/technicianIconSignUp.png';
-import axios from 'axios';
-
-
+import toolimg from './img/technicianIconSignUp.png';
 
 const SignUp = () => {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [type, setType] = useState('');
-    const [category, setCategory] = useState('');
-    const [address, setAddress] = useState('');    
-    const [password, setPassword] = useState('');    
-    const handleSignUp = async () => {
-        console.log(1);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [type, setType] = useState('');
+  const [category, setCategory] = useState('');
+  const [isTech, setisTech] = useState(false);
+  const [services, setServices] = useState([]);
+  const [address, setAddress] = useState('');
+  const [password, setPassword] = useState('');
+
+  const fetchServices = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/services');
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching services:', error.message);
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    let isMounted = true;
+
+    const getServices = async () => {
       try {
-        const response = await axios.post('http://localhost:3001/SignUp', {
-          email,
-            password,
-            name,
-            phone,
-            type,
-            address,
-        });
-        console.log(response.data);
+        const getServicesFromServer = await fetchServices();
+        if (isMounted) {
+          setServices(getServicesFromServer);
+        }
       } catch (error) {
-        console.error('SignUp error:', error.response ? error.response.data : error.message);
+        // Handle the error
       }
     };
-    const handleCategory = async () => {
-        try {
-          const response = await axios.post('http://localhost:3001/SignUp', {
-            name,
-              phone,
-              email,
-              password,
-                type,
-          });
-      
-          console.log(response.data);
-        } catch (error) {
-          console.error('SignUp error:', error.response ? error.response.data : error.message);
+
+    getServices();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  const handleTech = () => {
+    setType('t');
+    setisTech(!isTech);
+  };
+
+  const handleServiceChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const handleSignUp = async () => {
+    try {
+      const response = await axios.post('http://localhost:3001/SignUp',{
+        email: email,
+        password: password,
+        fullname: name,
+        phone_number: phone,
+        type: type,
+        address: address,
+        service: category
+      }, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
         }
-    };
-    
-    const ContainerStyle = {
-        background: "#FFF",
-        width: "1535px",
-        height: "680px",
+    });
+      console.log(response.data);
+    } catch (error) {
+      console.error('SignUp error:', error.response ? error.response.data : error.message);
+    }
+  };
 
-        display: "flex",
-        flexDirection: "row",
-    };
-    
-    const FirstContainerStyle = {
-        background: "#FFDD61",
-        width: "600px",
-        height: "680px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "center",
-    };
-    const SecondContainerStyle = {
-        background: "#FFF",
-        width: "801px",
-        height: "680px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "center",
-        padding: "50px",
-    };
-    const welcomeStyle ={
-        color: "#FFF",
-        fontFamily: "Inria Serif",
-        fontSize: "28px",
-        fontStyle: "italic",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "2.8px"
-    }; 
-    const sanay3yStyle ={ 
-        color: "#FFF",
-        fontFamily: "Mrs Sheppards",
-        fontSize: "36px",
-        fontStyle: "normal",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "4.16px",
-    };
-    const SignUpBtnStyle = {
-        background: "#FFDD61",
-        width: "200px",
-        height: "60px",
-        color: "#FFF",
-        fontFamily: "Inria Serif",
-        fontSize: "24px",
-        fontStyle: "normal",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "2.8px",
-        border: "none",
-        borderRadius: "10px",
-        cursor: "pointer",
-    };
-    const SignUpTextBoxStyle = {
-        background: "#FFF",
-        width: "500px",
-        height: "50px",
-        color: "#000",
-        fontFamily: "Inria Serif",
-        fontSize: "24px",
-        fontStyle: "normal",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "2.8px",
-        border: "none",
-        borderRadius: "10px",
-        cursor: "pointer",
-        margin: "10px",
-    };
 
-    const typeContaionerStyle = {
-        display: "flex",
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-        width: "200px",
-        marginBottom: "30px",
-        background: "#FBF7E5",
-        border: "none",
-        borderRadius: "10px",
-        height: "50px",
-        cursor: "pointer",
-    };
+  const ContainerStyle = {
+    background: "#FFF",
+    width: "1535px",
+    height: "680px",
 
-    return (
-    
+    display: "flex",
+    flexDirection: "row",
+};
+const FirstContainerStyle = {
+    background: "#FFDD61",
+    width: "600px",
+    height: "680px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+};
+const SecondContainerStyle = {
+    background: "#FFF",
+    width: "801px",
+    height: "680px",
+    display: "flex",
+    flexDirection: "column",
+    justifyContent: "space-around",
+    alignItems: "center",
+    padding: "50px",
+};
+const welcomeStyle ={
+    color: "#FFF",
+    fontFamily: "Inria Serif",
+    fontSize: "28px",
+    fontStyle: "italic",
+    fontWeight: "700",
+    lineHeight: "35px",
+    letterSpacing: "2.8px"
+}; 
+const sanay3yStyle ={ 
+    color: "#FFF",
+    fontFamily: "Mrs Sheppards",
+    fontSize: "36px",
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: "35px",
+    letterSpacing: "4.16px",
+};
+const SignUpBtnStyle = {
+    background: "#FFDD61",
+    width: "200px",
+    height: "60px",
+    color: "#FFF",
+    fontFamily: "Inria Serif",
+    fontSize: "24px",
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: "35px",
+    letterSpacing: "2.8px",
+    border: "none",
+    borderRadius: "10px",
+    cursor: "pointer",
+};
+const SignUpTextBoxStyle = {
+    background: "#FFF",
+    width: "500px",
+    height: "50px",
+    color: "#000",
+    fontFamily: "Inria Serif",
+    fontSize: "24px",
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: "35px",
+    letterSpacing: "2.8px",
+    border: "none",
+    borderRadius: "10px",
+    cursor: "pointer",
+    margin: "10px",
+};
+const typeContaionerStyle = {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    width: "200px",
+    marginBottom: "30px",
+    background: "#FBF7E5",
+    border: "none",
+    borderRadius: "10px",
+    height: "50px",
+    cursor: "pointer",
+};
+
+  return (
         <div style={ContainerStyle}>
             
             <div style={FirstContainerStyle}>
@@ -171,18 +200,33 @@ const SignUp = () => {
 
                         </div>
                         
-                        <div style={typeContaionerStyle} onClick={ ()=> setType("t")}>
+                        <div style={typeContaionerStyle} onClick={ handleTech}>
                         Technician
                         <img src={toolimg} alt="img1" height={35} width={50} style={{opacity:"0.9", position:"absolute",  top:"495px",left:"1050px",background:'transparent'}}/>
                         </div>
-                </div>
-                </>
+                    </div>
+                    
+              </>
+              {isTech && (
+        <div>
+          <label htmlFor="service">Service:</label>
+          <select id="service" value={category} onChange={handleServiceChange}>
+            <option value="">Select a service</option>
+            {services.map((service) => (
+              <option key={service.id} value={service.name}>
+                {service.name}
+              </option>
+            ))}
+          </select>
+        </div>
+              )}
                 <button type="button" onClick={handleSignUp} style={SignUpBtnStyle}>
                 Sign Up
                 </button>
+      
               </form>
-        </div>
-    );
-}
+    </div>
+  );
+};
 
 export default SignUp;

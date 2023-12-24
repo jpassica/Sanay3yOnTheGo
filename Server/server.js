@@ -44,6 +44,7 @@ app.post("/SignIn", async(req, res) => {
 // Sign Up Customer and Tech
 app.post("/SignUp", async (req, res) => {
     // Validate unique email
+    const gender = "MALE";
 
     if ((await db.query(`SELECT * FROM client WHERE email = '${req.body.email}';`)).rowCount != 0)
     {
@@ -55,7 +56,7 @@ app.post("/SignUp", async (req, res) => {
        await db.query("INSERT INTO client (email, address, password, gender, phone_number, fullname, type)"+
        " VALUES ($1, $2, $3, $4, $5, $6, $7)", 
         [req.body["email"], req.body["address"], req.body["password"], 
-        req.body["gender"], req.body["phone_number"], req.body["fullname"], req.body["type"]]);
+        gender, req.body["phone_number"], req.body["fullname"], req.body["type"]]);
 
         //res.send("client inserted successfully!");
     } catch (error) {
@@ -239,7 +240,7 @@ app.post("/offers/new", async (req, res) => {
 });
 
 // customer buys offer 
-app.post("offers", async (req, res) =>
+app.post("/offers", async (req, res) =>
 {
     const c_id = req.body.c_id;
 
@@ -249,5 +250,19 @@ app.post("offers", async (req, res) =>
     } catch (error) {
         res.send("Could not create your offer!");
         console.log(error);
+    }
+});
+
+// get service categories
+
+app.get("/services", async (req, res) => {
+    try {
+        const result = await db.query("SELECT name FROM service;");
+        console.log(result.rows);
+        res.send(JSON.stringify(result.rows));
+
+    } catch (error) {
+        console.log(error);
+        res.send("Could not retrieve services.");
     }
 });
