@@ -1,9 +1,10 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import cors from "cors";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const db = new pg.Client({
     user: "postgres",
@@ -12,9 +13,11 @@ const db = new pg.Client({
     password: "tezCix-4tyxxo",
     port: 5432
 });
+
  
 db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({origin: '*'}));
 
 // Sign In Customer or Tech or Admin
 app.post("/SignIn", async(req, res) => {
@@ -77,11 +80,11 @@ app.post("/SignUp", async (req, res) => {
         const new_id = (await db.query("SELECT currval('client_client_id_seq');")).rows[0].currval;;
 
 
-        const service_query = await db.query(`SELECT servicecategory_id FROM servicecategory WHERE name = '${req.body["servicecategory"]}'`);
-        const servicecategory_id = service_query.rows[0].servicecategory_id;
+        const service_query = await db.query(`SELECT service_id FROM service WHERE name = '${req.body["service"]}'`);
+        const service_id = service_query.rows[0].service_id;
 
         try{
-            await db.query(`INSERT INTO technician (tech_id, servicecategory_id) VALUES (${new_id}, ${servicecategory_id});`);
+            await db.query(`INSERT INTO technician (tech_id, service_id) VALUES (${new_id}, ${service_id});`);
             res.send("technician inserted successfully!");
         }
         catch (error){
@@ -96,32 +99,33 @@ app.listen(port, () => {
     console.log(`Server is listening at port ${port}`);
 });
 
-// Show techs in area by service category
-app.get("/Order/AvailableTechs", async (req, res) => {
+// Show techs in area by service 
+app.get("/Order/Available", async (req, res) => {
     const customerCity = req.body.city; //how to figure this out?
-    const s_category = req.body.s_category;
-    const result = await db.query(`SELECT fullname, name, rating FROM client, technician, servicecategory
-        WHERE address = '${customerCity}' AND technician.servicecategory_id = servicecategory.servicecategory_id
-        AND tech_id = client_id AND name = '${s_category}'`);
+    const service = req.body.service;
+    const result = await db.query(`SELECT fullname, name, rating FROM client, technician, service
+        WHERE address = '${customerCity}' AND technician.service_id = service.service_id
+        AND tech_id = client_id AND name = '${service}'`);
     res.send(result.rows);
     console.log(req.body);
+    console.log(resut.rows);
 });
 
 // Show Past Orders 
 app.get("/Orders/Past", async (req, res) => {
     const c_id = req.body["c_id"]; 
-    const result = await db.query(`SELECT service_timestamp, name FROM service, consistof, servicecategory WHERE customer_id = ${c_id}
-        AND consistof.service_id = service.service_id AND servicecategory.servicecategory_id = consistof.servicecategory_id
-        AND service_status = 'FINISHED';`);
+    const result = await db.query(`SELECT order_timestamp, name FROM order, consistof, service WHERE customer_id = ${c_id}
+        AND consistof.service_id = service.service_id AND order.order_id = consistof.order_id
+        AND order_status = 'FINISHED';`);
     res.send(result.rows);
 }); 
 
 // Show Pending Orders 
 app.get("/Orders/Pending", async (req, res) => {
     const c_id = req.body["c_id"]; 
-    const result = await db.query(`SELECT service_timestamp, name FROM service, consistof, servicecategory WHERE customer_id = ${c_id}
-        AND consistof.service_id = service.service_id AND servicecategory.servicecategory_id = consistof.servicecategory_id
-        AND service_status = 'PENDING';`);
+    const result = await db.query(`SELECT order_timestamp, name FROM service, consistof, order WHERE customer_id = ${c_id}
+        AND consistof.service_id = service.service_id AND order.order_id = consistof.order_id
+        AND order_status = 'PENDING';`);
     res.send(result.rows);
 }); 
 
@@ -130,20 +134,23 @@ app.post("/Order", async (req, res) => {
 
     const c_id = req.body.c_id;
     const t_id = req.body.t_id;
+
     try {
-        await db.query("INSERT INTO service (duration, customer_id)"+ 
+        await db.query("INSERT INTO order (duration, customer_id)"+ 
         "VALUES ($1, $2)", [3, c_id]);
 
-        const s_id = (await db.query("SELECT currval('service_service_id_seq');")).rows[0].currval;
+        const o_id = (await db.query("SELECT currval('service_service_id_seq');")).rows[0].currval;
 
-        const category = (await db.query("SELECT servicecategory_id FROM technician WHERE tech_id = $1", [t_id])).rows[0].servicecategory_id;
+        const category = (await db.query("SELECT service_id FROM technician WHERE tech_id = $1", [t_id])).rows[0].service_id;
 
-        await db.query("INSERT INTO consistof (service_id, servicecategory_id, tech_id) VALUES ($1, $2, $3)", [s_id, category, t_id]);
+        await db.query("INSERT INTO consistof (order_id, service_id, tech_id) VALUES ($1, $2, $3)", [o_id, category, t_id]);
 
-        res.send("service order created succesfully!");
+        await db.query("INSERT INTO regularorder VALUES ($1, $2);", [o_id, req.body.price]);
+
+        res.send("Order created succesfully!");
     }
     catch (error) {
-        res.send("couldn't create service order!");
+        res.send("couldn't create order!");
         console.log(error);
     }
    
@@ -152,16 +159,16 @@ app.post("/Order", async (req, res) => {
 // Review an order
 app.post("/Order/Review", async (req, res) => {
     const s_id = req.body.s_id;
-    const c_id = (await db.query("SELECT customer_id FROM service WHERE service_id = $1;", [s_id])).rows[0].customer_id;
+    const c_id = (await db.query("SELECT customer_id FROM orders WHERE order_id = $1;", [s_id])).rows[0].customer_id;
 
-    // Customer can only make one review about each service 
-    if ((await db.query("SELECT * FROM review WHERE service_id = $1 AND customer_id = $2;", [s_id, c_id])).rowCount != 0 )
+    // Customer can only make one review about each order
+    if ((await db.query("SELECT * FROM review WHERE order_id = $1 AND customer_id = $2;", [s_id, c_id])).rowCount != 0 )
     {
-        return res.send("You have already reviewed this service, you cannot review it again.");
+        return res.send("You have already reviewed this order, you cannot review it again.");
     }
 
     try {
-        await db.query("INSERT INTO review (rating, service_id, customer_id, content) VALUES ($1, $2, $3, $4);", 
+        await db.query("INSERT INTO review (rating, order_id, customer_id, content) VALUES ($1, $2, $3, $4);", 
         [req.body.rating, s_id, c_id, req.body.content]);
         res.send("Review posted successfully!");
     } catch (error) {
@@ -175,11 +182,11 @@ app.post("/Order/Review", async (req, res) => {
 app.post("/Order/Complain", async (req, res) => {
     // Should only need s_id to identify c_id
     const s_id = req.body.s_id;
-    const c_id = (await db.query("SELECT customer_id FROM service WHERE service_id = $1;", [s_id])).rows[0].customer_id;
+    const c_id = (await db.query("SELECT customer_id FROM orders WHERE order_id = $1;", [s_id])).rows[0].customer_id;
     const a_id = req.body.a_id; // How to determine the admin that would oversee??
 
     try {
-        await db.query("INSERT INTO complaint (content, customer_id, reviewer_id, service_id) VALUES ($1, $2, $3, $4);", 
+        await db.query("INSERT INTO complaint (content, customer_id, reviewer_id, order_id) VALUES ($1, $2, $3, $4);", 
         [req.body.content, c_id, a_id, s_id]);
 
     res.send("Complaint is sent successfully, help is on the way!");
@@ -213,6 +220,34 @@ app.post("/feedback", async (req, res) => {
         res.send("Your feedback has been received!");
     } catch (error) {
         res.send("Could not record your feedback!");
+        console.log(error);
+    }
+});
+
+// tech makes new offer
+app.post("/offers/new", async (req, res) => {
+   const t_id = req.body.t_id;
+   
+   try{
+        await db.query("INSERT INTO offer (content, price, expiry_date, tech_id) VALUES ($1, $2, $3, $4);",
+        [req.body.content, req.body.price, req.body.expiry_date, t_id]);
+        res.send("Offer created successfully!");
+   } catch (error) {
+    res.send("Could not create your offer!");
+    console.log(error);
+    }
+});
+
+// customer buys offer 
+app.post("offers", async (req, res) =>
+{
+    const c_id = req.body.c_id;
+
+    try{
+        await db.query("INSERT INTO order () VALUES");
+        res.send("Offer created successfully!");
+    } catch (error) {
+        res.send("Could not create your offer!");
         console.log(error);
     }
 });
