@@ -115,7 +115,7 @@ const Login = () => {
                 <h1>
                 Log In to Your Account
                 </h1>
-          <input type="text" required  value={email} onChange={(e) => setEmail(e.target.value)} style={loginTextBoxStyle} placeholder='Email Address or Phone Number' />
+          <input type="text" required  value={email} onChange={(e) => setEmail(e.target.value)} style={loginTextBoxStyle} placeholder='Email Address' />
           <input type="password" required  value={password} onChange={(e) => setPassword(e.target.value)} style={loginTextBoxStyle} placeholder='Password' />
         <button type="button" onClick={handleLogin} style={loginBtnStyle}>
           Log In

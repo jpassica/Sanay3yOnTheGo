@@ -17,7 +17,7 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Sign In Customer or Tech or Admin
-app.post("/SignIn", async(req, res) => {
+app.post("/Login", async(req, res) => {
     try {
         const result = await db.query(`SELECT fullname,type FROM client WHERE LOWER(email) = '${req.body["email"].toLowerCase()}' AND password = '${req.body["password"]}'`);
         console.log(result.rows[0].fullname);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import techimg from './TechView/img/tech.png';
 import custimg from './img/customerIconSignUp.png';
 import  toolimg from './img/technicianIconSignUp.png';
@@ -12,14 +12,19 @@ const SignUp = () => {
     const [phone, setPhone] = useState('');
     const [type, setType] = useState('');
     const [category, setCategory] = useState('');
+    const [address, setAddress] = useState('');    
     const [password, setPassword] = useState('');    
     const handleSignUp = async () => {
+        console.log(1);
       try {
         const response = await axios.post('http://localhost:3001/SignUp', {
           email,
-          password,
+            password,
+            name,
+            phone,
+            type,
+            address,
         });
-    
         console.log(response.data);
       } catch (error) {
         console.error('SignUp error:', error.response ? error.response.data : error.message);
@@ -28,8 +33,11 @@ const SignUp = () => {
     const handleCategory = async () => {
         try {
           const response = await axios.post('http://localhost:3001/SignUp', {
-            email,
-            password,
+            name,
+              phone,
+              email,
+              password,
+                type,
           });
       
           console.log(response.data);
@@ -148,7 +156,8 @@ const SignUp = () => {
                 Sign UP to Your Account
                 </h1>
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} style={SignUpTextBoxStyle} placeholder='Full Name' />
-                <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} style={SignUpTextBoxStyle} placeholder='Email Address' />
+          <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} style={SignUpTextBoxStyle} placeholder='Email ' />
+                <input type="text" value={address} onChange={(e) => setAddress(e.target.value)} style={SignUpTextBoxStyle} placeholder=' Address' />
                 <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} style={SignUpTextBoxStyle} placeholder='Phone Number' />
           <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={SignUpTextBoxStyle} placeholder='Password' />
                 <>
@@ -158,13 +167,13 @@ const SignUp = () => {
                 <div style={{ display: "flex", flexDirection: "row", justifyContent: "space-around", alignItems: "center",width:"600px", marginBottom:"30px" }}>
                         <div style={typeContaionerStyle} onClick={()=>setType("c")}>
                             Customer
-                        <img src={custimg} alt="img1" height={31} width={31} style={{opacity:"0.9", position:"absolute", top:"465px",left:"770px",background:'transparent'}}/>
+                        <img src={custimg} alt="img1" height={31} width={31} style={{opacity:"0.9", position:"absolute", top:"495px",left:"770px",background:'transparent'}}/>
 
                         </div>
                         
                         <div style={typeContaionerStyle} onClick={ ()=> setType("t")}>
                         Technician
-                        <img src={toolimg} alt="img1" height={35} width={50} style={{opacity:"0.9", position:"absolute",  top:"465px",left:"1050px",background:'transparent'}}/>
+                        <img src={toolimg} alt="img1" height={35} width={50} style={{opacity:"0.9", position:"absolute",  top:"495px",left:"1050px",background:'transparent'}}/>
                         </div>
                 </div>
                 </>
