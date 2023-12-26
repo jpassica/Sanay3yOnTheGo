@@ -8,7 +8,7 @@ function ProfilePage({type, id}) {
   const renderProfileComponent = () => {
     switch (type) {
       case 'a':
-        return <AdminApp />;
+        return <AdminApp id />;
       case 'c':
         return <CustApp />;
       case 't':
