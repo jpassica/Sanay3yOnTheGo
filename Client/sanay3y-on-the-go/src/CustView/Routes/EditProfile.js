@@ -7,6 +7,7 @@ import { useMatch,Link,useResolvedPath } from 'react-router-dom';
 
 
 
+
 function EditProfile({editcust,customer}) 
 {
 let [fname,setfname]=useState("")

@@ -1,6 +1,7 @@
 import React from 'react'
 import prosrc from '../../TechView/img/profile.png'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
+import '../../TechView/styles/account.css'
 
 
 const AccountDetails = ({customer}) => {
