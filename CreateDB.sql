@@ -6,7 +6,6 @@ CREATE TABLE Client (
     Address VARCHAR(45) NOT NULL,
     Password VARCHAR(45) NOT NULL,
     type CHAR(1) NOT NULL CHECK (type = 'c' OR type = 't' OR type = 'a'),
-    Gender VARCHAR(6) NOT NULL CHECK (Gender = 'MALE' OR Gender = 'FEMALE'),
     Phone_Number CHAR(11) NOT NULL
 );
 
@@ -46,10 +45,9 @@ CREATE TABLE Technician(
 
 CREATE TABLE orders(
     order_id SERIAL PRIMARY KEY,
-    order_status CHAR (8) NOT NULL CHECK (order_status = 'PENDING' OR order_status= 'UPCOMING' OR order_status = 'FINISHED') DEFAULT 'PENDING',
-    order_type CHAR(10) NOT NULL DEFAULT 'REGULAR',
-    order_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    Duration INT,
+    order_status CHAR (1) NOT NULL CHECK (order_status = 'P' OR order_status= 'U' OR order_status = 'F') DEFAULT 'P', 
+    order_type CHAR(1) NOT NULL CHECK (order_type = 'R' OR order_type = 'B' OR order_type = 'O') DEFAULT 'R',
+    order_DATE DATE DEFAULT CURRENT_DATE,
     Customer_ID INT REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE 
         ON UPDATE CASCADE
@@ -58,7 +56,7 @@ CREATE TABLE orders(
 CREATE TABLE Feedback(
     Feedback_ID SERIAL PRIMARY KEY,
     Content TEXT NOT NULL,
-    Feedback_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Feedback_DATE DATE DEFAULT CURRENT_DATE,
     Reporter_ID INT REFERENCES Client(Client_ID)
         ON DELETE SET NULL
         ON UPDATE CASCADE,
@@ -80,7 +78,7 @@ CREATE TABLE Reward(
 CREATE TABLE Complaint(
     Complaint_ID SERIAL PRIMARY KEY,
     Content TEXT NOT NULL,
-    Complaint_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Complaint_DATE DATE DEFAULT CURRENT_DATE,
     Customer_ID INT NOT NULL REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -94,13 +92,12 @@ CREATE TABLE Complaint(
 
 CREATE TABLE Offer(
     Offer_ID SERIAL PRIMARY KEY,
-    Content TEXT,
+    Header VARCHAR(45),
+    Description TEXT,
     Price INT NOT NULL,
-    Expiry_date DATE,
     Tech_ID INT REFERENCES Technician(Tech_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE
-
 );
 
 CREATE TABLE Review(
@@ -117,6 +114,8 @@ CREATE TABLE Review(
 
 CREATE TABLE Bundle(
     Bundle_ID SERIAL PRIMARY KEY,
+    Header VARCHAR(50),
+    Description TEXT,
     Creator_ID INT NOT NULL REFERENCES Admin(Admin_ID)
         ON DELETE SET NULL
         ON UPDATE CASCADE,
@@ -126,22 +125,19 @@ CREATE TABLE Bundle(
 );
 
 CREATE TABLE ConsistOf(
-    order_id INT REFERENCES orders(order_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    service_ID INT REFERENCES service(service_ID)
+    bundle_id INT REFERENCES bundle(bundle_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     Tech_ID INT REFERENCES Technician(Tech_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    PRIMARY KEY (order_id, service_ID, Tech_ID)
+    PRIMARY KEY (bundle_id, Tech_ID)
 );
 
 CREATE TABLE Notification(
     Notification_ID SERIAL PRIMARY KEY,
     Content TEXT NOT NULL,
-    Notification_timestamp TIMESTAMP,
+    Notification_DATE DATE,
     Notified_ID INT NOT NULL REFERENCES Client(Client_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -164,6 +160,9 @@ CREATE TABLE RegularOrder(
     order_id INT REFERENCES orders(order_id)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
+    Header VARCHAR(50),
+    Description TEXT,
+    tech_id INT REFERENCES technician(tech_id),
     Price INT NOT NULL
 );
 

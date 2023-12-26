@@ -82,7 +82,7 @@ function AdminApp({id}) {
         <Route path="/TechniciansPage" element={<TechniciansPage technicians={technicians} adminId={id}/>} />
         <Route path="/EditProfile" element={<EditProfile adminId={id} />} />
         <Route path="/CreateBundle" element={<CreateBundle adminId={id} />} />
-        <Route path="/FeedbacksPage" element={<FeedbacksPage adminId={id}/>} />                  
+        <Route path="/Feedback" element={<FeedbacksPage adminId={id}/>} />                  
         <Route path="/ComplaintReview" element={<ComplaintReview adminId={id}/>} />                  
       </Routes>
     </BrowserRouter>

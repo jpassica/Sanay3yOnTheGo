@@ -8,9 +8,6 @@ const FeedbacksPage = ({adminId}) => {
 
     const fetchFeedbacks = async () => {
         try {
-            alert(feedbacks);
-            alert("feedbacks");
-     
             const response = await axios.get('http://localhost:3001/feedbacks');
             return response.data;
 
@@ -26,9 +23,7 @@ const FeedbacksPage = ({adminId}) => {
         try {
             const getServicesFromServer = await fetchFeedbacks();
         if (isMounted) {
-            
-        alert(feedbacks);
-        alert("feedbacks");
+
             setFeedbacks(getServicesFromServer);
         }
         } catch (error) {
@@ -49,12 +44,9 @@ const FeedbacksPage = ({adminId}) => {
 
     return (
         <>
-        <h1>
-            hi
-        </h1>
         <div>
             {
-            feedbacks.map((feedback) => (
+            feedbacks?.map((feedback) => (
                 <div key={feedback.id} onClick={() => handleCardClick(feedback.feedback_id)}>
                     <h3>Feedback ID: {feedback.feedback_id}</h3>
                     <p>Content: {feedback.content}</p>
