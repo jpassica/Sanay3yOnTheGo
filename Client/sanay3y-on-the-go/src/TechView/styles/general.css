@@ -70,3 +70,12 @@ display: flex;
 justify-content: center;
 justify-content: space-evenly;
 }
+
+.highlightpage h1
+{
+  font-family: 'Stick No Bills', sans-serif;
+  border-bottom: 1px solid black;
+  padding: 15px;
+  width: 500px;
+  margin-bottom: 20px;
+}

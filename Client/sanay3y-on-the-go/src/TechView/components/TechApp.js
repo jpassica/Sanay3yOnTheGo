@@ -151,10 +151,10 @@ const TechApp = () =>
 
 
       const togglehighlight = async (id) => {
-        const worktotoggle = await fetchwork(id)
+        const worktotoggle = await fetchorder(id)
         const updwork = { ...worktotoggle, featured: !worktotoggle.featured }
     
-        const res = await fetch(`http://localhost:5000/prevwork/${id}`, {
+        const res = await fetch(`http://localhost:5000/orders/${id}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',
@@ -164,8 +164,8 @@ const TechApp = () =>
     
         const data = await res.json()
     
-        setprevwork(
-          prevwork.map((item) =>
+        setorders(
+          orders.map((item) =>
             item.id === id ? { ...item, featured: data.featured } : item
           )
         )
@@ -242,9 +242,9 @@ const TechApp = () =>
       <Routes>
       <Route exact path="/" element={<Home />}/>
         <Route exact path="/Account" element={<Account techs={techs} />}/>
-        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept}/>}/>
+        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
-        <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
+        <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
         <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
         <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
       </Routes>

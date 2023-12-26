@@ -2,7 +2,7 @@ import React from 'react'
 import '../styles/orders.css'
 
 
-const PreviousCard = ({order,filter}) => {
+const PreviousCard = ({order,filter,onToggle}) => {
   return (
         <div className='cardcontainer'>
     <div className={filter=="previous"?"ordercard":"hidecard"}>
@@ -10,7 +10,7 @@ const PreviousCard = ({order,filter}) => {
       <p>{order.date}</p>
         <p>{order.details}</p>
         <p>Price: {order.price} <sub>EGP</sub> </p>
-        <button type="button" className={order.featured==true? "removebtn" :"addbtn"} style={{position:"relative",
+        <button type="button" onClick={() => onToggle(order.id)} className={order.featured==true? "removebtn" :"addbtn"} style={{position:"relative",
       left:"320px"}}><span className={order.featured==true? "bi bi-trash" :"bi bi-cloud-plus-fill"}></span></button>
     </div> 
     

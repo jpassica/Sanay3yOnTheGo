@@ -89,7 +89,7 @@
       "details": "furtherdetailspen",
       "price": 750,
       "date": "11/12/2020",
-      "featured": false
+      "featured": true
     },
     {
       "id": 9,
@@ -106,7 +106,7 @@
       "details": "furtherdetailspre",
       "price": 750,
       "date": "11/12/2020",
-      "featured": false
+      "featured": true
     },
     {
       "id": 12,
@@ -124,7 +124,7 @@
       "details": "furtherdetailspre",
       "price": 750,
       "date": "11/12/2020",
-      "featured": false
+      "featured": true
     }
   ],
   "offers": [

@@ -6,7 +6,7 @@ import PrevWorkCard from './PrevWorkCard';
 import PreviousCard from './PreviousCard';
 import '../styles/orders.css'
 
-const OrdersList = ({orders,filter,ondelete,onDone,onAccept}) => {
+const OrdersList = ({orders,filter,ondelete,onDone,onAccept,onToggle}) => {
 
   return (
     <div className='orederscontainer'>   
@@ -20,7 +20,7 @@ const OrdersList = ({orders,filter,ondelete,onDone,onAccept}) => {
        ))} 
    
    {orders.filter(order => order.status==filter).map((order,index)=>(
-      <PreviousCard key={index} order={order} filter={filter}/>
+      <PreviousCard key={index} order={order} filter={filter} onToggle={onToggle}/>
     ))} 
             
     </div>
