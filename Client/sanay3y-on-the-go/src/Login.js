@@ -7,7 +7,6 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');    
     const handleLogin = async () => {
-<<<<<<< Updated upstream
       try {
         const response = await axios.post('http://localhost:3001/SignIn', {
           email: email,
@@ -21,11 +20,6 @@ const Login = () => {
         console.log(response.data);
       } catch (error) {
         console.error('Login error:', error.response ? error.response.data : error.message);
-=======
-      if (!email || !password) {
-        alert('Email and password are required');
-        return;
->>>>>>> Stashed changes
       }
       if (!email.includes('@')) {
         alert('Please enter a valid email');
