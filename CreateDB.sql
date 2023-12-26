@@ -1,11 +1,11 @@
 -- create database "Sanay3y_DB" then run this script in the query tool. this will create all the tables.
 CREATE TABLE Client (
     Client_ID SERIAL PRIMARY KEY,
-    FName VARCHAR(45) NOT NULL,
-    LName VARCHAR(45) NOT NULL,
+    FullName VARCHAR(45) NOT NULL,
     Email VARCHAR(45) NOT NULL,
     Address VARCHAR(45) NOT NULL,
     Password VARCHAR(45) NOT NULL,
+    type CHAR(1) NOT NULL CHECK (type = 'c' OR type = 't' OR type = 'a'),
     Gender VARCHAR(6) NOT NULL CHECK (Gender = 'MALE' OR Gender = 'FEMALE'),
     Phone_Number CHAR(11) NOT NULL
 );
