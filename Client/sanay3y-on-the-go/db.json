@@ -89,7 +89,7 @@
     },
     {
       "id": 9,
-      "status": "pending",
+      "status": "upcoming",
       "header": "AC Repair9",
       "details": "furtherdetailsup",
       "price": 750,
@@ -114,14 +114,6 @@
     {
       "id": 13,
       "status": "previous",
-      "header": "AC Repair11",
-      "details": "furtherdetailspre",
-      "price": 750,
-      "date": "11/12/2020"
-    },
-    {
-      "id": 14,
-      "status": "pending",
       "header": "AC Repair11",
       "details": "furtherdetailspre",
       "price": 750,
@@ -527,6 +519,18 @@
       "order_header": "Order #321",
       "content": "Reminder: Your subscription will expire soon.",
       "timestamp": "6:00 PM"
+    }
+  ],
+  "bundles": [
+    {
+      "bundle_name": "Bundle 1",
+      "price": 99.99,
+      "bundle_details": "Christmas BUNDLE:Deep cleaning 4 rooms "
+    },
+    {
+      "bundle_name": "Bundle 2",
+      "price": 149.99,
+      "bundle_details": "Painting 100 m^2 apartment using special ay haga "
     }
   ]
 }

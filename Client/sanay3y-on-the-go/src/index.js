@@ -21,7 +21,7 @@ root.render(
   </BrowserRouter>*/}
     {/*
     */}
-    <App />  
+    <App />
     {/*
 
 <CustApp />  
