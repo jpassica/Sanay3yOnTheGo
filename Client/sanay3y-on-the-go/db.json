@@ -57,19 +57,21 @@
   "orders": [
     {
       "id": 3,
-      "status": "previous",
+      "status": "pending",
       "header": "AC Repair3",
       "details": "furtherdetailsup",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     },
     {
       "id": 5,
-      "status": "previous",
+      "status": "pending",
       "header": "AC Repair5",
       "details": "furtherdetailspre",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     },
     {
       "id": 6,
@@ -77,7 +79,8 @@
       "header": "AC Repair6",
       "details": "furtherdetailspen",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     },
     {
       "id": 7,
@@ -85,7 +88,8 @@
       "header": "AC Repair7",
       "details": "furtherdetailspen",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     },
     {
       "id": 11,
@@ -93,7 +97,8 @@
       "header": "AC Repair11",
       "details": "furtherdetailspre",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     },
     {
       "id": 12,
@@ -101,7 +106,8 @@
       "header": "AC Repair11",
       "details": "furtherdetailspre",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     },
     {
       "id": 13,
@@ -109,7 +115,8 @@
       "header": "AC Repair11",
       "details": "furtherdetailspre",
       "price": 750,
-      "date": "11/12/2020"
+      "date": "11/12/2020",
+      "featured": false
     }
   ],
   "offers": [

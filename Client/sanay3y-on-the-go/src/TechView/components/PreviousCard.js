@@ -10,8 +10,11 @@ const PreviousCard = ({order,filter}) => {
       <p>{order.date}</p>
         <p>{order.details}</p>
         <p>Price: {order.price} <sub>EGP</sub> </p>
-
-    </div>    </div>
+        <button type="button" className={order.featured==true? "removebtn" :"addbtn"} style={{position:"relative",
+      left:"320px"}}><span className={order.featured==true? "bi bi-trash" :"bi bi-cloud-plus-fill"}></span></button>
+    </div> 
+    
+       </div>
   )
 }
 

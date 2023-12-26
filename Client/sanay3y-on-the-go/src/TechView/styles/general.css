@@ -15,6 +15,17 @@
 {
 background-color: #260F67;
 border: #260F67;
+border-radius: 10px;
+text-align:center;
+/* height: 30px; */
+padding: 8px;
+margin: 8px;
+font-size: 18px;
+}
+
+.probutton:hover
+{
+  text-decoration: none;
 }
 
 .editbtn
