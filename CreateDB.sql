@@ -84,7 +84,7 @@ CREATE TABLE Complaint(
     Customer_ID INT NOT NULL REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
-    Reviewer_ID INT NOT NULL REFERENCES Admin(Admin_ID)
+    Reviewer_ID INT REFERENCES Admin(Admin_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
     order_id INT NOT NULL REFERENCES orders(order_id)

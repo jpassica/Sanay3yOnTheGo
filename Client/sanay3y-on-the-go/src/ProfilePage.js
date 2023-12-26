@@ -5,10 +5,11 @@ import AdminApp from '../src/AdminView/components/AdminApp';
 import CustApp from '../src/CustView/components/CustApp';
 import TechApp from '../src/TechView/components/TechApp';
 function ProfilePage({type, id}) {
+  type='a';
   const renderProfileComponent = () => {
     switch (type) {
       case 'a':
-        return <AdminApp id />;
+        return <AdminApp id={id} />;
       case 'c':
         return <CustApp />;
       case 't':

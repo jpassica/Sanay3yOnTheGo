@@ -15,62 +15,62 @@ function AdminApp({id}) {
   const[complaints,setComplaints]=useState([])
   const[feedbacks,setFeedbacks]=useState([])
   
-  const fetchComplaints = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/complaints');
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching services:', error.message);
-      throw error;
-    }
-  };
-  const fetchFeedbacks = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/feedbacks');
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching feedbacks:', error.message);
-      throw error;
-    }
-  };
+  // const fetchComplaints = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:5000/complaints');
+  //     console.log(response.data);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching services:', error.message);
+  //     throw error;
+  //   }
+  // };
+  // const fetchFeedbacks = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:3001/feedbacks');
+  //     console.log(response.data);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching feedbacks:', error.message);
+  //     throw error;
+  //   }
+  // };
 
-  const fetchTechnicians = async () => {
-    try {
-      const response = await axios.get('http://localhost:5000/techs');
-      console.log(response.data);
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching Technicians:', error.message);
-      throw error;
-    }
-  };
+  // const fetchTechnicians = async () => {
+  //   try {
+  //     const response = await axios.get('http://localhost:3001/techs');
+  //     console.log(response.data);
+  //     return response.data;
+  //   } catch (error) {
+  //     console.error('Error fetching Technicians:', error.message);
+  //     throw error;
+  //   }
+  // };
 
     
-  useEffect(()=>
-  {
-    let isMounted = true;
+  // useEffect(()=>
+  // {
+  //   let isMounted = true;
 
-    const getTechs=async()=>{
-    const getTechFromServer=await fetchTechnicians()
-    setTechnicians(getTechFromServer)
-    }
-    const getComplaints=async()=>{
-    const getComplaintsFromServer=await fetchComplaints()
-    setComplaints(getComplaintsFromServer)
-    }
-    const getFeedbacks=async()=>{
-    const getFeedbacksFromServer=await fetchFeedbacks()
-    setFeedbacks(getFeedbacksFromServer)
-    }
-    getTechs();
-    getComplaints();
-    getFeedbacks();
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  //   const getTechs=async()=>{
+  //   // const getTechFromServer=await fetchTechnicians()
+  //   // setTechnicians(getTechFromServer)
+  //   // }
+  //   // const getComplaints=async()=>{
+  //   // const getComplaintsFromServer=await fetchComplaints()
+  //   // setComplaints(getComplaintsFromServer)
+  //   // }
+  //   // const getFeedbacks=async()=>{
+  //   // const getFeedbacksFromServer=await fetchFeedbacks()
+  //   // setFeedbacks(getFeedbacksFromServer)
+  //   // }
+  //   // getTechs();
+  //   // getComplaints();
+  //   // getFeedbacks();
+  //   return () => {
+  //     isMounted = false;
+  //   };
+  // }, []);
 
   return (
     <>
@@ -82,8 +82,8 @@ function AdminApp({id}) {
         <Route path="/TechniciansPage" element={<TechniciansPage technicians={technicians} adminId={id}/>} />
         <Route path="/EditProfile" element={<EditProfile adminId={id} />} />
         <Route path="/CreateBundle" element={<CreateBundle adminId={id} />} />
-        <Route path="/FeedbacksPage" element={<FeedbacksPage feedbacks={feedbacks} adminId={id}/>} />                  
-        <Route path="/ComplaintReview" element={<ComplaintReview complaints={complaints} adminId={id}/>} />                  
+        <Route path="/FeedbacksPage" element={<FeedbacksPage adminId={id}/>} />                  
+        <Route path="/ComplaintReview" element={<ComplaintReview adminId={id}/>} />                  
       </Routes>
     </BrowserRouter>
       </>

@@ -10,11 +10,12 @@ const ComplaintReview = ({adminId}) => {
         // Fetch feedbacks from the database
         const fetchFeedbacks = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/feedbacks');
-                const data = await response.json();
+                const response = await axios.get('http://localhost:3001/complaints');
+                //const data = await response.json();
+                const data = response.data;
                 setComplaints(data);
             } catch (error) {
-                console.error('Error fetching feedbacks:', error);
+                console.error('Error fetching complaints:', error);
             }
         };
 

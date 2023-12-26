@@ -22,7 +22,7 @@ const [divCustColor, setCustDivColor] = useState('#FBF7E5');
 
 const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/services');
+      const response = await axios.get('http://localhost:3001/services');
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -81,7 +81,7 @@ setCategory(event.target.value);
 };
 
     const handleSignUp = async () => {
-        if (!name || !email || !phone || !address || !password) { 
+        if (!name || !email || !phone || !address || !password||!type) { 
             alert('All fields are required');
             return;
         }

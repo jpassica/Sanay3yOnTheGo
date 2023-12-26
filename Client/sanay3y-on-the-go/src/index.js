@@ -22,10 +22,10 @@ root.render(
     <CustApp />
     {/*
     <Sanay3y />
-    <AdminApp />
+    <TechApp />
     <CustApp />  
-    <App />  
-    */}
+  <App />  
+  */}
     
   </React.StrictMode>
 );
