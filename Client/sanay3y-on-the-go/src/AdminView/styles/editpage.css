@@ -1,0 +1,38 @@
+
+
+.editcontainer
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.leftside
+{
+    margin: 50px;
+    width: 50%;
+}
+
+.btn
+{
+    background: #FFDD61;
+    width: 200px;
+    height: 40px;
+    color: #FFF;
+    font-family: "Inria Serif";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 2.8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
+.rowbtn
+{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+}

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import techimg from './TechView/img/tech.png';
 import axios from 'axios';
-
-
+import './styles/login.css';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');    
     const handleLogin = async () => {
+<<<<<<< Updated upstream
       try {
         const response = await axios.post('http://localhost:3001/SignIn', {
           email: email,
@@ -21,107 +21,55 @@ const Login = () => {
         console.log(response.data);
       } catch (error) {
         console.error('Login error:', error.response ? error.response.data : error.message);
+=======
+      if (!email || !password) {
+        alert('Email and password are required');
+        return;
+>>>>>>> Stashed changes
       }
-    };
-    const ContainerStyle = {
-        background: "#FFF",
-        width: "1535px",
-        height: "680px",
-        display: "flex",
-        flexDirection: "row",
-    };
-    
-    const FirstContainerStyle = {
-        background: "#FFDD61",
-        width: "600px",
-        height: "680px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "center",
-    };
-    const SecondContainerStyle = {
-        background: "#FFF",
-        width: "801px",
-        height: "680px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-around",
-        alignItems: "center",
-        padding: "50px",
-    };
-    const welcomeStyle ={
-        color: "#FFF",
-        fontFamily: "Inria Serif",
-        fontSize: "28px",
-        fontStyle: "italic",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "2.8px"
-    }; 
-    const sanay3yStyle ={ 
-        color: "#FFF",
-        fontFamily: "Mrs Sheppards",
-        fontSize: "36px",
-        fontStyle: "normal",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "4.16px",
-    };
-    const loginBtnStyle = {
-        background: "#FFDD61",
-        width: "200px",
-        height: "50px",
-        color: "#FFF",
-        fontFamily: "Inria Serif",
-        fontSize: "24px",
-        fontStyle: "normal",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "2.8px",
-        border: "none",
-        borderRadius: "10px",
-        cursor: "pointer",
-    };
+      if (!email.includes('@')) {
+        alert('Please enter a valid email');
+        return;
+    }
+    if (password.length < 8) {
+        alert('Password must be at least 8 characters');
+        return;
+    }
 
-    const loginTextBoxStyle = {
-        background: "#FFF",
-        width: "500px",
-        height: "50px",
-        color: "#000",
-        fontFamily: "Inria Serif",
-        fontSize: "24px",
-        fontStyle: "normal",
-        fontWeight: "700",
-        lineHeight: "35px",
-        letterSpacing: "2.8px",
-        border: "none",
-        borderRadius: "10px",
-        cursor: "pointer",
-        margin: "10px",
-        textAlign: "center",
-    };
-
+      try {
+        const response = await axios.post('http://localhost:5000/Login', {
+            email: email,
+            password: password,
+            }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        console.log(response.data);
+        } catch (error) {
+          console.error('SignUp error:', error.response ? error.response.data : error.message);
+        }
+        };
     return (
     
-        <div style={ContainerStyle}>
+        <div className='ContainerStyle'>
             
-            <div style={FirstContainerStyle}>
-                <p style={welcomeStyle}>
-                    Welcome to
-                </p>
-                    <img src={techimg} alt="img1" height={280} width={300} style={{opacity:"0.9", position:"absolute", top:"200px",left:"180px",background:'transparent'}}/>
-                <p style={sanay3yStyle}>
-                    Sanay3y On The Go!
-                </p>
-            </div>
-            <form style={SecondContainerStyle}>
+            <div className="FirstContainerStyle">
+    <p className="welcomeStyle">Welcome to</p>
+    <img
+                src={techimg}
+                className="techimg"
+    alt="img1"
+    />
+    <p className="sanay3yStyle">Sanay3y On The Go!</p>
+</div>
+            <form className='SecondContainerStyle'>
                 <h1>
                 Log In to Your Account
                 </h1>
-          <input type="text" required  value={email} onChange={(e) => setEmail(e.target.value)} style={loginTextBoxStyle} placeholder='Email Address' />
-          <input type="password" required  value={password} onChange={(e) => setPassword(e.target.value)} style={loginTextBoxStyle} placeholder='Password' />
-        <button type="button" onClick={handleLogin} style={loginBtnStyle}>
+          <input type="text" required  value={email} onChange={(e) => setEmail(e.target.value)} className='loginTextBoxStyle' placeholder='Email' />
+          <input type="password" required  value={password} onChange={(e) => setPassword(e.target.value)} className='loginTextBoxStyle' placeholder='Password' />
+        <button type="button" onClick={handleLogin} className='loginBtnStyle'>
           Log In
                 </button>
       </form>

@@ -4,13 +4,16 @@ import pg from "pg";
 import cors from "cors";
 
 const app = express();
+<<<<<<< Updated upstream
 const port = 3001;
+=======
+const port = 5000;
+>>>>>>> Stashed changes
 
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
     database: "Sanay3y_DB",
-    password: "tezCix-4tyxxo",
     port: 5432
 });
 
@@ -225,6 +228,7 @@ app.post("/feedback", async (req, res) => {
     }
 });
 
+<<<<<<< Updated upstream
 // tech makes new offer
 app.post("/offers/new", async (req, res) => {
    const t_id = req.body.t_id;
@@ -253,6 +257,8 @@ app.post("/offers", async (req, res) =>
     }
 });
 
+=======
+>>>>>>> Stashed changes
 // get service categories
 
 app.get("/services", async (req, res) => {

@@ -1,0 +1,75 @@
+/* FILEPATH: /e:/Programming/Projects/DB_Project/Sanay3yOnTheGo/Client/sanay3y-on-the-go/src/AdminView/styles/CreateBundle.css */
+
+.bundleCheckBox {
+    /* Add your styles for bundleCheckBox here */
+    
+}
+
+
+.createBundleTitle {
+    /* Add your styles for createBundleTitle here */
+}
+.bundleBtnStyle {
+    background: #FFDD61;
+    width: 200px;
+    height: 40px;
+    color: #FFF;
+    font-family: "Inria Serif";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 2.8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+.bundlePageContainer {
+    background: #FFF;
+    width: 1405px;
+    height: 650px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Set the colors */
+.bundleCheckBox {
+    color: #FFDD61;
+}
+.services{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+    list-style-type: none;
+}
+
+.bundleTextBoxStyle {
+    background: #FFF;
+    width: 500px;
+    height: 50px;
+    color: #000;
+    font-family: "Inria Serif";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 35px;
+    letter-spacing: 2.8px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.createBundleTitle {
+    color: #FFDD61;
+}
+
+.bundlePageContainer {
+    background-color: #FBF7E5;
+}

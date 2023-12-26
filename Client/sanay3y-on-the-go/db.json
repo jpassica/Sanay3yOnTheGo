@@ -88,14 +88,6 @@
       "date": "11/12/2020"
     },
     {
-      "id": 9,
-      "status": "pending",
-      "header": "AC Repair9",
-      "details": "furtherdetailsup",
-      "price": 750,
-      "date": "11/12/2020"
-    },
-    {
       "id": 11,
       "status": "previous",
       "header": "AC Repair11",
@@ -114,14 +106,6 @@
     {
       "id": 13,
       "status": "previous",
-      "header": "AC Repair11",
-      "details": "furtherdetailspre",
-      "price": 750,
-      "date": "11/12/2020"
-    },
-    {
-      "id": 14,
-      "status": "pending",
       "header": "AC Repair11",
       "details": "furtherdetailspre",
       "price": 750,
