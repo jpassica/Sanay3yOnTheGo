@@ -89,15 +89,12 @@ return (
       <div className='rowbtn'>
 
         <div>
-      <button onClick={onSubmit} id="edit_profile" class="btn btn-primary  my-4 probutton">Submit Changes</button>
+      <button onClick={onSubmit} id="edit_profile" class=" btn-primary  my-4 probutton">Submit Changes</button>
       </div>
 
       <CustomLink to="/Account">
-                <a href="#" id="edit_profile" class="btn btn-primary  my-4 probutton">
-                 Back to your account
-                
-            </a>
-            </CustomLink>
+          <button class=" btn-primary  my-4 probutton">Back to Account</button>
+                </CustomLink>
             </div>
     </form>
 
