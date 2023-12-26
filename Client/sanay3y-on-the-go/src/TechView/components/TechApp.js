@@ -1,15 +1,15 @@
 import React, { useState } from 'react'
 import {useEffect} from 'react'
-import {Routes,Route} from 'react-router-dom'
-import Home from './TechView/routes/Home'
-import Account from './TechView/routes/Account'
-import Orders from './TechView/routes/Orders'
+import { BrowserRouter , Route, Routes } from 'react-router-dom';
+import Home from '../routes/Home'
+import Account from '../routes/Account'
+import Orders from '../routes/Orders'
 // import Profile from './routes/Profile'
-import FeaturedWork from './TechView/routes/FeaturedWork'
-import Offers from './TechView/routes/Offers'
-import Navbar from './TechView/components/Navbar'
-import EditProfile from './TechView/routes/EditProfile'
-import AddOffer from './TechView/routes/AddOffer'
+import FeaturedWork from '../routes/FeaturedWork'
+import Offers from '../routes/Offers'
+import Navbar from './Navbar'
+import EditProfile from '../routes/EditProfile'
+import AddOffer from '../routes/AddOffer'
 
 
 
@@ -237,17 +237,21 @@ const TechApp = () =>
 
 
     return (<div className='App'>
-        <Navbar/>
-        <Routes>
-        <Route exact path="/" element={<Home />}/>
+        <BrowserRouter>
+      <Navbar />
+      <Routes>
+      <Route exact path="/" element={<Home />}/>
         <Route exact path="/Account" element={<Account techs={techs} />}/>
         <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
         <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
         <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
-        </Routes>
+      </Routes>
+    </BrowserRouter>
+
     </div>)
 }
 
 export default TechApp
+

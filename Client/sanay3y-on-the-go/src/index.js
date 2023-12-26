@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+import './styles/index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
 
-import TechApp from './TechApp';
-import CustApp from './CustApp';
+import TechApp from './TechView/components/TechApp';
+import CustApp from './CustView/components/CustApp';
+import AdminApp from './AdminView/components/AdminApp';
+import Sanay3y from './ProfilePage';
 
 
 const rootElement = document.getElementById('root');
@@ -16,17 +18,14 @@ const root = createRoot(rootElement);
 root.render(
   
   <React.StrictMode>
-    {/*<BrowserRouter>
     <TechApp />
-  </BrowserRouter>*/}
     {/*
+    <Sanay3y />
+    <AdminApp />
+    <CustApp />  
+    <App />  
     */}
-    <App />
-    {/*
-
-<CustApp />  
-    */
-    }
+    
   </React.StrictMode>
 );
 
