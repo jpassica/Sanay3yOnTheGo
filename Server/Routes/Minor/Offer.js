@@ -3,13 +3,17 @@ import bodyParser from "body-parser";
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
-import * as serviceController from "../../Controllers/Minor/ServiceController.js";
+import * as offerController from "../../Controllers/Minor/OfferController.js";
 
 router.route('/')
-    .get(serviceController.getServiceCategories)
-    .post()
+    .get()
+    .post(offerController.createOffer)
     .put()
     .patch()
     .delete()
+
+router.route('/:id')
+    .get(offerController.getTechOffers)
+    .delete(offerController.deleteOffer)
 
 export default router;

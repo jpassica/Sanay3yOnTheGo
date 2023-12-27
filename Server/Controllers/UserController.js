@@ -33,10 +33,13 @@ const createNewUser = async (req, res) => {
         }
     } else if (req.body["type"] === 't')
     {
-        const new_id = (await db.query("SELECT currval('client_client_id_seq');")).rows[0].currval;;
-                        const service_query = await db.query(`SELECT service_id FROM service WHERE name = '${req.body["service"]}'`);
+        const new_id = (await db.query("SELECT currval('client_client_id_seq');")).rows[0].currval;
+
+        const service_query = await db.query(`SELECT service_id FROM service WHERE name = '${req.body["service"]}';`);
+
         const service_id = service_query.rows[0].service_id;
-                try{
+
+        try{
             await db.query(`INSERT INTO technician (tech_id, service_id) VALUES (${new_id}, ${service_id});`);
             res.send("technician inserted successfully!");
         }
@@ -69,11 +72,112 @@ const signInUser = async (req, res) => {
     }
 };
 
-const updateUser = async(req , res) => {
+const getUserDetails = async (req, res) => {
+    const id = req.params.id;
 
+    try{
+        const main_result = (await db.query(`SELECT * FROM client WHERE client_id = ${id};`)).rows[0];
+
+        if (main_result.type == "t")
+        {
+            const service = (await db.query(`SELECT name FROM service, technician 
+                WHERE technician.service_id = service.service_id AND tech_id = ${id};`)).rows[0];
+
+            const result = {...main_result, ...service};
+            console.log(result);
+            return res.send(JSON.stringify(result));  
+
+        } else if (main_result.type == "c")
+        {
+            const points = (await db.query(`SELECT points FROM customer WHERE customer_id = ${id};`)).rows[0];
+
+            const result = {...main_result, ...points};
+            console.log(result);
+            return res.send(JSON.stringify(result));
+        }
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't retrieve account details!");
+    }
 };
 
-export { createNewUser, signInUser, updateUser };
+const getNearbyTechs = async (req, res) => {
+    try {
+        const customerCity = (await db.query (`SELECT address FROM client WHERE client_id = ${req.body.customer_id};`)).rows[0].address;
+        const result = await db.query(`SELECT * FROM client, technician WHERE client_id = tech_id AND address = '${customerCity}';`);
+        console.log(result.rows);
+        res.send(JSON.stringify(result.rows));
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't retrieve technicians!");
+    }
+   
+}
+
+const updateUserDetails = async (req, res) => {
+    const id = req.params.id;
+
+    const oldDetails = (await db.query(`SELECT * FROM client WHERE client_id = ${id};`)).rows[0];
+
+    const email = req.body.email || oldDetails.email;
+    const phone_number = req.body.phone_number || oldDetails.phone_number;
+    const address = req.body.address || oldDetails.address;
+    const fullname = req.body.fullname || oldDetails.fullname;
+    const password = req.body.password || oldDetails.password;
+
+    try {
+        await db.query (`UPDATE client SET
+            email = '${email}', 
+            phone_number = ${phone_number},
+            address = '${address}',
+            fullname = '${fullname}',
+            password = '${password}' 
+            WHERE client_id = ${id};`);
+
+        if (oldDetails.type == "t")
+        {
+            const Service_ID = (await db.query(`SELECT service_id FROM technician WHERE tech_id = ${id};`)).rows[0].service_id;
+            const Service_name = (await db.query(`SELECT name FROM service WHERE service_id = ${Service_ID};`)).rows[0].name;
+
+            const service = req.body.service || Service_name;
+
+            const newService_ID = (await db.query(`SELECT service_id FROM service WHERE name = '${service}';`)).rows[0].service_id;
+
+            await db.query(`UPDATE technician SET service_id = ${newService_ID} WHERE tech_id = ${id};`);
+        }
+
+        console.log(oldDetails);
+        res.send("Successfully updated details!");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't update details!");
+    }
+}
+
+const getUserAreas = async (req, res) => {
+    try {
+        const result = await db.query ("SELECT DISTINCT address FROM client");
+        console.log(JSON.stringify(result.rows));
+        res.send(JSON.stringify(result.rows));
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't retrieve addresses!");
+    }
+}
+
+const banUser = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await db.query(`DELETE FROM client WHERE client_id = ${id};`);
+        res.send("Banned");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't ban user!");
+    }
+}
+
+export { createNewUser, signInUser, updateUserDetails, getUserDetails, getNearbyTechs, getUserAreas, banUser };
  
  
 

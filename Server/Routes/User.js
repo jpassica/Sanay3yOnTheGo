@@ -11,8 +11,26 @@ router.route('/')
     .patch()
     .delete()
 
+router.route('/:id')
+    .get(userController.getUserDetails)
+    .patch(userController.updateUserDetails)
+    .delete(userController.banUser)
+
 router.route('/SignIn')
     .post(userController.signInUser)
+
+router.route('/Areas')
+    .get(userController.getUserAreas)
+
+router.route('/Tech/:id')
+    .get()
+    .post()
+    .put()
+    .patch()
+    .delete()
+
+router.route('/Techs')
+    .get(userController.getNearbyTechs)
 
 
 export default router;

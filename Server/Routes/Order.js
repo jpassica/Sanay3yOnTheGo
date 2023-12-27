@@ -12,12 +12,27 @@ router.route('/')
     .patch()
     .delete()
 
-router.route('/:status')
-    .get()
+router.route('/:id')
+    .get(orderController.getOrderByID)
     .post()
+    .put()
+    .patch(orderController.updateOrderStatus)
+    .delete(orderController.deleteOrder)
+
+router.route('/tech/:id')
+    .get(orderController.getTechOrders)
+
+router.route('/review')
+    .get()
+    .post(orderController.makeReview)
     .put()
     .patch()
     .delete()
 
+router.route('/review/:id')
+    .get(orderController.getReviewByOrderID)
+
+router.route('/review/tech/:id')
+    .get(orderController.getReviewsByTechID)
 
 export default router;
