@@ -13,7 +13,7 @@ import AddOffer from '../routes/AddOffer'
 
 
 
-const TechApp = () =>
+const TechApp = ({id}) =>
 {
     const[offers,setoffers]=useState([])
     const[prevwork,setprevwork]=useState([])
@@ -233,8 +233,6 @@ const TechApp = () =>
           )
         )
       }
-
-
 
     return (<div className='App'>
         <BrowserRouter>

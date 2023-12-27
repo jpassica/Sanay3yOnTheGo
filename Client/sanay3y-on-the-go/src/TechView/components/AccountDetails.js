@@ -13,7 +13,7 @@ const AccountDetails = ({tech}) => {
                     <img class="rounded-circle img-fluid " src={prosrc} alt='' />
                     <Rate rating={tech.rating}/>
                 </figure>
-                <CustomLink to="/EditProfile"><a href="#" id="edit_profile" class="btn btn-primary btn-block my-5 probutton">
+                <CustomLink to="/EditProfile"><a href="#" id="edit_profile" class=" btn-primary btn-block my-5 probutton">
                     Edit Account Details
                 </a></CustomLink>
               
@@ -34,11 +34,11 @@ const AccountDetails = ({tech}) => {
                  <h4>Area</h4>
                  <p>{tech.area}</p>
 
-                 <a href="#" class="btn btn-danger btn-block mt-5 probutton">
+                 <a href="#" class=" btn-danger btn-block mt-5 probutton">
                     Delete Account
                 </a>
 
-                <a href="#" class="btn btn-primary btn-block mt-3 probutton">
+                <a href="#" class=" btn-primary btn-block mt-3 probutton">
                     Sign Out
                 </a>
             </div>

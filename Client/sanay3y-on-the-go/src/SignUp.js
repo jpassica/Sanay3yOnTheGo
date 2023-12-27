@@ -22,7 +22,7 @@ const [divCustColor, setCustDivColor] = useState('#FBF7E5');
 
 const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/services');
+      const response = await axios.get('http://localhost:3001/services');
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -65,13 +65,15 @@ setType('t');
 setisTech(!isTech);
 };
 
-const handleCust = () => {
-    setCustDivColor('#FFDD61');
+    const handleCust = () => {
+        const color = divCustColor === '#FFDD61' ? '#FBF7E5' : '#FFDD61';
+    setCustDivColor(color);
     setisTech(false);
-    const newColor = divCustColor === '#FFDD61' ? '#FBF7E5' : '#FFDD61';
-    setCustDivColor(newColor);
     setTechDivColor('#FBF7E5');
-    setType('c');
+    if (color === '#FFDD61')
+            setType('c');
+        else
+            setType('');
 };
 
 
@@ -81,7 +83,7 @@ setCategory(event.target.value);
 };
 
     const handleSignUp = async () => {
-        if (!name || !email || !phone || !address || !password) { 
+        if (!name || !email || !phone || !address || !password|| !type) { 
             alert('All fields are required');
             return;
         }
@@ -119,7 +121,7 @@ setCategory(event.target.value);
         }
 
 try {
-    const response = await axios.post('http://localhost:5000/SignUp',{
+    const response = await axios.post('http://localhost:3001/SignUp',{
     email: email,
     password: password,
     fullname: name,

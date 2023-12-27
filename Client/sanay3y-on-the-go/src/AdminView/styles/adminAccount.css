@@ -1,0 +1,29 @@
+.containers{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #FFDD61;
+    background-color: #FFDD61;
+    width: 60%;
+    padding: 50px;
+    border-radius: 30px;
+}
+
+.profilePicture{
+    width: 20px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.accont-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 50px;
+    justify-content: space-around;
+
+}

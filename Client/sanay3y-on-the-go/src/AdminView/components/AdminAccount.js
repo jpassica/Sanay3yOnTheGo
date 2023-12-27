@@ -11,7 +11,7 @@ return (
     <figure class='avatar avatar-profile'>
                 <img class="rounded-circle img-fluid " src={profile} alt='admin photo' />
             </figure>
-            <PageLink to="/EditAdminProfile"><a href="#" id="edit_profile" class="btn btn-primary btn-block my-5 probutton">
+            <PageLink to="/EditAdminProfile"><a href="../../signUp" id="edit_profile" class="btn btn-primary btn-block my-5 probutton">
                 Edit Account Details
             </a></PageLink>
         

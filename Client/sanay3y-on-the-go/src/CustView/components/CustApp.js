@@ -12,7 +12,7 @@ import Wallet from '../Routes/Wallet';
 import Bundles from '../Routes/Bundles';
 import Feedback from '../Routes/Feedback';
 import Notifications from '../Routes/Notifications';
-function CustApp() {
+function CustApp({id}) {
 
   const[technicians,setTechnicians]=useState([])
   const[services,setServices]=useState([])
@@ -100,7 +100,7 @@ function CustApp() {
       <BrowserRouter>
       <NavBarCust />
       <Routes>
-        <Route path="/" element={<Home techData={technicians} services={services} reviews={reviews} />} />
+        <Route path="/" element={<Home techData={technicians} services={services} reviews={reviews}  />} />
         <Route path="/TechDetails/:id" element={<TechDetails technicians={technicians} reviews={reviews} />} />
         <Route path="/Orders" element={<Orders orders={service} />} />
         <Route path="/ReviewOrder/:id" element={<ReviewOrder orders={service} reviews={reviews} />} />

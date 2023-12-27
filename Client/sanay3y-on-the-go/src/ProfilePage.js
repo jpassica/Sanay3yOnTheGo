@@ -8,11 +8,11 @@ function ProfilePage({type, id}) {
   const renderProfileComponent = () => {
     switch (type) {
       case 'a':
-        return <AdminApp id />;
+        return <AdminApp id={id} />;
       case 'c':
-        return <CustApp />;
+        return <CustApp id={id}/>;
       case 't':
-        return <TechApp />;
+        return <TechApp id={id}/>;
       default:
         return <div>Invalid user type</div>;
     }

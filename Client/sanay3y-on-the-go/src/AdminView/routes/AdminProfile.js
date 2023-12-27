@@ -1,13 +1,14 @@
 import React,  { useState, useEffect} from 'react'
-import prosrc from '../../TechView/img/tech.png'
+import prosrc from '../../AdminView/img/profile.png'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
+import '../styles/adminAccount.css'
 import axios from 'axios';
 
 const AdminProfile = ({ adminId }) => {
     const [admin, setAdmin] = useState({});
     const fetchAdmin = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/client/${adminId}`);
+            const response = await axios.get(`http://localhost:3001/adminData/${adminId}`);
             console.log(response.data);
             return response.data;
         } catch (error) {
@@ -38,43 +39,40 @@ const AdminProfile = ({ adminId }) => {
     };
   }, []);
 
+    const handleSignOut = () => {
+        window.location.href = '/#';
+    }
 return (
-    <div>
-                <div class="row justify-content-around mt-5 user-info">
+                <div class="accont-container">
 
-        <div class="col-12 col-md-3">
+        <div class="profile-picture">
         <figure class='avatar avatar-profile'>
-                    <img class="rounded-circle img-fluid " src={prosrc} alt='' />
+                    <img class="rounded-circle img-fluid " src={prosrc} alt='' width={300} />
                 </figure>
-                <CustomLink to="/EditProfile"><a href="#" id="edit_profile" class="btn btn-primary btn-block my-5 probutton">
-                    Edit Account Details
+                <CustomLink to="/EditProfile"><a href="#" id="edit_profile" class='btn btn-primary btn-block mt-3 probutton'>
+                    Edit Details
                 </a></CustomLink>
               
                 </div>
-      <div class="col-12 col-md-5 details">
-                 <h4>Full Name</h4>
-                 <p>{admin.fullName}</p>
+      <div class="containers">
+                 <h4>Full Name:</h4>
+                 <p>{admin.fullname}</p>
      
-                 <h4>Email Address</h4>
+                 <h4>Email Address:</h4>
                  <p>{admin.email}</p>
 
-                 <h4>Phone Number</h4>
+                 <h4>Phone Number:</h4>
                  <p>{admin.phone}</p>
 
 
-                 <h4>Address</h4>
+                 <h4>Address:</h4>
                  <p>{admin.address}</p>
                     
-                 <h4>Gender</h4>
-                 <p>{admin.gender}</p>
-
-                <a href="#" class="btn btn-primary btn-block mt-3 probutton">
+                <a class="btn btn-primary btn-block mt-3 probutton" onClick={handleSignOut}>
                     Sign Out
                 </a>
             </div>
         </div>
-
-    </div>
 
   )
 }

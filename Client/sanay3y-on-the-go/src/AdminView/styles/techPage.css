@@ -1,0 +1,33 @@
+.techReviewContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+.tech-banned-container{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px 10px;
+    padding-left: 50px;
+}
+
+.tech-data{
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: gainsboro;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    gap: 20px 10px;
+}
