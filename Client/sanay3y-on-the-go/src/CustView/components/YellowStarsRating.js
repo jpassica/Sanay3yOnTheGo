@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const YellowStarsRating = ({ rating }) => {
   const maxStars = 5; // Maximum number of stars
@@ -13,7 +13,7 @@ const YellowStarsRating = ({ rating }) => {
         const filled = roundedRating >= starValue;
 
         return (
-          <span key={index} className={`star ${filled ? 'filled' : 'empty'}`}>
+          <span key={index} className={`star ${filled ? "filled" : "empty"}`}>
             ★
           </span>
         );

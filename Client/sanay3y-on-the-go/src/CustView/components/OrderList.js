@@ -5,6 +5,7 @@ const OrderList = ({orders,filter}) => {
     console.log(orders)
     
   return (
+    
     <div className='order-list-container'>
          {orders.filter(order => order.order_status==filter).map((order,index)=>(
       <Order key={index} order={order}  />

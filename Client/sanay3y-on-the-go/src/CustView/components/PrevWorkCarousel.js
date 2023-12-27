@@ -68,11 +68,33 @@ const PrevWorkCarousel = ({items}) => {
             {items.filter(item=> item.featured==1).map((item,index)=>(
       <div key={index} className='carousel-card-prev'>
         <img src={sample} width="40%" height="90%" className='tech-img' />
+        
+        {item.order_type=="R"&&
         <div className='prev-data'>
         <h3> {item.header}</h3>
-        <h4>{item.price} EGP</h4> 
-        <h2>{item.date}</h2>
+        <h4>{item.price} EGP</h4>
+        <h4>{item.description}</h4> 
+        <h2>{item.order_date}</h2>
         </div>
+      }
+      {
+        item.order_type=="O"&&
+        <div className='prev-data'>
+        <h3> {item.header}</h3>
+        <h4>{item.new_price} EGP</h4>
+        <h4>{item.description}</h4> 
+        <h2>{item.order_date}</h2>
+        </div>
+      }
+        {
+        item.order_type=="B"&&
+        <div className='prev-data'>
+        <h3> {item.header}</h3>
+        <h4>{item.total_price} EGP</h4>
+        <h4>{item.description}</h4> 
+        <h2>{item.order_date}</h2>
+        </div>
+      }
       </div >
     ))}  
             
