@@ -10,8 +10,8 @@ const UpcomingCard = ({order,filter,ondelete,onDone}) => {
         <p>{order.dexcription}</p>
         <p>Price: {order.price} <sub>EGP</sub> </p>
         <div >
-        <button onClick={() => onDone(order.id)} class=" btn-success  my-4 probutton">Done</button>
-        <button onClick={() => ondelete(order.id)} class=" btn-danger  my-4 probutton">Cancel</button>
+        <button onClick={() => onDone(order.order_id)} class=" btn-success  my-4 probutton">Done</button>
+        <button onClick={() => ondelete(order.order_id)} class=" btn-danger  my-4 probutton">Cancel</button>
         </div>
     </div>
     </div>

@@ -236,42 +236,46 @@ const TechApp = () =>
 
       const onDone = async (id) => {
         const doneorder = await fetchorder(id)
-        const updorder = { ...doneorder, status: "previous" }
+        const updorder = { ...doneorder, status: "F" }
     
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'PUT',
+        const res = await axios.patch(`http://localhost:3001/order/${id}`, 
+        {
+          updorder
+        },
+        {
           headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'application/x-www-form-urlencoded',
           },
-          body: JSON.stringify(updorder),
         })
     
-        const data = await res.json()
+        const data =  res.data
     
         setorders(
           orders.map((item) =>
-            item.id === id ? { ...item, status: data.status } : item
+            item.order_id === id ? { ...item, order_status: data.order_status } : item
           )
         )
       }
 
       const onAccept = async (id) => {
         const acceptedorder = await fetchorder(id)
-        const updorder2 = { ...acceptedorder, status: "upcoming" }
+        const updorder2 = { ...acceptedorder, order_status: "U" }
     
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'PUT',
+        const res = await axios.patch(`http://localhost:3001/order/${id}`,
+        {
+          updorder2
+        },
+         {
           headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(updorder2),
+            'Content-type': 'application/x-www-form-urlencoded',
+          }
         })
     
-        const data = await res.json()
+        const data = res.data
     
         setorders(
           orders.map((item) =>
-            item.id === id ? { ...item, status: data.status } : item
+            item.order_id === id ? { ...item, order_status: data.order_status } : item
           )
         )
       }
@@ -280,7 +284,7 @@ const TechApp = () =>
         const res = await axios.delete(`http://localhost:3001/order/${id}`)
         //We should control the response status to decide if we will change the state or not.
         res.status === 200
-          ? setorders(orders.filter((order) => order.id !== id))
+          ? setorders(orders.filter((order) => order.order_id !== id))
           : alert('Error Deleting This order')
       }
 
