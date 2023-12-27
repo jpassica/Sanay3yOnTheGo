@@ -6,7 +6,7 @@ import toolimg from '../../TechView/img/img1.png'
 import techimg from '../../TechView/img/tech.png'
 import eclipse from '../../TechView/img/Ellipse.png'
 
-const Home = ({services,techData,reviews}) => {
+const Home = ({services,techData,reviews,reward}) => {
 
     const[filter,setFilter]=useState('AC')
     console.log(techData)
@@ -25,6 +25,9 @@ const Home = ({services,techData,reviews}) => {
             <img src={toolimg} alt="img1" height="400px" width="100%" style={{opacity:"0.3", position:"absolute", top:"-200px",left:"270px",background:'transparent'}}/>
             <img src={techimg} alt="img1" height={280} width={300} style={{opacity:"0.9", position:"absolute", top:"-5px",left:"-430px",background:'transparent'}}/>
         </div>
+    </div>
+    <div className='reward-section'>
+      You are eligible for {reward} % discount 
     </div>
 
         <div className='filter-buttons'>

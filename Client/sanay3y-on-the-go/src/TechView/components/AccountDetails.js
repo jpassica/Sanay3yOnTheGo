@@ -20,19 +20,19 @@ const AccountDetails = ({tech}) => {
                 </div>
       <div class="col-12 col-md-5 details">
                  <h4>Full Name</h4>
-                 <p>{tech.name}</p>
+                 <p>{tech.fullname}</p>
      
                  <h4>Email Address</h4>
                  <p>{tech.email}</p>
 
                  <h4>Phone Number</h4>
-                 <p>{tech.phone}</p>
+                 <p>{tech.phone_number}</p>
 
                  <h4>Service</h4>
                  <p>{tech.service}</p>
 
                  <h4>Area</h4>
-                 <p>{tech.area}</p>
+                 <p>{tech.address}</p>
 
                  <a href="#" class=" btn-danger btn-block mt-5 probutton">
                     Delete Account

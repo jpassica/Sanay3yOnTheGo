@@ -8,14 +8,15 @@ const FeaturedWork = ({PrevWork,onToggle}) => {
   const[filter,setFilter]=useState(true)
 
   return (
-    <div>
-        <div className='highlightsbtns'>
+    <div className='highlightpage'>
+        {/* <div className='highlightsbtns'>
             <div></div>
         <button className={filter==false? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter(false)}> Add more </button>
         <button className={filter==true? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter(true)}> Highlights </button>
         <div></div>
 
-        </div>
+        </div> */}
+        <h1>Highlights</h1>
         <HighlightsList filter={filter} PrevWork={PrevWork} onToggle={onToggle}/>
     </div>
   )

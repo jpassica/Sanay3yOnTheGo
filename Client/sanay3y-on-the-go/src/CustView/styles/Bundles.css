@@ -1,0 +1,81 @@
+/* BundlePage.css */
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&family=Stick+No+Bills&family=Ubuntu&family=Unlock&display=swap');
+
+
+  .bundle-page {
+    width: 80%;
+    margin: 20px auto;
+    display: grid;
+  }
+  .bundle-page h1
+  {
+    font-family: 'Stick No Bills', sans-serif;
+    border-bottom: 1px solid black;
+    padding: 15px;
+    width: 500px;
+    margin-bottom: 20px;
+  }
+  
+  .bundle-card {
+    border: 1px solid #dbcd34; /* Dodger Blue */
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #fff; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 530px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .bundle-grid
+  {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 50px;
+    margin-top: 30px;
+    width: 100%;
+  }
+  
+  .bundle-header {
+    background-color: #FFDD61;
+    color: #fff; /* White */
+    padding: 10px;
+  }
+  
+  .bundle-name {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    color: rgb(16, 1, 63);
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .bundle-details {
+    padding: 20px;
+  }
+  
+  .bundle-price {
+    color: #e74c3c; 
+    font-weight: bold;
+  }
+  
+  .book-button {
+    border-radius: 10px;
+    background: rgba(16, 45, 192, 0.758);
+    color: #fff; /* White */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 200px;
+    margin: 30px;
+   
+  }
+  
+  .book-button:hover {
+
+    background: rgb(7, 47, 247);
+  }
+  

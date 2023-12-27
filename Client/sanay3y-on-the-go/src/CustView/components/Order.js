@@ -8,29 +8,48 @@ import { useNavigate } from 'react-router-dom'
 const Order = ({order}) => {
     const navigate = useNavigate();
 
-    const showDetails=()=>
+    const showReviewOrCancel=()=>
     {
-        if(order.Service_status=="pending")
+        if(order.order_status=="P"||order.order_status=="U")
         navigate(`/CancelOrder/${order.order_id}`);
-        else if (order.Service_status=="upcoming")
-        navigate(`/CancelOrder/${order.order_id}`);
-        else
+        else 
         navigate(`/ReviewOrder/${order.order_id}`);
-    console.log(order.id)
-        
-            
-          }
-  
+   }
+   const showDetails=()=>
+   {
+     
+   }
         
    
   return (
     <div className='order-container'>
         <div className='order-card'>
-            <h3>{order.date}</h3>
-            <h3>{order.header}</h3>
-            <h5>{order.tech_id}</h5>
+            <h3>{order.order_DATE}</h3>
+            <h3>Order #{order.order_id}</h3>
             <h5>{order.price} EGP</h5>
+            {order.order_type=='R'&&
+            <div>
+            <h5>Regular Order</h5>
+            <button className='order-details-button' onClick={showReviewOrCancel}>Review/cancel</button>
             <button className='order-details-button' onClick={showDetails}>details</button>
+            </div>
+            }
+            {order.order_type=='B'&&
+            <div>
+            <h5>Bundle</h5>
+            <button className='order-details-button' onClick={showReviewOrCancel}>Review/cancel</button>
+            <button className='order-details-button' onClick={showDetails}>details</button>
+            </div>
+            }
+            {order.order_type=='O'&&
+            <div>
+            <h5>Offer</h5>
+            <button className='order-details-button' onClick={showReviewOrCancel}>Review/cancel</button>
+            <button className='order-details-button' onClick={showDetails}>details</button>
+            </div>
+            }
+            
+           
       
         </div>
       

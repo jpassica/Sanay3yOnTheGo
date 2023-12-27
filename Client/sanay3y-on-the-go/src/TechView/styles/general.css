@@ -15,6 +15,17 @@
 {
 background-color: #260F67;
 border: #260F67;
+border-radius: 10px;
+text-align:center;
+/* height: 30px; */
+padding: 8px;
+margin: 8px;
+font-size: 18px;
+}
+
+.probutton:hover
+{
+  text-decoration: none;
 }
 
 .editbtn
@@ -58,4 +69,13 @@ box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 display: flex;
 justify-content: center;
 justify-content: space-evenly;
+}
+
+.highlightpage h1
+{
+  font-family: 'Stick No Bills', sans-serif;
+  border-bottom: 1px solid black;
+  padding: 15px;
+  width: 500px;
+  margin-bottom: 20px;
 }

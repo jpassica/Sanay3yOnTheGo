@@ -96,17 +96,10 @@ const Edit = ({tech,edittech}) => {
               </div>
             </div>
           </div>
-          <div className='rowbtn'>
-
-            <div>
-          <button onClick={onSubmit} id="edit_profile" class="btn btn-primary  my-4 probutton">Submit Changes</button>
-          </div>
-
+          <div className='rowbtntech'>
+          <button onClick={onSubmit} id="edit_profile" class=" btn-success  my-4 probutton">Submit Changes</button>
           <CustomLink to="/Account">
-                    <a href="#" id="edit_profile" class="btn btn-primary  my-4 probutton">
-                     Back to your account
-                    
-                </a>
+          <button class=" btn-primary  my-4 probutton">Back to Account</button>
                 </CustomLink>
                 </div>
         </form>

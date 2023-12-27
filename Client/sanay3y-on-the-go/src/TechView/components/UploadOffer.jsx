@@ -34,16 +34,16 @@ function UploadOffer({OnAdd}) {
     <form className='addofferform' onSubmit={onSubmit}>
     <div className='UpOffercard'>
         <h5><b>Add New Offer</b></h5>
-        <input type="text" placeholder='heading'className='uploadfields' onChange={(e) => setHeading(e.target.value)}/>
-        <input type="text" placeholder='content'className='uploadfields' onChange={(e) => setContent(e.target.value)}/>
-        <input type="text" placeholder='previous price'className='uploadfields' onChange={(e) => setPrePrice(e.target.value)}/>
-        <input type="text" placeholder='new price' className='uploadfields' onChange={(e) => setPrice(e.target.value)}/>
+        <input type="text" placeholder='Heading'className='uploadfields' onChange={(e) => setHeading(e.target.value)}/>
+        <input type="text" placeholder='Description'className='uploadfields' onChange={(e) => setContent(e.target.value)}/>
+        <input type="text" placeholder='Previous Price'className='uploadfields' onChange={(e) => setPrePrice(e.target.value)}/>
+        <input type="text" placeholder='New Price' className='uploadfields' onChange={(e) => setPrice(e.target.value)}/>
 
 
     <div className='offerbtncontainer'>
-        <input type='submit' value='Add Offer' className='btn btn-primary  my-4 upofferbtn' />
+        <input type='submit' value='Add Offer' className=' btn-primary  my-4 upofferbtn' />
         <CustomLink to="/Offers">
-          <input type='button' value='Back to Offers' className='btn btn-primary  my-4 upofferbtn' />
+          <input type='button' value='Back to Offers' className=' btn-primary  my-4 upofferbtn' />
           </CustomLink>
         </div>
     </div>

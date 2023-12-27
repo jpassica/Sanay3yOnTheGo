@@ -6,7 +6,7 @@
 
 .ordercard
 {
-    height: 200px;
+    height: 250px;
    flex-shrink: 0;
    border-radius: 10px;
    background: #FFDD61;
@@ -31,7 +31,7 @@
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   margin: 30px;
+    margin: 30px; 
 
 }
 
@@ -49,7 +49,6 @@
 
 .cardcontainer
 {
-    
     flex-shrink: 0;
     justify-content: center;
     align-items: center;

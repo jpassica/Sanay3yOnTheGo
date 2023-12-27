@@ -8,7 +8,7 @@ function Navbar() {
     <nav className='navbartech'>
         <img/>
         <div className='navtech-elements'>
-        <ul className='navitems'>
+        <ul className='technavitems'>
             <li><Link to="/" className='Home'>
                 Home
             </Link></li>

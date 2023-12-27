@@ -10,6 +10,7 @@ import Offers from '../routes/Offers'
 import Navbar from './Navbar'
 import EditProfile from '../routes/EditProfile'
 import AddOffer from '../routes/AddOffer'
+import axios from "axios";
 
 
 
@@ -19,14 +20,16 @@ const TechApp = ({id}) =>
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
     const[orders,setorders]=useState([])
+    const[tech,settech]=useState();
 
 
     const fetchorders=async ()=>
     {
-      const res=await fetch('http://localhost:5000/orders')
-      const data=await res.json()
-      console.log(data)
-      return data
+      const id = 23;
+      const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
+      //const data=  res.data;
+      //console.log(data)
+      return res
     }
 
     useEffect(()=>
@@ -39,28 +42,49 @@ const TechApp = ({id}) =>
         },[])
       console.log(orders)
 
-    const fetchtechs=async ()=>
-    {
-      const res=await fetch('http://localhost:5000/techs')
-      const data=await res.json()
-      console.log(data)
+
+
+    // const fetchtechs=async ()=>
+    // {
+    //   const res=await axios.get('http://localhost:3001/user/12');
+    //   const data= res.data;
+    //   console.log(data)
+    //   return data
+    // }
+
+    // useEffect(()=>
+    //   {
+    //     const gettechs=async()=>{
+    //   const techsfromserver=await fetchtechs()
+    //   settechs(techsfromserver)
+    //    }
+    //   gettechs()
+    //     },[])
+    //   console.log(techs)
+
+    const fetchtech = async (id) => {
+      const res = await axios.get(`http://localhost:3001/user/12`)
+      const data = res.data;
+  
       return data
     }
 
     useEffect(()=>
-      {
-        const gettechs=async()=>{
-      const techsfromserver=await fetchtechs()
-      settechs(techsfromserver)
-       }
-      gettechs()
-        },[])
-      console.log(techs)
+    {const gettech=async()=>{
+      const techfromserver=await fetchtech(12)
+      settech(techfromserver)
+    }
+    gettech()
+  },[])
 
+
+
+      
     const fetchoffers=async ()=>
     {
-      const res=await fetch('http://localhost:5000/offers')
-      const data=await res.json()
+      const id = 12;
+      const res = await axios.get(`http://localhost:3001/offer/tech/${id}`);
+      const data= res.data;
       console.log(data)
       return data
     }
@@ -77,8 +101,8 @@ const TechApp = ({id}) =>
 
       const fetchPrevWork=async ()=>
     {
-      const res=await fetch('http://localhost:5000/prevwork')
-      const data=await res.json()
+      const res=await axios.get('http://localhost:3001/order/tech/23');
+      const data= res.data;
       console.log(data)
       return data
     }
@@ -94,47 +118,52 @@ const TechApp = ({id}) =>
       console.log(prevwork)
 
       const fetchwork = async (id) => {
-        const res = await fetch(`http://localhost:5000/prevwork/${id}`)
+        const res = await fetch(`http://localhost:3001/prevwork/${id}`)
         const data = await res.json()
     
         return data
       }
 
       const fetchorder = async (id) => {
-        const res = await fetch(`http://localhost:5000/orders/${id}`)
+        const res = await fetch(`http://localhost:3001/order/${id}`)
         const data = await res.json()
     
         return data
       }
 
-      const fetchtech = async (id) => {
-        const res = await fetch(`http://localhost:5000/techs/${id}`)
-        const data = await res.json()
-    
-        return data
-      }
+
 
       const deleteOffer = async (id) => {
-        const res = await fetch(`http://localhost:5000/offers/${id}`, {
-          method: 'DELETE',
-        })
+        const res = await axios.delete(`http://localhost:3001/offer/5`);
         //We should control the response status to decide if we will change the state or not.
         res.status === 200
           ? setoffers(offers.filter((offer) => offer.id !== id))
-          : alert('Error Deleting This Task')
+          : alert('Error Deleting This Offer')
       }
 
-       // Add Task
+       // Add Offer
       const addoffer = async (offer) => {
-        const res = await fetch('http://localhost:5000/offers', {
-          method: 'POST',
+        const res = await axios.post('http://localhost:3001/offer', 
+        { tech_id: 12, 
+          header: offer.heading,
+          description: offer.content,
+          prev_price: offer.preprice,
+          new_price: offer.price
+        }, 
+        {
           headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(offer),
-        })
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+        // {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-type': 'application/json',
+        //   },
+        //   body: JSON.stringify(offer),
+        // })
       
-        const data = await res.json()
+        const data = res.data;
       
         setoffers([...offers, data])
       }
@@ -151,10 +180,10 @@ const TechApp = ({id}) =>
 
 
       const togglehighlight = async (id) => {
-        const worktotoggle = await fetchwork(id)
+        const worktotoggle = await fetchorder(id)
         const updwork = { ...worktotoggle, featured: !worktotoggle.featured }
     
-        const res = await fetch(`http://localhost:5000/prevwork/${id}`, {
+        const res = await fetch(`http://localhost:5000/orders/${id}`, {
           method: 'PUT',
           headers: {
             'Content-type': 'application/json',
@@ -164,8 +193,8 @@ const TechApp = ({id}) =>
     
         const data = await res.json()
     
-        setprevwork(
-          prevwork.map((item) =>
+        setorders(
+          orders.map((item) =>
             item.id === id ? { ...item, featured: data.featured } : item
           )
         )
@@ -239,11 +268,13 @@ const TechApp = ({id}) =>
       <Navbar />
       <Routes>
       <Route exact path="/" element={<Home />}/>
-        <Route exact path="/Account" element={<Account techs={techs} />}/>
-        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept}/>}/>
+        <Route exact path="/Account" element={<Account tech={tech} />}/>
+        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
-        <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={prevwork} onToggle={togglehighlight}/>}/>
-        <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
+        <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
+        
+        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech}/>}/>
+
         <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
       </Routes>
     </BrowserRouter>
