@@ -11,15 +11,15 @@ const OrdersList = ({orders,filter,ondelete,onDone,onAccept,onToggle}) => {
   return (
     <div className='orederscontainer'>   
 
-   {orders.filter(order => order.status==filter).map((order,index)=>(
+   {orders.filter(order => order.order_status==filter).map((order,index)=>(
       <PendingCard key={index} order={order} filter={filter} ondelete={ondelete} onAccept={onAccept}/>
     ))} 
 
-   {orders.filter(order => order.status==filter).map((order,index)=>(
+   {orders.filter(order => order.order_status==filter).map((order,index)=>(
          <UpcomingCard key={index} order={order} filter={filter} ondelete={ondelete} onDone={onDone}/>
        ))} 
    
-   {orders.filter(order => order.status==filter).map((order,index)=>(
+   {orders.filter(order => order.order_status==filter).map((order,index)=>(
       <PreviousCard key={index} order={order} filter={filter} onToggle={onToggle}/>
     ))} 
             

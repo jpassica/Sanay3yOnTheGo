@@ -94,7 +94,8 @@ CREATE TABLE Offer(
     Offer_ID SERIAL PRIMARY KEY,
     Header VARCHAR(45),
     Description TEXT,
-    Price INT NOT NULL,
+    Prev_price INT,
+    New_price INT,
     Tech_ID INT REFERENCES Technician(Tech_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE

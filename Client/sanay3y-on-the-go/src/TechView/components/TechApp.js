@@ -10,6 +10,7 @@ import Offers from '../routes/Offers'
 import Navbar from './Navbar'
 import EditProfile from '../routes/EditProfile'
 import AddOffer from '../routes/AddOffer'
+import axios from "axios";
 
 
 
@@ -23,10 +24,11 @@ const TechApp = () =>
 
     const fetchorders=async ()=>
     {
-      const res=await fetch('http://localhost:5000/orders')
-      const data=await res.json()
-      console.log(data)
-      return data
+      const id = 23;
+      const res= (await axios.get(`http://localhost:3001/order/${id}`)).data;
+      //const data=  res.data;
+      //console.log(data)
+      return res
     }
 
     useEffect(()=>
@@ -101,7 +103,7 @@ const TechApp = () =>
       }
 
       const fetchorder = async (id) => {
-        const res = await fetch(`http://localhost:5000/orders/${id}`)
+        const res = await fetch(`http://localhost:3001/order/${id}`)
         const data = await res.json()
     
         return data

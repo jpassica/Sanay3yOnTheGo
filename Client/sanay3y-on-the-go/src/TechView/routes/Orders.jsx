@@ -9,9 +9,9 @@ const Orders = ({orders,ondelete,onDone,onAccept,onToggle}) => {
     <div>
        <div className='highlightsbtns'>
             <div></div>
-        <button className={filter=='pending'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('pending')}> Pending </button>
-        <button className={filter=='previous'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('previous')}> Previous </button>
-        <button className={filter=='upcoming'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('upcoming')}> Upcoming </button>
+        <button className={filter=='P'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('P')}> Pending </button>
+        <button className={filter=='F'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('F')}> Previous </button>
+        <button className={filter=='U'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('U')}> Upcoming </button>
 
         <div></div>
 
