@@ -212,16 +212,6 @@ const TechApp = () =>
         setoffers([...offers, data])
       }
 
-      const deleteorder = async (id) => {
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'DELETE',
-        })
-        //We should control the response status to decide if we will change the state or not.
-        res.status === 200
-          ? setorders(orders.filter((order) => order.id !== id))
-          : alert('Error Deleting This order')
-      }
-
 
       const togglehighlight = async (id) => {
         const worktotoggle = await fetchorder(id)
@@ -284,6 +274,14 @@ const TechApp = () =>
             item.id === id ? { ...item, status: data.status } : item
           )
         )
+      }
+
+      const deleteorder = async (id) => {
+        const res = await axios.delete(`http://localhost:3001/order/${id}`)
+        //We should control the response status to decide if we will change the state or not.
+        res.status === 200
+          ? setorders(orders.filter((order) => order.id !== id))
+          : alert('Error Deleting This order')
       }
 
      
