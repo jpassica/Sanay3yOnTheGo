@@ -20,6 +20,7 @@ const TechApp = () =>
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
     const[orders,setorders]=useState([])
+    const[tech,settech]=useState();
 
 
     const fetchorders=async ()=>
@@ -41,24 +42,44 @@ const TechApp = () =>
         },[])
       console.log(orders)
 
-    const fetchtechs=async ()=>
-    {
-      const res=await axios.get('http://localhost:3001/user/12');
-      const data= res.data;
-      console.log(data)
+
+
+    // const fetchtechs=async ()=>
+    // {
+    //   const res=await axios.get('http://localhost:3001/user/12');
+    //   const data= res.data;
+    //   console.log(data)
+    //   return data
+    // }
+
+    // useEffect(()=>
+    //   {
+    //     const gettechs=async()=>{
+    //   const techsfromserver=await fetchtechs()
+    //   settechs(techsfromserver)
+    //    }
+    //   gettechs()
+    //     },[])
+    //   console.log(techs)
+
+    const fetchtech = async (id) => {
+      const res = await axios.get(`http://localhost:3001/user/12`)
+      const data = res.data;
+  
       return data
     }
 
     useEffect(()=>
-      {
-        const gettechs=async()=>{
-      const techsfromserver=await fetchtechs()
-      settechs(techsfromserver)
-       }
-      gettechs()
-        },[])
-      console.log(techs)
+    {const gettech=async()=>{
+      const techfromserver=await fetchtech(12)
+      settech(techfromserver)
+    }
+    gettech()
+  },[])
 
+
+
+      
     const fetchoffers=async ()=>
     {
       const id = 12;
@@ -110,12 +131,7 @@ const TechApp = () =>
         return data
       }
 
-      const fetchtech = async (id) => {
-        const res = await axios.get(`http://localhost:3001/user/12`)
-        const data = res.data;
-    
-        return data
-      }
+
 
       const deleteOffer = async (id) => {
         const res = await axios.delete(`http://localhost:3001/offer/5`);
@@ -254,11 +270,13 @@ const TechApp = () =>
       <Navbar />
       <Routes>
       <Route exact path="/" element={<Home />}/>
-        <Route exact path="/Account" element={<Account techs={techs} />}/>
+        <Route exact path="/Account" element={<Account tech={tech} />}/>
         <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
-        <Route exact path="/EditProfile" element={<EditProfile techs={techs} edittech={edittech}/>}/>
+        
+        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech}/>}/>
+
         <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
       </Routes>
     </BrowserRouter>
