@@ -4,7 +4,7 @@ import '../styles/Bundles.css'
 const Bundles = ({bundles}) => {
   const handleBookBundle = (bundleName) => {
     // Add your booking logic here, e.g., navigate to a booking page, make an API request, etc.
-    console.log(`Booking ${bundleName}`);
+    alert('bundle booked successfully')
   };
   return (
     <div className="bundle-page">

@@ -4,11 +4,12 @@ import sample from '../images/test.png'
 import '../styles/TechDetails.css'
 import PrevWorkCarousel from '../components/PrevWorkCarousel';
 import ReviewCarousel from '../components/ReviewCarousel';
+import { useNavigate } from 'react-router-dom'
 
 
 const TechDetails = ({techID,technicians,reviews}) => {
 
-
+      const navigate=useNavigate()
         console.log(technicians)
       const[show,setShow]=useState()
       //booking 
@@ -63,12 +64,17 @@ const TechDetails = ({techID,technicians,reviews}) => {
 
     const toggleShow=()=>{setShow(!show)}
      
-
+     const bookOffer=()=>
+     {
+      //post request
+      alert('offer booked successfully')
+     }
 
       const technician=getTechbyID(techID)
       console.log(technician)
 
-      const addOrder=()=>{ //post or add a technician
+      const addOrder=()=>{
+        //post or add a regular order
 
       }
       
@@ -108,9 +114,12 @@ const TechDetails = ({techID,technicians,reviews}) => {
                 
             </form>
          </div>}
+         
         <PrevWorkCarousel items={prevWork.filter(w=>w.id==id)}/>
         <div>
+          {offers.filter(offer => offer.id==id).length!=0&&
         <h3 className='headingprev'>Special Offers</h3>
+          }
         <div className='offer-container1'>
         {offers.filter(offer => offer.id==id).map((offer)=>(
         
@@ -120,7 +129,7 @@ const TechDetails = ({techID,technicians,reviews}) => {
         {offer.price} <del>{offer.preprice}</del></h4>
         <p>{offer.content}</p>
 
-        <button className=' button-17' >
+        <button className=' button-17' onClick={()=>bookOffer(offer.id)} >
             Book NOW!
         </button>
       </div>
@@ -129,7 +138,7 @@ const TechDetails = ({techID,technicians,reviews}) => {
     </div>
         <ReviewCarousel reviews={reviews.filter(r=>r.tech_id==id)} />
         
-       
+        <button onClick={()=>navigate(-1)} className='button-17'>Back to Technician list</button>
       
     </div>
     

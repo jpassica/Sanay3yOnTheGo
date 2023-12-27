@@ -454,16 +454,16 @@
       "time_stamp": "12-11-2023, 12:30 pm"
     }
   ],
-  "services": [
+  "orders": [
     {
       "order_id": 1,
       "Service_status": "finished",
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
       "details": "order carpenting and bla bla",
-      "tech_id": 2,
       "cust_id": 2,
-      "header": "order example ff"
+      "header": "order example ff",
+      "order_type":"R"
     },
     {
       "order_id": 2,
@@ -471,9 +471,9 @@
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
       "details": "order carpenting and bla bla",
-      "tech_id": 1,
       "cust_id": 3,
-      "header": "order example uu"
+      "header": "order example uu",
+      "order_type":"R"
     },
     {
       "order_id": 3,
@@ -481,9 +481,9 @@
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
       "details": "order carpenting and bla bla",
-      "tech_id": 3,
       "cust_id": 3,
-      "header": "order example 1"
+      "header": "order example 1",
+      "order_type":"B"
     },
     {
       "order_id": 4,
@@ -491,9 +491,9 @@
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
       "details": "order carpenting and bla bla",
-      "tech_id": 1,
       "cust_id": 3,
-      "header": "order example uu"
+      "header": "order example uu",
+      "order_type":"O"
     },
     {
       "order_id": 5,
@@ -501,9 +501,9 @@
       "Service_timestamp": "12/10/2022 11:59:00",
       "price": 500,
       "details": "order carpenting and bla bla",
-      "tech_id": 3,
       "cust_id": 3,
-      "header": "order example 1"
+      "header": "order example 1",
+      "order_type":"R"
     }
   ],
   "notifications": [
@@ -538,6 +538,24 @@
       "bundle_name": "Bundle 2",
       "price": 149.99,
       "bundle_details": "Painting 100 m^2 apartment using special ay haga "
+    }
+  ],
+  "Point_System": [
+    {
+      "Req_points": 100,
+      "percentage": 10
+    },
+    {
+      "Req_points": 200,
+      "percentage": 20
+    },
+    {
+      "Req_points": 300,
+      "percentage": 30
+    },
+    {
+      "Req_points": 400,
+      "percentage": 40
     }
   ]
 }

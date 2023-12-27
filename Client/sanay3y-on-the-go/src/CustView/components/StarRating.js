@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/Orders.css'
 
-const StarRating = ({ rating: propRating ,setRating}) => {
-  const [userRating, setUserRating] = useState(propRating || 0);
+const StarRating = ({ initialRating ,setRating}) => {
+  console.log(initialRating)
+  const [userRating, setUserRating] = useState(initialRating || 0);
 
   const renderStars = () => {
     const stars = [];

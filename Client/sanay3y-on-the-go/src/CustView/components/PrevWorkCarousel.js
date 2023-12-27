@@ -5,10 +5,12 @@ import '../styles/TechDetails.css'
 import sample from '../images/test.png'
 
 const PrevWorkCarousel = ({items}) => {
-  const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+  const [activeSlideIndex, setActiveSlideIndex] = useState(0); 
   return (
         <div  className="carousel-container" >
+          { items.length!=0&&
           <h3 className='headingprev'>previous work</h3>
+        }
           <ReactSimplyCarousel className="carousel-container"
             activeSlideIndex={activeSlideIndex}
             onRequestChange={setActiveSlideIndex}
@@ -80,6 +82,7 @@ const PrevWorkCarousel = ({items}) => {
     
   
   )
+
 }
 
 export default PrevWorkCarousel

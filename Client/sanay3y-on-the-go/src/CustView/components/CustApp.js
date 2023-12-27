@@ -22,6 +22,7 @@ function CustApp() {
   const[reviews,setReviews]=useState([])
   const[notifications,setNotifications]=useState([])
   const[bundles,setBundles]=useState([])
+  const[Point_System,setPoint_System]=useState([])
 
   const fetchTechnicians=async ()=>
   {
@@ -39,7 +40,7 @@ function CustApp() {
   }
   const fetchOrders=async ()=>
   {
-    const res=await fetch('http://localhost:5000/services')
+    const res=await fetch('http://localhost:5000/orders')
     const data=await res.json()
     console.log(data)
     return data
@@ -61,6 +62,13 @@ function CustApp() {
       const fetchBundles=async ()=>
       {
         const res=await fetch("http://localhost:5000/bundles")
+        const data=await res.json()
+        console.log(data)
+        return data
+      }
+      const fetchPoint_System=async ()=>
+      {
+        const res=await fetch("http://localhost:5000/Point_System")
         const data=await res.json()
         console.log(data)
         return data
@@ -97,12 +105,18 @@ function CustApp() {
               const getBundlesFromServer=await fetchBundles()
               setBundles(getBundlesFromServer)
              }
+             const getPoint_System=async()=>
+             {
+              const getPointsFromServer=await fetchPoint_System()
+              setPoint_System(getPointsFromServer)
+             }
     getTechs()
     getServices()
     getOrders()
     getReviews()
     getNotifications()
     getBundles()
+    getPoint_System()
       },[])
       
 
@@ -113,6 +127,8 @@ function CustApp() {
         email: 'john.doe@example.com',
         phone: '123-456-7890',
         area: 'City Center',
+        reward:20,
+        Points:200
       };
       
       
@@ -141,12 +157,12 @@ function CustApp() {
       <BrowserRouter>
       <NavBarCust />
       <Routes>
-        <Route path="/" element={<Home techData={technicians} services={services} reviews={reviews} />} />
+        <Route path="/" element={<Home techData={technicians} services={services} reviews={reviews} reward={sampleCust.reward} />} />
         <Route path="/TechDetails/:id" element={<TechDetails technicians={technicians} reviews={reviews} />} />
         <Route path="/Orders" element={<Orders orders={service} />} />
         <Route path="/ReviewOrder/:id" element={<ReviewOrder orders={service} reviews={reviews} />} />
         <Route path="/CancelOrder/:id" element={<CancelOrder />} />
-        <Route path="/wallet" element={<Wallet />} />
+        <Route path="/wallet" element={<Wallet Points={sampleCust.Points} Point_System={Point_System} />} />
         <Route path="/bundles" element={<Bundles bundles={bundles}/>} />
         <Route path="/feedback" element={<Feedback/>} />
         <Route path="/notifications" element={<Notifications notifications={notifications}/>} />

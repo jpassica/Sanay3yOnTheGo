@@ -36,7 +36,8 @@
 
 /* CSS */
 .order-details-button {
-  width: 100px;
+  width: 120px;
+  margin: 5px;
   appearance: button;
   background-color: #260F67;
   border: 1px solid #1652F0;
