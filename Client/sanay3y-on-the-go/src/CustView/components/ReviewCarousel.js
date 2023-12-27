@@ -65,8 +65,8 @@ const ReviewCarousel = ({reviews}) => {
             
             {reviews.map((review,index)=>(
       <div key={index} className='review-card'>
-        <h4>{review.details}</h4> 
-         <h4>{review.rating}</h4>
+        <h4>{review.Content}</h4> 
+         <h4>{review.Rating}</h4>
       </div >
     ))}  
             

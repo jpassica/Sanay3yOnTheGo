@@ -13,8 +13,9 @@ const TechDetails = ({techID,technicians,reviews}) => {
         console.log(technicians)
       const[show,setShow]=useState()
       //booking 
-      const[serviceTitle,setServiceTitle]=useState('')
-      const[serviceDetails,setServicedetails]=useState('')
+      const[OrderTitle,setOrderTitle]=useState('')
+      const[OrderDetails,setOrderdetails]=useState('')
+      const [OrderDate, setOrderDate] = useState(new Date());
 
 
       const[prevWork,setPreviousWork]=useState([])
@@ -100,15 +101,24 @@ const TechDetails = ({techID,technicians,reviews}) => {
         {show && <div className='book-form-container'>
             <form className='book-form' onSubmit={addOrder}>
               <div className='form-grid-item'>
-               <label for="Ser-title">service title</label>
-                <input type='text' value={serviceTitle} onChange={(e) => setServiceTitle(e.target.value)} id="Ser-title"/>
+               <label for="Ser-title">order title</label>
+                <input type='text' value={OrderTitle} onChange={(e) => setOrderTitle(e.target.value)} id="Ser-title"/>
                 </div>
                 <div className='form-grid-item'>
-                  <label for="ser-details">service details</label>
-                <textarea id="ser-details" value={serviceDetails} onChange={(e) => setServicedetails(e.target.value)}>
+                  <label for="ser-details">order details</label>
+                <textarea id="ser-details" value={OrderDetails} onChange={(e) => setOrderdetails(e.target.value)}>
                 type here..
                 </textarea>
                 </div>
+                <div className='form-grid-item'>
+                <label htmlFor="dateInput">Select a date:</label>
+                <input
+                type="date"
+                 id="dateInput"
+                 value={OrderDate.toISOString().split('T')[0]} // Convert date to string in 'YYYY-MM-DD' format
+                  onChange={(e) => setOrderDate(e.target.value)}
+                />
+               </div>
                 <input type='submit' className='button-53' value='place order!' />
                 
                 
