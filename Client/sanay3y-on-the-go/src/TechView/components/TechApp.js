@@ -213,7 +213,7 @@ const TechApp = () =>
 
       const onDone = async (id) => {
         const doneorder = await fetchorder(id)
-        const updorder = { ...doneorder, status: "F" }
+        const updorder = { ...doneorder, order_status: "F" }
     
         const res = await axios.patch(`http://localhost:3001/order/${id}`, 
         {
