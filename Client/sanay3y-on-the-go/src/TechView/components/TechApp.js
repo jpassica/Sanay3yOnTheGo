@@ -143,30 +143,6 @@ const TechApp = () =>
         },[])
       console.log(offers)
 
-      const fetchPrevWork=async ()=>
-    {
-      const res=await axios.get('http://localhost:3001/order/tech/23');
-      const data= res.data;
-      console.log(data)
-      return data
-    }
-
-    useEffect(()=>
-      {
-        const getprevwork=async()=>{
-      const prevworkfromserver=await fetchPrevWork()
-      setprevwork(prevworkfromserver)
-       }
-       getprevwork()
-        },[])
-      console.log(prevwork)
-
-      const fetchwork = async (id) => {
-        const res = await fetch(`http://localhost:3001/prevwork/${id}`)
-        const data = await res.json()
-    
-        return data
-      }
 
       const fetchorder = async (id) => {
         const res = await fetch(`http://localhost:3001/order/${id}`)
@@ -215,21 +191,22 @@ const TechApp = () =>
 
       const togglehighlight = async (id) => {
         const worktotoggle = await fetchorder(id)
-        const updwork = { ...worktotoggle, featured: !worktotoggle.featured }
+        const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
     
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'PUT',
+        const res = await axios.patch(`http://localhost:3001/order/${id}`,
+        {
+          updwork
+        }, {
           headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'application/x-www-form-urlencoded',
           },
-          body: JSON.stringify(updwork),
         })
     
-        const data = await res.json()
+        const data = res.data
     
         setorders(
           orders.map((item) =>
-            item.id === id ? { ...item, featured: data.featured } : item
+            item.order_id === id ? { ...item, highlighted: data.highlighted } : item
           )
         )
       }
