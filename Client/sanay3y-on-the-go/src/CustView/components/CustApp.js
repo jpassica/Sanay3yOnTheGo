@@ -90,8 +90,8 @@ function CustApp({ customer_id }) {
 
   //fetch customer details of customer_id
   const fetchCustomer = async () => {
-    const res = await axios.get(`http://localhost:30001/user/${customer_id}`);
-    const data = res.data
+    const res = await fetch(`http://localhost:3001/user/${customer_id}`);
+    const data = await res.json();
     console.log(data);
     return data;
   };
