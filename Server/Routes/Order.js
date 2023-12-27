@@ -7,7 +7,7 @@ import * as orderController from "../Controllers/OrderController.js";
 
 router.route('/')
     .get()
-    .post(orderController.makeNewOrder)
+    .post(orderController.makeRegOrder)
     .put()
     .patch()
     .delete()

@@ -15,6 +15,8 @@ import complaintRoute from "./Routes/Minor/Complaint.js";
 import offerRoute from "./Routes/Minor/Offer.js";
 import rewardRoute from "./Routes/Minor/Reward.js"
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({origin: '*'}));
 
 // Using routes
 app.use("/user", userRoute);
@@ -25,9 +27,13 @@ app.use("/complaint", complaintRoute);
 app.use("/offer", offerRoute);
 app.use("/reward", rewardRoute);
 
- 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cors({origin: '*'}));
+
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*'); // Allow requests from all origins (not recommended for production)
+    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Define the HTTP methods allowed
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization'); // Define the allowed headers
+    next();
+});
 
 
 app.listen(port, () => {

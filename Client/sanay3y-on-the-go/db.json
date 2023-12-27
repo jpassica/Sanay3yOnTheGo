@@ -459,41 +459,41 @@
       "order_id": 1,
       "order_status": "F",
       "order_DATE": "12/10/2022",
-      "price":500,
+      "price": 500,
       "cust_id": 2,
-      "order_type":"R"
+      "order_type": "R"
     },
     {
       "order_id": 2,
       "order_status": "U",
       "order_DATE": "12/10/2022",
-      "price":500,
+      "price": 500,
       "cust_id": 3,
-      "order_type":"R"
+      "order_type": "R"
     },
     {
       "order_id": 3,
       "order_status": "P",
-      "order_DATE":"12/10/2022",
-      "price":500,
+      "order_DATE": "12/10/2022",
+      "price": 500,
       "cust_id": 3,
-      "order_type":"B"
+      "order_type": "B"
     },
     {
       "order_id": 4,
       "order_status": "U",
       "order_DATE": "12/10/2022",
       "cust_id": 3,
-      "price":500,
-      "order_type":"O"
+      "price": 500,
+      "order_type": "O"
     },
     {
       "order_id": 5,
       "order_status": "P",
       "order_DATE": "12/10/2022",
-      "price":500,
+      "price": 500,
       "cust_id": 3,
-      "order_type":"R"
+      "order_type": "R"
     }
   ],
   "notifications": [
@@ -523,13 +523,13 @@
       "Header": "Bundle 1",
       "Total_price": 99.99,
       "Description": "Christmas BUNDLE:Deep cleaning 4 rooms ",
-      "Bundle_ID":1
+      "Bundle_ID": 1
     },
     {
       "Header": "Bundle 2",
       "Total_price": 149.99,
       "Description": "Painting 100 m^2 apartment using special ay haga ",
-      "Bundle_ID":2
+      "Bundle_ID": 2
     }
   ],
   "Point_System": [

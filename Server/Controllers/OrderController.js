@@ -1,19 +1,15 @@
 import db from "../Config/DB.js";
+import createOrder from "../Helpers/OrderHelper.js";
 
-const makeNewOrder = async (req, res) => {
-    const customer = req.body.customer_id;
+const makeRegOrder = async (req, res) => {
     const tech = req.body.tech_id;
     const type = req.body.type;
 
     try {
-        await db.query("INSERT INTO orders (order_type, customer_id)"+ 
-        "VALUES ($1, $2)", [type, customer]);
+        const newOrder = await createOrder(req, res);
 
-        const newOrder = (await db.query("SELECT currval('orders_order_id_seq');")).rows[0].currval;
-
-        if (type == 'R') // if it is a regular order
-            await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
-                req.body.description, tech, req.body.price]);
+        await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
+            req.body.description, tech, req.body.price]);
 
         res.send("Order created succesfully!");
     }
@@ -204,4 +200,4 @@ const getReviewsByTechID = async (req, res) => {
     }
 }
 
-export { makeNewOrder, getOrderByID, getTechOrders, updateOrderStatus, deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID };
+export { makeRegOrder, getOrderByID, getTechOrders, updateOrderStatus, deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID };

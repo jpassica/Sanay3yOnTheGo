@@ -25,7 +25,7 @@ const TechApp = () =>
     const fetchorders=async ()=>
     {
       const id = 23;
-      const res= (await axios.get(`http://localhost:3001/order/${id}`)).data;
+      const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
       //const data=  res.data;
       //console.log(data)
       return res
@@ -43,8 +43,8 @@ const TechApp = () =>
 
     const fetchtechs=async ()=>
     {
-      const res=await fetch('http://localhost:5000/techs')
-      const data=await res.json()
+      const res=await axios.get('http://localhost:3001/user/12');
+      const data= res.data;
       console.log(data)
       return data
     }
@@ -61,8 +61,9 @@ const TechApp = () =>
 
     const fetchoffers=async ()=>
     {
-      const res=await fetch('http://localhost:5000/offers')
-      const data=await res.json()
+      const id = 12;
+      const res = await axios.get(`http://localhost:3001/offer/tech/${id}`);
+      const data= res.data;
       console.log(data)
       return data
     }
@@ -79,8 +80,8 @@ const TechApp = () =>
 
       const fetchPrevWork=async ()=>
     {
-      const res=await fetch('http://localhost:5000/prevwork')
-      const data=await res.json()
+      const res=await axios.get('http://localhost:3001/order/tech/23');
+      const data= res.data;
       console.log(data)
       return data
     }
@@ -96,7 +97,7 @@ const TechApp = () =>
       console.log(prevwork)
 
       const fetchwork = async (id) => {
-        const res = await fetch(`http://localhost:5000/prevwork/${id}`)
+        const res = await fetch(`http://localhost:3001/prevwork/${id}`)
         const data = await res.json()
     
         return data
@@ -110,33 +111,43 @@ const TechApp = () =>
       }
 
       const fetchtech = async (id) => {
-        const res = await fetch(`http://localhost:5000/techs/${id}`)
-        const data = await res.json()
+        const res = await axios.get(`http://localhost:3001/user/12`)
+        const data = res.data;
     
         return data
       }
 
       const deleteOffer = async (id) => {
-        const res = await fetch(`http://localhost:5000/offers/${id}`, {
-          method: 'DELETE',
-        })
+        const res = await axios.delete(`http://localhost:3001/offer/5`);
         //We should control the response status to decide if we will change the state or not.
         res.status === 200
           ? setoffers(offers.filter((offer) => offer.id !== id))
-          : alert('Error Deleting This Task')
+          : alert('Error Deleting This Offer')
       }
 
-       // Add Task
+       // Add Offer
       const addoffer = async (offer) => {
-        const res = await fetch('http://localhost:5000/offers', {
-          method: 'POST',
+        const res = await axios.post('http://localhost:3001/offer', 
+        { tech_id: 12, 
+          header: offer.heading,
+          description: offer.content,
+          prev_price: offer.preprice,
+          new_price: offer.price
+        }, 
+        {
           headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(offer),
-        })
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+        // {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-type': 'application/json',
+        //   },
+        //   body: JSON.stringify(offer),
+        // })
       
-        const data = await res.json()
+        const data = res.data;
       
         setoffers([...offers, data])
       }

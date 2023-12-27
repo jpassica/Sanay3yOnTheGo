@@ -13,7 +13,10 @@ router.route('/')
     .delete()
 
 router.route('/:id')
-    .get(offerController.getTechOffers)
+    .post(offerController.buyOffer)
     .delete(offerController.deleteOffer)
+
+router.route('/tech/:id')
+    .get(offerController.getTechOffers)
 
 export default router;

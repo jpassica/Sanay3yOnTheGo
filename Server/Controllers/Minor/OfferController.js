@@ -1,4 +1,5 @@
 import db from "../../Config/DB.js";
+import createOrder from "../../Helpers/OrderHelper.js";
 
 const createOffer = async (req, res) => {
     const tech = req.body.tech_id;
@@ -13,9 +14,18 @@ const createOffer = async (req, res) => {
     }
 }
  
-//const buyOffer = async (req, res) => {
-
-//};
+const buyOffer = async (req, res) => {
+    const id = req.params.id; // offer id
+    try {
+        req.body.type = "O";
+        const newOrder = await createOrder(req, res);
+        await db.query("INSERT INTO isoffer VALUES ($1, $2);", [newOrder, id]);
+        res.send("Order purchased successfully!");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't buy offer!");
+    }
+};
 
 const getTechOffers = async (req, res) => {
     try { 
@@ -23,7 +33,7 @@ const getTechOffers = async (req, res) => {
 
         const result = await db.query(`SELECT * FROM offer WHERE tech_id = ${tech};`);
         console.log(result.rows);
-        res.send(result.rows);
+        res.send(JSON.stringify(result.rows));
 
     } catch (error) {
         console.log(error);
@@ -42,4 +52,4 @@ const deleteOffer = async (req, res) => {
     }
 };
 
- export { createOffer, getTechOffers, deleteOffer };
+ export { createOffer, buyOffer, getTechOffers, deleteOffer };

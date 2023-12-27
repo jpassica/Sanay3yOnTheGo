@@ -34,10 +34,10 @@ function UploadOffer({OnAdd}) {
     <form className='addofferform' onSubmit={onSubmit}>
     <div className='UpOffercard'>
         <h5><b>Add New Offer</b></h5>
-        <input type="text" placeholder='heading'className='uploadfields' onChange={(e) => setHeading(e.target.value)}/>
-        <input type="text" placeholder='content'className='uploadfields' onChange={(e) => setContent(e.target.value)}/>
-        <input type="text" placeholder='previous price'className='uploadfields' onChange={(e) => setPrePrice(e.target.value)}/>
-        <input type="text" placeholder='new price' className='uploadfields' onChange={(e) => setPrice(e.target.value)}/>
+        <input type="text" placeholder='Heading'className='uploadfields' onChange={(e) => setHeading(e.target.value)}/>
+        <input type="text" placeholder='Description'className='uploadfields' onChange={(e) => setContent(e.target.value)}/>
+        <input type="text" placeholder='Previous Price'className='uploadfields' onChange={(e) => setPrePrice(e.target.value)}/>
+        <input type="text" placeholder='New Price' className='uploadfields' onChange={(e) => setPrice(e.target.value)}/>
 
 
     <div className='offerbtncontainer'>

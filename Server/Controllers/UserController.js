@@ -80,12 +80,12 @@ const getUserDetails = async (req, res) => {
 
         if (main_result.type == "t")
         {
-            const service = (await db.query(`SELECT name FROM service, technician 
+            const service = (await db.query(`SELECT name, rating FROM service, technician 
                 WHERE technician.service_id = service.service_id AND tech_id = ${id};`)).rows[0];
 
             const result = {...main_result, ...service};
             console.log(result);
-            return res.send(JSON.stringify(result));  
+            res.send(JSON.stringify(result));  
 
         } else if (main_result.type == "c")
         {
@@ -93,7 +93,7 @@ const getUserDetails = async (req, res) => {
 
             const result = {...main_result, ...points};
             console.log(result);
-            return res.send(JSON.stringify(result));
+            res.send(JSON.stringify(result));
         }
     } catch (error) {
         console.log(error);
