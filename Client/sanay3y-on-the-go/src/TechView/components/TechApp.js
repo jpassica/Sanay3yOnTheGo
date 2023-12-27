@@ -21,6 +21,40 @@ const TechApp = () =>
     const[techs,settechs]=useState([])
     const[orders,setorders]=useState([])
     const[tech,settech]=useState();
+    const [services, setServices] = useState([]);
+
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/services');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching services:', error.message);
+        throw error;
+      }
+    };
+  
+    useEffect(() => {
+      let isMounted = true;
+  
+      const getServices = async () => {
+      try {
+          const getServicesFromServer = await fetchServices();
+      if (isMounted) {
+          setServices(getServicesFromServer);
+      }
+      } catch (error) {
+          console.log(error);
+      }
+      };
+  
+      getServices();
+  
+      return () => {
+        isMounted = false;
+      };
+    }, []);
+
 
 
     const fetchorders=async ()=>
@@ -43,25 +77,6 @@ const TechApp = () =>
       console.log(orders)
 
 
-
-    // const fetchtechs=async ()=>
-    // {
-    //   const res=await axios.get('http://localhost:3001/user/12');
-    //   const data= res.data;
-    //   console.log(data)
-    //   return data
-    // }
-
-    // useEffect(()=>
-    //   {
-    //     const gettechs=async()=>{
-    //   const techsfromserver=await fetchtechs()
-    //   settechs(techsfromserver)
-    //    }
-    //   gettechs()
-    //     },[])
-    //   console.log(techs)
-
     const fetchtech = async (id) => {
       const res = await axios.get(`http://localhost:3001/user/12`)
       const data = res.data;
@@ -76,6 +91,35 @@ const TechApp = () =>
     }
     gettech()
   },[])
+
+
+  const edittech = async(id,newtech) =>{
+    const techtoupdate = await fetchtech(id)
+    const updtech ={...techtoupdate,...newtech}
+
+    const res = await axios.post(`http://localhost:3001/user/12`, 
+    {
+      tech_id:12,
+    FullName: newtech.fname,
+    Email: newtech.email,
+    Address: newtech.area,
+    Phone_Number: newtech.number,
+    name:newtech.service
+    },
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      }
+    })
+
+    const data = res.data;
+    settech(data)
+  }
+
+
+
+
+
 
 
 
@@ -242,27 +286,7 @@ const TechApp = () =>
         )
       }
 
-      const edittech = async(id,newtech) =>{
-        const techtoupdate = await fetchtech(id)
-        const updtech ={...techtoupdate,...newtech}
-
-        const res = await fetch(`http://localhost:5000/techs/${id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(updtech),
-        })
-    
-        const data = await res.json()
-
-        settechs(
-          techs.map((item) =>
-            item.id === id ? { ...item, name: data.name } : item
-          )
-        )
-      }
-
+     
 
 
     return (<div className='App'>
@@ -275,7 +299,7 @@ const TechApp = () =>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
         
-        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech}/>}/>
+        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech} services={services}/>}/>
 
         <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
       </Routes>

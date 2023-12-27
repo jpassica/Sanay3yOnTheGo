@@ -4,7 +4,7 @@ import '../styles/account.css'
 import '../styles/editpage.css';
 
 
-const Edit = ({tech,edittech}) => {
+const Edit = ({tech,edittech,services}) => {
 
     let [fname,setfname]=useState("")
     let [number,setnumer]=useState("")
@@ -21,7 +21,27 @@ const Edit = ({tech,edittech}) => {
           alert('no changes')
           return
         }
-        
+
+        if(fname=="")
+        {
+          setfname(tech.FullName);
+        }
+        if(email=="")
+        {
+          setemail(tech.Email);
+        }
+        if(service=="")
+        {
+          setservice(tech.name);
+        }
+        if(area=="")
+        {
+          setarea(tech.Address);
+        }
+        if(number=="")
+        {
+          setnumer(tech.Phone_Number);
+        }
     
         edittech({ fname, number, email,service,area})
         alert('changes saved')
@@ -30,7 +50,6 @@ const Edit = ({tech,edittech}) => {
         setemail('')
         setservice('')
         setarea('')
-
       }
 
 
@@ -77,9 +96,14 @@ const Edit = ({tech,edittech}) => {
             <label class="col-lg-3 control-label">Service:</label>
             <div class="col-lg-8">
               <div class="ui-select">
-                <select id="user_time_zone" class="form-control" onChange={(e) => setservice(e.target.value)}>
-                  <option value="Plumping">Plumping</option>
-                  <option value="AC">AC</option>
+
+                <select id="service" value={category}  onChange={(e) => setservice(e.target.value)}>
+                <option value="">Select a service</option>
+                {services.map((service) => (
+                    <option key={service.id} value={service.name}>
+                    {service.name}
+                    </option>
+                ))}
                 </select>
               </div>
             </div>

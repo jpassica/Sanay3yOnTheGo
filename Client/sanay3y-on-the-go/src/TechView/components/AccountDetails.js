@@ -11,7 +11,7 @@ const AccountDetails = ({tech}) => {
         <div class="col-12 col-md-3">
         <figure class='avatar avatar-profile'>
                     <img class="rounded-circle img-fluid " src={prosrc} alt='' />
-                    <Rate rating={tech.rating}/>
+                    <Rate rating={tech.Rating}/>
                 </figure>
                 <CustomLink to="/EditProfile"><a href="#" id="edit_profile" class=" btn-primary btn-block my-5 probutton">
                     Edit Account Details
@@ -20,19 +20,19 @@ const AccountDetails = ({tech}) => {
                 </div>
       <div class="col-12 col-md-5 details">
                  <h4>Full Name</h4>
-                 <p>{tech.fullname}</p>
+                 <p>{tech.FullName}</p>
      
                  <h4>Email Address</h4>
-                 <p>{tech.email}</p>
+                 <p>{tech.Email}</p>
 
                  <h4>Phone Number</h4>
-                 <p>{tech.phone_number}</p>
+                 <p>{tech.Phone_Number}</p>
 
                  <h4>Service</h4>
                  <p>{tech.service}</p>
 
                  <h4>Area</h4>
-                 <p>{tech.address}</p>
+                 <p>{tech.Address}</p>
 
                  <a href="#" class=" btn-danger btn-block mt-5 probutton">
                     Delete Account
