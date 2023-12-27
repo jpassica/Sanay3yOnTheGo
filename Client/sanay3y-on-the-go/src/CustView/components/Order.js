@@ -10,7 +10,7 @@ const Order = ({order}) => {
 
     const showReviewOrCancel=()=>
     {
-        if(order.Service_status=="pending"||order.Service_status=="upcoming")
+        if(order.order_status=="P"||order.order_status=="U")
         navigate(`/CancelOrder/${order.order_id}`);
         else 
         navigate(`/ReviewOrder/${order.order_id}`);
@@ -24,8 +24,8 @@ const Order = ({order}) => {
   return (
     <div className='order-container'>
         <div className='order-card'>
-            <h3>{order.date}</h3>
-            <h3>{order.header}</h3>
+            <h3>{order.order_DATE}</h3>
+            <h3>Order #{order.order_id}</h3>
             <h5>{order.price} EGP</h5>
             {order.order_type=='R'&&
             <div>

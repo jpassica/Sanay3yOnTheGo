@@ -40,7 +40,7 @@ function CustApp() {
   }
   const fetchOrders=async ()=>
   {
-    const res=await fetch('http://localhost:5000/orders')
+    const res=await fetch('http://localhost:5000/customer_orders')
     const data=await res.json()
     console.log(data)
     return data

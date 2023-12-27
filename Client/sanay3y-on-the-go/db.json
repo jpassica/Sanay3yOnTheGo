@@ -236,43 +236,43 @@
       "order_id": 1,
       "tech_id": 1,
       "cust_id": 9,
-      "details": "shogh mo2ref",
-      "rating": 3
+      "Content": "shogh mo2ref",
+      "Rating": 3
     },
     {
       "order_id": 2,
       "tech_id": 3,
       "cust_id": 9,
-      "details": "wow",
-      "rating": 0
+      "Content": "wow",
+      "Rating": 0
     },
     {
       "order_id": 3,
       "tech_id": 3,
       "cust_id": 9,
-      "details": "shogh mo2ref",
-      "rating": 0
+      "Content": "shogh mo2ref",
+      "Rating": 0
     },
     {
       "order_id": 4,
       "tech_id": 2,
       "cust_id": 10,
-      "details": "shaghal",
-      "rating": 3
+      "Content": "shaghal",
+      "Rating": 3
     },
     {
       "order_id": 5,
       "tech_id": 3,
       "cust_id": 11,
-      "details": "10/10",
-      "rating": 5
+      "Content": "10/10",
+      "Rating": 5
     },
     {
       "order_id": 6,
       "tech_id": 4,
       "cust_id": 12,
-      "details": "tohfa",
-      "rating": 4
+      "Content": "tohfa",
+      "Rating": 4
     }
   ],
   "customers": [
@@ -454,90 +454,82 @@
       "time_stamp": "12-11-2023, 12:30 pm"
     }
   ],
-  "orders": [
+  "customer_orders": [
     {
       "order_id": 1,
-      "Service_status": "finished",
-      "Service_timestamp": "12/10/2022 11:59:00",
-      "price": 500,
-      "details": "order carpenting and bla bla",
+      "order_status": "F",
+      "order_DATE": "12/10/2022",
+      "price":500,
       "cust_id": 2,
-      "header": "order example ff",
       "order_type":"R"
     },
     {
       "order_id": 2,
-      "Service_status": "upcoming",
-      "Service_timestamp": "12/10/2022 11:59:00",
-      "price": 500,
-      "details": "order carpenting and bla bla",
+      "order_status": "U",
+      "order_DATE": "12/10/2022",
+      "price":500,
       "cust_id": 3,
-      "header": "order example uu",
       "order_type":"R"
     },
     {
       "order_id": 3,
-      "Service_status": "pending",
-      "Service_timestamp": "12/10/2022 11:59:00",
-      "price": 500,
-      "details": "order carpenting and bla bla",
+      "order_status": "P",
+      "order_DATE":"12/10/2022",
+      "price":500,
       "cust_id": 3,
-      "header": "order example 1",
       "order_type":"B"
     },
     {
       "order_id": 4,
-      "Service_status": "upcoming",
-      "Service_timestamp": "12/10/2022 11:59:00",
-      "price": 500,
-      "details": "order carpenting and bla bla",
+      "order_status": "U",
+      "order_DATE": "12/10/2022",
       "cust_id": 3,
-      "header": "order example uu",
+      "price":500,
       "order_type":"O"
     },
     {
       "order_id": 5,
-      "Service_status": "pending",
-      "Service_timestamp": "12/10/2022 11:59:00",
-      "price": 500,
-      "details": "order carpenting and bla bla",
+      "order_status": "P",
+      "order_DATE": "12/10/2022",
+      "price":500,
       "cust_id": 3,
-      "header": "order example 1",
       "order_type":"R"
     }
   ],
   "notifications": [
     {
-      "order_header": "Order #123",
-      "content": "Your order has been dispatched and is on its way.",
-      "timestamp": "12:45 PM"
+      "order_id": 123,
+      "Content": "Your order has been dispatched and is on its way.",
+      "Notification_DATE": "12:45 PM"
     },
     {
-      "order_header": "Order #456",
-      "content": "A new item has been added to your wishlist.",
-      "timestamp": "2:30 PM"
+      "order_id": 456,
+      "Content": "Your order has been dispatched and is on its way.",
+      "Notification_DATE": "12:45 PM"
     },
     {
-      "order_header": "Order #789",
-      "content": "You've received a new message from a seller.",
-      "timestamp": "4:15 PM"
+      "order_id": 789,
+      "Content": "Your order has been dispatched and is on its way.",
+      "Notification_DATE": "12:45 PM"
     },
     {
-      "order_header": "Order #321",
-      "content": "Reminder: Your subscription will expire soon.",
-      "timestamp": "6:00 PM"
+      "order_id": 678,
+      "Content": "Your order has been dispatched and is on its way.",
+      "Notification_DATE": "12:45 PM"
     }
   ],
   "bundles": [
     {
-      "bundle_name": "Bundle 1",
-      "price": 99.99,
-      "bundle_details": "Christmas BUNDLE:Deep cleaning 4 rooms "
+      "Header": "Bundle 1",
+      "Total_price": 99.99,
+      "Description": "Christmas BUNDLE:Deep cleaning 4 rooms ",
+      "Bundle_ID":1
     },
     {
-      "bundle_name": "Bundle 2",
-      "price": 149.99,
-      "bundle_details": "Painting 100 m^2 apartment using special ay haga "
+      "Header": "Bundle 2",
+      "Total_price": 149.99,
+      "Description": "Painting 100 m^2 apartment using special ay haga ",
+      "Bundle_ID":2
     }
   ],
   "Point_System": [

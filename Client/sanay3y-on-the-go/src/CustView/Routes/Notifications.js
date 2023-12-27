@@ -6,9 +6,9 @@ const Notifications = ({notifications}) => {
     <div className="notification-container">
     {notifications.map((notification, index) => (
       <div key={index} className="notification">
-        <div className="order-header">{notification.order_header}</div>
-        <div className="content">{notification.content}</div>
-        <div className="timestamp">{notification.timestamp}</div>
+        <div className="order-header">Order #{notification.order_id}</div>
+        <div className="content">{notification.Content}</div>
+        <div className="timestamp">{notification.Notification_DATE}</div>
       </div>
     ))}
   </div>

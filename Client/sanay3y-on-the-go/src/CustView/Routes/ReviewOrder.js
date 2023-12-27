@@ -12,23 +12,25 @@ const ReviewOrder = ({orders,reviews}) => {
 
   //fetching review by order_id
   const sampleReview={
-    rating:3,
-    details:"good job"
+    Rating:3,
+    Content:"good job"
   }
 
-  const initialRating=sampleReview.rating
-  const initialDetails=sampleReview.details
+  const initialRating=sampleReview.Rating
+  const initialContent=sampleReview.Content
 
   const [Rating,setRating]=useState(initialRating)
-  const [Rev,setRev]=useState(initialDetails)
+  const [Rev,setRev]=useState(initialContent)
 
 
   const navigate = useNavigate();
     const handleSubmit = () => {
+     
       // Logic for handling the form submission
       //decide update or insert based on initial rating and initial review
   
       // After successful submission, navigate back to the previous page
+      alert('review was successfully recorded')
     };
 
   return (
