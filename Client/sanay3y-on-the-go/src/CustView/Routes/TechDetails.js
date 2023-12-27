@@ -12,7 +12,7 @@ const TechDetails = () => {
   const navigate = useNavigate();
 
   const [show, setShow] = useState();
-  
+
   //booking
   const [OrderTitle, setOrderTitle] = useState("");
   const [OrderDetails, setOrderdetails] = useState("");
@@ -34,8 +34,7 @@ const TechDetails = () => {
 
   const fetchPreviousWork = async () => {
     const res = await axios.get(`https://localhost:3001/order/tech/${id}`);
-    const data = await res.json();
-    console.log(data);
+    const data = res.data;
     return data;
   };
 
@@ -47,17 +46,15 @@ const TechDetails = () => {
   };
   const fetchTechnician = async () => {
     const res = await axios.get(`https://localhost:3001/user/${id}`);
-    const data = await res.json();
     console.log(data);
-    return data;
+    return res.data;
   };
   const fetchReviews = async () => {
     const res = await axios.get(
       `https://localhost:3001/order/review/tech/${id}`
     );
-    const data = await res.json();
-    console.log(data);
-    return data;
+   
+    return res.data;
   };
   
   useEffect(() => {

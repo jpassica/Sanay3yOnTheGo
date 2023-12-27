@@ -23,7 +23,7 @@ const ReviewOrder = ({orders,customer_id}) => {
   const fetchReview = async ({order_id}) => 
   {
     const res = await axios.get(`http://localhost:3001/review/${order_id}`)
-    const data=await res.json()
+    const data=res.data
         console.log(data)
         return data
   }

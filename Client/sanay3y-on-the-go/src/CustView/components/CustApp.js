@@ -52,7 +52,7 @@ function CustApp({ customer_id }) {
 
   //fetching orders of customer by customer id
   const fetchOrders = async () => {
-    const res = await axios(`http://localhost:3001/order/${customer_id}`);
+    const res = await axios.get(`http://localhost:3001/order/${customer_id}`);
     const data = res.data
     return data;
   };
@@ -90,8 +90,8 @@ function CustApp({ customer_id }) {
 
   //fetch customer details of customer_id
   const fetchCustomer = async () => {
-    const res = await fetch(`http://localhost:30001/user/${customer_id}`);
-    const data = await res.json();
+    const res = await axios.get(`http://localhost:30001/user/${customer_id}`);
+    const data = res.data
     console.log(data);
     return data;
   };
