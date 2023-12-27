@@ -30,7 +30,7 @@ router.route('/Tech/:id')
     .delete()
 
 router.route('/Techs')
-    .get(userController.getNearbyTechs)
+    .post(userController.getNearbyTechs)
 
 
 export default router;

@@ -50,7 +50,8 @@ CREATE TABLE orders(
     order_DATE DATE DEFAULT CURRENT_DATE,
     Customer_ID INT REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE 
-        ON UPDATE CASCADE
+        ON UPDATE CASCADE,
+    highlighted BOOLEAN DEFAULT false
 );
 
 CREATE TABLE Feedback(

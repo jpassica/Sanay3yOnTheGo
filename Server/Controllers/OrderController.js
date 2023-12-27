@@ -107,6 +107,19 @@ const updateOrderStatus = async (req, res) => {
     }
 };
 
+const toggleHighlighted = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        await db.query(`UPDATE orders SET highlighted = NOT highlighted WHERE order_id = ${id};`);
+        res.send("Toggled!");
+        
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't toggle highlighted!");
+    }
+}
+
 const deleteOrder = async (req, res) => {
     const id = req.params.id;
 
@@ -200,4 +213,6 @@ const getReviewsByTechID = async (req, res) => {
     }
 }
 
-export { makeRegOrder, getOrderByID, getTechOrders, updateOrderStatus, deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID };
+export { makeRegOrder, getOrderByID, getTechOrders, updateOrderStatus, 
+    deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID,
+    toggleHighlighted };
