@@ -1,5 +1,3 @@
-
-
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import NavBarCust from './NavBarCust';
@@ -14,6 +12,7 @@ import Feedback from '../Routes/Feedback';
 import Notifications from '../Routes/Notifications';
 import Account from '../Routes/Account'
 import EditProfile from '../Routes/EditProfile';
+import axios from "axios";
 function CustApp() {
 
   const[technicians,setTechnicians]=useState([])
@@ -26,15 +25,20 @@ function CustApp() {
 
   const fetchTechnicians=async ()=>
   {
-    const res=await fetch('http://localhost:5000/techs')
-    const data=await res.json()
+    const res = await axios.post('http://localhost:3001/user/Techs', {customer_id : 21},
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+    const data = res.data;
     console.log(data)
     return data
   }
   const fetchServices=async ()=>
   {
-    const res=await fetch('http://localhost:5000/service_categories')
-    const data=await res.json()
+    const res = await axios.get('http://localhost:3001/service');
+    const data = res.data;
     console.log(data)
     return data
   }

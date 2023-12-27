@@ -19,9 +19,9 @@ root.render(
   
   <React.StrictMode>
     {/* <TechApp/> */}
-    <TechApp />
-    {/*
     <CustApp />
+    {/*
+    <TechApp />
     <Sanay3y />
     <CustApp />  
   <App />  

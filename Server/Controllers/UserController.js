@@ -104,14 +104,14 @@ const getUserDetails = async (req, res) => {
 const getNearbyTechs = async (req, res) => {
     try {
         const customerCity = (await db.query (`SELECT address FROM client WHERE client_id = ${req.body.customer_id};`)).rows[0].address;
-        const result = await db.query(`SELECT * FROM client, technician WHERE client_id = tech_id AND address = '${customerCity}';`);
+        const result = await db.query(`SELECT * FROM client, technician, service 
+        WHERE client_id = tech_id AND service.service_id = technician.service_id AND address = '${customerCity}';`);
         console.log(result.rows);
         res.send(JSON.stringify(result.rows));
     } catch (error) {
         console.log(error);
         res.send("Couldn't retrieve technicians!");
     }
-   
 }
 
 const updateUserDetails = async (req, res) => {
