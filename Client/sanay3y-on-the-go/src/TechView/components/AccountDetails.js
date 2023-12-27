@@ -29,7 +29,7 @@ const AccountDetails = ({tech}) => {
                  <p>{tech.Phone_Number}</p>
 
                  <h4>Service</h4>
-                 <p>{tech.service}</p>
+                 <p>{tech.name}</p>
 
                  <h4>Area</h4>
                  <p>{tech.Address}</p>
