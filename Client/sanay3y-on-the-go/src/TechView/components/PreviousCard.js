@@ -10,7 +10,7 @@ const PreviousCard = ({order,filter,onToggle}) => {
       <p>{order.order_date}</p>
         <p>{order.description}</p>
         <p>Price: {order.price} <sub>EGP</sub> </p>
-        <button type="button" onClick={() => onToggle(order.id)} className={order.featured==true? "removebtn" :"addbtn"} style={{position:"relative",
+        <button type="button" onClick={() => onToggle(order.order_id)} className={order.featured==true? "removebtn" :"addbtn"} style={{position:"relative",
           left:"320px"}}><span className={order.featured==true? "bi bi-trash" :"bi bi-cloud-plus-fill"}></span></button>
     </div> 
     

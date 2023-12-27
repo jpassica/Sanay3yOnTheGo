@@ -11,9 +11,9 @@ function ProfilePage({type, id}) {
       case 'a':
         return <AdminApp id={id} />;
       case 'c':
-        return <CustApp />;
+        return <CustApp id={id}/>;
       case 't':
-        return <TechApp />;
+        return <TechApp id={id}/>;
       default:
         return <div>Invalid user type</div>;
     }

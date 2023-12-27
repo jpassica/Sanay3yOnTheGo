@@ -10,8 +10,8 @@ const PendingCard = ({order,filter,ondelete,onAccept}) => {
         <p>{order.details}</p>
         <p>Price: {order.price} <sub>EGP</sub> </p>
         <div >
-        <button onClick={() => onAccept(order.id)} class=" btn-success  my-4 probutton">Accept</button>
-        <button onClick={() => ondelete(order.id)} class=" btn-danger  my-4 probutton">Decline</button>
+        <button onClick={() => onAccept(order.order_id)} class=" btn-success  my-4 probutton">Accept</button>
+        <button onClick={() => ondelete(order.order_id)} class=" btn-danger  my-4 probutton">Decline</button>
         </div>
     </div>
     </div>

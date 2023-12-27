@@ -56,6 +56,33 @@ const getTechOrders = async (req, res) => {
     }
 };
 
+const getCustomerOrders = async (req, res) => {
+    const id = req.params.id;
+
+    try {
+        let result = [];
+
+        const regorder_query = (await db.query(`SELECT * FROM orders, regularorder
+        WHERE regularorder.order_id = orders.order_id AND customer_id = ${id};`)).rows;
+
+        const offer_query = (await db.query(`SELECT * FROM orders, offer, isoffer 
+        WHERE orders.order_id = isoffer.order_id AND isoffer.offer_id = offer.offer_id
+        AND customer_id = ${id};`)).rows;
+
+        const bundle_query = (await db.query(`SELECT * FROM orders, bundle, isbundle
+        WHERE orders.order_id = isbundle.order_id AND isbundle.bundle_id = bundle.bundle_id 
+        AND customer_id = ${id};`)).rows;
+
+        result = [...regorder_query, ...offer_query, ...bundle_query];
+
+        console.log(result);
+        res.send(result);
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't retrieve orders!");
+    }
+}
+
 // make sure all type results work
 const getOrderByID = async (req, res) => {
     const id = req.params.id;
@@ -96,7 +123,7 @@ const getOrderByID = async (req, res) => {
 
 const updateOrderStatus = async (req, res) => {
     const order_id = req.params.id;
-    const status = req.query.status;
+    const status = req.body.order_status;
 
     try {
         await db.query(`UPDATE orders SET order_status = '${status}' WHERE order_id = ${order_id};`);
@@ -215,4 +242,4 @@ const getReviewsByTechID = async (req, res) => {
 
 export { makeRegOrder, getOrderByID, getTechOrders, updateOrderStatus, 
     deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID,
-    toggleHighlighted };
+    toggleHighlighted, getCustomerOrders };

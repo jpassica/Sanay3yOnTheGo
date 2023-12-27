@@ -22,6 +22,9 @@ router.route('/:id')
 router.route('/tech/:id')
     .get(orderController.getTechOrders)
 
+router.route('/customer/:id')
+    .get(orderController.getCustomerOrders)
+
 router.route('/toggle/:id')
     .patch(orderController.toggleHighlighted)
 
