@@ -23,37 +23,22 @@ const TechApp = () =>
     const[tech,settech]=useState();
     const [services, setServices] = useState([]);
 
-    const fetchServices = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/services');
-        console.log(response.data);
-        return response.data;
-      } catch (error) {
-        console.error('Error fetching services:', error.message);
-        throw error;
+    
+
+    const fetchservice=async()=>
+    {
+      const response = await axios.get('http://localhost:3001/services');
+      console.log(response.data);
+      return response.data;
+    }
+
+    useEffect(()=>{
+      const getservices=async()=>{
+        const serfromserver = await fetchservice()
+        setServices(serfromserver)
       }
-    };
-  
-    useEffect(() => {
-      let isMounted = true;
-  
-      const getServices = async () => {
-      try {
-          const getServicesFromServer = await fetchServices();
-      if (isMounted) {
-          setServices(getServicesFromServer);
-      }
-      } catch (error) {
-          console.log(error);
-      }
-      };
-  
-      getServices();
-  
-      return () => {
-        isMounted = false;
-      };
-    }, []);
+      getservices()
+    },[])
 
 
 
