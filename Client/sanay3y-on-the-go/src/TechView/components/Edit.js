@@ -97,7 +97,7 @@ const Edit = ({tech,edittech,services}) => {
             <div class="col-lg-8">
               <div class="ui-select">
 
-                <select id="service" value={category}  onChange={(e) => setservice(e.target.value)}>
+                <select id="service" value={service}  onChange={(e) => setservice(e.target.value)}>
                 <option value="">Select a service</option>
                 {services.map((service) => (
                     <option key={service.id} value={service.name}>
