@@ -18,13 +18,12 @@ const root = createRoot(rootElement);
 root.render(
   
   <React.StrictMode>
-    {/* <TechApp/> */}
-    <CustApp />
+    <App />  
     {/*
-    <TechApp />
-    <Sanay3y />
+    <AdminApp />
     <CustApp />  
-  <App />  
+    <TechApp />
+  <Sanay3y />
   */}
     
   </React.StrictMode>

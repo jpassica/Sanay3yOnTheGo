@@ -1,60 +1,66 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-const FeedbacksPage = ({adminId}) => {
+import '../styles/feedbacks.css';
+const FeedbacksPage = ({adminID}) => {
     const [feedbacks, setFeedbacks] = useState([]);
-    const Navigate = useNavigate();
+    
+const fetchFeedbacks = async () => {
+    try {
+      const response = await axios.get('http://localhost:3001/feedbacks');
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching feedbacks:', error.message);
+      throw error;
+    }
+  };
 
-    const fetchFeedbacks = async () => {
-        try {
-            const response = await axios.get('http://localhost:3001/feedbacks');
-            return response.data;
+  useEffect(() => {
+    let isMounted = true;
 
-        } catch (error) {
-            console.error('Error fetching feedbacks:', error);
-        }
+    const getFeedbacks = async () => {
+    try {
+        const getFeedbacksFromServer = await fetchFeedbacks();
+    if (isMounted) {
+        setFeedbacks(getFeedbacksFromServer);
+    }
+    } catch (error) {
+        console.log(error);
+    }
+    };
+    getFeedbacks();
+    return () => {
+    isMounted = false;
+    };
+}, []);
+
+    const considerFeedback = (feedback_id) => {
+        // try {
+        //     const response = axios.post('http://localhost:3001/considerFeedback', {
+        //         feedbackId: feedback_id,
+        //         adminId: adminID
+        //     }, {
+        //         headers: {
+        //             'Content-Type': 'application/x-www-form-urlencoded'
+        //         }
+        //     });
+        //     console.log(response.data);
+        // } catch (error) {
+        //     console.error('Error fetching feedbacks:', error.message);
+        //     throw error;
+        // }
     };
 
-    useEffect(() => {
-        let isMounted = true;
-    
-        const getFeedbacks = async () => {
-        try {
-            const getServicesFromServer = await fetchFeedbacks();
-        if (isMounted) {
-
-            setFeedbacks(getServicesFromServer);
-        }
-        } catch (error) {
-            console.log(error);
-        }
-        };
-    
-        getFeedbacks();
-        return () => {
-          isMounted = false;
-        };
-      }, []);
-
-    const handleCardClick = (feedback) => {
-        // Navigate to review feedback page
-        Navigate(`/review-feedback/${feedback}`); // Replace with your review feedback page route
-    };
-
-    return (
-        <>
-        <div>
-            {
-            feedbacks?.map((feedback) => (
-                <div key={feedback.id} onClick={() => handleCardClick(feedback.feedback_id)}>
-                    <h3>Feedback ID: {feedback.feedback_id}</h3>
-                    <p>Content: {feedback.content}</p>
-                    <p>Timestamp: {feedback.feedback_timestamp}</p>
-                </div>
-            ))}
-        </div>
-        </>
+    return (<div className='feedback-container'>
+                      {feedbacks.map((feedback) => (
+                          <div className='feedback-data' key={feedback.id}>
+                              <h5>{feedback.feedback_id}</h5>
+                              <textarea  readOnly value={feedback.content}>
+                              </textarea>
+                              <button className='consider-btn' onClick={considerFeedback(feedback.feedback_id)}>Consider</button>
+                          </div>
+                      ))}
+    </div>
     );
 };
 

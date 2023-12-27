@@ -1,52 +1,60 @@
 /* FILEPATH: /e:/Programming/Projects/DB_Project/Sanay3yOnTheGo/Client/sanay3y-on-the-go/src/AdminView/styles/CreateBundle.css */
-
-.bundleCheckBox {
-    /* Add your styles for bundleCheckBox here */
-    
-}
-
-
-.createBundleTitle {
-    /* Add your styles for createBundleTitle here */
-}
 .bundleBtnStyle {
-    background: #FFDD61;
     width: 200px;
-    height: 40px;
-    color: #FFF;
-    font-family: "Inria Serif";
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 35px;
-    letter-spacing: 2.8px;
+    height: 50px;
+    margin: 10px 0px;
+    border-radius: 5px;
+    background: rgba(38, 15, 103, 0.89);
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    color: white;
     border: none;
-    border-radius: 10px;
     cursor: pointer;
+    outline: none;
+
 }
 
 
-.bundlePageContainer {
-    background: #FFF;
-    width: 1405px;
-    height: 650px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Set the colors */
-.bundleCheckBox {
-    color: #FFDD61;
-}
 .services{
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+margin-bottom: 20px;
+column-gap: 40px;
+}
+
+.selectService{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
-    list-style-type: none;
+    margin-bottom: 20px;
+    column-gap: 40px;
+    margin: 20px 0px;
+    padding: 10px;
+    border: 3px solid #FFDD61;
+    background-color: rgba(255, 255, 255, 0.25);
+    border-radius: 30px;
+}
+.service{
+    width: 70px;
+    height: 70px;
+    text-align: center;
+    font-size: 14px;
+}
+.bundlePageContainer {
+    border: 2px solid rgba(38, 15, 103, 0.89);
+
+    background: #FFDD61;
+    width: 80%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto auto;
+    padding: 20px;
 }
 
 .bundleTextBoxStyle {
@@ -67,9 +75,5 @@
 }
 
 .createBundleTitle {
-    color: #FFDD61;
-}
-
-.bundlePageContainer {
-    background-color: #FBF7E5;
+    color: #000;
 }

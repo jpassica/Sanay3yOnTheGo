@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import Card from '../../CustView/components/Card';
+import '../styles/techPage.css';
+import Rate from '../../TechView/components/Rate';
 
 const TechniciansPage = () => {
     const [technicians, setTechnicians] = useState([]);
-    const Navigate = useNavigate();
     const [filteredTechnicians, setFilteredTechnicians] = useState([]);
-    const [filterRate, setFilterRate] = useState(2);
+    const [filterRate, setFilterRate] = useState(5);
   
     
 const fetchTechnicians = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/techs');
+      const response = await axios.get('http://localhost:3001/techs');
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -43,16 +43,30 @@ const fetchTechnicians = async () => {
     };
   }, []);
 
-    const handleCardClick = (techId) => {
-        Navigate(`/ban-tech/${techId}`);
+  const banTech = (techId) => {
+    // try {
+    //     const response = axios.post('http://localhost:3001/banTech', {
+    //         techId: techId,
+    //     }, {
+    //         headers: {
+    //             'Content-Type': 'application/x-www-form-urlencoded'
+    //         }
+    //     });
+    //     console.log(response.data);
+    // } catch (error) {
+    //     console.error('Error fetching feedbacks:', error.message);
+    //     throw error;
+    // }
+
     };
 
     const handleFilterClick = () => {
-        setFilteredTechnicians(technicians.filter(tech => tech.rate < filterRate));
+        setFilteredTechnicians(technicians.filter(tech => tech.rating < filterRate));
       };
     
     return (
-        <div>
+        <div className='techReviewContainer'>
+        <>
         <h1>Technicians to be Banned</h1>
         <div>
           <label>
@@ -65,9 +79,21 @@ const fetchTechnicians = async () => {
           </label>
           <button onClick={handleFilterClick}>Filter</button>
         </div>
+        </>
+        <div className='tech-banned-container'>
         {filteredTechnicians.map((tech) => (
-          <Card key={tech.id} tech={tech} onClick={() => handleCardClick(tech.id)} />
+          <div className='tech-data' key={tech.id}>
+                              <h4>{tech.fullname}</h4>
+            {/*
+                              <h4>{tech.service_name}</h4>
+
+        */}
+                              <h4>{tech.rating}</h4>
+                              <Rate rating={tech.rating} />
+                              <button className='consider-btn' onClick={banTech(tech.feedback_id)}>ban</button>
+                          </div>
         ))}
+      </div>
       </div>
     );
 };

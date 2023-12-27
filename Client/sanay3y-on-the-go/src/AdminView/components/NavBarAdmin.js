@@ -12,7 +12,7 @@
                 <NavLink to="/">Home</NavLink>
             </li>
             <li>
-                <NavLink to="/Feedback">Feedback</NavLink>
+                <NavLink to="/Feedbacks">Feedback</NavLink>
             </li>
             <li>
                 <NavLink to="/Complaints">Complaints</NavLink>
@@ -25,8 +25,7 @@
             </li>
             <li>
                 <NavLink to="/Account">Account</NavLink>
-                        </li>
-                        
+            </li>            
             </ul>
         </div>
         </div>

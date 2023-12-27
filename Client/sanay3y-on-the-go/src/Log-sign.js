@@ -40,16 +40,12 @@ const App = () => {
     margin: '0 0 0 600px',
     lineHeight: '56px',
   };
-    let atype = 'a';
-    let ID = 3;
+
   return (
     <div className="App">
-          { //isSignUpSuccess
-       false ? (
+      { isSignUpSuccess ? (
         <Login />
-              ) :
-                  //showLogin
-                  false    ? (
+      ) : showLogin ? (
         <>
             <Login onLogInSuccess={handleLoginSuccess} />
             <div style={navStyle}>
@@ -62,10 +58,10 @@ const App = () => {
               </div>
         </>
       ) :
-            //          isLogInSuccess
-        true                  ? (
+        isLogInSuccess ? (
             <>
-            <ProfilePage type={atype} id={ID} />
+                let {type} = 'a';
+            <ProfilePage type={'a'} id={client_id} />
           </>
         ):
           (
