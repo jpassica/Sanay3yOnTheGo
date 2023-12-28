@@ -48,6 +48,7 @@ CREATE TABLE orders(
     order_status CHAR (1) NOT NULL CHECK (order_status = 'P' OR order_status= 'U' OR order_status = 'F') DEFAULT 'P', 
     order_type CHAR(1) NOT NULL CHECK (order_type = 'R' OR order_type = 'B' OR order_type = 'O') DEFAULT 'R',
     order_DATE DATE DEFAULT CURRENT_DATE,
+    order_exec_date DATE,
     Customer_ID INT REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE 
         ON UPDATE CASCADE,
