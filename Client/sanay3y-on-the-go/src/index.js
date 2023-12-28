@@ -4,7 +4,7 @@ import './styles/index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-
+import { UserProvider } from './userContext';
 import TechApp from './TechView/components/TechApp';
 import CustApp from './CustView/components/CustApp';
 import AdminApp from './AdminView/components/AdminApp';
@@ -18,7 +18,10 @@ const root = createRoot(rootElement);
 root.render(
   
   <React.StrictMode>
+    <UserProvider>
+
     <App />  
+    </UserProvider>
     {/*
     <AdminApp />
     <CustApp />  

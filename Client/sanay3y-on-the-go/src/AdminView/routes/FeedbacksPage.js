@@ -35,20 +35,20 @@ const fetchFeedbacks = async () => {
 }, []);
 
     const considerFeedback = (feedback_id) => {
-        // try {
-        //     const response = axios.post('http://localhost:3001/considerFeedback', {
-        //         feedbackId: feedback_id,
-        //         adminId: adminID
-        //     }, {
-        //         headers: {
-        //             'Content-Type': 'application/x-www-form-urlencoded'
-        //         }
-        //     });
-        //     console.log(response.data);
-        // } catch (error) {
-        //     console.error('Error fetching feedbacks:', error.message);
-        //     throw error;
-        // }
+        try {
+            const response = axios.post('http://localhost:3001/considerFeedback', {
+                feedbackId: feedback_id,
+                adminId: adminID
+            }, {
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            });
+            console.log(response.data);
+        } catch (error) {
+            console.error('Error fetching feedbacks:', error.message);
+            throw error;
+        }
     };
 
     return (<div className='feedback-container'>

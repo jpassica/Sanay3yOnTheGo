@@ -84,11 +84,8 @@ const fetchTechnicians = async () => {
         {filteredTechnicians.map((tech) => (
           <div className='tech-data' key={tech.id}>
                               <h4>{tech.fullname}</h4>
-            {/*
-                              <h4>{tech.service_name}</h4>
+                              <h4>{tech.name}</h4>
 
-        */}
-                              <h4>{tech.rating}</h4>
                               <Rate rating={tech.rating} />
                               <button className='consider-btn' onClick={banTech(tech.feedback_id)}>ban</button>
                           </div>
