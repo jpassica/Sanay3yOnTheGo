@@ -19,7 +19,7 @@ router.route('/:id')
 router.route('/SignIn')
     .post(userController.signInUser)
 
-router.route('/Areas')
+router.route('/all/Areas')
     .get(userController.getUserAreas)
 
 router.route('/Tech/:id')
@@ -29,7 +29,10 @@ router.route('/Tech/:id')
     .patch()
     .delete()
 
-router.route('/Techs')
+router.route('/All/Techs')
+    .get(userController.getAllTechs)
+
+router.route('/TechsNearby')
     .post(userController.getNearbyTechs)
 
 

@@ -9,7 +9,7 @@ router.route('/')
     .get()
     .post(feedbackController.giveFeedback)
     .put()
-    .patch()
+    .patch(feedbackController.considerFeedback)
     .delete()
 
 router.route('/free')

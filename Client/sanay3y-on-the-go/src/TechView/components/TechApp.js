@@ -14,13 +14,32 @@ import axios from "axios";
 
 
 
-const TechApp = ({id}) =>
+const TechApp = () =>
 {
     const[offers,setoffers]=useState([])
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
     const[orders,setorders]=useState([])
     const[tech,settech]=useState();
+    const [services, setServices] = useState([]);
+
+    
+
+    const fetchservice=async()=>
+    {
+      const response = await axios.get('http://localhost:3001/services');
+      console.log(response.data);
+      return response.data;
+    }
+
+    useEffect(()=>{
+      const getservices=async()=>{
+        const serfromserver = await fetchservice()
+        setServices(serfromserver)
+      }
+      getservices()
+    },[])
+
 
 
     const fetchorders=async ()=>
@@ -43,25 +62,6 @@ const TechApp = ({id}) =>
       console.log(orders)
 
 
-
-    // const fetchtechs=async ()=>
-    // {
-    //   const res=await axios.get('http://localhost:3001/user/12');
-    //   const data= res.data;
-    //   console.log(data)
-    //   return data
-    // }
-
-    // useEffect(()=>
-    //   {
-    //     const gettechs=async()=>{
-    //   const techsfromserver=await fetchtechs()
-    //   settechs(techsfromserver)
-    //    }
-    //   gettechs()
-    //     },[])
-    //   console.log(techs)
-
     const fetchtech = async (id) => {
       const res = await axios.get(`http://localhost:3001/user/12`)
       const data = res.data;
@@ -76,6 +76,35 @@ const TechApp = ({id}) =>
     }
     gettech()
   },[])
+
+
+  const edittech = async(id,newtech) =>{
+    const techtoupdate = await fetchtech(id)
+    const updtech ={...techtoupdate,...newtech}
+
+    const res = await axios.post(`http://localhost:3001/user/12`, 
+    {
+      tech_id:12,
+    FullName: newtech.fname,
+    Email: newtech.email,
+    Address: newtech.area,
+    Phone_Number: newtech.number,
+    name:newtech.service
+    },
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      }
+    })
+
+    const data = res.data;
+    settech(data)
+  }
+
+
+
+
+
 
 
 
@@ -99,30 +128,6 @@ const TechApp = ({id}) =>
         },[])
       console.log(offers)
 
-      const fetchPrevWork=async ()=>
-    {
-      const res=await axios.get('http://localhost:3001/order/tech/23');
-      const data= res.data;
-      console.log(data)
-      return data
-    }
-
-    useEffect(()=>
-      {
-        const getprevwork=async()=>{
-      const prevworkfromserver=await fetchPrevWork()
-      setprevwork(prevworkfromserver)
-       }
-       getprevwork()
-        },[])
-      console.log(prevwork)
-
-      const fetchwork = async (id) => {
-        const res = await fetch(`http://localhost:3001/prevwork/${id}`)
-        const data = await res.json()
-    
-        return data
-      }
 
       const fetchorder = async (id) => {
         const res = await fetch(`http://localhost:3001/order/${id}`)
@@ -168,100 +173,85 @@ const TechApp = ({id}) =>
         setoffers([...offers, data])
       }
 
-      const deleteorder = async (id) => {
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'DELETE',
-        })
-        //We should control the response status to decide if we will change the state or not.
-        res.status === 200
-          ? setorders(orders.filter((order) => order.id !== id))
-          : alert('Error Deleting This order')
-      }
-
 
       const togglehighlight = async (id) => {
         const worktotoggle = await fetchorder(id)
-        const updwork = { ...worktotoggle, featured: !worktotoggle.featured }
+        const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
     
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'PUT',
+        const res = await axios.patch(`http://localhost:3001/order/${id}`,
+        {
+          updwork
+        }, {
           headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'application/x-www-form-urlencoded',
           },
-          body: JSON.stringify(updwork),
         })
     
-        const data = await res.json()
+        const data = res.data
     
         setorders(
           orders.map((item) =>
-            item.id === id ? { ...item, featured: data.featured } : item
+            item.order_id === id ? { ...item, highlighted: data.highlighted } : item
           )
         )
       }
 
       const onDone = async (id) => {
         const doneorder = await fetchorder(id)
-        const updorder = { ...doneorder, status: "previous" }
+        const updorder = { ...doneorder, order_status: "F" }
     
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'PUT',
+        const res = await axios.patch(`http://localhost:3001/order/${id}`, 
+        {
+          updorder
+        },
+        {
           headers: {
-            'Content-type': 'application/json',
+            'Content-type': 'application/x-www-form-urlencoded',
           },
-          body: JSON.stringify(updorder),
         })
     
-        const data = await res.json()
+        const data =  res.data
     
         setorders(
           orders.map((item) =>
-            item.id === id ? { ...item, status: data.status } : item
+            item.order_id === id ? { ...item, order_status: data.order_status } : item
           )
         )
       }
 
       const onAccept = async (id) => {
         const acceptedorder = await fetchorder(id)
-        const updorder2 = { ...acceptedorder, status: "upcoming" }
+        const updorder2 = { ...acceptedorder, order_status: "U" }
     
-        const res = await fetch(`http://localhost:5000/orders/${id}`, {
-          method: 'PUT',
+        const res = await axios.patch(`http://localhost:3001/order/${id}`,
+        {
+          updorder2
+        },
+         {
           headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(updorder2),
+            'Content-type': 'application/x-www-form-urlencoded',
+          }
         })
     
-        const data = await res.json()
+        const data = res.data
     
         setorders(
           orders.map((item) =>
-            item.id === id ? { ...item, status: data.status } : item
+            item.order_id === id ? { ...item, order_status: data.order_status } : item
           )
         )
       }
 
-      const edittech = async(id,newtech) =>{
-        const techtoupdate = await fetchtech(id)
-        const updtech ={...techtoupdate,...newtech}
-
-        const res = await fetch(`http://localhost:5000/techs/${id}`, {
-          method: 'PUT',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(updtech),
-        })
-    
-        const data = await res.json()
-
-        settechs(
-          techs.map((item) =>
-            item.id === id ? { ...item, name: data.name } : item
-          )
-        )
+      const deleteorder = async (id) => {
+        const res = await axios.delete(`http://localhost:3001/order/${id}`)
+        //We should control the response status to decide if we will change the state or not.
+        res.status === 200
+          ? setorders(orders.filter((order) => order.order_id !== id))
+          : alert('Error Deleting This order')
       }
+
+     
+
 
     return (<div className='App'>
         <BrowserRouter>
@@ -273,7 +263,7 @@ const TechApp = ({id}) =>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
         
-        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech}/>}/>
+        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech} services={services}/>}/>
 
         <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
       </Routes>

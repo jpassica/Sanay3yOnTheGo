@@ -53,18 +53,11 @@ const createNewUser = async (req, res) => {
 
 const signInUser = async (req, res) => {
     try {
-        const result = await db.query(`SELECT fullname,type FROM client WHERE LOWER(email) = '${req.body["email"].toLowerCase()}' AND password = '${req.body["password"]}'`);
-        console.log(result.rows[0].fullname);
-        res.send(`Successfully logged in, ${result.rows[0].fullname}!`);
-
-        //res.render
-
-        if (result.rows[0].type == 'c')
-            console.log("Customer logged in.");
-        else if (result.rows[0].type == 't')
-            console.log("Tech logged in.");
-        else 
-            console.log("Admin logged in.");
+        const result = (await db.query(`SELECT fullname, type, client_id 
+        FROM client WHERE LOWER(email) = '${req.body["email"].toLowerCase()}' 
+        AND password = '${req.body["password"]}'`)).rows;
+        console.log(result);
+        res.send(JSON.stringify(result));
         
     } catch(error) {
         res.send("Wrong email or password!");
@@ -177,7 +170,22 @@ const banUser = async (req, res) => {
     }
 }
 
-export { createNewUser, signInUser, updateUserDetails, getUserDetails, getNearbyTechs, getUserAreas, banUser };
+const getAllTechs = async (req, res) => {
+    try {
+        const result = (await db.query(`SELECT * FROM technician, client, service WHERE client_id = tech_id AND 
+        technician.service_id = service.service_id;`)).rows;
+        console.log(result);
+        res.send(JSON.stringify(result));
+
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't retrieve techs.");
+    }
+}
+
+export { createNewUser, signInUser, updateUserDetails, 
+    getUserDetails, getNearbyTechs, getUserAreas, getAllTechs,
+    banUser };
  
  
 

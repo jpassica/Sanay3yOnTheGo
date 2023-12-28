@@ -23,10 +23,10 @@ root.render(
     <App />  
     </UserProvider>
     {/*
-    <AdminApp />
-    <CustApp />  
     <TechApp />
-  <Sanay3y />
+    <Sanay3y />
+    <CustApp />  
+  <App />  
   */}
     
   </React.StrictMode>

@@ -11,4 +11,12 @@ const getPointSystemDetails = async(req, res) => {
     }
 };
 
+const winReward = async (req, res) => {
+    try {
+
+    } catch (error) {
+        
+    }
+}
+
 export { getPointSystemDetails };

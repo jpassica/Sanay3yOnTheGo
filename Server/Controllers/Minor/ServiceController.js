@@ -2,7 +2,7 @@ import db from "../../Config/DB.js";
 
 const getServiceCategories = async (req, res) => {
     try {
-        const result = await db.query("SELECT name FROM service;");
+        const result = await db.query("SELECT * FROM service;");
         console.log(result.rows);
         res.send(JSON.stringify(result.rows));
 
