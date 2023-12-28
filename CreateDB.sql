@@ -123,7 +123,15 @@ CREATE TABLE Bundle(
         ON UPDATE CASCADE,
     Expiry_date DATE,
     Total_price INT NOT NULL, 
-    Services_count INT
+    tech_id1 INT REFERENCES technician(tech_id) 
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+    tech_id2 INT REFERENCES technician(tech_id) 
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
+    tech_id3 INT REFERENCES technician(tech_id) 
+        ON DELETE SET NULL
+        ON UPDATE CASCADE,
 );
 
 CREATE TABLE ConsistOf(

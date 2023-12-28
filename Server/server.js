@@ -13,7 +13,8 @@ import serviceRoute from "./Routes/Minor/Service.js";
 import feedbackRoute from "./Routes/Minor/Feedback.js";
 import complaintRoute from "./Routes/Minor/Complaint.js";
 import offerRoute from "./Routes/Minor/Offer.js";
-import rewardRoute from "./Routes/Minor/Reward.js"
+import rewardRoute from "./Routes/Minor/Reward.js";
+import bundleRoute from "./Routes/Minor/Bundles.js";
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({origin: '*'}));
@@ -26,6 +27,7 @@ app.use("/feedback", feedbackRoute);
 app.use("/complaint", complaintRoute);
 app.use("/offer", offerRoute);
 app.use("/reward", rewardRoute);
+app.use("/bundle", bundleRoute);
 
 
 app.use((req, res, next) => {

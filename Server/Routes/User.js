@@ -29,7 +29,10 @@ router.route('/Tech/:id')
     .patch()
     .delete()
 
-router.route('/Techs')
+router.route('/All/Techs')
+    .get(userController.getAllTechs)
+
+router.route('/TechsNearby')
     .post(userController.getNearbyTechs)
 
 
