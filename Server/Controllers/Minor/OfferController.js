@@ -1,5 +1,5 @@
 import db from "../../Config/DB.js";
-import createOrder from "../../Helpers/OrderHelper.js";
+import * as helper from "../../Helpers/GenHelper.js";
 
 const createOffer = async (req, res) => {
     const tech = req.body.tech_id;
@@ -18,7 +18,7 @@ const buyOffer = async (req, res) => {
     const id = req.params.id; // offer id
     try {
         req.body.type = "O";
-        const newOrder = await createOrder(req, res);
+        const newOrder = await helper.makeNewOrder(req, res);
         await db.query("INSERT INTO isoffer VALUES ($1, $2);", [newOrder, id]);
         res.send("Order purchased successfully!");
     } catch (error) {

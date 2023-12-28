@@ -148,7 +148,7 @@ CREATE TABLE ConsistOf(
 CREATE TABLE Notification(
     Notification_ID SERIAL PRIMARY KEY,
     Content TEXT NOT NULL,
-    Notification_DATE DATE,
+    Notification_DATE DATE DEFAULT CURRENT_DATE,
     Notified_ID INT NOT NULL REFERENCES Client(Client_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
