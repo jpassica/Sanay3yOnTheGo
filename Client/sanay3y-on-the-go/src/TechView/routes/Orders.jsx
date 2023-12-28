@@ -3,7 +3,7 @@ import OrdersList from '../components/OrdersList';
 
 
 const Orders = ({orders,ondelete,onDone,onAccept,onToggle}) => {
-  const [filter,setFilter]=useState('pending');
+  const [filter,setFilter]=useState('F');
   return (
 
     <div>

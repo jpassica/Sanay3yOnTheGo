@@ -134,7 +134,7 @@ const updateUserDetails = async (req, res) => {
             const Service_ID = (await db.query(`SELECT service_id FROM technician WHERE tech_id = ${id};`)).rows[0].service_id;
             const Service_name = (await db.query(`SELECT name FROM service WHERE service_id = ${Service_ID};`)).rows[0].name;
 
-            const service = req.body.service || Service_name;
+            const service = req.body.name || Service_name;
 
             const newService_ID = (await db.query(`SELECT service_id FROM service WHERE name = '${service}';`)).rows[0].service_id;
 

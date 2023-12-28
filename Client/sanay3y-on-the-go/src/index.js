@@ -22,8 +22,8 @@ root.render(
 
     <App />  
     </UserProvider> */}
+    </UserProvider> */}
     {/*
-    <TechApp />
     <Sanay3y />
     <CustApp />  
   <App />  
