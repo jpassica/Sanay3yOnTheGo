@@ -7,7 +7,7 @@ function OfferCard({offer,OnDelete}) {
     <>
     <div className='Offercard'>
       <div className='btnpos'>
-    <button type="button" className='trashbtn' onClick={() => OnDelete(offer.id)}><span class="bi bi-trash"></span></button>
+    <button type="button" className='trashbtn' onClick={() => OnDelete(offer.offer_id)}><span class="bi bi-trash"></span></button>
     </div>
         <h2><b>{offer.header}</b></h2>
         <h4>Price: 

@@ -10,7 +10,7 @@ import '../styles/offers.css'
 const HighlightsList = ({filter,PrevWork,onToggle}) => {
   return (
     <div className='cards'>
-      {PrevWork.filter(work => work.featured==filter).map((work,index)=>(
+      {PrevWork.filter(work => work.highlighted==filter).map((work,index)=>(
       <PrevWorkCard key={index} work={work} onToggle={onToggle} />
     ))}  
     </div>

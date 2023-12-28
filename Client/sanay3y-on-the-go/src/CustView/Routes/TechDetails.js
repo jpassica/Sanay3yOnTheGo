@@ -46,7 +46,7 @@ const TechDetails = () => {
   };
   const fetchTechnician = async () => {
     const res = await axios.get(`https://localhost:3001/user/${id}`);
-    console.log(data);
+    // console.log(data);
     return res.data;
   };
   const fetchReviews = async () => {

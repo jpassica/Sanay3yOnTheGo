@@ -17,34 +17,49 @@ import axios from "axios";
 const TechApp = () =>
 {
     const[offers,setoffers]=useState([])
-    const[prevwork,setprevwork]=useState([])
-    const[techs,settechs]=useState([])
     const[orders,setorders]=useState([])
-    const[tech,settech]=useState();
+    const[tech,settech]=useState({});
     const [services, setServices] = useState([]);
 
-    
 
-    const fetchservice=async()=>
-    {
-      const response = await axios.get('http://localhost:3001/services');
-      console.log(response.data);
-      return response.data;
-    }
-
-    useEffect(()=>{
-      const getservices=async()=>{
-        const serfromserver = await fetchservice()
-        setServices(serfromserver)
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/service');
+        console.log(response.data);
+        return response.data;
+      } catch (error) {
+        console.error('Error fetching services:', error.message);
+        throw error;
       }
-      getservices()
-    },[])
+    };
+  
+    useEffect(() => {
+      let isMounted = true;
+  
+      const getServices = async () => {
+      try {
+          const getServicesFromServer = await fetchServices();
+      if (isMounted) {
+          setServices(getServicesFromServer);
+      }
+      } catch (error) {
+          console.log(error);
+      }
+      };
+  
+      getServices();
+  
+      return () => {
+        isMounted = false;
+      };
+    }, []);
 
+    console.log(services)
 
 
     const fetchorders=async ()=>
     {
-      const id = 23;
+      const id = 12;
       const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
       //const data=  res.data;
       //console.log(data)
@@ -59,7 +74,6 @@ const TechApp = () =>
        }
       getorders()
         },[])
-      console.log(orders)
 
 
     const fetchtech = async (id) => {
@@ -72,23 +86,26 @@ const TechApp = () =>
     useEffect(()=>
     {const gettech=async()=>{
       const techfromserver=await fetchtech(12)
+      console.log(techfromserver)
       settech(techfromserver)
     }
     gettech()
   },[])
 
 
-  const edittech = async(id,newtech) =>{
-    const techtoupdate = await fetchtech(id)
-    const updtech ={...techtoupdate,...newtech}
+  const edittech = async(newtech) =>{
+    // const techtoupdate = await fetchtech(id)
+    // const updtech ={...techtoupdate,...newtech}
+    console.log(tech.name)
+    console.log(newtech.service)
 
-    const res = await axios.post(`http://localhost:3001/user/12`, 
+    const res = await axios.patch(`http://localhost:3001/user/12`, 
     {
       tech_id:12,
-    FullName: newtech.fname,
-    Email: newtech.email,
-    Address: newtech.area,
-    Phone_Number: newtech.number,
+    fullname: newtech.fname,
+    email: newtech.email,
+    address: newtech.area,
+    phone_number: newtech.number,
     name:newtech.service
     },
     {
@@ -98,14 +115,11 @@ const TechApp = () =>
     })
 
     const data = res.data;
+    console.log(data)
     settech(data)
+    console.log(tech.name)
+
   }
-
-
-
-
-
-
 
 
       
@@ -114,7 +128,7 @@ const TechApp = () =>
       const id = 12;
       const res = await axios.get(`http://localhost:3001/offer/tech/${id}`);
       const data= res.data;
-      console.log(data)
+      // console.log(data)
       return data
     }
 
@@ -126,7 +140,7 @@ const TechApp = () =>
        }
       getoffers()
         },[])
-      console.log(offers)
+      // console.log(offers)
 
 
       const fetchorder = async (id) => {
@@ -139,10 +153,10 @@ const TechApp = () =>
 
 
       const deleteOffer = async (id) => {
-        const res = await axios.delete(`http://localhost:3001/offer/5`);
+        const res = await axios.delete(`http://localhost:3001/offer/${id}`);
         //We should control the response status to decide if we will change the state or not.
         res.status === 200
-          ? setoffers(offers.filter((offer) => offer.id !== id))
+          ? setoffers(offers.filter((offer) => offer.offer_id !== id))
           : alert('Error Deleting This Offer')
       }
 
@@ -160,13 +174,6 @@ const TechApp = () =>
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         });
-        // {
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-type': 'application/json',
-        //   },
-        //   body: JSON.stringify(offer),
-        // })
       
         const data = res.data;
       
@@ -178,9 +185,12 @@ const TechApp = () =>
         const worktotoggle = await fetchorder(id)
         const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
     
-        const res = await axios.patch(`http://localhost:3001/order/${id}`,
+        const res = await axios.patch(`http://localhost:3001/order/toggle/${id}`,
         {
-          updwork
+          tech_id: 12,
+          order_id: updwork.order_id,
+          highlighted: updwork.highlighted,
+          order_status: updwork.order_status
         }, {
           headers: {
             'Content-type': 'application/x-www-form-urlencoded',
@@ -188,12 +198,14 @@ const TechApp = () =>
         })
     
         const data = res.data
+        console.log(data)
     
         setorders(
           orders.map((item) =>
             item.order_id === id ? { ...item, highlighted: data.highlighted } : item
           )
         )
+        window.location.reload();
       }
 
       const onDone = async (id) => {
@@ -202,7 +214,10 @@ const TechApp = () =>
     
         const res = await axios.patch(`http://localhost:3001/order/${id}`, 
         {
-          updorder
+          tech_id: 12,
+          order_id: updorder.order_id,
+          highlighted: updorder.highlighted,
+          order_status: updorder.order_status
         },
         {
           headers: {
@@ -222,10 +237,13 @@ const TechApp = () =>
       const onAccept = async (id) => {
         const acceptedorder = await fetchorder(id)
         const updorder2 = { ...acceptedorder, order_status: "U" }
-    
+        console.log(updorder2)
         const res = await axios.patch(`http://localhost:3001/order/${id}`,
         {
-          updorder2
+          tech_id: 12,
+          order_id: updorder2.order_id,
+          highlighted: updorder2.highlighted,
+          order_status: updorder2.order_status
         },
          {
           headers: {
@@ -234,6 +252,7 @@ const TechApp = () =>
         })
     
         const data = res.data
+        console.log(data)
     
         setorders(
           orders.map((item) =>

@@ -7,7 +7,7 @@ const PendingCard = ({order,filter,ondelete,onAccept}) => {
     <div className={filter=="P"?"pordercard":"hidecard"}>
         <h3>{order.header}</h3>
         <p>{order.order_date}</p>
-        <p>{order.details}</p>
+        <p>{order.description}</p>
         <p>Price: {order.price} <sub>EGP</sub> </p>
         <div >
         <button onClick={() => onAccept(order.order_id)} class=" btn-success  my-4 probutton">Accept</button>

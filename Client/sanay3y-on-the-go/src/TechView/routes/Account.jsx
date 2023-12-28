@@ -6,9 +6,6 @@ import AccountDetails from '../components/AccountDetails'
 
 
 const Account = ({tech}) => {
-
-  const[filter,setFilter]=useState(true)
-  console.log(tech)
     
   return (
     <div>
