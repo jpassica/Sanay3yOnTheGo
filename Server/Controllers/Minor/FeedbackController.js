@@ -18,7 +18,7 @@ const getUnreviewedFeedbacks = async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-}
+};
 
 const considerFeedback = async (req, res) => {
     try {
@@ -29,7 +29,7 @@ const considerFeedback = async (req, res) => {
         console.log(error);
         res.send("Couldn't consider feedback!");
     }
-}
+};
 
 
 export { giveFeedback, getUnreviewedFeedbacks, considerFeedback };

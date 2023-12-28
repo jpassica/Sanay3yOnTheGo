@@ -84,7 +84,9 @@ const getUserDetails = async (req, res) => {
         {
             const points = (await db.query(`SELECT points FROM customer WHERE customer_id = ${id};`)).rows[0];
 
-            const result = {...main_result, ...points};
+            const rewards = (await db.query(`SELECT percentage FROM reward WHERE customer_id = ${id};`)).rows[0];
+
+            const result = {...main_result, ...points, ...rewards};
             console.log(result);
             res.send(JSON.stringify(result));
         }
