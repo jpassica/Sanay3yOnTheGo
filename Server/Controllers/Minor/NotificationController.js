@@ -11,4 +11,17 @@ const getUserNotifications = async (req, res) => {
         res.send("Couldn't retrieve notifications!");
     }
 };
-export { getUserNotifications };
+
+const notifyUser = async (req, res) => {
+    try {
+        await db.query(`INSERT INTO notification (content, notified_id, order_id) VALUES ($1, $2, $3);`,
+            [req.body.content, req.body.customer_id, req.body.order_id]);
+
+        res.send("Notified user.");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't send in notification!");
+    }
+};
+
+export { getUserNotifications, notifyUser };

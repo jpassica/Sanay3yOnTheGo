@@ -2,8 +2,6 @@ import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
 
-import db from "./Config/DB.js";
-
 const app = express();
 const port = 3001;
 
