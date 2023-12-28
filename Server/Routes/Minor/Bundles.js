@@ -6,7 +6,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 import * as bundlesController from "../../Controllers/Minor/BundlesController.js";
 
 router.route('/')
-    .get()
+    .get(bundlesController.getAllBundles)
     .post(bundlesController.createBundle)
     .put()
     .patch()

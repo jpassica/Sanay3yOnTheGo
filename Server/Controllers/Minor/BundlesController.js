@@ -29,4 +29,15 @@ const buyBundle = async (req, res) => {
     }
 }
 
-export { createBundle, buyBundle };
+const getAllBundles = async (req, res) => {
+    try {
+        const result = (await db.query(`SELECT * FROM bundle;`)).rows;
+        console.log(result);
+        res.send(JSON.stringify(result));
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't retrieve bundles!");
+    }
+}
+
+export { createBundle, buyBundle, getAllBundles };
