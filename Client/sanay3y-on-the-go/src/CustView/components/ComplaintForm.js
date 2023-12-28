@@ -1,9 +1,32 @@
 import React, { useState } from "react";
+import axios from "axios";
 
-const ComplaintForm = () => {
+const ComplaintForm = ({order_id}) => {
+
+  const postComplaint=async ()=>
+  {
+    try {
+      const response = await axios.post("http://localhost:3001/complaint ", {
+        content:complaint,
+        customer_id:1,
+        order_id:order_id
+      },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      console.log("Complaint submitted successfully:", response.data);
+    } catch (error) {
+      // Handle errors
+      console.error("Error in submitting complainy:", error);
+      // You may want to show an error message to the user
+    }
+  }
   
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     //post complaint here
+    await postComplaint()
     alert("complaint sent successfully!");
   };
 

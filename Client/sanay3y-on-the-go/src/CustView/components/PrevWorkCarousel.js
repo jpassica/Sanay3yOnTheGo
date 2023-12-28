@@ -5,6 +5,7 @@ import '../styles/TechDetails.css'
 import sample from '../images/test.png'
 
 const PrevWorkCarousel = ({items}) => {
+  console.log(items)
   const [activeSlideIndex, setActiveSlideIndex] = useState(0); 
   return (
         <div  className="carousel-container" >
@@ -65,12 +66,10 @@ const PrevWorkCarousel = ({items}) => {
           >
             {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
             
-            {items.filter(item=> item.featured==1).map((item,index)=>(
+            {items.filter(item=> item.order_status=="F").map((item,index)=>(
       <div key={index} className='carousel-card-prev'>
-        <img src={sample} width="40%" height="90%" className='tech-img' />
-        
         {item.order_type=="R"&&
-        <div className='prev-data'>
+        <div >
         <h3> {item.header}</h3>
         <h4>{item.price} EGP</h4>
         <h4>{item.description}</h4> 
@@ -79,7 +78,7 @@ const PrevWorkCarousel = ({items}) => {
       }
       {
         item.order_type=="O"&&
-        <div className='prev-data'>
+        <div >
         <h3> {item.header}</h3>
         <h4>{item.new_price} EGP</h4>
         <h4>{item.description}</h4> 
@@ -88,7 +87,7 @@ const PrevWorkCarousel = ({items}) => {
       }
         {
         item.order_type=="B"&&
-        <div className='prev-data'>
+        <div style={{width:1000}}>
         <h3> {item.header}</h3>
         <h4>{item.total_price} EGP</h4>
         <h4>{item.description}</h4> 

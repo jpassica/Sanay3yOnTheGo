@@ -1,13 +1,38 @@
 import React, { useState } from "react";
 import "../styles/wallet.css";
 import fix from "../images/fix.png";
+import axios from "axios";
 const Feedback = () => {
-  const sendFeedback = () => {
+
+  const [feedback, setFeedback] = useState("");
+  const postFeedback=async()=>
+  {
+    try {
+      const response = await axios.post("http://localhost:3001/feedback", {
+       content:feedback,
+       customer_id:1
+      },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      // Handle the response as needed
+      console.log("Order booked successfully:", response.data);
+      // You may want to update the UI or show a success message to the user
+    } catch (error) {
+      // Handle errors
+      console.error("Error booking order:", error);
+      // You may want to show an error message to the user
+    }
+  }
+  const sendFeedback = async () => {
     //post feedback here
+    await postFeedback()
 
     alert("Thank you,your feedback has been recorded!");
   };
-  const [feedback, setFeedback] = useState("");
+ 
   return (
     <div className="feedback-page">
       <form className="review-form" width="700px !important">

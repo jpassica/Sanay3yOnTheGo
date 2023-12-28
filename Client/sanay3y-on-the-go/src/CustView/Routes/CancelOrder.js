@@ -1,9 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ComplaintForm from "../components/ComplaintForm";
+import { useParams } from "react-router-dom";
 const CancelOrder = () => {
   const navigate = useNavigate();
-
+  const {id}=useParams()
+  console.log(id) //order id
   const handleSubmit = () => {
     // Logic for handling order cancellation
     alert("Order was cancelled successfully");
@@ -31,7 +33,7 @@ const CancelOrder = () => {
         </div>
       </div>
       <div>
-        <ComplaintForm />
+        <ComplaintForm order_id={id}/>
       </div>
     </div>
   );

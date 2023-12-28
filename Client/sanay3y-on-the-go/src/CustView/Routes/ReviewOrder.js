@@ -5,11 +5,11 @@ import { useNavigate } from 'react-router-dom'
 import ComplaintForm from '../components/ComplaintForm'
 import axios from 'axios'
 
-const ReviewOrder = ({orders,customer_id}) => {
+const ReviewOrder = () => {
 
   const {id}=useParams()
-  console.log(id)
-  const order=orders.filter(o=>o.order_id==id)
+  console.log(id) //order id
+ 
 
   const[initialReview,setInitialReview]=useState()
 
@@ -20,9 +20,9 @@ const ReviewOrder = ({orders,customer_id}) => {
   const navigate = useNavigate();
 
   //fetching review by order_id
-  const fetchReview = async ({order_id}) => 
+  const fetchReview = async () => 
   {
-    const res = await axios.get(`http://localhost:3001/review/${order_id}`)
+    const res = await axios.get(`http://localhost:3001/order/review/${id}`)
     const data=res.data
         console.log(data)
         return data
@@ -30,38 +30,41 @@ const ReviewOrder = ({orders,customer_id}) => {
 
   useEffect(()=>
       {const getReview=async()=>{
-      const reviewfromserver=await fetchReview(order.order_id)
+      const reviewfromserver=await fetchReview(id)
       setInitialReview(reviewfromserver)
       }
       getReview()
       },[])
 
-  //const sampleReview={
-    //Rating:3,
-    //Content:"good job"
-  //}
 
-  //  const addReview=async ()=>
-  //  {
-  //   const res=await axios.post('http://localhost:3001/order/review',
-  //   {
-  //     order_id:order.order_id,
-  //     customer_id:customer_id,
-  //     rating:Rating,
-  //     content:Rev
-  //   },
-  //   {
-  //     headers: {
-  //       'Content-Type': 'application/x-www-form-urlencoded'
-  //     }
-  //   }
-  //   );
+   const addReview=async ()=>
+   {
+    try
+    {
+    const res=await axios.post('http://localhost:3001/order/review',
+    {
+      order_id:id,
+      customer_id:1,
+      rating:Rating,
+      content:Rev
+    },
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    }
+    );
+    console.log("successful review")
+  }
+  catch (error) {
+    // Handle errors
+    console.error("Error adding review:", error);
 
-  //  }
-
+   }
+  }
     const handleSubmit =async() => {
 
-      //addReview()
+      addReview()
      
       // Logic for handling the form submission
       //decide update or insert based on initial rating and initial review
@@ -81,11 +84,11 @@ const ReviewOrder = ({orders,customer_id}) => {
       <label >Review your order</label>
     <textarea value={Rev} onChange={(e) => setRev(e.target.value)} />
         </form>}
-        <StarRating initialRating={initialReview.rating} setRating={setRating} />
+        <StarRating initialRating={initialReview!=null?initialReview.rating:0} setRating={setRating} />
         <button onClick={handleSubmit} className='button-17' style={{margin:30}}>Submit Review</button>
         <button onClick={()=>navigate(-1)} className='button-17'>Back to orders</button>
         </div>
-       <ComplaintForm />
+       <ComplaintForm order_id={id} />
     </div>
    
   )
