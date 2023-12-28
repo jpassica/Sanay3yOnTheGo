@@ -1,12 +1,12 @@
 import db from "../Config/DB.js";
-import createOrder from "../Helpers/OrderHelper.js";
+import * as helper from "../Helpers/GenHelper.js";
 
 const makeRegOrder = async (req, res) => {
     const tech = req.body.tech_id;
     const type = req.body.type;
 
     try {
-        const newOrder = await createOrder(req, res);
+        const newOrder = await helper.makeNewOrder(req, res);
 
         await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
             req.body.description, tech, req.body.price]);
@@ -127,6 +127,21 @@ const updateOrderStatus = async (req, res) => {
 
     try {
         await db.query(`UPDATE orders SET order_status = '${status}' WHERE order_id = ${order_id};`);
+
+        const customer_id = (await db.query(`SELECT customer_id FROM orders WHERE order_id = ${order_id};`)).rows[0].customer_id;
+
+        // send notification
+        if (status == "F")
+        {
+            await db.query(`INSERT INTO notification (content, notified_id, order_id) VALUES ($1, $2, $3);`,
+            ["Order completed successfully! Please consider rating.", customer_id, order_id]);
+        }
+        else if (status == "U")
+        {
+            await db.query(`INSERT INTO notification (content, notified_id, order_id) VALUES ($1, $2, $3);`,
+            ["The technician has accepted your order!", customer_id, order_id]);
+        }
+
         res.send("successfully updated order status!");
     } catch (error) {
         console.log(error);
@@ -152,6 +167,10 @@ const deleteOrder = async (req, res) => {
 
     try {
         await db.query(`DELETE FROM orders WHERE order_id = ${id};`);
+
+        // send notification 
+        //await db.query(`INSERT INTO notification (content, )`)
+
         res.send("deleted successfully!");
     } catch (error) {
         console.log(error);

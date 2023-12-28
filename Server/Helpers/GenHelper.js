@@ -14,4 +14,4 @@ const makeNewOrder = async (req, res) => {
     }
 };
 
-export default makeNewOrder;
+export {makeNewOrder} ;
