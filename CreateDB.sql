@@ -131,7 +131,7 @@ CREATE TABLE Bundle(
         ON UPDATE CASCADE,
     tech_id3 INT REFERENCES technician(tech_id) 
         ON DELETE SET NULL
-        ON UPDATE CASCADE,
+        ON UPDATE CASCADE
 );
 
 CREATE TABLE ConsistOf(

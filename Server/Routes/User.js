@@ -19,7 +19,7 @@ router.route('/:id')
 router.route('/SignIn')
     .post(userController.signInUser)
 
-router.route('/Areas')
+router.route('/all/Areas')
     .get(userController.getUserAreas)
 
 router.route('/Tech/:id')

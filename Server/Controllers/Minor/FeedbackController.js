@@ -20,5 +20,16 @@ const getUnreviewedFeedbacks = async (req, res) => {
     }
 }
 
+const considerFeedback = async (req, res) => {
+    try {
+        await db.query(`UPDATE feedback SET reviewer_id = ${req.body.adminId}
+        WHERE feedback_id = ${req.body.feedbackId};`);
+        res.send ("Feedback considered!");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't consider feedback!");
+    }
+}
 
-export { giveFeedback, getUnreviewedFeedbacks };
+
+export { giveFeedback, getUnreviewedFeedbacks, considerFeedback };
