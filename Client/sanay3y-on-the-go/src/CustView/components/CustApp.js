@@ -55,7 +55,7 @@ function CustApp({ customer_id }) {
 
   //fetching customer's notification
   const fetchNotifications = async () => {
-    const res = await axios.get("http://localhost:3001/service");
+    const res = await axios.get(`http://localhost:3001/notification/${customer_id}`);
     return res.data;
   };
 
