@@ -22,6 +22,12 @@ function UploadOffer({OnAdd}) {
       return
     }
 
+    if(Number(preprice)>Number(price))
+    {
+      alert('New price must be less')
+      return
+    }
+
     OnAdd({ heading, content, preprice,price })
     setHeading('')
     setContent('')
