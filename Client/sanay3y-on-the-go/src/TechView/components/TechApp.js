@@ -8,13 +8,15 @@ import Offers from '../routes/Offers'
 import Navbar from './Navbar'
 import EditProfile from '../routes/EditProfile'
 import AddOffer from '../routes/AddOffer'
+import Feedback from '../routes/Feedback'
 import axios from "axios";
 import {useParams} from 'react-router-dom'
 
 
 const TechApp = () =>
 {
-  const {id} = useParams();
+    const {id} = useParams();
+   tech_id=id
     const[offers,setoffers]=useState([])
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
@@ -45,7 +47,7 @@ const TechApp = () =>
     {
       const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
       //const data=  res.data;
-      //console.log(data)
+      // console.log(data)
       return res
     }
 
@@ -244,23 +246,52 @@ const TechApp = () =>
      
 
 
-    return (<div className='App'>
-        <BrowserRouter>
-      <Navbar />
-      <Routes>
-      {/* <Route exact path="/" element={<Home />}/> */}
-        <Route exact path="/Account" element={<Account tech={tech} />}/>
-        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
-        <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
-        <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
+    // return (<div className='App'>
+    //     <BrowserRouter>
+    //   <Navbar />
+    //   <Routes>
+    //   {/* <Route exact path="/" element={<Home />}/> */}
+    //     <Route exact path="/Account" element={<Account tech={tech} />}/>
+    //     <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
+    //     <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
+    //     <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
         
-        <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech} services={services}/>}/>
+    //     <Route exact path="/EditProfile" element={<EditProfile tech={tech} edittech={edittech} services={services}/>}/>
 
-        <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
-      </Routes>
-    </BrowserRouter>
+    //     <Route exact path="/AddOffer" element={<AddOffer OnAdd={addoffer}/>}/>
+    //     <Route exact path="/TechFeedback" element={<Feedback/>}/>
+    //   </Routes>
+    // </BrowserRouter>
 
-    </div>)
+    // </div>)
+
+    return(
+      <>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Home/>
+            }
+          />
+         <Route exact path="/Account/:id" element={<Account tech={tech} />}/>
+         <Route exact path="/Orders/:id" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
+         <Route exact path="/Offers/:id" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
+         <Route exact path="/FeaturedWork/:id" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
+        
+        <Route exact path="/EditProfile/:id" element={<EditProfile tech={tech} edittech={edittech} services={services}/>}/>
+    
+        <Route exact path="/AddOffer/:id" element={<AddOffer OnAdd={addoffer}/>}/>
+        <Route exact path="/TechFeedback/:id" element={<Feedback/>}/>
+        </Routes>
+      </BrowserRouter>
+    </>
+    )
+
+
+
 }
 
 export default TechApp

@@ -178,3 +178,47 @@ CREATE TABLE IsOffer(
         ON UPDATE CASCADE,
     PRIMARY KEY (order_id, Offer_ID)
 );
+
+CREATE PROCEDURE InsertComplaint (character varying, int, int)
+LANGUAGE 'plpgsql'
+AS $$
+BEGIN
+INSERT INTO complaint(content, customer_id, order_id) VALUES ($1, $2, $3);
+END;
+$$;
+
+CREATE PROCEDURE InsertFeedback(character varying, int)
+LANGUAGE 'plpgsql'
+AS $$
+BEGIN
+INSERT INTO feedback (content, reporter_id) VALUES ($1, $2);
+END;
+$$;
+
+CREATE PROCEDURE InsertService(character varying)
+LANGUAGE 'plpgsql'
+AS $$
+BEGIN
+INSERT INTO service (name) VALUES ($1);
+END;
+$$;
+
+CREATE PROCEDURE InsertOffer(character varying, character varying, int, int, int)
+LANGUAGE 'plpgsql'
+AS $$
+BEGIN
+INSERT INTO offer (header, description, prev_price, new_price, tech_id) 
+VALUES ($1, $2, $3, $4, $5);
+END;
+$$;
+
+CREATE PROCEDURE InsertNotification(character varying, int, int)
+LANGUAGE 'plpgsql'
+AS $$
+BEGIN
+INSERT INTO notification (content, notified_id, order_id) VALUES ($1, $2, $3);
+END;
+$$;
+
+alter table technician drop column rating;
+alter table technician add column rating float check (rating >= 0 AND rating <= 5) default 0;

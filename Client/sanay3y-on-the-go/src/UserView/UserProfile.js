@@ -4,6 +4,7 @@ import './styles/userProfile.css'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Rate from '../TechView/components/Rate';
 
 const UserProfile = () => {
     const { id } = useParams(); 
@@ -62,7 +63,7 @@ const UserProfile = () => {
     }
 return (
 
-      <div class="containers">
+      <div class="containers" style={{width:"1000px"}}>
                  <h4><b>Full Name:</b> {user.fullname}<hr/></h4>
                 
                  <h4><b>Email Address:</b> {user.email}<hr/></h4>
@@ -75,7 +76,8 @@ return (
             {user.type === 't' &&
                 (<>
                     <h4><b>service: </b> {user.name}<hr/></h4>
-                    <h4><b>rate: </b> {user.rating}<hr/></h4>
+                    {/* <h4><b>rate: </b> {user.rating}<hr/></h4> */}
+                    <Rate rating={user.rating}/>
                 </>
                 )
             }   

@@ -14,7 +14,8 @@ const getServiceCategories = async (req, res) => {
 
 const addServiceCategory = async (req, res) => {
     try {
-        await db.query(`INSERT INTO service (name) VALUES ('${req.body.service_name}');`);
+        //await db.query(`INSERT INTO service (name) VALUES ('${req.body.service_name}');`);
+        await db.query(`CALL InsertService('${req.body.service_name}');`);
         res.send(`Service category added successfully!`);
     } catch (error) {
         console.log(error);

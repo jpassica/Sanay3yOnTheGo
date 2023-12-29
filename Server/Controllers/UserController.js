@@ -22,7 +22,7 @@ const createNewUser = async (req, res) => {
 
     if (req.body["type"] === 'c')
     {
-        const new_id = (await db.query("SELECT currval('client_client_id_seq');")).rows[0].currval;;    
+        const new_id = (await db.query("SELECT currval('client_client_id_seq');")).rows[0].currval;   
         try{
             await db.query(`INSERT INTO customer VALUES (${new_id}, 0);`);
             res.send("customer inserted successfully!");
@@ -98,7 +98,7 @@ const getUserDetails = async (req, res) => {
         {
             console.log(main_result);
             res.send(JSON.stringify(main_result));
-        }
+        }
     } catch (error) {
         console.log(error);
         res.send("Couldn't retrieve account details!");

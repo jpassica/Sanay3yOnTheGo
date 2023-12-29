@@ -6,17 +6,17 @@ import PrevWorkCard from './PrevWorkCard';
 import PreviousCard from './PreviousCard';
 import '../styles/orders.css'
 
-const OrdersList = ({orders,filter,ondelete,onDone,onAccept,onToggle}) => {
+const OrdersList = ({orders,filter,onCancel,onDone,onAccept,onToggle}) => {
 
   return (
     <div className='orederscontainer'>   
 
    {orders.filter(order => order.order_status==filter).map((order,index)=>(
-      <PendingCard key={index} order={order} filter={filter} ondelete={ondelete} onAccept={onAccept}/>
+      <PendingCard key={index} order={order} filter={filter} onCancel={onCancel} onAccept={onAccept}/>
     ))} 
 
    {orders.filter(order => order.order_status==filter).map((order,index)=>(
-         <UpcomingCard key={index} order={order} filter={filter} ondelete={ondelete} onDone={onDone}/>
+         <UpcomingCard key={index} order={order} filter={filter} onCancel={onCancel} onDone={onDone}/>
        ))} 
    
    {orders.filter(order => order.order_status==filter).map((order,index)=>(

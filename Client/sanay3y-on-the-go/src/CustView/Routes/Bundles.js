@@ -1,16 +1,36 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "../styles/Bundles.css";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const Bundles = ({ bundles }) => {
+const Bundles = () => {
   const currentDate = new Date().toISOString().split("T")[0];
   const [BundleDate, setBundleDate] = useState(new Date());
+  const [bundles, setBundles] = useState([]);
+  const{id}=useParams()
+  console.log(id)
+  //fetching bundles
+  const fetchBundles = async () => {
+    const res = await axios.get("http://localhost:3001/bundle");
+    return res.data;
+  };
+    //fetching data on loading the page
+    useEffect(() => {
+      const getBundles = async () => {
+        const getBundlesFromServer = await fetchBundles();
+        setBundles(getBundlesFromServer);
+      };
+      getBundles();
+
+    }, []);
+
+
   const postBundleOrder= async({bundle_id})=>
   {
     try {
       const response = await axios.post(`http://localhost:3001/bundle/${bundle_id}`, {
 
-        customer_id:1,
+        customer_id:id,
         order_exec_date:BundleDate,
         type:"B"
       },

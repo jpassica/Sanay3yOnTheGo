@@ -23,6 +23,7 @@ import Orders from './TechView/routes/Orders';
 import Offers from './TechView/routes/Offers';
 import FeaturedWork from './TechView/routes/FeaturedWork';
 import AddOffer from './TechView/routes/AddOffer';
+import TechNotifications from './TechView/routes/Notifications';
 
 //Customer general routes
 import CustomerHome from './CustView/Routes/Home';
@@ -63,6 +64,8 @@ const Sanay3y = () => {
         <Route exact path="/Offers/:id" element={<><Navbar/><Offers/></>}/>
         <Route exact path="/FeaturedWork/:id" element={<><Navbar/><FeaturedWork /></>}/>
         <Route exact path="/AddOffer/:id" element={<><Navbar/><AddOffer/></>}/>
+        <Route path="/TechNotifications/:id" element={<><Navbar/><TechNotifications /></>}/>
+        <Route exact path="/TechFeedback/:id" element={<><Navbar/><Feedback/></>}/>
 
           {/* Customer general routes*/}
         <Route exact path={`/CustomerHome/:id`} element={<><NavBarCust/><CustomerHome /></>} />          
@@ -70,7 +73,7 @@ const Sanay3y = () => {
         <Route path="/TechDetails/:id/:TechId" element={<><NavBarCust /><TechDetails  /></>}/>
         <Route exact path={`/CustomerOrders/:id`} element={<><NavBarCust /><CustomerOrders /></>} />
         <Route path="/ReviewOrder/:id/:OrderId" element={<><NavBarCust /><ReviewOrder /></>} />
-        <Route path="/CancelOrder/:id" element={<><NavBarCust /><CancelOrder /></>} />
+        <Route path="/CancelOrder/:id/:OrderId" element={<><NavBarCust /><CancelOrder /></>} />
         <Route path="/wallet/:id" element={<><NavBarCust /><Wallet /></>}/>
         <Route path="/bundles/:id" element={<><NavBarCust /><Bundles /></>} />
         <Route path="/feedback/:id" element={<><NavBarCust /><Feedback /></>} />

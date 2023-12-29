@@ -1,10 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OrdersList from '../components/OrdersList';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Orders = () => {
   const [orders, setorders] = useState([])
+  const{id}=useParams()
+
   
+
+  const fetchorders=async ()=>
+    {
+      const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
+      return res
+    }
+
+    useEffect(()=>
+      {
+        const getorders=async()=>{
+      const ordersfromserver=await fetchorders()
+      setorders(ordersfromserver)
+       }
+      getorders()
+        },[])
+      console.log(orders)
 
   const fetchorder = async (orderId) => {
     const res = await fetch(`http://localhost:3001/order/${orderId}`)
@@ -20,7 +39,7 @@ const Orders = () => {
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        updorder2
+        order_status : updorder2.order_status
       },
       {
         headers: {
@@ -42,7 +61,8 @@ const Orders = () => {
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        updorder
+        order_status : updorder.order_status
+
       },
       {
         headers: {
@@ -73,9 +93,32 @@ const Orders = () => {
     const worktotoggle = await fetchorder(id)
     const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
 
+    const res = await axios.patch(`http://localhost:3001/order/toggle/${id}`,
+      {
+        highlighted : updwork.highlighted
+      }, {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data = res.data
+    console.log(data)
+
+    setorders(
+      orders.map((item) =>
+        item.order_id === id ? { ...item, highlighted: data.highlighted } : item
+      )
+    ) 
+  }
+
+  const onCancel = async (id) => {
+    const tocancel = await fetchorder(id)
+    const canceled = { ...tocancel, order_status: 'C' }
+
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        updwork
+        order_status : canceled.order_status
       }, {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
@@ -86,31 +129,30 @@ const Orders = () => {
 
     setorders(
       orders.map((item) =>
-        item.order_id === id ? { ...item, highlighted: data.highlighted } : item
+        item.order_id === id ? { ...item, order_status: data.order_status } : item
       )
-    )
+    ) 
   }
 
-  const [filter, setFilter] = useState('pending');
-  const Orders = ({ orders, ondelete, onDone, onAccept, onToggle }) => {
+
     const [filter, setFilter] = useState('F');
-    return (
-      //orders,ondelete,onDone,onAccept,onToggle}
-      <div>
-        <div className='highlightsbtns'>
-          <div></div>
-          <button className={filter == 'P' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('P')}> Pending </button>
-          <button className={filter == 'F' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('F')}> Previous </button>
-          <button className={filter == 'U' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('U')}> Upcoming </button>
 
-          <div></div>
-
+  return (
+        //orders,ondelete,onDone,onAccept,onToggle}
+        <div>
+          <div className='highlightsbtns'>
+            <div></div>
+            <button className={filter == 'P' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('P')}> Pending </button>
+            <button className={filter == 'F' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('F')}> Previous </button>
+            <button className={filter == 'U' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('U')}> Upcoming </button>
+  
+            <div></div>
+  
+          </div>
+  
+          <OrdersList filter={filter} orders={orders} onCancel={onCancel} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
+          
         </div>
-
-        <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
-        
-      </div>
-    )
-  }
+      )
 }
   export default Orders;

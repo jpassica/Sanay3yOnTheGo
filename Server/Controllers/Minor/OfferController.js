@@ -5,8 +5,11 @@ const createOffer = async (req, res) => {
     const tech = req.body.tech_id;
 
     try {
-        await db.query("INSERT INTO offer (header, description, prev_price, new_price, tech_id) VALUES ($1, $2, $3, $4, $5);",
-            [req.body.header, req.body.description, req.body.prev_price, req.body.new_price, tech]);
+        //await db.query("INSERT INTO offer (header, description, prev_price, new_price, tech_id) VALUES ($1, $2, $3, $4, $5);",
+            //[req.body.header, req.body.description, req.body.prev_price, req.body.new_price, tech]);
+
+        await db.query(`CALL InsertOffer('${req.body.header}', '${req.body.description}', 
+        ${req.body.prev_price}, ${req.body.new_price}, ${tech});`);
         res.send("Offer created successfully!");
     } catch (error) {
         res.send("Could not create your offer!");

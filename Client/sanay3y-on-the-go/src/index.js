@@ -11,6 +11,7 @@ const root = createRoot(rootElement);
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    
       <Sanay3y />
     {/*
     <Sanay3y />

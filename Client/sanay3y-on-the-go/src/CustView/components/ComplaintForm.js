@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const ComplaintForm = ({order_id}) => {
+const ComplaintForm = ({order_id,customer_id}) => {
 
   const postComplaint=async ()=>
   {
     try {
       const response = await axios.post("http://localhost:3001/complaint ", {
         content:complaint,
-        customer_id:1,
+        customer_id:customer_id,
         order_id:order_id
       },
       {
