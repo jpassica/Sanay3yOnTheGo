@@ -1,10 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import OrdersList from '../components/OrdersList';
 import axios from 'axios';
 
 const Orders = () => {
   const [orders, setorders] = useState([])
+ const  id=2
   
+
+  const fetchorders=async ()=>
+    {
+      const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
+      return res
+    }
+
+    useEffect(()=>
+      {
+        const getorders=async()=>{
+      const ordersfromserver=await fetchorders()
+      setorders(ordersfromserver)
+       }
+      getorders()
+        },[])
+      console.log(orders)
 
   const fetchorder = async (orderId) => {
     const res = await fetch(`http://localhost:3001/order/${orderId}`)
@@ -20,7 +37,7 @@ const Orders = () => {
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        updorder2
+        order_status : updorder2.order_status
       },
       {
         headers: {
@@ -42,7 +59,8 @@ const Orders = () => {
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        updorder
+        order_status : updorder.order_status
+
       },
       {
         headers: {
@@ -75,7 +93,7 @@ const Orders = () => {
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        updwork
+        order_status : updwork.order_status
       }, {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
@@ -89,9 +107,12 @@ const Orders = () => {
         item.order_id === id ? { ...item, highlighted: data.highlighted } : item
       )
     )
+
+
+    
   }
 
-  const [filter, setFilter] = useState('pending');
+  // const [filter, setFilter] = useState('P');
   const Orders = ({ orders, ondelete, onDone, onAccept, onToggle }) => {
     const [filter, setFilter] = useState('F');
     return (
