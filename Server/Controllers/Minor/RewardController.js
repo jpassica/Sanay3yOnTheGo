@@ -15,9 +15,12 @@ const winReward = async (req, res) => {
     const customer_id = req.body.customer_id;
 
     try {
-        await db.query(`INSERT INTO reward (customer_id, percentage) VALUES ($1, $2);`, [customer_id, 100]);
+        //await db.query(`INSERT INTO reward (customer_id, percentage) VALUES ($1, $2);`, [customer_id, 100]);
 
-        // employ auto check if customer has reached a certain threshold
+        // employ check if customer has reached a certain threshold
+        const pt = (await db.query(`SELECT * FROM point_system;`)).rows;
+
+        console.log(pt[pt.length - 1].req_points);
 
         res.send("Congrats! You have won a reward!");
     } catch (error) {
@@ -26,4 +29,4 @@ const winReward = async (req, res) => {
     }
 }
 
-export { getPointSystemDetails };
+export { getPointSystemDetails, winReward };

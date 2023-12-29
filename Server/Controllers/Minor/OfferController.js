@@ -12,7 +12,7 @@ const createOffer = async (req, res) => {
         res.send("Could not create your offer!");
         console.log(error);
     }
-}
+};
  
 const buyOffer = async (req, res) => {
     const id = req.params.id; // offer id
