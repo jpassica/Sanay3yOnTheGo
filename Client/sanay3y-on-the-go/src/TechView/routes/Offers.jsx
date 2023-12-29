@@ -46,13 +46,6 @@ const addoffer = async (offer) => {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    // {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-type': 'application/json',
-    //   },
-    //   body: JSON.stringify(offer),
-    // })
   
     const data = res.data;
   
@@ -70,11 +63,12 @@ const addoffer = async (offer) => {
 
   return (
     <>
-    <CustomLink to="/AddOffer"><button className='offerbtn'>Add New Offer</button></CustomLink>
-    
+    <div className='offerbtncontainer'>
+    <CustomLink to="/AddOffer/:id"><button className='offerbtn'>Add New Offer</button></CustomLink>
+    </div>
     <div className='cards'>
       {offers.map((item,index)=>
-      (<OfferCard key={index} offer={item} OnDelete={deleteOffer}/>)
+      (<OfferCard key={index} offer={item} OnDelete={deleteOffer} onAdd={addoffer}/>)
       )}</div>
     </>
   )

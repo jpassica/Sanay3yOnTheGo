@@ -12,7 +12,6 @@ const Account = ({tech}) => {
        <div class="acccontainer container-fluid">
         <h2 class="mt-5 ml-5" style={{textAlign:'left'}}>My Account</h2>
              <AccountDetails tech={tech} />
-
     </div>
     </div>
   )

@@ -17,7 +17,12 @@ background-color: #FFDD61;
     border-color: #260F67;
     padding: 10px;
     margin: 20px;
-
+}
+.offerbtncontainer
+{
+    display: flex;
+    justify-items: center;
+    justify-content: center;
 }
 
 .offerbtn:hover

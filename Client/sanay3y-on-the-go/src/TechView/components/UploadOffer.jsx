@@ -42,7 +42,7 @@ function UploadOffer({OnAdd}) {
 
     <div className='offerbtncontainer'>
         <input type='submit' value='Add Offer' className=' btn-primary  my-4 upofferbtn' />
-        <CustomLink to="/Offers">
+        <CustomLink to="/Offers/:id">
           <input type='button' value='Back to Offers' className=' btn-primary  my-4 upofferbtn' />
           </CustomLink>
         </div>

@@ -32,7 +32,8 @@ const Navbar=()=> {
                         <NavLink to={"/Account/"+id}>Account</NavLink>
                     </li>
                     <li>
-                        <NavLink to={"/Notification/"+id}>Notification</NavLink>
+                        <NavLink to={"/TechNotifications/"+id}>Notification</NavLink>
+
                     </li>
                     <li>
                         <NavLink to={"/TechFeedback/"+id}>FeedBack</NavLink>

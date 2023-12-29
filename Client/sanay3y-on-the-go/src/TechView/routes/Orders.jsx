@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import OrdersList from '../components/OrdersList';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 const Orders = () => {
   const [orders, setorders] = useState([])
- const  id=2
+  const{id}=useParams()
+
   
 
   const fetchorders=async ()=>
@@ -93,7 +95,7 @@ const Orders = () => {
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
       {
-        order_status : updwork.order_status
+        highlighted : updwork.highlighted
       }, {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
@@ -106,10 +108,29 @@ const Orders = () => {
       orders.map((item) =>
         item.order_id === id ? { ...item, highlighted: data.highlighted } : item
       )
-    )
+    ) 
+  }
 
+  const onCancel = async (id) => {
+    const tocancel = await fetchorder(id)
+    const canceled = { ...tocancel, order_status: 'C' }
 
-    
+    const res = await axios.patch(`http://localhost:3001/order/${id}`,
+      {
+        order_status : canceled.order_status
+      }, {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data = res.data
+
+    setorders(
+      orders.map((item) =>
+        item.order_id === id ? { ...item, order_status: data.order_status } : item
+      )
+    ) 
   }
 
 
@@ -128,7 +149,7 @@ const Orders = () => {
   
           </div>
   
-          <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
+          <OrdersList filter={filter} orders={orders} onCancel={onCancel} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
           
         </div>
       )
