@@ -10,8 +10,16 @@ const makeRegOrder = async (req, res) => {
     try {
         const newOrder = await helper.makeNewOrder(req, res);
 
+        const reward_query = await db.query(`SELECT * FROM reward WHERE customer_id = ${req.body.customer_id};`);
+
+        if (reward_query.rowCount != 0)
+        {
+            req.body.price = req.body.price - req.body.price * reward_query[0].percentage; 
+        }
+
         await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
             req.body.description, req.body.price, tech]);
+
 
         res.send("Order created succesfully!");
     }
