@@ -56,24 +56,30 @@ const ReviewOrder = () => {
     }
     );
     console.log("successful review")
+    alert("Thank you!your review has been recorded")
   }
   catch (error) {
     // Handle errors
     console.error("Error adding review:", error);
+    alert("failed to record your review")
 
    }
   }
     const handleSubmit =async() => {
+      if(Rev=="")
+      {
+        alert('please enter review to help the technician improve')
+        return
+      }
+      if(!isNaN(Number(Rev)))
+      {
+        alert('review cannot be a number')
+        return
+      }
 
       addReview()
-     
-      // Logic for handling the form submission
-      //decide update or insert based on initial rating and initial review
-      
+      navigate(-1)
 
-  
-      // After successful submission, navigate back to the previous page
-      alert('review was successfully recorded')
     };
 
   return (

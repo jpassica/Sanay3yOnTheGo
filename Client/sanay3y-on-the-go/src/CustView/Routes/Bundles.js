@@ -3,6 +3,7 @@ import "../styles/Bundles.css";
 import axios from "axios";
 
 const Bundles = ({ bundles }) => {
+  const currentDate = new Date().toISOString().split("T")[0];
   const [BundleDate, setBundleDate] = useState(new Date());
   const postBundleOrder= async({bundle_id})=>
   {
@@ -20,19 +21,19 @@ const Bundles = ({ bundles }) => {
       });
       // Handle the response as needed
       console.log("bundle booked successfully:", response.data);
+      alert("bundle order was successfully sent!wait for tech's approval")
       // You may want to update the UI or show a success message to the user
     } catch (error) {
       // Handle errors
       console.error("bundle booking order:", error);
+      alert("oops,your bundle order has encountered an error,try again")
       // You may want to show an error message to the user
     }
   }
   const handleBookBundle =async (bundleID) => {
     console.log(bundleID)
     await postBundleOrder(bundleID)
-    // Add your booking logic here, e.g., navigate to a booking page, make an API request, etc.
 
-    alert("bundle booked successfully");
   };
 
 
@@ -61,7 +62,7 @@ const Bundles = ({ bundles }) => {
                 type="date"
                 id="dateInput"
                 value={BundleDate? BundleDate.toISOString().split("T")[0]: ""} // Convert date to string in 'YYYY-MM-DD' format
-                onChange={(e) => setBundleDate(new Date(e.target.value))}
+                onChange={(e) => setBundleDate(new Date(e.target.value))} min={currentDate}
               />
             </div>
             <button className="book-button" onClick={()=>handleBookBundle(bundle.bundle_id)}>

@@ -27,6 +27,16 @@ const Feedback = () => {
     }
   }
   const sendFeedback = async () => {
+    if(feedback=="")
+    {
+      alert("please enter your feedback to submit")
+      return
+    }
+    if(!isNaN(Number(feedback)))
+    {
+      alert("your feedback cannot be a number")
+      return
+    }
     //post feedback here
     await postFeedback()
 

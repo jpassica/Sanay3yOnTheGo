@@ -134,13 +134,13 @@ const postOrder = async () => {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    // Handle the response as needed
+    // Handle the response 
     console.log("Order booked successfully:", response.data);
-    // You may want to update the UI or show a success message to the user
+    alert('Thank you,your custom order was successfully sent!wait for technician to accept')
   } catch (error) {
     // Handle errors
     console.error("Error booking order:", error);
-    // You may want to show an error message to the user
+    alert("oops!offer order encountred an error,try again")
   }
 };
 
@@ -160,13 +160,14 @@ const postOrder = async () => {
           }
         });
     
-        // Handle the response as needed
+        // Handle the response 
         console.log("Offer booked successfully:", response.data);
-        // You may want to update the UI or show a success message to the user
+        alert('Thank you,your offer order was successfully sent!wait for technician to accept')
       } catch (error) {
         // Handle errors
         console.error("Error booking offer:", error);
-        // You may want to show an error message to the user
+        alert('oops! offer booking encountred an error,try again')
+
       }
     };
 
@@ -187,6 +188,10 @@ console.log(prevWork)
       {
       alert("please fill all fileds,all fields are required")
       return
+      }
+      if(!isNaN(Number(OrderTitle))||!isNaN(Number(OrderDetails)))
+      {
+        alert("order title and order details cannot be numbers")
       }
       // Call the function to make the Axios POST request
       await postOrder();

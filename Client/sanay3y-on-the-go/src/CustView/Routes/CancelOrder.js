@@ -18,14 +18,15 @@ const CancelOrder = ({onCancel}) => {
     }
     catch(error)
     {
-    console.log("error",error)
+    console.log("error in fetching order",error)
     }
   }
   const handleSubmit =async () => {
     const doneorder=await fetchOrder()
     // Logic for handling order cancellation
     onCancel(doneorder);
-    alert("Order was cancelled successfully");
+    navigate(-1)
+
     //window.location.reload();
   };
   return (

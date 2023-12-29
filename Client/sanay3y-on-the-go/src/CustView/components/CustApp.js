@@ -155,6 +155,8 @@ function CustApp({ customer_id }) {
 
   const onCancel = async (doneorder) => {
     const updorder = { ...doneorder, order_status: "C" }
+    try
+    {
 
     const res = await axios.patch(`http://localhost:3001/order/${doneorder.order_id}`, 
     {
@@ -173,6 +175,12 @@ function CustApp({ customer_id }) {
         item.order_id === doneorder.order_id ? { ...item, order_status: data.order_status } : item
       )
     )
+    alert("your order was cancelled successfully")
+    }
+    catch(error)
+    {
+      alert("oops!your order cancellation has encountred an error")
+    }
   }
 
   return (

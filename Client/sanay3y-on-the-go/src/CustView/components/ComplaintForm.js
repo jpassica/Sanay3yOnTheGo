@@ -17,17 +17,29 @@ const ComplaintForm = ({order_id}) => {
         }
       });
       console.log("Complaint submitted successfully:", response.data);
+      alert("Thank you,complaint successfully submitted")
     } catch (error) {
       // Handle errors
-      console.error("Error in submitting complainy:", error);
+      console.error("Error in submitting complaint:", error);
+      alert("oops,your complaint submission has encountered an error,try again")
       // You may want to show an error message to the user
     }
   }
   
   const handleSubmit = async () => {
+    if(complaint=="")
+    {
+      alert("please enter your complaint to submit")
+      return
+    }
+    console.log(complaint)
+    if(!isNaN(Number(complaint)))
+    {
+      alert('your complaint cannot be a number')
+      return
+    }
     //post complaint here
     await postComplaint()
-    alert("complaint sent successfully!");
   };
 
   const [complaint, setComplaint] = useState("");
