@@ -14,7 +14,7 @@ router.route('/')
 router.route('/:id')
     .get(userController.getUserDetails)
     .patch(userController.updateUserDetails)
-    .delete(userController.banUser)
+    .delete(userController.deleteUser)
 
 router.route('/SignIn')
     .post(userController.signInUser)

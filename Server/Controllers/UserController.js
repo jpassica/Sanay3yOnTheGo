@@ -89,6 +89,10 @@ const getUserDetails = async (req, res) => {
             const result = {...main_result, ...points, ...rewards};
             console.log(result);
             res.send(JSON.stringify(result));
+        } else if (main_result.type == "a")
+        {
+            console.log(main_result);
+            res.send(JSON.stringify(main_result));
         }
     } catch (error) {
         console.log(error);
@@ -119,6 +123,17 @@ const updateUserDetails = async (req, res) => {
     const address = req.body.address || oldDetails.address;
     const fullname = req.body.fullname || oldDetails.fullname;
     const password = req.body.password || oldDetails.password;
+
+    if (password == null)
+        password = oldDetails.password;
+    if (fullname == null)
+        fullname = oldDetails.fullname;
+    if (address == null)
+        address = oldDetails.address;
+    if (phone_number == null)
+        phone_number = oldDetails.phone_number;
+    if (email == null)
+        email = oldDetails.email;
 
     try {
         await db.query (`UPDATE client SET
@@ -160,7 +175,7 @@ const getUserAreas = async (req, res) => {
     }
 }
 
-const banUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -186,8 +201,8 @@ const getAllTechs = async (req, res) => {
 }
 
 export { createNewUser, signInUser, updateUserDetails, 
-    getUserDetails, getNearbyTechs, getUserAreas, getAllTechs,
-    banUser };
+    getUserDetails, getNearbyTechs, getUserAreas, getAllTechs, 
+    deleteUser };
  
  
 

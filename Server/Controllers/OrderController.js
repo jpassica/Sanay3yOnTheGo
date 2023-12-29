@@ -136,11 +136,7 @@ const updateOrderStatus = async (req, res) => {
         // send notification || increment user's pts
         if (status == "F")
         {
-            req.body.customer_id = customer_id;
-            req.body.order_id = order_id;
             req.body.content = "Order completed successfully! Please consider rating.";
-
-            notifyUser(req, res);
 
             // increment user pts 
             const order_type = order_query.order_type;
@@ -167,12 +163,19 @@ const updateOrderStatus = async (req, res) => {
         }
         else if (status == "U")
         {
-            req.body.customer_id = customer_id;
-            req.body.order_id = order_id;
             req.body.content = "The technician has accepted your order!";
-
-            notifyUser(req, res);
+            
         }
+        else if (status == "C")
+        {
+            req.body.content = "Order cancelled.";
+        }
+
+        // send notification
+        req.body.order_id = order_id;
+        req.body.customer_id = customer_id;
+
+        notifyUser(req, res);
 
         res.send("successfully updated order status!");
     } catch (error) {
@@ -194,19 +197,24 @@ const toggleHighlighted = async (req, res) => {
     }
 }
 
-const deleteOrder = async (req, res) => {
+const cancelOrder = async (req, res) => {
     const id = req.params.id;
+    const customer_id = (await db.query(`SELECT customer_id FROM orders WHERE order_id = ${id};`)).rows[0].customer_id;
 
     try {
-        await db.query(`DELETE FROM orders WHERE order_id = ${id};`);
+        await db.query(`UPDATE orders SET order_status = 'C' WHERE order_id = ${id};`);
 
         // send notification 
-        //await db.query(`INSERT INTO notification (content, )`)
+        req.body.content = "Order cancelled.";
+        req.body.order_id = id;
+        req.body.customer_id = customer_id;
 
-        res.send("deleted successfully!");
+        notifyUser(req, res);
+
+        res.send("Cancelled successfully!");
     } catch (error) {
         console.log(error);
-        res.send("couldn't delete order!");
+        res.send("Couldn't cancel order!");
     }
 };
 
@@ -292,5 +300,5 @@ const getReviewsByTechID = async (req, res) => {
 }
 
 export { makeRegOrder, getOrderByID, getTechOrders, updateOrderStatus, 
-    deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID,
+    cancelOrder as deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID,
     toggleHighlighted, getCustomerOrders };
