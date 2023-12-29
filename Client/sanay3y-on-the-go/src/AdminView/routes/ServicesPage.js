@@ -36,7 +36,7 @@ const ServicesPage = () => {
     };
 }, []);
 
-     const editService = (service) => {
+    const editService = (service) => {
     try {
         const response = axios.patch('http://localhost:3001/service', {
             serviceName: service.name,
@@ -52,45 +52,40 @@ const ServicesPage = () => {
         console.error('Error updating services:', error.message);
         throw error;    }
 }
-         
-     const deleteService = (service) => { 
-        try {
-            const response = axios.delete('http://localhost:3001/service', {
-            service_id: service.service_id
-            }, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-            console.log(response.data);
-        } catch (error) {
-            console.error('Error deleting services:', error.message);
-            throw error;
-        }
-    };
-    
-    const addService = async () => { 
-        try {
-            const response = axios.post('http://localhost:3001/service', {
+const addService = async () => { 
+    try {
+        const response = axios.post('http://localhost:3001/service', {
             service_name: name
-            }, {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                }
-            });
-            console.log(response.data);
-            alert('Service added successfully');
-            const updatedServices = await fetchServices();
-            const reversed = updatedServices.reverse();
-            setServices(reversed);            
-            setName('');
-            
-        } catch (error) {
-            console.error('Error adding services:', error.message);
-            throw error;
-        }
-    };
-
+        }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        console.log(response.data);
+        alert('Service added successfully');
+        const updatedServices = await fetchServices();
+        const reversed = updatedServices.reverse();
+        setServices(reversed);            
+        setName('');
+        
+    } catch (error) {
+        console.error('Error adding services:', error.message);
+        throw error;
+    }
+    
+};
+    
+    const deleteService = async (serviceId) => {
+  try {
+    const response = await axios.delete(`http://localhost:3001/service/${serviceId}`);
+    console.log(response.data); // Handle the response as needed
+    alert('Service deleted successfully');
+  } catch (error) {
+    console.error('Error deleting service:', error.message);
+    alert(`Error deleting service: ${error.message}`);
+    throw error;
+  }
+};
     return (<div className='feedback-container'>
         
         <div className='feedback-data'>
@@ -104,8 +99,8 @@ const ServicesPage = () => {
         <div className='feedback-data' key={service.id}>
             <h5>{service.name}</h5>
             <div style={{display:"flex", flexDirection:"row", gap:"30px"}}>
-            <button className='consider-btn' onClick={() =>editService(service)}>Edit</button>
-            <button className='consider-btn' onClick={() =>deleteService(service)}>Delete</button>
+            <button className='consider-btn' onClick={() =>editService(service.service_id)}>Edit</button>
+            <button className='consider-btn' onClick={() =>deleteService(service.service_id)}>Delete</button>
             </div>
         </div>
     ))}
