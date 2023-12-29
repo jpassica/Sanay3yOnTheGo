@@ -21,6 +21,7 @@ const Orders = ({ orders }) => {
       <OrderList orders={orders} filter={filter} />
     </div>
   );
+  
 };
-
 export default Orders;
+

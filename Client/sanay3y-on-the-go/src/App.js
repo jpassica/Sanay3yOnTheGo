@@ -1,89 +1,81 @@
-import React, { useState } from 'react';
-import Login from './Login';
-import SignUp from './SignUp';
-import ProfilePage from './ProfilePage';
-const App = () => {
-  const [showLogin, setShowLogin] = useState(true);
-  const [isSignUpSuccess, setIsSignUpSuccess] = useState(false);
-  const [isLogInSuccess, setIsLogInSuccess] = useState(false);
-  const [client_id, setClient_id] = useState('');
-  const [type, setType] = useState('');
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-  const handleLoginSuccess = () => {
-    setIsLogInSuccess(true);
-    setShowLogin(true); // Reset to show the Login form after successful sign-up
-  };
+//User general routes
+import Login from './UserView/Login';
+import SignUp from './UserView/SignUp';
+import UserProfile from './UserView/UserProfile';
+import EditProfile from './UserView/EditProfile';
 
-  const handleSignUpSuccess = () => {
-    setIsSignUpSuccess(true);
-    setShowLogin(false); // Reset to show the Login form after successful sign-up
-  };
+//Admin routes
+import AdminHome from './AdminView/routes/AdminHome';
+import TechniciansPage from './AdminView/routes/TechniciansPage'; 
+import CreateBundle from './AdminView/routes/CreateBundle';
+import FeedbacksPage from './AdminView/routes/FeedbacksPage';
+import ComplainsPage from './AdminView/routes/ComplainsPage';
+import ServicesPage from './AdminView/routes/ServicesPage';
+import NavBarAdmin from './AdminView/components/NavBarAdmin';
 
-  const toggleForm = () => {
-    setShowLogin(!showLogin);
-  };
+//Technician general routes
+import TechnicianHome from './TechView/routes/TechnicianHome';
+import Navbar from './TechView/components/Navbar';
+import Orders from './TechView/routes/Orders';
+import Offers from './TechView/routes/Offers';
+import FeaturedWork from './TechView/routes/FeaturedWork';
+import AddOffer from './TechView/routes/AddOffer';
 
-  const navStyle = {
-    background: '#FFDD61',
-    width: '1535px',
-    height: '56px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column',
-  };
-  const switchPageStyle = {
-    color: 'black',
-    background: '#fff',
-    width: '935px',
-    height: '56px',
-    margin: '0 0 0 600px',
-    lineHeight: '56px',
-  };
-    let atype = 'a';
-    let ID = 3;
+//Customer general routes
+import CustomerHome from './CustView/Routes/Home';
+import Bundles from './CustView/Routes/Bundles';
+import NavBarCust from './CustView/components/NavBarCust';
+import TechDetails from './CustView/Routes/TechDetails';
+import ReviewOrder from './CustView/Routes/ReviewOrder';
+import CancelOrder from './CustView/Routes/CancelOrder';
+import Wallet from './CustView/Routes/Wallet';
+import Feedback from './CustView/Routes/Feedback';
+import Notifications from './CustView/Routes/Notifications';
+
+
+
+const Sanay3y = () => {
   return (
-    <div className="App">
-          { //isSignUpSuccess
-       false ? (
-        <Login />
-              ) :
-                  //showLogin
-                  false    ? (
-        <>
-            <Login onLogInSuccess={handleLoginSuccess} />
-            <div style={navStyle}>
-                <p style={switchPageStyle}>
-                  Already have an account?{' '}
-                  <span onClick={toggleForm} style={{ cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>
-                    Switch to Login
-                  </span>
-                </p>
-              </div>
-        </>
-      ) :
-            //          isLogInSuccess
-        true                  ? (
-            <>
-            <ProfilePage type={atype} id={ID} />
-          </>
-        ):
-          (
-            <>
-              <SignUp onSignUpSuccess={handleSignUpSuccess} />
-              <div style={navStyle}>
-                <p style={switchPageStyle}>
-                  Already have an account?{' '}
-                  <span onClick={toggleForm} style={{ cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>
-                    Switch to Login
-                  </span>
-                </p>
-              </div>
-            </>
-          )}
-          </div>
+      <BrowserRouter>
+      <Routes>
+          {/* User general routes*/}
+        <Route path="/" element={<Login />} />
+        <Route path="/SignUp" element={<SignUp />} />
+        <Route exact path={`/Account/:id`} element={<UserProfile/>} />
+        <Route exact path={`/EditProfile/:id`} element={<EditProfile/>} />
+        
+          {/* Admin routes*/}
+        <Route exact path={`/AdminHome/:id`} element={<><NavBarAdmin /><AdminHome /></>} />
+        <Route exact path="/Technicians/:id" element={<><NavBarAdmin/><TechniciansPage/></>} />
+        <Route exact path={`/CreateBundle/:id`} element={<><NavBarAdmin/><CreateBundle /></>} />
+        <Route exact path={`/Feedbacks/:id`} element={<><NavBarAdmin/><FeedbacksPage /></>} />                  
+        <Route exact path={`/Complaints/:id`} element={<><NavBarAdmin/><ComplainsPage /></>} />          
+        <Route exact path={`/Services/:id`} element={<><NavBarAdmin /><ServicesPage /></>} />
+
+          {/* Technician general routes*/}
+        <Route exact path={`/TechnicianHome/:id`} element={<><Navbar/><TechnicianHome /></>} />          
+        <Route exact path="/Orders/:id" element={<><Navbar/><Orders /></>}/>
+        <Route exact path="/Offers/:id" element={<><Navbar/><Offers/></>}/>
+        <Route exact path="/FeaturedWork/:id" element={<><Navbar/><FeaturedWork /></>}/>
+        <Route exact path="/AddOffer/:id" element={<><Navbar/><AddOffer/></>}/>
+
+          {/* Customer general routes*/}
+        <Route exact path={`/CustomerHome/:id`} element={<><NavBarCust/><CustomerHome /></>} />          
+        <Route exact path={`/Bundles/:id`} element={<><NavBarCust /><Bundles /></>} /> 
+        <Route path="/TechDetails/id:/:orderId" element={<><NavBarCust /><TechDetails  /></>}/>
+        <Route path={`/Orders/:id`} element={<><NavBarCust /><Orders /></>} />
+        <Route path="/ReviewOrder//:id/:orderId" element={<><NavBarCust /><ReviewOrder /></>} />
+        <Route path="/CancelOrder/:id" element={<><NavBarCust /><CancelOrder /></>} />
+        <Route path="/wallet/:id" element={<><NavBarCust /><Wallet /></>}/>
+        <Route path="/bundles/:id" element={<><NavBarCust /><Bundles /></>} />
+        <Route path="/feedback/:id" element={<><NavBarCust /><Feedback /></>} />
+        <Route path="/notifications/:id" element={<><NavBarCust /><Notifications /></>}/>
+      </Routes>
+      </BrowserRouter>
   );
+};
 
-}
-
-export default App;
+export default Sanay3y;

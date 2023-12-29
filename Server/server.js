@@ -1,9 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import db from "./Config/DB.js";
 
-const app = express();
-const port = 3001;
 
 import userRoute from "./Routes/User.js";
 import orderRoute from "./Routes/Order.js";
@@ -14,6 +13,10 @@ import offerRoute from "./Routes/Minor/Offer.js";
 import rewardRoute from "./Routes/Minor/Reward.js";
 import bundleRoute from "./Routes/Minor/Bundles.js";
 import notifRoute from "./Routes/Minor/Notification.js";
+
+const app = express();
+const port = 3001;
+
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({origin: '*'}));

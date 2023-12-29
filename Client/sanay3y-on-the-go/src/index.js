@@ -1,35 +1,23 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './styles/index.css';
+import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { createRoot } from 'react-dom/client';
-import { UserProvider } from './userContext';
-import TechApp from './TechView/components/TechApp';
-import CustApp from './CustView/components/CustApp';
-import AdminApp from './AdminView/components/AdminApp';
-import Sanay3y from './ProfilePage';
-
+import Sanay3y from './App';
 
 const rootElement = document.getElementById('root');
 const root = createRoot(rootElement);
 
 // const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  
   <React.StrictMode>
-    {/* <UserProvider>
-
-    <App />  
-    </UserProvider> */}
-    {/*</UserProvider> */}
+      <Sanay3y />
     {/*
     <Sanay3y />
     <CustApp />  
-  <App />  
+    <App />  
   */}
   {/* <CustApp /> */}
-  <CustApp/>
     
   </React.StrictMode>
 );

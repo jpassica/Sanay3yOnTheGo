@@ -89,5 +89,31 @@
     margin: 10px;
 }
 
-
+.navStyle {
+    background: #ffdd61;
+    width: 1535px;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Switch Page Style */
+  .switchPageStyle {
+    color: black;
+    background: #fff;
+    width: 935px;
+    height: 56px;
+    margin: 0 0 0 600px;
+    padding-left: 250px;
+    line-height: 56px;
+  }
+  .under-lined-word{
+    text-decoration: underline;
+    line-height: 56px;
+    cursor: pointer;
+    text-decoration: underline;
+    font-weight: bold;
+  }
   

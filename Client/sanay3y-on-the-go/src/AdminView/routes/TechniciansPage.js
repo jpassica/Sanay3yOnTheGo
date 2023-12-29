@@ -12,7 +12,7 @@ const TechniciansPage = () => {
     
 const fetchTechnicians = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/techs');
+      const response = await axios.get('http://localhost:3001/user/all/techs');
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -43,20 +43,19 @@ const fetchTechnicians = async () => {
     };
   }, []);
 
-  const banTech = (techId) => {
-    // try {
-    //     const response = axios.post('http://localhost:3001/banTech', {
-    //         techId: techId,
-    //     }, {
-    //         headers: {
-    //             'Content-Type': 'application/x-www-form-urlencoded'
-    //         }
-    //     });
-    //     console.log(response.data);
-    // } catch (error) {
-    //     console.error('Error fetching feedbacks:', error.message);
-    //     throw error;
-    // }
+  const banTech = () => {
+    try {
+        const response = axios.delete('http://localhost:3001/user/:id', {
+        }, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        });
+        console.log(response.data);
+    } catch (error) {
+        console.error('Error fetching feedbacks:', error.message);
+        throw error;
+    }
 
     };
 

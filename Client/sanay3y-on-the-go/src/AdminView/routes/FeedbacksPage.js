@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/feedbacks.css';
-const FeedbacksPage = ({adminID}) => {
+import { useParams } from 'react-router-dom';
+const FeedbacksPage = () => {
     const [feedbacks, setFeedbacks] = useState([]);
+    const { id } = useParams();
     
 const fetchFeedbacks = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/feedbacks');
+      const response = await axios.get('http://localhost:3001/feedback/free');
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -36,9 +38,9 @@ const fetchFeedbacks = async () => {
 
     const considerFeedback = (feedback_id) => {
         try {
-            const response = axios.post('http://localhost:3001/considerFeedback', {
+            const response = axios.patch('http://localhost:3001/feedback', {
                 feedbackId: feedback_id,
-                adminId: adminID
+                adminId: id
             }, {
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'

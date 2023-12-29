@@ -7,7 +7,7 @@ const ComplainsPage = ({adminId}) => {
     
     const fetchComplaints = async () => {
         try {
-          const response = await axios.get('http://localhost:3001/complaints');
+          const response = await axios.get('http://localhost:3001/complaint/free');
           console.log(response.data);
           return response.data;
         } catch (error) {
