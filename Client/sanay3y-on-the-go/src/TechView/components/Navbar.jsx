@@ -17,6 +17,7 @@ function Navbar() {
             <CustomLink to="/FeaturedWork">Highlights</CustomLink>
             <CustomLink to="/Orders">Orders</CustomLink>
             <CustomLink to="/TechNotifications">Notifications</CustomLink>
+            <CustomLink to="/Feedback">Feedback</CustomLink>
         </ul>
         </div>
       

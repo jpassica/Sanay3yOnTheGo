@@ -12,6 +12,7 @@ import EditProfile from "../routes/EditProfile";
 import AddOffer from "../routes/AddOffer";
 import axios from "axios";
 import Notifications from "../routes/Notifications";
+import Feedback from "../routes/Feedback";
 
 const TechApp = () => {
   const [offers, setoffers] = useState([]);
@@ -365,6 +366,8 @@ const TechApp = () => {
             element={<AddOffer OnAdd={addoffer} />}
           />
           <Route exact path="/TechNotifications" element={<Notifications notifications={notifications} />} />
+          <Route exact path="/Feedback" element={<Feedback/>} />
+          
         </Routes>
       </BrowserRouter>
     </div>
