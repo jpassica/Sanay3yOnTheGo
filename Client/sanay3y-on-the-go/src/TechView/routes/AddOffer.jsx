@@ -47,7 +47,7 @@ const addoffer = async (offer) => {
 
   return (
     <div>
-       <UploadOffer OnAdd={addoffer}/>
+       <UploadOffer OnAdd={addoffer} tech_id={id}/>
     </div>
   )
 }
