@@ -7,18 +7,25 @@ import '../styles/offers.css'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 
 
-function UploadOffer({OnAdd}) {
+function UploadOffer({OnAdd,tech_id}) {
 
   let [heading,setHeading]=useState("")
   let [content,setContent]=useState("")
   let [preprice,setPrePrice]=useState("")
   let [price,setPrice]=useState("")
 
+
   const onSubmit = (e) => {
     // e.preventDefault()
 
     if (!heading || !content || !preprice || !price) {
       alert('Please add all details')
+      return
+    }
+
+    if(Number(preprice)<Number(price))
+    {
+      alert('New price must be less')
       return
     }
 
@@ -42,7 +49,7 @@ function UploadOffer({OnAdd}) {
 
     <div className='offerbtncontainer'>
         <input type='submit' value='Add Offer' className=' btn-primary  my-4 upofferbtn' />
-        <CustomLink to="/Offers/:id">
+        <CustomLink to={"/Offers/"+tech_id}>
           <input type='button' value='Back to Offers' className=' btn-primary  my-4 upofferbtn' />
           </CustomLink>
         </div>
