@@ -1,7 +1,7 @@
 import React from 'react'
 import '../styles/orders.css'
 
-const PendingCard = ({order,filter,ondelete,onAccept}) => {
+const PendingCard = ({order,filter,onCancel,onAccept}) => {
   return (
     <div className='cardcontainer'>
     <div className={filter=="P"?"pordercard":"hidecard"}>
@@ -11,7 +11,7 @@ const PendingCard = ({order,filter,ondelete,onAccept}) => {
         <p>Price: {order.price} <sub>EGP</sub> </p>
         <div >
         <button onClick={() => onAccept(order.order_id)} class=" btn-success  my-4 probutton">Accept</button>
-        <button onClick={() => ondelete(order.order_id)} class=" btn-danger  my-4 probutton">Decline</button>
+        <button onClick={() => onCancel(order.order_id)} class=" btn-danger  my-4 probutton">Decline</button>
         </div>
     </div>
     </div>
