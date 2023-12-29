@@ -47,6 +47,7 @@ function CustApp({ customer_id }) {
   const fetchOrders = async () => {
     const res = await axios.get(`http://localhost:3001/order/customer/1`);
     const data = res.data
+    console.log(orders)
     return data;
   };
 
@@ -149,6 +150,36 @@ function CustApp({ customer_id }) {
     setCustomer(data)
   };
 
+  const fetchorder = async (id) => {
+    const res = await fetch(`http://localhost:3001/order/${id}`)
+    const data = await res.json()
+
+    return data
+  }
+
+  const onCancel = async (id) => {
+    const doneorder = await fetchorder(id)
+    const updorder = { ...doneorder, order_status: "C" }
+
+    const res = await axios.patch(`http://localhost:3001/order/${id}`, 
+    {
+      order_status: updorder.order_status
+    },
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data =  res.data
+
+    setOrders(
+      orders.map((item) =>
+        item.order_id === id ? { ...item, order_status: data.order_status } : item
+      )
+    )
+  }
+
   return (
     <>
       <BrowserRouter>
@@ -175,7 +206,7 @@ function CustApp({ customer_id }) {
             path="/ReviewOrder/:id"
             element={<ReviewOrder />}
           />
-          <Route path="/CancelOrder/:id" element={<CancelOrder />} />
+          <Route path="/CancelOrder/:id" element={<CancelOrder onCancel={onCancel}/>} />
           <Route
             path="/wallet"
             element={

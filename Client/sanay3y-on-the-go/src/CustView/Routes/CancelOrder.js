@@ -2,13 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import ComplaintForm from "../components/ComplaintForm";
 import { useParams } from "react-router-dom";
-const CancelOrder = () => {
+const CancelOrder = ({onCancel}) => {
   const navigate = useNavigate();
   const {id}=useParams()
   console.log(id) //order id
   const handleSubmit = () => {
     // Logic for handling order cancellation
+    onCancel(id);
     alert("Order was cancelled successfully");
+    window.location.reload();
   };
   return (
     <div className="review-page">

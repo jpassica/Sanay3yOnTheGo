@@ -28,8 +28,8 @@ root.render(
     <CustApp />  
   <App />  
   */}
-  {/* <CustApp /> */}
-  <TechApp/>
+  <CustApp />
+  {/* <TechApp/> */}
     
   </React.StrictMode>
 );
