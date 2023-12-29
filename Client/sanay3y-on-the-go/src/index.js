@@ -29,7 +29,7 @@ root.render(
   <App />  
   */}
   {/* <CustApp /> */}
-  <TechApp/>
+  <CustApp/>
     
   </React.StrictMode>
 );

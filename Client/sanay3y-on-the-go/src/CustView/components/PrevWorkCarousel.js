@@ -66,7 +66,7 @@ const PrevWorkCarousel = ({items}) => {
           >
             {/* here you can also pass any other element attributes. Also, you can use your custom components as slides */}
             
-            {items.filter(item=> item.order_status=="F").map((item,index)=>(
+            {items.filter(item=> item.order_status=="F"&&item.highlighted==true).map((item,index)=>(
       <div key={index} className='carousel-card-prev'>
         {item.order_type=="R"&&
         <div >

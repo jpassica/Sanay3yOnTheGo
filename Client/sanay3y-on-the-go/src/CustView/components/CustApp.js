@@ -150,18 +150,12 @@ function CustApp({ customer_id }) {
     setCustomer(data)
   };
 
-  const fetchorder = async (id) => {
-    const res = await fetch(`http://localhost:3001/order/${id}`)
-    const data = await res.json()
 
-    return data
-  }
 
-  const onCancel = async (id) => {
-    const doneorder = await fetchorder(id)
+  const onCancel = async (doneorder) => {
     const updorder = { ...doneorder, order_status: "C" }
 
-    const res = await axios.patch(`http://localhost:3001/order/${id}`, 
+    const res = await axios.patch(`http://localhost:3001/order/${doneorder.order_id}`, 
     {
       order_status: updorder.order_status
     },
@@ -175,7 +169,7 @@ function CustApp({ customer_id }) {
 
     setOrders(
       orders.map((item) =>
-        item.order_id === id ? { ...item, order_status: data.order_status } : item
+        item.order_id === doneorder.order_id ? { ...item, order_status: data.order_status } : item
       )
     )
   }

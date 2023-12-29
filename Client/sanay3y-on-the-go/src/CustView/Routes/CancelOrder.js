@@ -2,15 +2,31 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import ComplaintForm from "../components/ComplaintForm";
 import { useParams } from "react-router-dom";
+import axios from "axios";
 const CancelOrder = ({onCancel}) => {
   const navigate = useNavigate();
   const {id}=useParams()
   console.log(id) //order id
-  const handleSubmit = () => {
+  const fetchOrder = async () => 
+  {
+    try
+    {
+    const res = await axios.get(`http://localhost:3001/order/${id}`)
+    const data=res.data
+        console.log(data)
+        return data
+    }
+    catch(error)
+    {
+    console.log("error",error)
+    }
+  }
+  const handleSubmit =async () => {
+    const doneorder=await fetchOrder()
     // Logic for handling order cancellation
-    onCancel(id);
+    onCancel(doneorder);
     alert("Order was cancelled successfully");
-    window.location.reload();
+    //window.location.reload();
   };
   return (
     <div className="review-page">

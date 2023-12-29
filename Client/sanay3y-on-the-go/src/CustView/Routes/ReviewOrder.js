@@ -8,7 +8,7 @@ import axios from 'axios'
 const ReviewOrder = () => {
 
   const {id}=useParams()
-  console.log(id) //order id
+
  
 
   const[initialReview,setInitialReview]=useState()
@@ -20,11 +20,12 @@ const ReviewOrder = () => {
   const navigate = useNavigate();
 
   //fetching review by order_id
-  const fetchReview = async () => 
+  const fetchReview = async (id) => 
   {
+    console.log("order id",id)
     const res = await axios.get(`http://localhost:3001/order/review/${id}`)
     const data=res.data
-        console.log(data)
+        console.log("data",!data)
         return data
   }
 
@@ -79,14 +80,22 @@ const ReviewOrder = () => {
     
     <div className='review-page'>
       <div className='item'>
-      {<form className='review-form'>
+        {!initialReview&&
+          <>
+      <form className='review-form'>
         <h2>Review your order</h2>
       <label >Review your order</label>
     <textarea value={Rev} onChange={(e) => setRev(e.target.value)} />
-        </form>}
+        </form>
         <StarRating initialRating={initialReview!=null?initialReview.rating:0} setRating={setRating} />
         <button onClick={handleSubmit} className='button-17' style={{margin:30}}>Submit Review</button>
         <button onClick={()=>navigate(-1)} className='button-17'>Back to orders</button>
+  
+        </>
+       }
+       {
+        initialReview&&<h2>you have already submitted review</h2>
+       }
         </div>
        <ComplaintForm order_id={id} />
     </div>
