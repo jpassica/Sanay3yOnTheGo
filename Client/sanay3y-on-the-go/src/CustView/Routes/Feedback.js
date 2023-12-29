@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import "../styles/wallet.css";
 import fix from "../images/fix.png";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 const Feedback = () => {
 
   const [feedback, setFeedback] = useState("");
+  const{id}=useParams()
   const postFeedback=async()=>
   {
     try {
       const response = await axios.post("http://localhost:3001/feedback", {
        content:feedback,
-       customer_id:1
+       customer_id:id
       },
       {
         headers: {
@@ -19,14 +21,16 @@ const Feedback = () => {
       });
       // Handle the response as needed
       console.log("Order booked successfully:", response.data);
-      // You may want to update the UI or show a success message to the user
+      alert("thank you for your feedback!")
+
     } catch (error) {
       // Handle errors
       console.error("Error booking order:", error);
-      // You may want to show an error message to the user
+      alert("feedback submission encountered an error,try again")
     }
   }
   const sendFeedback = async () => {
+    console.log("send ")
     if(feedback=="")
     {
       alert("please enter your feedback to submit")
