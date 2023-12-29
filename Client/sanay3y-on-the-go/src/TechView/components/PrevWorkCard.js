@@ -15,7 +15,7 @@ const PrevWorkCard = ({work,onToggle}) => {
         <h5><b>{work.header}</b></h5>
         <h4>Price: {work.price} {work.total_price} {work.new_price}<sub>EGP</sub> </h4>
 
-        <p>{work.Description}</p>
+        <p>{work.description}</p>
     </div>
         <div>
         <img className='workimg' src={image1} alt='' />
