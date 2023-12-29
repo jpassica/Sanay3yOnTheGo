@@ -13,9 +13,9 @@ const PrevWorkCard = ({work,onToggle}) => {
     <div>
     <button type="button" onClick={() => onToggle(work.order_id)} className={work.highlighted==true? "removebtn" :"addbtn"} style={{position:"relative", left:"-10px",top:"-10px"}}><span className={work.highlighted==true? "bi bi-trash" :"bi bi-cloud-plus-fill"}></span></button>
         <h5><b>{work.header}</b></h5>
-        <h4>Price: 
-        {work.Price}</h4>
-        <p>{work.Description}</p>
+        <h4>Price: {work.price} {work.total_price} {work.new_price}<sub>EGP</sub> </h4>
+
+        <p>{work.description}</p>
     </div>
         <div>
         <img className='workimg' src={image1} alt='' />
