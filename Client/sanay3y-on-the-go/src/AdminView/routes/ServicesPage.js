@@ -10,7 +10,7 @@ const ServicesPage = () => {
       console.log(response.data);
       return response.data;
     } catch (error) {
-      console.error('Error fetching feedbacks:', error.message);
+      console.error('Error fetching services:', error.message);
       throw error;
     }
   };
@@ -36,17 +36,27 @@ const ServicesPage = () => {
     };
 }, []);
 
-    const editService = (service) => {
-    try {
-        const response = axios.patch('http://localhost:3001/service', {
-            serviceName: service.name,
-            service_id: service.service_id
+    const editService = async (serviceId) => {
+        let newName = (prompt('Enter new name'));
+        if(newName === ''){
+            alert('please enter a name')
+            return;
+        }
+        
+        let integerValue = parseInt(newName, 4);
+        if (!isNaN(integerValue)) {
+            alert("name can't be a number");
+            return;
+        }
+        try {
+    const response = axios.patch(`http://localhost:3001/service/${serviceId}`, {            
+            service_name: newName,
         }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-        });
-        
+    });
+            window.location.reload();
         console.log(response.data);
     } catch (error) {
         console.error('Error updating services:', error.message);
@@ -62,7 +72,6 @@ const addService = async () => {
             }
         });
         console.log(response.data);
-        alert('Service added successfully');
         const updatedServices = await fetchServices();
         const reversed = updatedServices.reverse();
         setServices(reversed);            
@@ -79,13 +88,16 @@ const addService = async () => {
   try {
     const response = await axios.delete(`http://localhost:3001/service/${serviceId}`);
     console.log(response.data); // Handle the response as needed
-    alert('Service deleted successfully');
+      const updatedServices = await fetchServices();
+        const reversed = updatedServices.reverse();
+      setServices(reversed);       
   } catch (error) {
     console.error('Error deleting service:', error.message);
     alert(`Error deleting service: ${error.message}`);
     throw error;
-  }
-};
+        }
+                    
+    };
     return (<div className='feedback-container'>
         
         <div className='feedback-data'>
@@ -98,7 +110,7 @@ const addService = async () => {
             services.map((service) => (
         <div className='feedback-data' key={service.id}>
             <h5>{service.name}</h5>
-            <div style={{display:"flex", flexDirection:"row", gap:"30px"}}>
+            <div style={{ display: "flex", flexDirection: "row", gap: "30px" }}>
             <button className='consider-btn' onClick={() =>editService(service.service_id)}>Edit</button>
             <button className='consider-btn' onClick={() =>deleteService(service.service_id)}>Delete</button>
             </div>

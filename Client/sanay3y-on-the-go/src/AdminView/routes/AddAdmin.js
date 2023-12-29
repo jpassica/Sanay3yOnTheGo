@@ -57,6 +57,7 @@ try {
 });
     console.log(response.data);
     alert('Admin added successfully');
+    window.location.reload();
 } catch (error) {
     
     console.error('SignUp error:', error.response ? error.response.data : error.message);

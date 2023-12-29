@@ -45,19 +45,22 @@ const fetchTechnicians = async () => {
 
   const banTech = async (id) => {
     try {
-      alert(id);
-        const response = await axios.delete(`http://localhost:3001/user/${id}`);
+      const response = await axios.delete(`http://localhost:3001/user/${id}`);
       console.log(response.data);
+      alert('Technician banned successfully');
       const updatedTechs = await fetchTechnicians();
       setTechnicians(updatedTechs);
+      handleFilterClick();
     } catch (error) {
+      alert('failed banned');
+
         console.error('Error fetching feedbacks:', error.message);
         throw error;
     }
 
     };
 
-    const handleFilterClick = () => {
+  const handleFilterClick = () => {
         setFilteredTechnicians(technicians.filter(tech => tech.rating < filterRate));
       };
     

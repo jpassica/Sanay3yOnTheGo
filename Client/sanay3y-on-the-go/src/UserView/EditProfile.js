@@ -127,7 +127,9 @@ useEffect(() => {
     setEmail('')
     setAddress('')
     setPassword('')
-    service&&setService('')
+        service && setService('')
+    window.location.reload();
+        
 } catch (error) {
     
     console.error('Edit error:', error.response ? error.response.data : error.message);
@@ -175,27 +177,27 @@ useEffect(() => {
       <div>
        Name:  {' '}
             <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder={name} />
+                className="SignUpTextBoxStyle" placeholder={user.fullname} />
       </div>
       <div>
         Email: {' '}
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder={email} />
+                className="SignUpTextBoxStyle" placeholder={user.email} />
       </div>
       <div>
         Address: {' '}
         <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder={address} />
+                className="SignUpTextBoxStyle" placeholder={user.address} />
       </div>
       <div>
         Phone: {' '}
         <input type="text" value={phone_number} onChange={(e) => setPhone_number(e.target.value)}
-          className="SignUpTextBoxStyle" placeholder={phone_number} />
+          className="SignUpTextBoxStyle" placeholder={user.phone_number} />
       </div>
       <div>
         Password: {' '}
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-          className="SignUpTextBoxStyle" placeholder={password} />
+          className="SignUpTextBoxStyle" placeholder={user.password} />
       </div>
       
       

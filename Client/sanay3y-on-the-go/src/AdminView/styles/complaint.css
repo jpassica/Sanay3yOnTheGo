@@ -1,4 +1,4 @@
-.feedback-container{
+.complaint-container{
     display: grid;
     grid-template-columns: auto auto auto;
     justify-content: center;
@@ -8,7 +8,7 @@
     padding-left: 50px;
 }
 
-.feedback-data
+.complaint-data
 {
     width: 350px;
     height: 350px;
@@ -22,15 +22,15 @@
     border-radius: 10px;
     background: #FFC107;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    gap: 20px;
+    gap: 10px;
 }
-.feedback-data textarea{
+.complaint-data textarea{
     height: 80%;
     resize: none;
     border: none;
     outline: none;
     color: black;
-    font-size: medium;
+    font-size: 12;
     font-family: 'Roboto', sans-serif;
     font-weight: 500;
     text-align: center;
@@ -51,7 +51,7 @@
 .content{
     text-wrap: wrap;
 }
-.feedback-card h3
+.complaint-card h3
 {
     
     font-size: medium;

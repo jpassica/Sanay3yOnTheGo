@@ -62,7 +62,18 @@ const considerFeedback = async (feedback_id) => {
     <div className='feedback-container'>
       {feedbacks.map((feedback) => (
         <div className='feedback-data' key={feedback.id}>
-          <h5>{feedback.feedback_id}</h5>
+              <h5 align="center">
+              <b>
+              feedback number :
+              </b>
+            {feedback.feedback_id}</h5>
+              <h6 align="center">
+            <b>
+              feedback date 
+              </b>
+              <br/>    {
+                new Date(feedback.feedback_timestamp).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })
+              }</h6>
           <textarea readOnly value={feedback.content}></textarea>
           <button
             className='consider-btn'

@@ -211,6 +211,10 @@ const addAdmin = async (req, res) => {
         " VALUES ($1, $2, $3, $4, $5, $6)", 
         [req.body["email"], req.body["address"], req.body["password"], 
         req.body["phone_number"], req.body["fullname"], 'a']);
+
+        const new_id = (await db.query("SELECT currval('client_client_id_seq');")).rows[0].currval;
+        
+        await db.query(`INSERT INTO admin VALUES (${new_id});`);
     
         res.send('Admin added successfully!');
     } catch (error) {

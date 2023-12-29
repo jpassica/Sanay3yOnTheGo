@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../styles/CreateBundle.css';
-const CreateBundle = ({ adminId }) => {
+import { useParams } from 'react-router-dom';
+const CreateBundle = () => {
+    const {id} = useParams();
     const [services, setServices] = useState([]);
     const [techs, setTechs] = useState([]);
     const [bundleName, setBundleName] = useState('');
@@ -19,8 +21,6 @@ const fetchTechnicians = async () => {
     try {
       const response = await axios.get('http://localhost:3001/techs');
         console.log(response.data);
-        alert(adminId);
-
       return response.data;
     } catch (error) {
       console.error('Error fetching services:', error.message);
@@ -28,33 +28,30 @@ const fetchTechnicians = async () => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     let isMounted = true;
 
     const getTechs = async () => {
-      try {
+    try {
         const getTechFromServer = await fetchTechnicians();
         if (isMounted) {
             setTechs(getTechFromServer);
         }
-      } catch (error) {
-          console.log(error);
-        // Handle the error
-      }
+    } catch (error) {
+        console.log(error);
+    }
     };
 
     getTechs();
 
     return () => {
-      isMounted = false;
+    isMounted = false;
     };
-  }, []);
+}, []);
 
     useEffect(() => {
-        // Fetch services
-    
         // Fetch Techs
-        axios.get('http://localhost:3001/techs')
+        axios.get('http://localhost:3001/user/all/techs')
             .then(response => {
                 setTechs(response.data);
             })
@@ -62,7 +59,7 @@ const fetchTechnicians = async () => {
                 console.error('Error fetching techs:', error);
             });
 
-        axios.get('http://localhost:3001/services')
+        axios.get('http://localhost:3001/service')
             .then(response => {
                 setServices(response.data);
             })
@@ -70,7 +67,6 @@ const fetchTechnicians = async () => {
                 console.error('Error fetching services:', error);
             });
         }, []);
-
 
     const handleFirstServiceChange = (e) => {
         if (e.target.value === secondSelectedService || e.target.value === thirdSelectedService) {
@@ -128,20 +124,23 @@ const fetchTechnicians = async () => {
             return;
         }
         try {
-          const response=  axios.post('http://localhost:3001/CreateBundle', {
-            name: bundleName,
-            tech_1: firstSelectedService,
-            tech_2: secondSelectedService,
-            tech_3: thirdSelectedService,
+        const response=  axios.post('http://localhost:3001/bundle', {
+            header: bundleName,
+            tech_id1: firstSelectedTech,
+            tech_id2: secondSelectedTech,
+            tech_id3: thirdSelectedTech,
             description: description,
-            totalPrice: totalPrice,
-            expiryDate: expiryDate,
-            creatorId: adminId
+            total_price: totalPrice,
+            expiry_date: expiryDate,
+            admin_id: id
             }, {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
+            alert('Bundle created successfully');
+            window.location.reload();
+
         console.log(response.data);
     } catch (error) {
         
@@ -149,6 +148,7 @@ const fetchTechnicians = async () => {
     }
     };    
 
+    
 
     return (
         <div className='bundlePageContainer'>
