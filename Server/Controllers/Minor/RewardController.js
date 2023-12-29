@@ -15,10 +15,30 @@ const checkToWinReward = async (req, res) => {
     const customer_id = req.body.customer_id;
 
     try {
-        // employ check if customer has reached a certain threshold
         const pt = (await db.query(`SELECT * FROM point_system;`)).rows;
 
         console.log(pt[pt.length - 1].req_points);
+
+        const points = (await db.query(`SELECT points FROM customer WHERE customer_id = ${customer_id};`)).rows[0].points;
+
+        
+
+        for (var i = pt.length - 1; i >= 0; i --)
+        {
+            if (points >= pt[pt.length - 1].req_points)
+            {
+                // win reward
+
+                await db.query(`INSERT INTO reward (customer_id, percentage) VALUES ($1, $2);`,
+                [customer_id, pt[i].percentage]);
+
+                // dec points 
+
+                await db.query(`UPDATE customer SET points = points - reward;`);
+            }
+        }
+
+        
 
         res.send("Congrats! You have won a reward!");
     } catch (error) {

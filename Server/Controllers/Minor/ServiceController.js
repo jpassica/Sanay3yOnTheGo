@@ -22,4 +22,29 @@ const addServiceCategory = async (req, res) => {
     }
 }
 
-export { getServiceCategories, addServiceCategory };
+const editServiceCategory = async (req, res) => {
+    try {
+        const oldName = (await db.query(`SELECT name FROM service WHERE service_id = ${req.params.id};`)).rows[0].name;
+
+        const newName = req.body.service_name || oldName;
+
+        await db.query(`UPDATE service SET name = '${newName}' WHERE service_id = ${req.params.id};`);
+
+        res.send("Service category edited successfully!");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't edit service category!");
+    }
+}
+
+const deleteServiceCategory = async (req, res) => {
+    try {
+        await db.query(`DELETE FROM service WHERE service_id = ${req.params.id};`);
+        res.send("Successfully deleted!");
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't delete service category!");
+    }
+}
+
+export { getServiceCategories, addServiceCategory, editServiceCategory, deleteServiceCategory };
