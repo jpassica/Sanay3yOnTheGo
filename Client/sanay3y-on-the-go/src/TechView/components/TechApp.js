@@ -264,6 +264,32 @@ const TechApp = () =>
           : alert('Error Deleting This order')
       }
 
+      const onCancel = async (id) => {
+        const doneorder = await fetchorder(id)
+        const updorder = { ...doneorder, order_status: "C" }
+    
+        const res = await axios.patch(`http://localhost:3001/order/${id}`, 
+        {
+          tech_id: 12,
+          order_id: updorder.order_id,
+          highlighted: updorder.highlighted,
+          order_status: updorder.order_status
+        },
+        {
+          headers: {
+            'Content-type': 'application/x-www-form-urlencoded',
+          },
+        })
+    
+        const data =  res.data
+    
+        setorders(
+          orders.map((item) =>
+            item.order_id === id ? { ...item, order_status: data.order_status } : item
+          )
+        )
+      }
+
      
 
 
@@ -273,7 +299,7 @@ const TechApp = () =>
       <Routes>
       <Route exact path="/" element={<Home />}/>
         <Route exact path="/Account" element={<Account tech={tech} />}/>
-        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
+        <Route exact path="/Orders" element={<Orders orders={orders} ondelete={onCancel} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>
         <Route exact path="/FeaturedWork" element={<FeaturedWork PrevWork={orders} onToggle={togglehighlight}/>}/>
         
