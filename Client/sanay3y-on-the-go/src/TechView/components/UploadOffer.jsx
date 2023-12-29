@@ -23,11 +23,25 @@ function UploadOffer({OnAdd,tech_id}) {
       return
     }
 
+     let intpre = parseFloat(preprice,10)
+    if(isNaN(intpre))
+    {
+      alert('Previous Price must be number')
+      return
+    }
+     intpre = parseFloat(price,10)
+    if(isNaN(intpre))
+    {
+      alert('New Price must be number')
+      return
+    }
+
     if(Number(preprice)<Number(price))
     {
       alert('New price must be less')
       return
     }
+
 
     OnAdd({ heading, content, preprice,price })
     setHeading('')
