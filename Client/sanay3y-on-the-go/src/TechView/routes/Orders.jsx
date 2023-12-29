@@ -19,14 +19,14 @@ const Orders = () => {
     const updorder2 = { ...acceptedorder, order_status: "U" }
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
-    {
-      updorder2
-    },
-     {
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-      }
-    })
+      {
+        updorder2
+      },
+      {
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded',
+        }
+      })
 
     const data = res.data
 
@@ -40,17 +40,17 @@ const Orders = () => {
     const doneorder = await fetchorder(id)
     const updorder = { ...doneorder, order_status: "F" }
 
-    const res = await axios.patch(`http://localhost:3001/order/${id}`, 
-    {
-      updorder
-    },
-    {
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
+    const res = await axios.patch(`http://localhost:3001/order/${id}`,
+      {
+        updorder
       },
-    })
+      {
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded',
+        },
+      })
 
-    const data =  res.data
+    const data = res.data
 
     setorders(
       orders.map((item) =>
@@ -74,9 +74,9 @@ const Orders = () => {
     const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
 
     const res = await axios.patch(`http://localhost:3001/order/${id}`,
-    {
-      updwork
-    }, {
+      {
+        updwork
+      }, {
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       },
@@ -91,26 +91,26 @@ const Orders = () => {
     )
   }
 
-  const [filter,setFilter]=useState('pending');
-const Orders = ({orders,ondelete,onDone,onAccept,onToggle}) => {
-  const [filter,setFilter]=useState('F');
-  return (
-//orders,ondelete,onDone,onAccept,onToggle}
-    <div>
-       <div className='highlightsbtns'>
-            <div></div>
-        <button className={filter=='P'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('P')}> Pending </button>
-        <button className={filter=='F'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('F')}> Previous </button>
-        <button className={filter=='U'? "probtn probtnclicked" :"probtn"} onClick={()=>setFilter('U')}> Upcoming </button>
+  const [filter, setFilter] = useState('pending');
+  const Orders = ({ orders, ondelete, onDone, onAccept, onToggle }) => {
+    const [filter, setFilter] = useState('F');
+    return (
+      //orders,ondelete,onDone,onAccept,onToggle}
+      <div>
+        <div className='highlightsbtns'>
+          <div></div>
+          <button className={filter == 'P' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('P')}> Pending </button>
+          <button className={filter == 'F' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('F')}> Previous </button>
+          <button className={filter == 'U' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('U')}> Upcoming </button>
 
-        <div></div>
+          <div></div>
 
         </div>
 
-        <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>
+        <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
         
-    </div>
-  )
+      </div>
+    )
+  }
 }
-
-export default Orders
+  export default Orders;
