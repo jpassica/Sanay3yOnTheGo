@@ -11,21 +11,20 @@ const getPointSystemDetails = async(req, res) => {
     }
 };
 
-const checkToWinReward = async (req, res) => {
-    const customer_id = req.body.customer_id;
+const checkToWinReward = async (customer_id) => {
+    //const customer_id = req.body.customer_id;
 
     try {
         const pt = (await db.query(`SELECT * FROM point_system;`)).rows;
 
-        console.log(pt[pt.length - 1].req_points);
+        //console.log(pt[pt.length - 1].req_points);
 
         const points = (await db.query(`SELECT points FROM customer WHERE customer_id = ${customer_id};`)).rows[0].points;
-
+        console.log(points);
         
-
         for (var i = pt.length - 1; i >= 0; i --)
         {
-            if (points >= pt[pt.length - 1].req_points)
+            if (points >= pt[i].req_points)
             {
                 // win reward
 
@@ -34,16 +33,18 @@ const checkToWinReward = async (req, res) => {
 
                 // dec points 
 
-                await db.query(`UPDATE customer SET points = points - reward;`);
+                await db.query(`UPDATE customer SET points = points - ${pt[i].req_points}
+                WHERE customer_id = ${customer_id};`);
+
+                return res.send("Congrats! You have won a reward!");
             }
         }
 
-        
+        //res.send("No reward has been won!");        
 
-        res.send("Congrats! You have won a reward!");
     } catch (error) {
         console.log(error);
-        res.send("Couldn't win reward! Hard luck, haha!");
+        //res.send("Couldn't win reward! Hard luck, haha!");
     }
 }
 
@@ -67,10 +68,20 @@ const addPointsToCustomer = async (order_type, order_id, customer_id) => {
         }
         await db.query(`UPDATE customer SET points = points + ${price} WHERE customer_id = ${customer_id};`);
 
+        checkToWinReward(customer_id);
+
     } catch (error) {
         console.log(error);
-        res.send("Couldn't add points to customer!");
+        //res.send("Couldn't add points to customer!");
     }
-    };
+};
+
+const checkToApplyReward = async () => {
+    try {
+
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 export { getPointSystemDetails, checkToWinReward, addPointsToCustomer };
