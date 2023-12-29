@@ -1,11 +1,99 @@
 import React, { useState } from 'react'
 import OrdersList from '../components/OrdersList';
+import axios from 'axios';
+
+const Orders = () => {
+  const [orders, setorders] = useState([])
+  
+
+  const fetchorder = async (orderId) => {
+    const res = await fetch(`http://localhost:3001/order/${orderId}`)
+    const data = await res.json()
+
+    return data
+  }
 
 
-const Orders = ({orders,ondelete,onDone,onAccept,onToggle}) => {
+  const onAccept = async (id) => {
+    const acceptedorder = await fetchorder(id)
+    const updorder2 = { ...acceptedorder, order_status: "U" }
+
+    const res = await axios.patch(`http://localhost:3001/order/${id}`,
+    {
+      updorder2
+    },
+     {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      }
+    })
+
+    const data = res.data
+
+    setorders(
+      orders.map((item) =>
+        item.order_id === id ? { ...item, order_status: data.order_status } : item
+      )
+    )
+  }
+  const onDone = async (id) => {
+    const doneorder = await fetchorder(id)
+    const updorder = { ...doneorder, order_status: "F" }
+
+    const res = await axios.patch(`http://localhost:3001/order/${id}`, 
+    {
+      updorder
+    },
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data =  res.data
+
+    setorders(
+      orders.map((item) =>
+        item.order_id === id ? { ...item, order_status: data.order_status } : item
+      )
+    )
+  }
+
+
+  const deleteorder = async (id) => {
+    const res = await axios.delete(`http://localhost:3001/order/${id}`)
+    //We should control the response status to decide if we will change the state or not.
+    res.status === 200
+      ? setorders(orders.filter((order) => order.order_id !== id))
+      : alert('Error Deleting This order')
+  }
+
+ 
+  const togglehighlight = async (id) => {
+    const worktotoggle = await fetchorder(id)
+    const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
+
+    const res = await axios.patch(`http://localhost:3001/order/${id}`,
+    {
+      updwork
+    }, {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data = res.data
+
+    setorders(
+      orders.map((item) =>
+        item.order_id === id ? { ...item, highlighted: data.highlighted } : item
+      )
+    )
+  }
+
   const [filter,setFilter]=useState('pending');
   return (
-
+//orders,ondelete,onDone,onAccept,onToggle}
     <div>
        <div className='highlightsbtns'>
             <div></div>
@@ -17,7 +105,7 @@ const Orders = ({orders,ondelete,onDone,onAccept,onToggle}) => {
 
         </div>
 
-        <OrdersList filter={filter} orders={orders} ondelete={ondelete} onDone={onDone} onAccept={onAccept} onToggle={onToggle}/>
+        <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>
         
     </div>
   )

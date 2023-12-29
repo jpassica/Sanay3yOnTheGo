@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import techimg from './TechView/img/tech.png';
+import techimg from '../TechView/img/tech.png';
 import custimg from './img/customerIconSignUp.png';
 import toolimg from './img/technicianIconSignUp.png';
 import './styles/signUp.css';
+import { useNavigate } from 'react-router-dom';
 
-const SignUp = ({ onSignUpSuccess }) => {
+const SignUp = () => {
+const navigate = useNavigate();
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
 const [phone, setPhone] = useState('');
@@ -22,7 +24,7 @@ const [divCustColor, setCustDivColor] = useState('#FBF7E5');
 
 const fetchServices = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/services');
+      const response = await axios.get('http://localhost:3001/service');
       console.log(response.data);
       return response.data;
     } catch (error) {
@@ -121,7 +123,7 @@ setCategory(event.target.value);
         }
 
 try {
-    const response = await axios.post('http://localhost:3001/SignUp',{
+    const response = await axios.post('http://localhost:3001/user',{
     email: email,
     password: password,
     fullname: name,
@@ -135,16 +137,19 @@ try {
     }
 });
     console.log(response.data);
-    onSignUpSuccess();
+    navigate('/');
 } catch (error) {
     
     console.error('SignUp error:', error.response ? error.response.data : error.message);
 }
 };
 
+const toggleForm1 = () => {
+    navigate('/');
+  }
 
-
-return (
+    return (
+    <>
 <div className="ContainerStyle">
 <div className="FirstContainerStyle">
     <p className="welcomeStyle">Welcome to</p>
@@ -156,7 +161,7 @@ return (
     <p className="sanay3yStyle">Sanay3y On The Go!</p>
 </div>
 <form className="SecondContainerStyle">
-    <h1>Sign UP to Your Account</h1>
+    <h1>Sign up to your account</h1>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)}
                 className="SignUpTextBoxStyle" placeholder="Full Name" />
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
@@ -194,7 +199,17 @@ return (
     Sign Up
     </button>
 </form>
-</div>
+    </div>
+    
+    <div className='navStyle'>
+    <p className='switchPageStyle'>
+      Already have an account?{' '}
+      <span onClick={toggleForm1} className="under-lined-word">
+        Login
+      </span>
+    </p>
+     </div>
+     </>
 );
 };
 

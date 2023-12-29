@@ -1,31 +1,41 @@
     import React from 'react'
     import { NavLink } from "react-router-dom";
     import '../styles/navAdmin.css'
-
-    const NavBarAdmin = () => {
+import { useParams } from 'react-router-dom';
+const NavBarAdmin = () => {
+    const { id } = useParams();
+    const adminId = id;
     return (
+        
         <nav className="navbar">
-        <div className="container">
+        
+            <div className="container">
         <div className='nav-list'>
             <ul className='navitems'>
             <li>
-                <NavLink to="/">Home</NavLink>
+                <NavLink to={`/AdminHome/${adminId}`}>Home</NavLink>
             </li>
             <li>
-                <NavLink to="/Feedbacks">Feedback</NavLink>
+                <NavLink to={`/Feedbacks/${adminId}`}>Feedback</NavLink>
             </li>
             <li>
-                <NavLink to="/Complaints">Complaints</NavLink>
+                <NavLink to={`/Complaints/${adminId}`}>Complaints</NavLink>
             </li>       
             <li>
-                <NavLink to="/Technicians">Technicians</NavLink>
+                <NavLink to={`/Technicians/${adminId}`}>Technicians</NavLink>
             </li>
             <li>
-                <NavLink to="/CreateBundle">Create Bundles</NavLink>
+                <NavLink to={`/CreateBundle/${adminId}`}>Create Bundles</NavLink>
             </li>
             <li>
-                <NavLink to="/Account">Account</NavLink>
+                <NavLink to={`/AddAdmin/${adminId}`}>Add Admin</NavLink>
             </li>            
+            <li>
+                <NavLink to={`/Services/${adminId}`}>Edit Services</NavLink>
+            </li>   
+            <li>
+                <NavLink to={`/Account/${adminId}`}>Account</NavLink>
+            </li>                     
             </ul>
         </div>
         </div>

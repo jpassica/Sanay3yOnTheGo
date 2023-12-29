@@ -5,7 +5,7 @@ import eclipse from '../img/Ellipse.png'
 import '../styles/home.css'
 
 
-const Home = () => {
+const TechnicianHome = () => {
   return (
     <div className='home'>
         <div className='Welcome'>
@@ -19,4 +19,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default TechnicianHome

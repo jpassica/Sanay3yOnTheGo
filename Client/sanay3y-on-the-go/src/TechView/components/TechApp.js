@@ -1,21 +1,20 @@
 import React, { useState } from 'react'
 import {useEffect} from 'react'
 import { BrowserRouter , Route, Routes } from 'react-router-dom';
-import Home from '../routes/Home'
 import Account from '../routes/Account'
 import Orders from '../routes/Orders'
-// import Profile from './routes/Profile'
 import FeaturedWork from '../routes/FeaturedWork'
 import Offers from '../routes/Offers'
 import Navbar from './Navbar'
 import EditProfile from '../routes/EditProfile'
 import AddOffer from '../routes/AddOffer'
 import axios from "axios";
-
+import {useParams} from 'react-router-dom'
 
 
 const TechApp = () =>
 {
+  const {id} = useParams();
     const[offers,setoffers]=useState([])
     const[prevwork,setprevwork]=useState([])
     const[techs,settechs]=useState([])
@@ -27,7 +26,7 @@ const TechApp = () =>
 
     const fetchservice=async()=>
     {
-      const response = await axios.get('http://localhost:3001/services');
+      const response = await axios.get('http://localhost:3001/service');
       console.log(response.data);
       return response.data;
     }
@@ -44,7 +43,6 @@ const TechApp = () =>
 
     const fetchorders=async ()=>
     {
-      const id = 23;
       const res= (await axios.get(`http://localhost:3001/order/tech/${id}`)).data;
       //const data=  res.data;
       //console.log(data)
@@ -62,56 +60,24 @@ const TechApp = () =>
       console.log(orders)
 
 
-    const fetchtech = async (id) => {
-      const res = await axios.get(`http://localhost:3001/user/12`)
+    const fetchtech = async () => {
+      const res = await axios.get(`http://localhost:3001/user/${id}`)
       const data = res.data;
-  
       return data
     }
 
     useEffect(()=>
     {const gettech=async()=>{
-      const techfromserver=await fetchtech(12)
+      const techfromserver=await fetchtech()
       settech(techfromserver)
     }
     gettech()
   },[])
 
 
-  const edittech = async(id,newtech) =>{
-    const techtoupdate = await fetchtech(id)
-    const updtech ={...techtoupdate,...newtech}
-
-    const res = await axios.post(`http://localhost:3001/user/12`, 
-    {
-      tech_id:12,
-    FullName: newtech.fname,
-    Email: newtech.email,
-    Address: newtech.area,
-    Phone_Number: newtech.number,
-    name:newtech.service
-    },
-    {
-      headers: {
-        'Content-type': 'application/x-www-form-urlencoded',
-      }
-    })
-
-    const data = res.data;
-    settech(data)
-  }
-
-
-
-
-
-
-
-
       
     const fetchoffers=async ()=>
     {
-      const id = 12;
       const res = await axios.get(`http://localhost:3001/offer/tech/${id}`);
       const data= res.data;
       console.log(data)
@@ -129,8 +95,8 @@ const TechApp = () =>
       console.log(offers)
 
 
-      const fetchorder = async (id) => {
-        const res = await fetch(`http://localhost:3001/order/${id}`)
+      const fetchorder = async (orderId) => {
+        const res = await fetch(`http://localhost:3001/order/${orderId}`)
         const data = await res.json()
     
         return data
@@ -138,8 +104,8 @@ const TechApp = () =>
 
 
 
-      const deleteOffer = async (id) => {
-        const res = await axios.delete(`http://localhost:3001/offer/5`);
+      const deleteOffer = async (orderId) => {
+        const res = await axios.delete(`http://localhost:3001/offer/${orderId}`);
         //We should control the response status to decide if we will change the state or not.
         res.status === 200
           ? setoffers(offers.filter((offer) => offer.id !== id))
@@ -257,7 +223,7 @@ const TechApp = () =>
         <BrowserRouter>
       <Navbar />
       <Routes>
-      <Route exact path="/" element={<Home />}/>
+      {/* <Route exact path="/" element={<Home />}/> */}
         <Route exact path="/Account" element={<Account tech={tech} />}/>
         <Route exact path="/Orders" element={<Orders orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight}/>}/>
         <Route exact path="/Offers" element={<Offers offersdata={offers} OnDelete={deleteOffer} OnAdd={addoffer}/>}/>

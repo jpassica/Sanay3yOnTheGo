@@ -29,7 +29,7 @@ return (
             <h4>Area</h4>
                 <p>{admin.area}</p>
                 
-            <a href="#" class="btn btn-primary btn-block mt-3 probutton">
+            <a href="/" class="btn btn-primary btn-block mt-3 probutton">
                 Sign Out
             </a>
         </div>

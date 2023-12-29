@@ -88,6 +88,11 @@ const getUserDetails = async (req, res) => {
             console.log(result);
             res.send(JSON.stringify(result));
         }
+        else if (main_result.type == "a")
+        {
+            console.log(main_result);
+            res.send(JSON.stringify(main_result));
+        }
     } catch (error) {
         console.log(error);
         res.send("Couldn't retrieve account details!");
