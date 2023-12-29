@@ -4,7 +4,7 @@
     padding: 20px;
     height: 65px;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 2fr;
     max-width: 100%;
     margin: 0 auto;
     /* border-bottom: 1px solid #f2f2f2; */
