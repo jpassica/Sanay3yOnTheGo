@@ -43,14 +43,10 @@ const fetchTechnicians = async () => {
     };
   }, []);
 
-  const banTech = () => {
+  const banTech = async (id) => {
     try {
-        const response = axios.delete('http://localhost:3001/user/:id', {
-        }, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            }
-        });
+      alert(id);
+        const response = await axios.delete(`http://localhost:3001/user/${id}`);
         console.log(response.data);
     } catch (error) {
         console.error('Error fetching feedbacks:', error.message);
@@ -86,7 +82,7 @@ const fetchTechnicians = async () => {
                               <h4>{tech.name}</h4>
 
                               <Rate rating={tech.rating} />
-                              <button className='consider-btn' onClick={banTech(tech.feedback_id)}>ban</button>
+                              <button className='consider-btn' onClick={()=> banTech(tech.client_id)}>ban</button>
                           </div>
         ))}
       </div>
