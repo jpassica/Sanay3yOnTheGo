@@ -163,7 +163,9 @@ CREATE TABLE RegularOrder(
         ON UPDATE CASCADE,
     Header VARCHAR(50),
     Description TEXT,
-    tech_id INT REFERENCES technician(tech_id),
+    tech_id INT REFERENCES technician(tech_id)
+        ON DELETE CASCADE
+        ON UPDATE CASCADE,
     Price INT NOT NULL
 );
 
