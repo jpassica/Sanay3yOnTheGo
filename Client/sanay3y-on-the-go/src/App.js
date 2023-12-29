@@ -73,7 +73,7 @@ const Sanay3y = () => {
         <Route path="/TechDetails/:id/:TechId" element={<><NavBarCust /><TechDetails  /></>}/>
         <Route exact path={`/CustomerOrders/:id`} element={<><NavBarCust /><CustomerOrders /></>} />
         <Route path="/ReviewOrder/:id/:OrderId" element={<><NavBarCust /><ReviewOrder /></>} />
-        <Route path="/CancelOrder/:id" element={<><NavBarCust /><CancelOrder /></>} />
+        <Route path="/CancelOrder/:id/:OrderId" element={<><NavBarCust /><CancelOrder /></>} />
         <Route path="/wallet/:id" element={<><NavBarCust /><Wallet /></>}/>
         <Route path="/bundles/:id" element={<><NavBarCust /><Bundles /></>} />
         <Route path="/feedback/:id" element={<><NavBarCust /><Feedback /></>} />

@@ -5,13 +5,14 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 const CancelOrder = () => {
   const navigate = useNavigate();
-  const {id}=useParams()
-  console.log(id) //order id
+  const {id,OrderId}=useParams()
+  
+  console.log(id) 
   const fetchOrder = async () => 
   {
     try
     {
-    const res = await axios.get(`http://localhost:3001/order/${id}`)
+    const res = await axios.get(`http://localhost:3001/order/${OrderId}`)
     const data=res.data
         console.log(data)
         return data
@@ -80,7 +81,7 @@ const CancelOrder = () => {
         </div>
       </div>
       <div>
-        <ComplaintForm order_id={id}/>
+        <ComplaintForm order_id={OrderId} customer_id={id}/>
       </div>
     </div>
   );
