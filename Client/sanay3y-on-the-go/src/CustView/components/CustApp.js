@@ -14,9 +14,9 @@ import Account from "../Routes/Account";
 import EditProfile from "../Routes/EditProfile";
 import axios from "axios";
 function CustApp({ customer_id }) {
-
+   customer_id=1
   //customer_id is passed as a prop from login page
-  const [customer, setCustomer] = useState();
+  const [customer, setCustomer] = useState({});
 
   const [technicians, setTechnicians] = useState([]);
   const [services, setServices] = useState([]);
@@ -28,17 +28,10 @@ function CustApp({ customer_id }) {
 
   //fetching techs of same area as customer
   const fetchTechnicians = async () => {
-    const res = await axios.post(
-      "http://localhost:3001/user/Techs",
-      { customer_id: 21 },
-      {
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-      }
-    );
+    const res = await axios.get(
+      "http://localhost:3001/user//All/Techs")
     const data = res.data;
-    console.log(data);
+
     return data;
   };
 
@@ -46,54 +39,42 @@ function CustApp({ customer_id }) {
   const fetchServices = async () => {
     const res = await axios.get("http://localhost:3001/service");
     const data = res.data;
-    console.log(data);
+
     return data;
   };
 
   //fetching orders of customer by customer id
   const fetchOrders = async () => {
-    const res = await axios.get(`http://localhost:3001/order/${customer_id}`);
+    const res = await axios.get(`http://localhost:3001/order/customer/1`);
     const data = res.data
+    console.log(orders)
     return data;
   };
 
-  //fetching all reviews,,malhash ay 30 lazma
-  const fetchReviews = async () => {
-    const res = await fetch("http://localhost:5000/reviews");
-    const data = await res.json();
-    console.log(data);
-    return data;
-  };
+ 
 
   //fetching customer's notification
   const fetchNotifications = async () => {
-    const res = await fetch("http://localhost:5000/notifications");
-    const data = await res.json();
-    console.log(data);
-    return data;
+    const res = await axios.get(`http://localhost:3001/notification/${customer_id}`);
+    return res.data;
   };
 
   //fetching bundles
   const fetchBundles = async () => {
-    const res = await fetch("http://localhost:5000/bundles");
-    const data = await res.json();
-    console.log(data);
-    return data;
+    const res = await axios.get("http://localhost:3001/bundle");
+    return res.data;
   };
   //fetching point system (req points&percentage)
   const fetchPoint_System = async () => {
-    const res = await fetch("http://localhost:5000/Point_System");
-    const data = await res.json();
-    console.log(data);
-    return data;
+    const res = await axios.get("http://localhost:3001/reward/PointSystem");
+    console.log(res.data)
+    return res.data;
   };
 
   //fetch customer details of customer_id
   const fetchCustomer = async () => {
-    const res = await fetch(`http://localhost:3001/user/${customer_id}`);
-    const data = await res.json();
-    console.log(data);
-    return data;
+    const res = await axios.get(`http://localhost:3001/user/${customer_id}`);
+    return res.data;
   };
 
   //fetching data on loading the page
@@ -109,10 +90,6 @@ function CustApp({ customer_id }) {
     const getOrders = async () => {
       const getOrdersFromServer = await fetchOrders();
       setOrders(getOrdersFromServer);
-    };
-    const getReviews = async () => {
-      const getReviewsFromServer = await fetchReviews();
-      setReviews(getReviewsFromServer);
     };
     const getNotifications = async () => {
       const getNotificationsFromServer = await fetchNotifications();
@@ -133,7 +110,6 @@ function CustApp({ customer_id }) {
     getTechs();
     getServices();
     getOrders();
-    getReviews();
     getNotifications();
     getBundles();
     getPoint_System();
@@ -151,19 +127,53 @@ function CustApp({ customer_id }) {
     reward: 20,
     Points: 200,
   };
+
+  console.log(customer)
    
   //editing customer details
-  const editcust = async (id, newcust) => {
-    const res = await fetch(`http://localhost:5000/techs/${id}`, {
-      method: "PUT",
+  const editcust = async (newcust) => {
+    const res = await axios.patch(`http://localhost:3001/user/${customer_id}`, 
+    {
+      customer_id:1,
+    fullname: newcust.fname,
+    email: newcust.email,
+    address: newcust.area,
+    phone_number: newcust.number
+    },
+    {
       headers: {
-        "Content-type": "application/json",
-      },
-      //body: JSON.stringify(updtech),
-    });
+        'Content-type': 'application/x-www-form-urlencoded',
+      }
+    })
 
-    const data = await res.json();
+    const data = res.data;
+    setCustomer(data)
+    console.log("customer data",data)
   };
+
+
+
+  const onCancel = async (doneorder) => {
+    const updorder = { ...doneorder, order_status: "C" }
+
+    const res = await axios.patch(`http://localhost:3001/order/${doneorder.order_id}`, 
+    {
+      order_status: updorder.order_status
+    },
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data =  res.data
+
+    setOrders(
+      orders.map((item) =>
+        item.order_id === doneorder.order_id ? { ...item, order_status: data.order_status } : item
+      )
+    )
+  }
 
   return (
     <>
@@ -191,11 +201,11 @@ function CustApp({ customer_id }) {
             path="/ReviewOrder/:id"
             element={<ReviewOrder />}
           />
-          <Route path="/CancelOrder/:id" element={<CancelOrder />} />
+          <Route path="/CancelOrder/:id" element={<CancelOrder onCancel={onCancel}/>} />
           <Route
             path="/wallet"
             element={
-              <Wallet Points={sampleCust.Points} Point_System={Point_System} />
+              <Wallet Points={customer.points} Point_System={Point_System} />
             }
           />
           <Route path="/bundles" element={<Bundles bundles={bundles} />} />
@@ -204,10 +214,10 @@ function CustApp({ customer_id }) {
             path="/notifications"
             element={<Notifications notifications={notifications} />}
           />
-          <Route path="/account" element={<Account customer={sampleCust} />} />
+          <Route path="/account" element={<Account customer={customer} />} />
           <Route
             path="/editprofile"
-            element={<EditProfile customer={sampleCust} editcust={editcust} />}
+            element={<EditProfile customer={customer} editcust={editcust} />}
           />
         </Routes>
       </BrowserRouter>

@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 import '../styles/account.css'
 import '../styles/editpage.css';
+import imgsrc from '../img/profile.png'
 
 
 const Edit = ({tech,edittech,services}) => {
@@ -15,7 +16,7 @@ const Edit = ({tech,edittech,services}) => {
 
 
     const onSubmit = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
     
         if (fname==""&&email==""&&service==""&&area==""&&number=="") {
           alert('no changes')
@@ -24,11 +25,11 @@ const Edit = ({tech,edittech,services}) => {
 
         if(fname=="")
         {
-          setfname(tech.FullName);
+          setfname(tech.fullname);
         }
         if(email=="")
         {
-          setemail(tech.Email);
+          setemail(tech.email);
         }
         if(service=="")
         {
@@ -36,20 +37,20 @@ const Edit = ({tech,edittech,services}) => {
         }
         if(area=="")
         {
-          setarea(tech.Address);
+          setarea(tech.address);
         }
         if(number=="")
         {
-          setnumer(tech.Phone_Number);
+          setnumer(tech.phone_number);
         }
     
         edittech({ fname, number, email,service,area})
         alert('changes saved')
-        setfname('')
-        setnumer('')
-        setemail('')
-        setservice('')
-        setarea('')
+        setfname("")
+        setnumer("")
+        setemail("")
+        setservice("")
+        setarea("")
       }
 
 
@@ -60,9 +61,9 @@ const Edit = ({tech,edittech,services}) => {
 
 <div className='row justify-content-around mt-5 user-info'>
       <div class="col-12 col-md-3">
-      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-circle img-thumbnail" alt="avatar"/>
-          <h6>Upload a different photo...</h6>
-          <input type="file" class="form-control"/>
+      <img src={imgsrc} class="avatar img-circle img-thumbnail" alt="avatar"/>
+          {/* <h6>Upload a different photo...</h6>
+          <input type="file" class="form-control"/> */}
               
                 </div>
       
@@ -86,6 +87,13 @@ const Edit = ({tech,edittech,services}) => {
           </div>
 
           <div class="form-group">
+            <label class="col-lg-3 control-label">Address:</label>
+            <div class="col-lg-8">
+              <input class="form-control" type="text" onChange={(e) => setarea(e.target.value)}/>
+            </div>
+          </div>
+
+          <div class="form-group">
             <label class="col-lg-3 control-label">Email:</label>
             <div class="col-lg-8">
               <input class="form-control" type="email" onChange={(e) => setemail(e.target.value)}/>
@@ -97,10 +105,10 @@ const Edit = ({tech,edittech,services}) => {
             <div class="col-lg-8">
               <div class="ui-select">
 
-                <select id="service" value={service}  onChange={(e) => setservice(e.target.value)}>
+                <select id="service" value={service} class="form-control"  onChange={(e) => setservice(e.target.value)}>
                 <option value="">Select a service</option>
                 {services.map((service) => (
-                    <option key={service.id} value={service.name}>
+                    <option key={service.service_id} value={service.name}>
                     {service.name}
                     </option>
                 ))}
@@ -109,7 +117,7 @@ const Edit = ({tech,edittech,services}) => {
             </div>
           </div>
 
-          <div class="form-group">
+          {/* <div class="form-group">
             <label class="col-lg-3 control-label">Area:</label>
             <div class="col-lg-8">
               <div class="ui-select">
@@ -119,7 +127,7 @@ const Edit = ({tech,edittech,services}) => {
                 </select>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className='rowbtntech'>
           <button onClick={onSubmit} id="edit_profile" class=" btn-success  my-4 probutton">Submit Changes</button>
           <CustomLink to="/Account">

@@ -1,5 +1,5 @@
 import db from "../../Config/DB.js";
-import createOrder from "../../Helpers/OrderHelper.js";
+import * as helper from "../../Helpers/GenHelper.js";
 
 const createBundle = async (req, res) => {
 
@@ -20,7 +20,7 @@ const buyBundle = async (req, res) => {
     const id = req.params.id; // bundle id
     try {
         req.body.type = "B";
-        const newOrder = await createOrder(req, res);
+        const newOrder = await helper.makeNewOrder(req, res);
         await db.query (`INSERT INTO isbundle VALUES ($1, $2);`, [newOrder, id]);
         res.send("Bundle purchased successfully!");
     } catch (error) {

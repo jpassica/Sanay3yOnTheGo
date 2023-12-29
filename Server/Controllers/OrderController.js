@@ -1,12 +1,13 @@
 import db from "../Config/DB.js";
-import createOrder from "../Helpers/OrderHelper.js";
+import * as helper from "../Helpers/GenHelper.js";
+import { notifyUser } from "./Minor/NotificationController.js";
 
 const makeRegOrder = async (req, res) => {
     const tech = req.body.tech_id;
     const type = req.body.type;
 
     try {
-        const newOrder = await createOrder(req, res);
+        const newOrder = await helper.makeNewOrder(req, res);
 
         await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
             req.body.description, tech, req.body.price]);
@@ -127,6 +128,58 @@ const updateOrderStatus = async (req, res) => {
 
     try {
         await db.query(`UPDATE orders SET order_status = '${status}' WHERE order_id = ${order_id};`);
+
+        const order_query = (await db.query(`SELECT customer_id,order_type FROM orders WHERE order_id = ${order_id};`)).rows[0];
+        
+        const customer_id = order_query.customer_id;
+        
+        // send notification || increment user's pts
+        if (status == "F")
+        {
+            req.body.content = "Order completed successfully! Please consider rating.";
+
+            // increment user pts 
+            const order_type = order_query.order_type;
+            let price = 0;
+
+            if (order_type == "R")
+            {
+                price = (await db.query(`SELECT price FROM regularorder WHERE 
+                regularorder.order_id = ${order_id};`)).rows[0].price;
+            
+            } else if (order_type == "O")
+            {
+                price = (await db.query(`SELECT new_price FROM offer, isoffer WHERE 
+                isoffer.offer_id = offer.offer_id AND isoffer.order_id = ${order_id};`)).rows[0].new_price;
+
+            } else { // bundle
+
+                price = (await db.query(`SELECT total_price FROM bundle, isbundle WHERE 
+                isbundle.bundle_id = bundle.bundle_id AND isbundle.order_id = ${order_id};`)).rows[0].total_price;
+            }
+
+            await db.query(`UPDATE customer SET points = points + ${price} WHERE customer_id = ${customer_id};`);
+
+        }
+        else if (status == "U")
+        {
+            req.body.content = "The technician has accepted your order!";
+            
+        }
+        else if (status == "C")
+        {
+            req.body.content = "Order cancelled.";
+            req.body.order_id = order_id;
+
+            notifyTechOfCancellation(req, res);
+        }
+
+        // send notification
+        req.body.order_id = order_id;
+        req.body.notified_id = customer_id;
+
+        notifyUser(req, res);
+
         res.send("successfully updated order status!");
     } catch (error) {
         console.log(error);
@@ -147,15 +200,24 @@ const toggleHighlighted = async (req, res) => {
     }
 }
 
-const deleteOrder = async (req, res) => {
+const cancelOrder = async (req, res) => {
     const id = req.params.id;
+    const customer_id = (await db.query(`SELECT customer_id FROM orders WHERE order_id = ${id};`)).rows[0].customer_id;
 
     try {
-        await db.query(`DELETE FROM orders WHERE order_id = ${id};`);
-        res.send("deleted successfully!");
+        await db.query(`UPDATE orders SET order_status = 'C' WHERE order_id = ${id};`);
+
+        // send notification 
+        req.body.content = "Order cancelled.";
+        req.body.order_id = id;
+        req.body.customer_id = customer_id;
+
+        notifyUser(req, res);
+
+        res.send("Cancelled successfully!");
     } catch (error) {
         console.log(error);
-        res.send("couldn't delete order!");
+        res.send("Couldn't cancel order!");
     }
 };
 
@@ -240,6 +302,50 @@ const getReviewsByTechID = async (req, res) => {
     }
 }
 
+const notifyTechOfCancellation = async (req, res) => {
+    const order_id = req.body.order_id;
+
+    try {
+        const type = (await db.query(`SELECT order_type FROM orders WHERE order_id = ${order_id};`)).rows[0].order_type;
+
+        if (type == "R")
+        {
+            req.body.notified_id = (await db.query(`SELECT tech_id FROM regularorder WHERE order_id = ${order_id};`)).rows[0].tech_id;
+
+            notifyUser(req, res);
+
+        } else if (type == "O")
+        {
+            req.body.notified_id = (await db.query(`SELECT tech_id FROM offer, isoffer 
+            WHERE isoffer.offer_id = offer.offer_id 
+            AND order_id = ${order_id};`)).rows[0].tech_id;
+
+            notifyUser(req, res);
+
+        } else if (type == "B")
+        {
+            const techs = (await db.query(`SELECT tech_id1, tech_id2, tech_id3 FROM bundle, isbundle 
+            WHERE isbundle.bundle_id = bundle.bundle_id 
+            AND order_id = ${order_id};`)).rows;
+
+            console.log(techs);
+            console.log(order_id);
+
+            req.body.notified_id = techs[0].tech_id1;
+            notifyUser(req, res);
+
+            req.body.notified_id = techs[0].tech_id2;
+            notifyUser(req, res);
+
+            req.body.notified_id = techs[0].tech_id3;
+            notifyUser(req, res);
+        }
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't notify tech!");
+    }
+}
+
 export { makeRegOrder, getOrderByID, getTechOrders, updateOrderStatus, 
-    deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID,
+    cancelOrder as deleteOrder, makeReview, getReviewByOrderID, getReviewsByTechID,
     toggleHighlighted, getCustomerOrders };

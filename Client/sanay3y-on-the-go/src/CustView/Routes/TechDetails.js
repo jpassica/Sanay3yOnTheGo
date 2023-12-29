@@ -17,6 +17,10 @@ const TechDetails = () => {
   const [OrderTitle, setOrderTitle] = useState("");
   const [OrderDetails, setOrderdetails] = useState("");
   const [OrderDate, setOrderDate] = useState(new Date());
+  const [OrderPrice, setOrderPrice] = useState();
+
+  const currentDate = new Date().toISOString().split("T")[0];
+  const [OfferOrderDate, setOfferOrderDate] = useState(new Date());
 
   const [technician, setTechnician] = useState();
 
@@ -26,6 +30,7 @@ const TechDetails = () => {
 
   //tech id
   const { id } = useParams();
+  console.log(id)
 
   //fetch previous work of a certain tech
   //fetch offers of a certain tech
@@ -33,34 +38,59 @@ const TechDetails = () => {
   //fetch el technician nafso
 
   const fetchPreviousWork = async () => {
-    const res = await axios.get(`https://localhost:3001/order/tech/${id}`);
+    try{
+    const res = await axios.get(`http://localhost:3001/order/tech/${id}`);
     const data = res.data;
     return data;
+    }
+    catch(e)
+    {
+      alert("error in fetching tech's orders")
+    }
   };
 
   const fetchOffers = async () => {
-    const res = await fetch("http://localhost:5000/offers");
-    const data = await res.json();
-    console.log(data);
-    return data;
+    try
+    {
+    const res = await axios.get(`http://localhost:3001/offer/tech/${id}`);
+    return res.data;
+    }
+    catch(e)
+    {
+      alert("error in fetching offers")
+    }
   };
   const fetchTechnician = async () => {
-    const res = await axios.get(`https://localhost:3001/user/${id}`);
-    console.log(data);
+    try
+    {
+    const res = await axios.get(`http://localhost:3001/user/${id}`);
     return res.data;
+    }
+    catch(e)
+    {
+      alert("error in fetching tech")
+    }
   };
   const fetchReviews = async () => {
+    try
+    {
     const res = await axios.get(
-      `https://localhost:3001/order/review/tech/${id}`
+      `http://localhost:3001/order/review/tech/${id}`
     );
    
     return res.data;
+    }
+    catch(e)
+    {
+      alert("error in fetchinh tech's review")
+    }
   };
   
   useEffect(() => {
     const getPrevWork = async () => {
       const getWorkFromServer = await fetchPreviousWork();
-      setPreviousWork(getWorkFromServer.filter((w) => w.order_status == "F"));
+      console.log(getWorkFromServer)
+      setPreviousWork(getWorkFromServer);
     };
     const getOffers = async () => {
       const getOffersFromServer = await fetchOffers();
@@ -84,25 +114,87 @@ const TechDetails = () => {
   //const getTechbyID = () => {
   //return technicians.find(t=>t.id==id)
   //};
-
   const toggleShow = () => {
     setShow(!show);
   };
+/////booking order
+const postOrder = async () => {
+  try {
+    const response = await axios.post("http://localhost:3001/order", {
+      header: OrderTitle,
+      description: OrderDetails,
+      price: OrderPrice,
+      tech_id: id, 
+      type:'R',
+      customer_id:1,
+      order_exec_date:OrderDate
+    },
+    {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    });
+    // Handle the response as needed
+    console.log("Order booked successfully:", response.data);
+    // You may want to update the UI or show a success message to the user
+  } catch (error) {
+    // Handle errors
+    console.error("Error booking order:", error);
+    // You may want to show an error message to the user
+  }
+};
 
-  const bookOffer = () => {
-    //post request
-    alert("offer booked successfully");
+
+    //book offer order
+    const postOfferOrder = async (offer_id) => {
+      console.log(offer_id)
+      try {
+        const response = await axios.post(`http://localhost:3001/offer/${offer_id}`, {
+          type:'O',
+          customer_id:1,
+          order_exec_date:OfferOrderDate
+        },
+        {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
+    
+        // Handle the response as needed
+        console.log("Offer booked successfully:", response.data);
+        // You may want to update the UI or show a success message to the user
+      } catch (error) {
+        // Handle errors
+        console.error("Error booking offer:", error);
+        // You may want to show an error message to the user
+      }
+    };
+
+  const bookOffer = async (offer_id) => {
+
+
+    // Call the function to make the Axios POST request
+    await postOfferOrder(offer_id);
   };
 
-  // const technician=getTechbyID(techID)
-  //console.log(technician)
 
-  const addOrder = () => {
-
-    //post or add a regular order
+console.log(prevWork)
+  const addOrder = async (e) => {
+      console.log("price,order price")
+      e.preventDefault(); // Prevent the default form submission
+      console.log("current date",currentDate)
+      if(OrderTitle==""||OrderDetails==""||!OrderPrice)
+      {
+      alert("please fill all fileds,all fields are required")
+      return
+      }
+      // Call the function to make the Axios POST request
+      await postOrder();
   };
 
-  if (!technician) return <div>loading</div>;
+  if (!technician||!offers||!reviews||!prevWork) return <div>loading</div>;
+
+
   return (
     <div className="techDetails-container">
 
@@ -150,8 +242,17 @@ const TechDetails = () => {
               <input
                 type="date"
                 id="dateInput"
-                value={OrderDate.toISOString().split("T")[0]} // Convert date to string in 'YYYY-MM-DD' format
-                onChange={(e) => setOrderDate(e.target.value)}
+                value={OrderDate? OrderDate.toISOString().split("T")[0]: ""} // Convert date to string in 'YYYY-MM-DD' format
+                onChange={(e) => setOrderDate(new Date(e.target.value))} min={currentDate}
+              />
+            </div>
+            <div className="form-grid-item">
+              <label for="Ser-price">order price</label>
+              <input
+                type="number"
+                value={OrderPrice}
+                onChange={(e) => setOrderPrice(e.target.value)}
+                id="Ser-price"
               />
             </div>
             <input type="submit" className="button-53" value="place order!" />
@@ -162,12 +263,11 @@ const TechDetails = () => {
       <PrevWorkCarousel items={prevWork} />
 
       <div>
-        {offers.filter((offer) => offer.tech_id == id).length != 0 && (
+        {offers.length != 0 && (
           <h3 className="headingprev">Special Offers</h3>
         )}
         <div className="offer-container1">
           {offers
-            .filter((offer) => offer.offer_id == id)
             .map((offer) => (
               <div className="offer-card1">
                 <h2>
@@ -178,7 +278,15 @@ const TechDetails = () => {
                   {offer.new_price} <del>{offer.prev_price}</del>
                 </h4>
                 <p>{offer.content}</p>
-
+                <div className="form-grid-item">
+              <label htmlFor="dateInput">Select a date:</label>
+              <input
+                type="date"
+                id="dateInput"
+                value={OfferOrderDate? OfferOrderDate.toISOString().split("T")[0]: ""} // Convert date to string in 'YYYY-MM-DD' format
+                onChange={(e) => setOfferOrderDate(new Date(e.target.value))} min={currentDate}
+              />
+            </div>
                 <button
                   className=" button-17"
                   onClick={() => bookOffer(offer.offer_id)}

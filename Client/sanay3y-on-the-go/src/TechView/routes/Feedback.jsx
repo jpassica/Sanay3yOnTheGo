@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import "../styles/wallet.css";
-import fix from "../images/fix.png";
+import React, { useState } from 'react'
+import fix from "../img/img1.png";
 import axios from "axios";
-const Feedback = () => {
 
-  const [feedback, setFeedback] = useState("");
+const Feedback = () => {
+    const [feedback, setFeedback] = useState("");
   const postFeedback=async()=>
   {
     try {
@@ -53,6 +52,6 @@ const Feedback = () => {
       <img src={fix} style={{ opacity: "50%" }} />
     </div>
   );
-};
+}
 
-export default Feedback;
+export default Feedback

@@ -13,11 +13,11 @@ root.render(
   <React.StrictMode>
       <Sanay3y />
     {/*
-    <TechApp />
     <Sanay3y />
     <CustApp />  
     <App />  
   */}
+  {/* <CustApp /> */}
     
   </React.StrictMode>
 );

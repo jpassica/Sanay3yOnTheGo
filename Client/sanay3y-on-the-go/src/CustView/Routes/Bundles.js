@@ -1,13 +1,40 @@
 import React, { useState } from "react";
 import "../styles/Bundles.css";
+import axios from "axios";
 
 const Bundles = ({ bundles }) => {
-  const handleBookBundle = (bundleID) => {
+  const [BundleDate, setBundleDate] = useState(new Date());
+  const postBundleOrder= async({bundle_id})=>
+  {
+    try {
+      const response = await axios.post(`http://localhost:3001/bundle/${bundle_id}`, {
+
+        customer_id:1,
+        order_exec_date:BundleDate,
+        type:"B"
+      },
+      {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      });
+      // Handle the response as needed
+      console.log("bundle booked successfully:", response.data);
+      // You may want to update the UI or show a success message to the user
+    } catch (error) {
+      // Handle errors
+      console.error("bundle booking order:", error);
+      // You may want to show an error message to the user
+    }
+  }
+  const handleBookBundle =async (bundleID) => {
+    console.log(bundleID)
+    await postBundleOrder(bundleID)
     // Add your booking logic here, e.g., navigate to a booking page, make an API request, etc.
 
     alert("bundle booked successfully");
   };
-  const [BundleDate, setBundleDate] = useState(new Date());
+
 
   return (
     <div className="bundle-page">
@@ -33,11 +60,11 @@ const Bundles = ({ bundles }) => {
               <input
                 type="date"
                 id="dateInput"
-                value={BundleDate.toISOString().split("T")[0]} // Convert date to string in 'YYYY-MM-DD' format
-                onChange={(e) => setBundleDate(e.target.value)}
+                value={BundleDate? BundleDate.toISOString().split("T")[0]: ""} // Convert date to string in 'YYYY-MM-DD' format
+                onChange={(e) => setBundleDate(new Date(e.target.value))}
               />
             </div>
-            <button className="book-button" onClick={handleBookBundle}>
+            <button className="book-button" onClick={()=>handleBookBundle(bundle.bundle_id)}>
               Book Now
             </button>
           </div>

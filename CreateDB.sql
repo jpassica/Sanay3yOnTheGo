@@ -45,9 +45,10 @@ CREATE TABLE Technician(
 
 CREATE TABLE orders(
     order_id SERIAL PRIMARY KEY,
-    order_status CHAR (1) NOT NULL CHECK (order_status = 'P' OR order_status= 'U' OR order_status = 'F') DEFAULT 'P', 
+    order_status CHAR (1) NOT NULL CHECK (order_status = 'P' OR order_status= 'U' OR order_status = 'F' OR order_status = 'C') DEFAULT 'P', 
     order_type CHAR(1) NOT NULL CHECK (order_type = 'R' OR order_type = 'B' OR order_type = 'O') DEFAULT 'R',
     order_DATE DATE DEFAULT CURRENT_DATE,
+    order_exec_date DATE,
     Customer_ID INT REFERENCES Customer(Customer_ID)
         ON DELETE CASCADE 
         ON UPDATE CASCADE,
@@ -147,7 +148,7 @@ CREATE TABLE ConsistOf(
 CREATE TABLE Notification(
     Notification_ID SERIAL PRIMARY KEY,
     Content TEXT NOT NULL,
-    Notification_DATE DATE,
+    Notification_DATE DATE DEFAULT CURRENT_DATE,
     Notified_ID INT NOT NULL REFERENCES Client(Client_ID)
         ON DELETE CASCADE
         ON UPDATE CASCADE,

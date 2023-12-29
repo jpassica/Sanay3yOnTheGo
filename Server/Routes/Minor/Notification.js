@@ -3,16 +3,17 @@ import bodyParser from "body-parser";
 const router = express.Router();
 router.use(bodyParser.urlencoded({ extended: true }));
 
-import * as rewardController from "../../Controllers/Minor/RewardController.js";
+import * as notificationController from "../../Controllers/Minor/NotificationController.js";
 
 router.route('/')
     .get()
-    .post(rewardController.winReward)
+    .post()
     .put()
     .patch()
     .delete()
 
-router.route('/PointSystem')
-    .get(rewardController.getPointSystemDetails)
+router.route('/:id')
+    .get(notificationController.getUserNotifications)
 
-export default router;
+
+export default router;  

@@ -15,5 +15,4 @@ router.route('/')
 router.route('/free')
     .get(complaintController.getUnreviewedComplaints)
 
-
 export default router;

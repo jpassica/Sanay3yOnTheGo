@@ -7,7 +7,7 @@ import * as serviceController from "../../Controllers/Minor/ServiceController.js
 
 router.route('/')
     .get(serviceController.getServiceCategories)
-    .post()
+    .post(serviceController.addServiceCategory)
     .put()
     .patch()
     .delete()

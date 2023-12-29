@@ -1,12 +1,32 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import ComplaintForm from "../components/ComplaintForm";
-const CancelOrder = () => {
+import { useParams } from "react-router-dom";
+import axios from "axios";
+const CancelOrder = ({onCancel}) => {
   const navigate = useNavigate();
-
-  const handleSubmit = () => {
+  const {id}=useParams()
+  console.log(id) //order id
+  const fetchOrder = async () => 
+  {
+    try
+    {
+    const res = await axios.get(`http://localhost:3001/order/${id}`)
+    const data=res.data
+        console.log(data)
+        return data
+    }
+    catch(error)
+    {
+    console.log("error",error)
+    }
+  }
+  const handleSubmit =async () => {
+    const doneorder=await fetchOrder()
     // Logic for handling order cancellation
+    onCancel(doneorder);
     alert("Order was cancelled successfully");
+    //window.location.reload();
   };
   return (
     <div className="review-page">
@@ -31,7 +51,7 @@ const CancelOrder = () => {
         </div>
       </div>
       <div>
-        <ComplaintForm />
+        <ComplaintForm order_id={id}/>
       </div>
     </div>
   );

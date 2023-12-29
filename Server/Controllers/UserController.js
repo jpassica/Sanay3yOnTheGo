@@ -84,9 +84,15 @@ const getUserDetails = async (req, res) => {
         {
             const points = (await db.query(`SELECT points FROM customer WHERE customer_id = ${id};`)).rows[0];
 
-            const result = {...main_result, ...points};
+            const rewards = (await db.query(`SELECT percentage FROM reward WHERE customer_id = ${id};`)).rows[0];
+
+            const result = {...main_result, ...points, ...rewards};
             console.log(result);
             res.send(JSON.stringify(result));
+        } else if (main_result.type == "a")
+        {
+            console.log(main_result);
+            res.send(JSON.stringify(main_result));
         }
         else if (main_result.type == "a")
         {
@@ -123,6 +129,17 @@ const updateUserDetails = async (req, res) => {
     const fullname = req.body.fullname || oldDetails.fullname;
     const password = req.body.password || oldDetails.password;
 
+    if (password == null)
+        password = oldDetails.password;
+    if (fullname == null)
+        fullname = oldDetails.fullname;
+    if (address == null)
+        address = oldDetails.address;
+    if (phone_number == null)
+        phone_number = oldDetails.phone_number;
+    if (email == null)
+        email = oldDetails.email;
+
     try {
         await db.query (`UPDATE client SET
             email = '${email}', 
@@ -137,7 +154,7 @@ const updateUserDetails = async (req, res) => {
             const Service_ID = (await db.query(`SELECT service_id FROM technician WHERE tech_id = ${id};`)).rows[0].service_id;
             const Service_name = (await db.query(`SELECT name FROM service WHERE service_id = ${Service_ID};`)).rows[0].name;
 
-            const service = req.body.service || Service_name;
+            const service = req.body.name || Service_name;
 
             const newService_ID = (await db.query(`SELECT service_id FROM service WHERE name = '${service}';`)).rows[0].service_id;
 
@@ -163,7 +180,7 @@ const getUserAreas = async (req, res) => {
     }
 }
 
-const banUser = async (req, res) => {
+const deleteUser = async (req, res) => {
     const id = req.params.id;
 
     try {
@@ -188,9 +205,23 @@ const getAllTechs = async (req, res) => {
     }
 }
 
+const addAdmin = async (req, res) => {
+    try{
+        await db.query("INSERT INTO client (email, address, password, phone_number, fullname, type)"+
+        " VALUES ($1, $2, $3, $4, $5, $6)", 
+        [req.body["email"], req.body["address"], req.body["password"], 
+        req.body["phone_number"], req.body["fullname"], 'a']);
+    
+        res.send('Admin added successfully!');
+    } catch (error) {
+        res.send("Couldn't add admin!");
+        console.log(error);
+    }
+}
+
 export { createNewUser, signInUser, updateUserDetails, 
-    getUserDetails, getNearbyTechs, getUserAreas, getAllTechs,
-    banUser };
+    getUserDetails, getNearbyTechs, getUserAreas, getAllTechs, 
+    addAdmin, deleteUser };
  
  
 

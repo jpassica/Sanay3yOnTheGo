@@ -16,7 +16,7 @@ const Card = ({tech}) => {
   return (
     <div className='card-tech2'>
         <img src= {sample} width={150} style={{marginBottom:10,borderRadius:10}}/>
-        <NavLink to={`/TechDetails/${tech.id}`}  >
+        <NavLink to={`/TechDetails/${tech.client_id}`}  >
         <h3>{tech.fullname}</h3>
         </NavLink>
       <YellowStarsRating rating={tech.rating} />

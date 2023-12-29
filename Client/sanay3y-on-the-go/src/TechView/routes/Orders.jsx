@@ -92,6 +92,8 @@ const Orders = () => {
   }
 
   const [filter,setFilter]=useState('pending');
+const Orders = ({orders,ondelete,onDone,onAccept,onToggle}) => {
+  const [filter,setFilter]=useState('F');
   return (
 //orders,ondelete,onDone,onAccept,onToggle}
     <div>
