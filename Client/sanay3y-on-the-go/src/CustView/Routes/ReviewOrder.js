@@ -103,7 +103,7 @@ const ReviewOrder = () => {
         initialReview&&<h2>you have already submitted review</h2>
        }
         </div>
-       <ComplaintForm order_id={id} />
+       <ComplaintForm order_id={OrderId} customer_id={id} />
     </div>
    
   )

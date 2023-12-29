@@ -6,12 +6,12 @@ import toolimg from "../../TechView/img/img1.png";
 import techimg from "../../TechView/img/tech.png";
 import eclipse from "../../TechView/img/Ellipse.png";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Await, useParams } from "react-router-dom";
 
 const Home = () => {
-   const reward=20
   const [technicians, setTechnicians] = useState([]);
   const [services, setServices] = useState([]);
+  const[reward,setReward]=useState()
 
   const{id}=useParams()
   console.log("home",id)
@@ -24,6 +24,12 @@ const Home = () => {
 
     return data;
   };
+    //fetch customer details of customer_id
+    const fetchCustomer = async () => {
+      const res = await axios.get(`http://localhost:3001/user/${id}`);
+      return res.data;
+    };
+  
     //fetching data on loading the page
     useEffect(() => {
       const getTechs = async () => {
@@ -34,10 +40,15 @@ const Home = () => {
         const getServicesFromServer = await fetchServices();
         setServices(getServicesFromServer);
       };
+      const getReward=async()=>
+      {
+        const getReward=await fetchCustomer()
+        setReward(getReward.percentage?getReward.percentage:0)
+      }
 
       getTechs();
       getServices();
-
+      getReward();
     }, []);
 
   //fetching service categories
