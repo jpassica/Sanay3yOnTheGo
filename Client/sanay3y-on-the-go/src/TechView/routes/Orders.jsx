@@ -93,7 +93,7 @@ const Orders = () => {
     const worktotoggle = await fetchorder(id)
     const updwork = { ...worktotoggle, highlighted: !worktotoggle.highlighted }
 
-    const res = await axios.patch(`http://localhost:3001/order/${id}`,
+    const res = await axios.patch(`http://localhost:3001/order/toggle/${id}`,
       {
         highlighted : updwork.highlighted
       }, {
@@ -103,6 +103,7 @@ const Orders = () => {
     })
 
     const data = res.data
+    console.log(data)
 
     setorders(
       orders.map((item) =>
