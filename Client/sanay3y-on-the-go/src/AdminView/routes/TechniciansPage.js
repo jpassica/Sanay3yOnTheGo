@@ -47,7 +47,9 @@ const fetchTechnicians = async () => {
     try {
       alert(id);
         const response = await axios.delete(`http://localhost:3001/user/${id}`);
-        console.log(response.data);
+      console.log(response.data);
+      const updatedTechs = await fetchTechnicians();
+      setTechnicians(updatedTechs);
     } catch (error) {
         console.error('Error fetching feedbacks:', error.message);
         throw error;
