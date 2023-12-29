@@ -21,15 +21,10 @@ router.route('/SignIn')
 
 
 router.route('/all/Areas')
-
     .get(userController.getUserAreas)
 
-router.route('/Tech/:id')
-    .get()
-    .post()
-    .put()
-    .patch()
-    .delete()
+router.route('/Admin')
+    .post(userController.addAdmin)
 
 router.route('/All/Techs')
     .get(userController.getAllTechs)

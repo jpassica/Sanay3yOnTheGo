@@ -200,9 +200,23 @@ const getAllTechs = async (req, res) => {
     }
 }
 
+const addAdmin = async (req, res) => {
+    try{
+        await db.query("INSERT INTO client (email, address, password, phone_number, fullname, type)"+
+        " VALUES ($1, $2, $3, $4, $5, $6)", 
+        [req.body["email"], req.body["address"], req.body["password"], 
+        req.body["phone_number"], req.body["fullname"], 'a']);
+    
+        res.send('Admin added successfully!');
+    } catch (error) {
+        res.send("Couldn't add admin!");
+        console.log(error);
+    }
+}
+
 export { createNewUser, signInUser, updateUserDetails, 
     getUserDetails, getNearbyTechs, getUserAreas, getAllTechs, 
-    deleteUser };
+    addAdmin, deleteUser };
  
  
 

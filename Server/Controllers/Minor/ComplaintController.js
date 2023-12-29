@@ -2,10 +2,16 @@ import db from "../../Config/DB.js";
 
 const getUnreviewedComplaints = async (req, res) => {
     try {
-        const result = await db.query("SELECT * FROM complaint WHERE reviewer_id IS NULL;");
-        const response = JSON.stringify(result.rows);
-        console.log(response);
-        res.send(response);
+        //const result = await db.query("SELECT * FROM complaint WHERE reviewer_id IS NULL;");
+
+        const regorder_result = (await db.query(`SELECT * FROM complaint, order, regularorder 
+        WHERE comaplaint.order_id = orders.order_id 
+        AND regularorder.order_id = orders.order_id
+        AND reviewer_id IS NULL;`)).rows;
+
+        //const response = JSON.stringify(result.rows);
+        //console.log(response);
+        //res.send(response);
     } catch (error) {
         console.log(error);
     }

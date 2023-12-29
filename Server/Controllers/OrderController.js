@@ -169,11 +169,14 @@ const updateOrderStatus = async (req, res) => {
         else if (status == "C")
         {
             req.body.content = "Order cancelled.";
+            req.body.order_id = order_id;
+
+            notifyTechOfCancellation(req, res);
         }
 
         // send notification
         req.body.order_id = order_id;
-        req.body.customer_id = customer_id;
+        req.body.notified_id = customer_id;
 
         notifyUser(req, res);
 
@@ -296,6 +299,50 @@ const getReviewsByTechID = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.send("Couldn't retrieve reviews!");
+    }
+}
+
+const notifyTechOfCancellation = async (req, res) => {
+    const order_id = req.body.order_id;
+
+    try {
+        const type = (await db.query(`SELECT order_type FROM orders WHERE order_id = ${order_id};`)).rows[0].order_type;
+
+        if (type == "R")
+        {
+            req.body.notified_id = (await db.query(`SELECT tech_id FROM regularorder WHERE order_id = ${order_id};`)).rows[0].tech_id;
+
+            notifyUser(req, res);
+
+        } else if (type == "O")
+        {
+            req.body.notified_id = (await db.query(`SELECT tech_id FROM offer, isoffer 
+            WHERE isoffer.offer_id = offer.offer_id 
+            AND order_id = ${order_id};`)).rows[0].tech_id;
+
+            notifyUser(req, res);
+
+        } else if (type == "B")
+        {
+            const techs = (await db.query(`SELECT tech_id1, tech_id2, tech_id3 FROM bundle, isbundle 
+            WHERE isbundle.bundle_id = bundle.bundle_id 
+            AND order_id = ${order_id};`)).rows;
+
+            console.log(techs);
+            console.log(order_id);
+
+            req.body.notified_id = techs[0].tech_id1;
+            notifyUser(req, res);
+
+            req.body.notified_id = techs[0].tech_id2;
+            notifyUser(req, res);
+
+            req.body.notified_id = techs[0].tech_id3;
+            notifyUser(req, res);
+        }
+    } catch (error) {
+        console.log(error);
+        res.send("Couldn't notify tech!");
     }
 }
 
