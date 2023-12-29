@@ -309,12 +309,18 @@ const TechApp = () => {
     );
   };
 
+  const OnDeleteAccount = async (id) =>
+  {
+    const res = await axios.delete(`http://localhost:3001/user/${id}`);
+    
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/Home" element={<Home />} />
           <Route exact path="/Account" element={<Account tech={tech} />} />
           <Route
             exact

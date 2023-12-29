@@ -6,6 +6,9 @@ import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 const AccountDetails = ({tech}) => {
     console.log(tech)
     console.log(tech.name)
+    const handleSignOut = () => {
+        window.location.href = '/#';
+    }
   return (
     <div>
                 <div className="row justify-content-around mt-5 user-info">
@@ -40,7 +43,7 @@ const AccountDetails = ({tech}) => {
                     Delete Account
                 </a>
 
-                <a href="#" className=" btn-primary btn-block mt-3 probutton">
+                <a href="#" className=" btn-primary btn-block mt-3 probutton" onClick={handleSignOut}>
                     Sign Out
                 </a>
             </div>

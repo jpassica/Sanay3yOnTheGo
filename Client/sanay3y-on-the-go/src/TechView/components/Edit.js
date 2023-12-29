@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link,useMatch,useResolvedPath } from 'react-router-dom'
 import '../styles/account.css'
 import '../styles/editpage.css';
+import imgsrc from '../img/profile.png'
 
 
 const Edit = ({tech,edittech,services}) => {
@@ -60,9 +61,9 @@ const Edit = ({tech,edittech,services}) => {
 
 <div className='row justify-content-around mt-5 user-info'>
       <div class="col-12 col-md-3">
-      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-circle img-thumbnail" alt="avatar"/>
-          <h6>Upload a different photo...</h6>
-          <input type="file" class="form-control"/>
+      <img src={imgsrc} class="avatar img-circle img-thumbnail" alt="avatar"/>
+          {/* <h6>Upload a different photo...</h6>
+          <input type="file" class="form-control"/> */}
               
                 </div>
       

@@ -9,7 +9,7 @@ function Navbar() {
         <img/>
         <div className='navtech-elements'>
         <ul className='technavitems'>
-            <li><Link to="/" className='Home'>
+            <li><Link to="/Home" className='Home'>
                 Home
             </Link></li>
             <CustomLink to="/Account">Account</CustomLink>
