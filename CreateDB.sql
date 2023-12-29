@@ -135,16 +135,6 @@ CREATE TABLE Bundle(
         ON UPDATE CASCADE
 );
 
-CREATE TABLE ConsistOf(
-    bundle_id INT REFERENCES bundle(bundle_id)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    Tech_ID INT REFERENCES Technician(Tech_ID)
-        ON DELETE CASCADE
-        ON UPDATE CASCADE,
-    PRIMARY KEY (bundle_id, Tech_ID)
-);
-
 CREATE TABLE Notification(
     Notification_ID SERIAL PRIMARY KEY,
     Content TEXT NOT NULL,

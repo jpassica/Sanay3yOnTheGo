@@ -7,7 +7,7 @@ import * as rewardController from "../../Controllers/Minor/RewardController.js";
 
 router.route('/')
     .get()
-    .post(rewardController.winReward)
+    .post(rewardController.checkToWinReward)
     .put()
     .patch()
     .delete()

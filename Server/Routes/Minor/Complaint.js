@@ -9,10 +9,14 @@ router.route('/')
     .get()
     .post(complaintController.complain)
     .put()
-    .patch()
+    .patch(complaintController.considerComplaint)
     .delete()
 
 router.route('/free')
     .get(complaintController.getUnreviewedComplaints)
+
+router.route('/:id')
+    .get(complaintController.showComplaintDetails)
+
 
 export default router;

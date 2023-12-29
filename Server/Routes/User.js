@@ -1,8 +1,9 @@
 import express from "express";
 import bodyParser from "body-parser";
 const router = express.Router();
-import * as userController from "../Controllers/UserController.js";
 router.use(bodyParser.urlencoded({ extended: true }));
+
+import * as userController from "../Controllers/UserController.js";
 
 router.route('/')
     .get()
