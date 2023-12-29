@@ -250,33 +250,45 @@ const makeReview = async (req, res) => {
 
         const order_type = (await db.query(`SELECT order_type FROM orders WHERE order_id = ${order};`)).rows[0].order_type;
 
-        let n = 0;
-        let tech_id = 0;
+        // let n = 0;
+        // let tech_id = 0;
 
-        if (order_type == "R")
-        {
-            tech_id = (await db.query(`SELECT tech_id FROM regularorder WHERE order_id = ${order};`)).rows[0].tech_id;
-        } else if (order_type == "O")
-        {
-            tech_id = (await db.query(`SELECT tech_id FROM offer, isoffer WHERE order_id = ${order}
-            AND isoffer.offer_id = offer.offer_id;`)).rows[0].tech_id;
-        }
+        // if (order_type == "R")
+        // {
+        //     tech_id = (await db.query(`SELECT tech_id FROM regularorder WHERE order_id = ${order};`)).rows[0].tech_id;
+        // } else if (order_type == "O")
+        // {
+        //     tech_id = (await db.query(`SELECT tech_id FROM offer, isoffer WHERE order_id = ${order}
+        //     AND isoffer.offer_id = offer.offer_id;`)).rows[0].tech_id;
+        // }
 
-        if (order_type == "R" || order_type == "O")
-        {
-            // update tech rating 
-            n = (await db.query(`SELECT COUNT(*) FROM review, regularorder WHERE review.order_id = regularorder.order_id 
-            AND tech_id = ${tech_id}`)).rows[0].count;
-            n += (await db.query(`SELECT COUNT(*) FROM offer, review, isoffer 
-            WHERE offer.offer_id = isoffer.offer_id AND review.order_id = isoffer.order_id 
-            AND offer.tech_id = ${tech_id};`)).rows[0].count;    
+        // if (order_type == "R" || order_type == "O")
+        // {
+        //     // update tech rating 
+        //     n = (await db.query(`SELECT COUNT(*) FROM review, regularorder WHERE review.order_id = regularorder.order_id 
+        //     AND tech_id = ${tech_id}`)).rows[0].count;
+        //     n += (await db.query(`SELECT COUNT(*) FROM offer, review, isoffer 
+        //     WHERE offer.offer_id = isoffer.offer_id AND review.order_id = isoffer.order_id 
+        //     AND offer.tech_id = ${tech_id};`)).rows[0].count;    
 
-            const rating = req.body.rating / n;
-            console.log(tech_id);
-            console.log(rating);
+        //     const rating = req.body.rating / n;
+        //     console.log(tech_id);
+        //     console.log(rating);
         
-            await db.query(`UPDATE technician SET rating = rating + ${rating} WHERE tech_id = ${tech_id};`);
-        }
+        //     await db.query(`UPDATE technician SET rating = rating + ${rating} WHERE tech_id = ${tech_id};`);
+        // }
+
+        await db.query(`UPDATE technician SET rating=(SELECT AVG(review.rating) 
+        from review where technician.tech_id IN 
+        (SELECT tech_id from regularorder where review.order_id = regularorder.order_id) 
+        OR technician.tech_id IN (SELECT tech_id from isoffer io,offer o 
+            where io.offer_id=o.offer_id and review.order_id = io.order_id)
+            OR technician.tech_id IN (SELECT tech_id1 from bundle b,isbundle ib 
+                where b.bundle_id=ib.bundle_id and ib.order_id=review.order_id )
+                OR technician.tech_id IN (SELECT tech_id2 from bundle b,isbundle ib 
+                    where b.bundle_id=ib.bundle_id and ib.order_id=review.order_id ) 
+                    OR technician.tech_id IN (SELECT tech_id3 from bundle b,isbundle ib 
+                        where b.bundle_id=ib.bundle_id and ib.order_id=review.order_id ))`);
         
         res.send("Review posted successfully!");
     } catch (error) {
