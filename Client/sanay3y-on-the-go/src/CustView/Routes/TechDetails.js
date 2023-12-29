@@ -19,6 +19,7 @@ const TechDetails = () => {
   const [OrderDate, setOrderDate] = useState(new Date());
   const [OrderPrice, setOrderPrice] = useState();
 
+  const currentDate = new Date().toISOString().split("T")[0];
   const [OfferOrderDate, setOfferOrderDate] = useState(new Date());
 
   const [technician, setTechnician] = useState();
@@ -179,8 +180,14 @@ const postOrder = async () => {
 
 console.log(prevWork)
   const addOrder = async (e) => {
-
+      console.log("price,order price")
       e.preventDefault(); // Prevent the default form submission
+      console.log("current date",currentDate)
+      if(OrderTitle==""||OrderDetails==""||!OrderPrice)
+      {
+      alert("please fill all fileds,all fields are required")
+      return
+      }
       // Call the function to make the Axios POST request
       await postOrder();
   };
@@ -236,7 +243,7 @@ console.log(prevWork)
                 type="date"
                 id="dateInput"
                 value={OrderDate? OrderDate.toISOString().split("T")[0]: ""} // Convert date to string in 'YYYY-MM-DD' format
-                onChange={(e) => setOrderDate(new Date(e.target.value))}
+                onChange={(e) => setOrderDate(new Date(e.target.value))} min={currentDate}
               />
             </div>
             <div className="form-grid-item">
@@ -277,7 +284,7 @@ console.log(prevWork)
                 type="date"
                 id="dateInput"
                 value={OfferOrderDate? OfferOrderDate.toISOString().split("T")[0]: ""} // Convert date to string in 'YYYY-MM-DD' format
-                onChange={(e) => setOfferOrderDate(new Date(e.target.value))}
+                onChange={(e) => setOfferOrderDate(new Date(e.target.value))} min={currentDate}
               />
             </div>
                 <button

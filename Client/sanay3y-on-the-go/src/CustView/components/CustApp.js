@@ -148,6 +148,7 @@ function CustApp({ customer_id }) {
 
     const data = res.data;
     setCustomer(data)
+    console.log("customer data",data)
   };
 
 
@@ -204,7 +205,7 @@ function CustApp({ customer_id }) {
           <Route
             path="/wallet"
             element={
-              <Wallet Points={sampleCust.Points} Point_System={Point_System} />
+              <Wallet Points={customer.points} Point_System={Point_System} />
             }
           />
           <Route path="/bundles" element={<Bundles bundles={bundles} />} />
