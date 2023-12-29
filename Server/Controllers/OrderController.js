@@ -1,6 +1,7 @@
 import db from "../Config/DB.js";
 import * as helper from "../Helpers/GenHelper.js";
 import { notifyUser } from "./Minor/NotificationController.js";
+import { addPointsToCustomer } from "./Minor/RewardController.js"
 
 const makeRegOrder = async (req, res) => {
     const tech = req.body.tech_id;
@@ -140,25 +141,27 @@ const updateOrderStatus = async (req, res) => {
 
             // increment user pts 
             const order_type = order_query.order_type;
-            let price = 0;
 
-            if (order_type == "R")
-            {
-                price = (await db.query(`SELECT price FROM regularorder WHERE 
-                regularorder.order_id = ${order_id};`)).rows[0].price;
+            addPointsToCustomer(order_type, order_id, customer_id);
+            // let price = 0;
+
+            // if (order_type == "R")
+            // {
+            //     price = (await db.query(`SELECT price FROM regularorder WHERE 
+            //     regularorder.order_id = ${order_id};`)).rows[0].price;
             
-            } else if (order_type == "O")
-            {
-                price = (await db.query(`SELECT new_price FROM offer, isoffer WHERE 
-                isoffer.offer_id = offer.offer_id AND isoffer.order_id = ${order_id};`)).rows[0].new_price;
+            // } else if (order_type == "O")
+            // {
+            //     price = (await db.query(`SELECT new_price FROM offer, isoffer WHERE 
+            //     isoffer.offer_id = offer.offer_id AND isoffer.order_id = ${order_id};`)).rows[0].new_price;
 
-            } else { // bundle
+            // } else { // bundle
 
-                price = (await db.query(`SELECT total_price FROM bundle, isbundle WHERE 
-                isbundle.bundle_id = bundle.bundle_id AND isbundle.order_id = ${order_id};`)).rows[0].total_price;
-            }
+            //     price = (await db.query(`SELECT total_price FROM bundle, isbundle WHERE 
+            //     isbundle.bundle_id = bundle.bundle_id AND isbundle.order_id = ${order_id};`)).rows[0].total_price;
+            // }
 
-            await db.query(`UPDATE customer SET points = points + ${price} WHERE customer_id = ${customer_id};`);
+            // await db.query(`UPDATE customer SET points = points + ${price} WHERE customer_id = ${customer_id};`);
 
         }
         else if (status == "U")

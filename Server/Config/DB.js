@@ -3,8 +3,8 @@ import pg from "pg";
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
-    database: "sanay3y_db",
-    password: "hana1234",
+    database: "Sanay3y_DB",
+    password: "tezCix-4tyxxo",
     port: 5432
 });
 

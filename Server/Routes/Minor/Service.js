@@ -12,4 +12,8 @@ router.route('/')
     .patch()
     .delete()
 
+router.route('/:id')
+    .patch(serviceController.editServiceCategory)
+    .delete(serviceController.deleteServiceCategory)
+
 export default router;
