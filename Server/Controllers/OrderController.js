@@ -239,6 +239,37 @@ const makeReview = async (req, res) => {
     try {
         await db.query("INSERT INTO review (rating, order_id, customer_id, content) VALUES ($1, $2, $3, $4);", 
         [req.body.rating,  order, customer, req.body.content]);
+
+        const order_type = (await db.query(`SELECT order_type FROM orders WHERE order_id = ${order};`)).rows[0].order_type;
+
+        let n = 0;
+        let tech_id = 0;
+
+        if (order_type == "R")
+        {
+            tech_id = (await db.query(`SELECT tech_id FROM regularorder WHERE order_id = ${order};`)).rows[0].tech_id;
+        } else if (order_type == "O")
+        {
+            tech_id = (await db.query(`SELECT tech_id FROM offer, isoffer WHERE order_id = ${order}
+            AND isoffer.offer_id = offer.offer_id;`)).rows[0].tech_id;
+        }
+
+        if (order_type == "R" || order_type == "O")
+        {
+            // update tech rating 
+            n = (await db.query(`SELECT COUNT(*) FROM review, regularorder WHERE review.order_id = regularorder.order_id 
+            AND tech_id = ${tech_id}`)).rows[0].count;
+            n += (await db.query(`SELECT COUNT(*) FROM offer, review, isoffer 
+            WHERE offer.offer_id = isoffer.offer_id AND review.order_id = isoffer.order_id 
+            AND offer.tech_id = ${tech_id};`)).rows[0].count;    
+
+            const rating = req.body.rating / n;
+            console.log(tech_id);
+            console.log(rating);
+        
+            await db.query(`UPDATE technician SET rating = rating + ${rating} WHERE tech_id = ${tech_id};`);
+        }
+        
         res.send("Review posted successfully!");
     } catch (error) {
         res.send("Could not post review!");

@@ -2,7 +2,10 @@ import db from "../../Config/DB.js";
 
 const giveFeedback = async (req, res) => {
     try {
-        await db.query("INSERT INTO feedback (content, reporter_id) VALUES ($1, $2);", [req.body.content, req.body.customer_id]);
+        //await db.query("INSERT INTO feedback (content, reporter_id) VALUES ($1, $2);", [req.body.content, req.body.customer_id]);
+
+        await db.query(`CALL InsertFeedback('${req.body.content}', ${req.body.customer_id});`);
+        res.send("Feedback recorded!");
     } catch (error) {
         res.send("Could not record your feedback!");
         console.log(error);

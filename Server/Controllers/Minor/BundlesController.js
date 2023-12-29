@@ -21,7 +21,7 @@ const buyBundle = async (req, res) => {
     try {
         req.body.type = "B";
         const newOrder = await helper.makeNewOrder(req, res);
-        await db.query (`INSERT INTO isbundle VALUES ($1, $2);`, [newOrder, id]);
+        await db.query (`INSERT INTO isbundle VALUES ($1, $2);`, [newOrder, req.params.id]);
         res.send("Bundle purchased successfully!");
     } catch (error) {
         console.log(error);
