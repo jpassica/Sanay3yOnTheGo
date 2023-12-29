@@ -112,26 +112,25 @@ const Orders = () => {
     
   }
 
-  // const [filter, setFilter] = useState('P');
-  const Orders = ({ orders, ondelete, onDone, onAccept, onToggle }) => {
+
     const [filter, setFilter] = useState('F');
-    return (
-      //orders,ondelete,onDone,onAccept,onToggle}
-      <div>
-        <div className='highlightsbtns'>
-          <div></div>
-          <button className={filter == 'P' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('P')}> Pending </button>
-          <button className={filter == 'F' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('F')}> Previous </button>
-          <button className={filter == 'U' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('U')}> Upcoming </button>
 
-          <div></div>
-
+  return (
+        //orders,ondelete,onDone,onAccept,onToggle}
+        <div>
+          <div className='highlightsbtns'>
+            <div></div>
+            <button className={filter == 'P' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('P')}> Pending </button>
+            <button className={filter == 'F' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('F')}> Previous </button>
+            <button className={filter == 'U' ? "probtn probtnclicked" : "probtn"} onClick={() => setFilter('U')}> Upcoming </button>
+  
+            <div></div>
+  
+          </div>
+  
+          <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
+          
         </div>
-
-        <OrdersList filter={filter} orders={orders} ondelete={deleteorder} onDone={onDone} onAccept={onAccept} onToggle={togglehighlight} />
-        
-      </div>
-    )
-  }
+      )
 }
   export default Orders;
