@@ -22,13 +22,14 @@ root.render(
 
     <App />  
     </UserProvider> */}
-    </UserProvider> */}
+    {/*</UserProvider> */}
     {/*
     <Sanay3y />
     <CustApp />  
   <App />  
   */}
   <CustApp />
+  {/* <TechApp/> */}
     
   </React.StrictMode>
 );

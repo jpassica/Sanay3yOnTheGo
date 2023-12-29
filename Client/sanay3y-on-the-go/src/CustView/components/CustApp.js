@@ -16,7 +16,7 @@ import axios from "axios";
 function CustApp({ customer_id }) {
    customer_id=1
   //customer_id is passed as a prop from login page
-  const [customer, setCustomer] = useState();
+  const [customer, setCustomer] = useState({});
 
   const [technicians, setTechnicians] = useState([]);
   const [services, setServices] = useState([]);
@@ -126,18 +126,27 @@ function CustApp({ customer_id }) {
     reward: 20,
     Points: 200,
   };
+
+  console.log(customer)
    
   //editing customer details
-  const editcust = async (id, newcust) => {
-    const res = await fetch(`http://localhost:3001/techs/${id}`, {
-      method: "PUT",
+  const editcust = async (newcust) => {
+    const res = await axios.patch(`http://localhost:3001/user/${customer_id}`, 
+    {
+      customer_id:1,
+    fullname: newcust.fname,
+    email: newcust.email,
+    address: newcust.area,
+    phone_number: newcust.number
+    },
+    {
       headers: {
-        "Content-type": "application/json",
-      },
-      //body: JSON.stringify(updtech),
-    });
+        'Content-type': 'application/x-www-form-urlencoded',
+      }
+    })
 
-    const data = await res.json();
+    const data = res.data;
+    setCustomer(data)
   };
 
   return (
@@ -179,10 +188,10 @@ function CustApp({ customer_id }) {
             path="/notifications"
             element={<Notifications notifications={notifications} />}
           />
-          <Route path="/account" element={<Account customer={sampleCust} />} />
+          <Route path="/account" element={<Account customer={customer} />} />
           <Route
             path="/editprofile"
-            element={<EditProfile customer={sampleCust} editcust={editcust} />}
+            element={<EditProfile customer={customer} editcust={editcust} />}
           />
         </Routes>
       </BrowserRouter>

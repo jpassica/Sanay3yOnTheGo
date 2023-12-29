@@ -11,14 +11,32 @@ function EditProfile({ editcust, customer }) {
   let [area, setarea] = useState("");
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (fname == "" && email == "" && area == "" && number == "") {
       alert("no changes");
       return;
     }
 
+    if(fname=="")
+    {
+      setfname(customer.fullname);
+    }
+    if(email=="")
+    {
+      setemail(customer.email);
+    }
+    if(area=="")
+    {
+      setarea(customer.address);
+    }
+    if(number=="")
+    {
+      setnumer(customer.phone_number);
+    }
+
     editcust({ fname, number, email, area }); //post request is here
+    console.log(fname)
     alert("changes saved");
     setfname("");
     setnumer("");
@@ -77,6 +95,17 @@ function EditProfile({ editcust, customer }) {
             </div>
 
             <div class="form-group">
+              <label class="col-lg-3 control-label">Address:</label>
+              <div class="col-lg-8">
+                <input
+                  class="form-control"
+                  type="text"
+                  onChange={(e) => setarea(e.target.value)}
+                />
+              </div>
+            </div>
+
+            {/* <div class="form-group">
               <label class="col-lg-3 control-label">Area:</label>
               <div class="col-lg-8">
                 <div class="ui-select">
@@ -90,7 +119,7 @@ function EditProfile({ editcust, customer }) {
                   </select>
                 </div>
               </div>
-            </div>
+            </div> */}
             <div className="rowbtn">
               <div>
                 <button

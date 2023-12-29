@@ -94,10 +94,7 @@ const TechApp = () =>
 
 
   const edittech = async(newtech) =>{
-    // const techtoupdate = await fetchtech(id)
-    // const updtech ={...techtoupdate,...newtech}
-    console.log(tech.name)
-    console.log(newtech.service)
+   
 
     const res = await axios.patch(`http://localhost:3001/user/12`, 
     {
@@ -113,12 +110,10 @@ const TechApp = () =>
         'Content-type': 'application/x-www-form-urlencoded',
       }
     })
-
     const data = res.data;
     console.log(data)
     settech(data)
     console.log(tech.name)
-
   }
 
 
