@@ -215,6 +215,31 @@ const TechApp = () =>
           ? setorders(orders.filter((order) => order.order_id !== id))
           : alert('Error Deleting This order')
       }
+      
+
+
+      const edittech = async (newtech) => {
+        const res = await axios.patch(
+          `http://localhost:3001/user/12`,
+          {
+            tech_id: 12,
+            fullname: newtech.fname,
+            email: newtech.email,
+            address: newtech.area,
+            phone_number: newtech.number,
+            name: newtech.service,
+          },
+          {
+            headers: {
+              "Content-type": "application/x-www-form-urlencoded",
+            },
+          }
+        );
+        const data = res.data;
+        console.log(data);
+        settech(data);
+        console.log(tech.name);
+      };
 
      
 

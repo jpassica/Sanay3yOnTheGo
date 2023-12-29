@@ -7,7 +7,7 @@ import axios from 'axios'
 
 const ReviewOrder = () => {
 
-  const {id}=useParams()
+  const {id,OrderId}=useParams()
 
  
 
@@ -22,8 +22,8 @@ const ReviewOrder = () => {
   //fetching review by order_id
   const fetchReview = async (id) => 
   {
-    console.log("order id",id)
-    const res = await axios.get(`http://localhost:3001/order/review/${id}`)
+    console.log("order id",OrderId)
+    const res = await axios.get(`http://localhost:3001/order/review/${OrderId}`)
     const data=res.data
         console.log("data",!data)
         return data
@@ -44,8 +44,8 @@ const ReviewOrder = () => {
     {
     const res=await axios.post('http://localhost:3001/order/review',
     {
-      order_id:id,
-      customer_id:1,
+      order_id:OrderId,
+      customer_id:id,
       rating:Rating,
       content:Rev
     },

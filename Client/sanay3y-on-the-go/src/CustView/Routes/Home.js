@@ -5,12 +5,54 @@ import "../styles/TechList.css";
 import toolimg from "../../TechView/img/img1.png";
 import techimg from "../../TechView/img/tech.png";
 import eclipse from "../../TechView/img/Ellipse.png";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const Home = ({ services, techData, reviews, reward }) => {
+const Home = () => {
+   const reward=20
+  const [technicians, setTechnicians] = useState([]);
+  const [services, setServices] = useState([]);
+
+  const{id}=useParams()
+  console.log("home",id)
+
+
+  const fetchTechnicians = async () => {
+    const res = await axios.get(
+      "http://localhost:3001/user//All/Techs")
+    const data = res.data;
+
+    return data;
+  };
+    //fetching data on loading the page
+    useEffect(() => {
+      const getTechs = async () => {
+        const getTechFromServer = await fetchTechnicians();
+        setTechnicians(getTechFromServer);
+      };
+      const getServices = async () => {
+        const getServicesFromServer = await fetchServices();
+        setServices(getServicesFromServer);
+      };
+
+      getTechs();
+      getServices();
+
+    }, []);
+
+  //fetching service categories
+  const fetchServices = async () => {
+    const res = await axios.get("http://localhost:3001/service");
+    const data = res.data;
+
+    return data;
+  };
+
+
 
   const [filter, setFilter] = useState(services[0]); //initial filter
 
-  console.log(techData);
+
   console.log(filter);
   console.log(services);
 
@@ -63,7 +105,7 @@ const Home = ({ services, techData, reviews, reward }) => {
           </button>
         ))}
       </div>
-      <TechList TechData={techData} filter={filter}  />
+      <TechList TechData={technicians} filter={filter} customer_id={id} />
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import NavBarCust from "./NavBarCust";
 import Home from "../Routes/Home";
@@ -14,7 +14,8 @@ import Account from "../Routes/Account";
 import EditProfile from "../Routes/EditProfile";
 import axios from "axios";
 function CustApp({ customer_id }) {
-   customer_id=1
+  const{id}=useParams()
+   customer_id=id
   //customer_id is passed as a prop from login page
   const [customer, setCustomer] = useState({});
 
@@ -199,7 +200,7 @@ function CustApp({ customer_id }) {
             }
           />
           <Route
-            path="/TechDetails/:id"
+            path="/TechDetails/:id/TechID"
             element={
               <TechDetails  />
             }

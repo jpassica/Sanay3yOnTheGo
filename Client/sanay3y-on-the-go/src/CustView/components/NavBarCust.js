@@ -1,8 +1,11 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import "../styles/navbar.css";
 
 const NavBarCust = () => {
+  const{id}=useParams()
+  const navigate=useNavigate()
+  console.log("navbar",id)
   return (
     <nav className="navbar">
       <div className="container">
@@ -10,25 +13,25 @@ const NavBarCust = () => {
         <div className="nav-elements">
           <ul>
             <li>
-              <NavLink to="/">Home</NavLink>
+              <NavLink to={"/CustomerHome/"+id}>Home</NavLink>
             </li>
             <li>
-              <NavLink to="/orders">Orders</NavLink>
+              <NavLink to={"/CustomerOrders/"+id}>Orders</NavLink>
             </li>
             <li>
-              <NavLink to="/wallet">Wallet</NavLink>
+              <NavLink to={"/wallet/"+id}>Wallet</NavLink>
             </li>
             <li>
-              <NavLink to="/account">Account</NavLink>
+              <NavLink to={"/account/"+id}>Account</NavLink>
             </li>
             <li>
-              <NavLink to="/bundles">Bundles</NavLink>
+              <NavLink to={"/bundles/"+id}>Bundles</NavLink>
             </li>
             <li>
-              <NavLink to="/feedback">Feedback</NavLink>
+              <NavLink to={"/feedback/"+id}>Feedback</NavLink>
             </li>
             <li>
-              <NavLink to="/notifications">Notifications</NavLink>
+              <NavLink to={"/notifications/"+id}>Notifications</NavLink>
             </li>
           </ul>
         </div>

@@ -33,11 +33,20 @@ const Login = () => {
         }
       });
       const userData = response.data;
+      if(!userData[0])
+      {
+        alert("enter valid email and password")
+        return
+      }
+      console.log("login ta2reban")
       if(userData[0].type === 'a')
         navigate(`/AdminHome/${userData[0].client_id}`);
       
         else if(userData[0].type === 'c')
+        {
+        console.log(userData)
         navigate(`/CustomerHome/${userData[0].client_id}`);
+        }
       
        else if(userData[0].type === 't')
         navigate(`/TechnicianHome/${userData[0].client_id}`);

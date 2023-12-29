@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ComplaintForm from "../components/ComplaintForm";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-const CancelOrder = ({onCancel}) => {
+const CancelOrder = () => {
   const navigate = useNavigate();
   const {id}=useParams()
   console.log(id) //order id
@@ -21,10 +21,38 @@ const CancelOrder = ({onCancel}) => {
     console.log("error in fetching order",error)
     }
   }
+
+  const onCancel = async (doneorder) => 
+  {
+    const updorder = { ...doneorder, order_status: "C" }
+    try
+    {
+
+    const res = await axios.patch(`http://localhost:3001/order/${doneorder.order_id}`, 
+    {
+      order_status: updorder.order_status
+    },
+    {
+      headers: {
+        'Content-type': 'application/x-www-form-urlencoded',
+      },
+    })
+
+    const data =  res.data
+
+   
+    alert("your order was cancelled successfully")
+    }
+    catch(error)
+    {
+      alert("oops!your order cancellation has encountred an error")
+    }
+  }
+
   const handleSubmit =async () => {
     const doneorder=await fetchOrder()
     // Logic for handling order cancellation
-    onCancel(doneorder);
+    await onCancel(doneorder);
     navigate(-1)
 
     //window.location.reload();

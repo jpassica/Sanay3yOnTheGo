@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import Card from './Card'
 import '../styles/TechList.css'
 //assuming people data have a name,
-const TechList = ({TechData,filter}) => {
-  
+const TechList = ({TechData,filter,customer_id}) => {
+  console.log("Tech list",customer_id)
 
   return (
     <div className='list-container'>
       
     {TechData.filter(tech => tech.name==filter).map((tech,index)=>(
-      <Card key={index} tech={tech}  />
+      <Card key={index} tech={tech} customer_id={customer_id}  />
     ))}  
 
     </div>

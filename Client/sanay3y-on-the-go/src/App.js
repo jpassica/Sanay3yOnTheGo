@@ -34,6 +34,7 @@ import CancelOrder from './CustView/Routes/CancelOrder';
 import Wallet from './CustView/Routes/Wallet';
 import Feedback from './CustView/Routes/Feedback';
 import Notifications from './CustView/Routes/Notifications';
+import CustomerOrders from './CustView/Routes/Orders'
 
 
 
@@ -65,9 +66,9 @@ const Sanay3y = () => {
           {/* Customer general routes*/}
         <Route exact path={`/CustomerHome/:id`} element={<><NavBarCust/><CustomerHome /></>} />          
         <Route exact path={`/Bundles/:id`} element={<><NavBarCust /><Bundles /></>} /> 
-        <Route path="/TechDetails/id:/:orderId" element={<><NavBarCust /><TechDetails  /></>}/>
-        <Route path={`/Orders/:id`} element={<><NavBarCust /><Orders /></>} />
-        <Route path="/ReviewOrder//:id/:orderId" element={<><NavBarCust /><ReviewOrder /></>} />
+        <Route path="/TechDetails/:id/:TechId" element={<><NavBarCust /><TechDetails  /></>}/>
+        <Route exact path={`/CustomerOrders/:id`} element={<><NavBarCust /><CustomerOrders /></>} />
+        <Route path="/ReviewOrder/:id/:OrderId" element={<><NavBarCust /><ReviewOrder /></>} />
         <Route path="/CancelOrder/:id" element={<><NavBarCust /><CancelOrder /></>} />
         <Route path="/wallet/:id" element={<><NavBarCust /><Wallet /></>}/>
         <Route path="/bundles/:id" element={<><NavBarCust /><Bundles /></>} />

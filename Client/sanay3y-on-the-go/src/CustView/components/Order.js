@@ -5,15 +5,15 @@ import ReviewOrder from '../Routes/ReviewOrder'
 import { useNavigate } from 'react-router-dom'
 
 
-const Order = ({order}) => {
+const Order = ({order,customer_id}) => {
     const navigate = useNavigate();
 
     const showReviewOrCancel=()=>
     {
         if(order.order_status=="P"||order.order_status=="U")
-        navigate(`/CancelOrder/${order.order_id}`);
+        navigate(`/CancelOrder/${customer_id}/${order.order_id}`);
         else 
-        navigate(`/ReviewOrder/${order.order_id}`);
+        navigate(`/ReviewOrder/${customer_id}/${order.order_id}`);
    }
 
         

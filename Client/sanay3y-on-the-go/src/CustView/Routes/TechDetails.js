@@ -29,8 +29,9 @@ const TechDetails = () => {
   const [reviews, setReviews] = useState([]);
 
   //tech id
-  const { id } = useParams();
+  const {id,TechId } = useParams();
   console.log(id)
+  console.log(TechId)
 
   //fetch previous work of a certain tech
   //fetch offers of a certain tech
@@ -39,7 +40,7 @@ const TechDetails = () => {
 
   const fetchPreviousWork = async () => {
     try{
-    const res = await axios.get(`http://localhost:3001/order/tech/${id}`);
+    const res = await axios.get(`http://localhost:3001/order/tech/${TechId}`);
     const data = res.data;
     return data;
     }
@@ -52,7 +53,7 @@ const TechDetails = () => {
   const fetchOffers = async () => {
     try
     {
-    const res = await axios.get(`http://localhost:3001/offer/tech/${id}`);
+    const res = await axios.get(`http://localhost:3001/offer/tech/${TechId}`);
     return res.data;
     }
     catch(e)
@@ -63,7 +64,7 @@ const TechDetails = () => {
   const fetchTechnician = async () => {
     try
     {
-    const res = await axios.get(`http://localhost:3001/user/${id}`);
+    const res = await axios.get(`http://localhost:3001/user/${TechId}`);
     return res.data;
     }
     catch(e)
@@ -75,7 +76,7 @@ const TechDetails = () => {
     try
     {
     const res = await axios.get(
-      `http://localhost:3001/order/review/tech/${id}`
+      `http://localhost:3001/order/review/tech/${TechId}`
     );
    
     return res.data;
@@ -124,9 +125,9 @@ const postOrder = async () => {
       header: OrderTitle,
       description: OrderDetails,
       price: OrderPrice,
-      tech_id: id, 
+      tech_id: TechId, 
       type:'R',
-      customer_id:1,
+      customer_id:id,
       order_exec_date:OrderDate
     },
     {
@@ -151,7 +152,7 @@ const postOrder = async () => {
       try {
         const response = await axios.post(`http://localhost:3001/offer/${offer_id}`, {
           type:'O',
-          customer_id:1,
+          customer_id:id,
           order_exec_date:OfferOrderDate
         },
         {
