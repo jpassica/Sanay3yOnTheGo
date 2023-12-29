@@ -11,7 +11,7 @@ const makeRegOrder = async (req, res) => {
         const newOrder = await helper.makeNewOrder(req, res);
 
         await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
-            req.body.description, tech, req.body.price]);
+            req.body.description, req.body.price, tech]);
 
         res.send("Order created succesfully!");
     }
