@@ -70,6 +70,7 @@ return (
                  <h4><b>Phone Number:</b> 0{user.phone_number}<hr/></h4>
 
                  <h4><b>Address:</b> {user.address}<hr/></h4>
+                 <h4><b>Password:</b> {user.password}<hr/></h4>
 
             {user.type === 't' &&
                 (<>

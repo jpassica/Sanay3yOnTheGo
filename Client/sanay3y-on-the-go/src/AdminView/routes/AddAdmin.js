@@ -1,8 +1,8 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
-import techimg from './TechView/img/tech.png';
-import './styles/signUp.css';
+import techimg from '../../TechView/img/tech.png';
+import '../../UserView/styles/signUp.css';
 const AddAdmin = () => {
 const [name, setName] = useState('');
 const [email, setEmail] = useState('');
@@ -56,6 +56,7 @@ try {
     }
 });
     console.log(response.data);
+    alert('Admin added successfully');
 } catch (error) {
     
     console.error('SignUp error:', error.response ? error.response.data : error.message);

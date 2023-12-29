@@ -15,7 +15,7 @@ import FeedbacksPage from './AdminView/routes/FeedbacksPage';
 import ComplainsPage from './AdminView/routes/ComplainsPage';
 import ServicesPage from './AdminView/routes/ServicesPage';
 import NavBarAdmin from './AdminView/components/NavBarAdmin';
-
+import AddAdmin from './AdminView/routes/AddAdmin';
 //Technician general routes
 import TechnicianHome from './TechView/routes/TechnicianHome';
 import Navbar from './TechView/components/Navbar';
@@ -54,6 +54,7 @@ const Sanay3y = () => {
         <Route exact path={`/Feedbacks/:id`} element={<><NavBarAdmin/><FeedbacksPage /></>} />                  
         <Route exact path={`/Complaints/:id`} element={<><NavBarAdmin/><ComplainsPage /></>} />          
         <Route exact path={`/Services/:id`} element={<><NavBarAdmin /><ServicesPage /></>} />
+        <Route exact path={`/AddAdmin/:id`} element={<><NavBarAdmin /><AddAdmin /></>} />
 
           {/* Technician general routes*/}
         <Route exact path={`/TechnicianHome/:id`} element={<><Navbar/><TechnicianHome /></>} />          
