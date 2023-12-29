@@ -22,7 +22,8 @@ const UpcomingCard = ({order,filter,onCancel,onDone}) => {
         <h3>{order.header}</h3>
         <p>{order.order_date}</p>
         <p>{order.dexcription}</p>
-        <p>Price: {order.price} <sub>EGP</sub> </p>
+        <p>Price: {order.price} {order.total_price} {order.new_price}<sub>EGP</sub> </p>
+
         <p>to contact customer: {customer.phone_number}</p>
 
         <div >

@@ -22,7 +22,8 @@ const PendingCard = ({order,filter,onCancel,onAccept}) => {
         <h3>{order.header}</h3>
         <p>{order.order_date}</p>
         <p>{order.description}</p>
-        <p>Price: {order.price} <sub>EGP</sub> </p>
+        <p>Price: {order.price} {order.total_price} {order.new_price}<sub>EGP</sub> </p>
+
         <p>to contact customer: {customer.phone_number}</p>
         <div >
         <button onClick={() => onAccept(order.order_id)} class=" btn-success  my-4 probutton">Accept</button>

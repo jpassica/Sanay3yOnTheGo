@@ -105,21 +105,7 @@ function EditProfile({ editcust, customer }) {
               </div>
             </div>
 
-            {/* <div class="form-group">
-              <label class="col-lg-3 control-label">Area:</label>
-              <div class="col-lg-8">
-                <div class="ui-select">
-                  <select
-                    id="user_time_zone"
-                    class="form-control"
-                    onChange={(e) => setarea(e.target.value)}
-                  >
-                    <option value="Cairo">Cairo</option>
-                    <option value="Alexandria">Alexandria</option>
-                  </select>
-                </div>
-              </div>
-            </div> */}
+          
             <div className="rowbtn">
               <div>
                 <button
