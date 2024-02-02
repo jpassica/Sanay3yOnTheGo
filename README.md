@@ -47,11 +47,11 @@ We utilized cutting-edge technologies to build our service network:
 
 ## Team Members
 
-👨‍💻 [Khalid El Jammal]([https://github.com/eslamwageh](https://github.com/jpassica))
+👨‍💻 [Khalid El Jammal](https://github.com/jpassica)
 
-👨‍💻 [Hana Mostafa]([https://github.com/Ashraf-Bahy](https://github.com/hanamostafaa))
+👨‍💻 [Hana Mostafa](https://github.com/hanamostafaa)
 
-👨‍💻 [Fatma Zinhom]([https://github.com/AbdelruhmanSamy](https://github.com/Fatmaz04))
+👨‍💻 [Fatma Zinhom](https://github.com/Fatmaz04)
 
 👨‍💻 [Ahmed Hamdy](https://github.com/AhmedHamdiy)
 
