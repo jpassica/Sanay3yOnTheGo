@@ -6,7 +6,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 import * as complaintController from "../../Controllers/Minor/ComplaintController.js";
 
 router.route('/')
-    .get()
+    .get(complaintController.countComplaints)
     .post(complaintController.complain)
     .put()
     .patch(complaintController.considerComplaint)

@@ -1,49 +1,44 @@
-/* Container Style */
 @import url('https://fonts.cdnfonts.com/css/mrs-sheppards');
-.ContainerStyle {
+
+.container-sign-up {
     background: #FFF;
     width: 1535px;
-    height: 680px;
+    height: 100vh;
     display: flex;
     flex-direction: row;
   }
   
-  /* First Container Style */
-  .FirstContainerStyle {
+  .first-container-sign-up {
     background: #FFDD61;
-    width: 600px;
-    height: 680px;
+    width: 734px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
   }
   
-  /* Second Container Style */
-  .SecondContainerStyle {
+  .second-container-sign-up {
     background: #FFF;
     width: 801px;
-    height: 680px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    padding: 50px;
   }
   
-  /* Welcome Style */
-  .welcomeStyle {
+  .welcome-sign-up {
     color: #FFF;
     font-family: "Inria Serif";
-    font-size: 28px;
+    font-size: 38px;
     font-style: italic;
     font-weight: 700;
     line-height: 35px;
     letter-spacing: 2.8px;
   }
   
-  /* Sanay3y Style */
-  .sanay3yStyle {
+  .sanay3y-sign-up {
     color: #FFF;
     font-family: "Mrs Sheppards";
     font-size: 48px;
@@ -53,8 +48,7 @@
     letter-spacing: 4.16px;
   }
   
-  /* Sign Up Button Style */
-  .SignUpBtnStyle {
+  .btn-sign-up {
     background: #FFDD61;
     width: 200px;
     height: 40px;
@@ -70,8 +64,7 @@
     cursor: pointer;
   }
   
-  /* Sign Up Text Box Style */
-  .SignUpTextBoxStyle {
+  .text-box-sign-up {
     background: #FFF;
     width: 500px;
     height: 50px;
@@ -88,8 +81,7 @@
     margin: 10px;
   }
   
-  /* Type Container Style */
-  .typeContaionerStyle {
+  .type-container-sign-up {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -103,15 +95,15 @@
     cursor: pointer;
 }
 
-.typeContaionerStyle:hover {
+.type-container-sign-up:hover {
     background: #FFDD61;
 }   
 
-.typeContaionerStyle-active {
+.type-container-sign-up-active {
     background: #FFDD61;
 }  
 
-.typedivsContainer{
+.type-div-container-sign-up{
     width: auto;
     height: 60px;
     display: flex;
@@ -123,23 +115,24 @@
 }
 
 
-.typeimg{
+.type-img-sign-up{
     width: 50px;
     height: 50px;
-    margin: 10px;
-}
-
-.techimg{
     opacity: '0.9';
     position: relative;
     top: 0%;
     left: 50%-150px;
     background: 'transparent';
-    width: 300px;
     height:280;
+  }
+
+.tech-img{
+  position: relative;
+  width: 70px;
+  left: 50%-30px;
 }
 
-.serviceDiv{
+.service-div{
     width: 300px;
     height: 24px;
     display: flex;
@@ -149,7 +142,7 @@
     margin: 10px;
 }
 
-.typeDiv{
+.type-div{
     width: 300px;
     height: 80px;
     display: flex;
@@ -157,4 +150,19 @@
     justify-content: space-around;
     align-items: center;
     margin: 30px;
+}
+
+#service-name{
+  width: 300px;
+  border-radius: 25px;
+  margin: 10px;
+  font-size: medium;
+}
+
+.under-lined-word-sign-up{
+  text-decoration: underline;
+  line-height: 56px;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
 }

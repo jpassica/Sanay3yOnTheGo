@@ -2,12 +2,24 @@ import db from "../../Config/DB.js";
 
 const giveFeedback = async (req, res) => {
     try {
-        //await db.query("INSERT INTO feedback (content, reporter_id) VALUES ($1, $2);", [req.body.content, req.body.customer_id]);
+        await db.query("INSERT INTO feedback (content, reporter_id) VALUES ($1, $2);", [req.body.content, req.body.customer_id]);
 
-        await db.query(`CALL InsertFeedback('${req.body.content}', ${req.body.customer_id});`);
+        // await db.query(`CALL InsertFeedback('${req.body.content}', ${req.body.customer_id});`);
         res.send("Feedback recorded!");
     } catch (error) {
         res.send("Could not record your feedback!");
+        console.log(error);
+    }
+};
+
+const countFeedbacks = async (req, res) => {
+    try {
+        const result = await db.query("SELECT COUNT(*) FROM feedback WHERE reviewer_id IS NULL;");
+        const response = JSON.stringify(result.rows[0]);
+        console.log(result);
+        res.send(response);
+    }
+    catch (error) {
         console.log(error);
     }
 };
@@ -35,4 +47,4 @@ const considerFeedback = async (req, res) => {
 };
 
 
-export { giveFeedback, getUnreviewedFeedbacks, considerFeedback };
+export { giveFeedback, getUnreviewedFeedbacks, considerFeedback,countFeedbacks };

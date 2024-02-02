@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import '../styles/CreateBundle.css';
+import '../styles/createBundle.css';
 import { useParams } from 'react-router-dom';
 const CreateBundle = () => {
     const {id} = useParams();

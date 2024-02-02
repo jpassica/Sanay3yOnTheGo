@@ -14,13 +14,12 @@ const [email, setEmail] = useState('');
 const [phone, setPhone] = useState('');
 const [type, setType] = useState('');
 const [category, setCategory] = useState('');
-const [isTech, setisTech] = useState(false);
+const [Tech, setTech] = useState(false);
 const [services, setServices] = useState([]);
 const [address, setAddress] = useState('');
 const [password, setPassword] = useState('');
-const [divTechColor, setTechDivColor] = useState('#FBF7E5'); 
-const [divCustColor, setCustDivColor] = useState('#FBF7E5'); 
-
+const [techClr, setTechClr] = useState('#FBF7E5'); 
+const [customerClr, setCustomerClr] = useState('#FBF7E5'); 
 
 const fetchServices = async () => {
     try {
@@ -31,9 +30,9 @@ const fetchServices = async () => {
       console.error('Error fetching services:', error.message);
       throw error;
     }
-  };
+};
 
-  useEffect(() => {
+useEffect(() => {
     let isMounted = true;
 
     const getServices = async () => {
@@ -50,28 +49,29 @@ const fetchServices = async () => {
     getServices();
 
     return () => {
-      isMounted = false;
+        isMounted = false;
     };
-  }, []);
+}, []
+);
 
-const handleTech = () => {
-    if (!isTech) {
+const isTech = () => {
+    if (!Tech) {
     
-        setTechDivColor('#FFDD61');
+        setTechClr('#FFDD61');
     }
     else {
-        setTechDivColor('#FBF7E5');
+        setTechClr('#FBF7E5');
     }
-setCustDivColor('#FBF7E5');
-setType('t');
-setisTech(!isTech);
+    setCustomerClr('#FBF7E5');
+    setType('t');
+    setTech(!Tech);
 };
 
-    const handleCust = () => {
-        const color = divCustColor === '#FFDD61' ? '#FBF7E5' : '#FFDD61';
-    setCustDivColor(color);
-    setisTech(false);
-    setTechDivColor('#FBF7E5');
+const isCustomer = () => {
+    const color = customerClr === '#FFDD61' ? '#FBF7E5' : '#FFDD61';
+    setCustomerClr(color);
+    setTech(false);
+    setTechClr('#FBF7E5');
     if (color === '#FFDD61')
             setType('c');
         else
@@ -81,10 +81,10 @@ setisTech(!isTech);
 
 
 const handleServiceChange = (event) => {
-setCategory(event.target.value);
+    setCategory(event.target.value);
 };
 
-    const handleSignUp = async () => {
+const handleSignUp = async () => {
         if (!name || !email || !phone || !address || !password|| !type) { 
             alert('All fields are required');
             return;
@@ -121,95 +121,90 @@ setCategory(event.target.value);
             alert("phone can't contain letters be a number");
             return;
         }
-
-try {
-    const response = await axios.post('http://localhost:3001/user',{
-    email: email,
-    password: password,
-    fullname: name,
-    phone_number: phone,
-    type: type,
-    address: address,
-    service: category
-    }, {
-    headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+    try {
+        const response = await axios.post('http://localhost:3001/user',{
+        email: email,
+        password: password,
+        fullname: name,
+        phone_number: phone,
+        type: type,
+        address: address,
+        service: category
+        }, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+        console.log(response.data);
+        navigate('/');
+    } catch (error) {
+        
+        console.error('SignUp error:', error.response ? error.response.data : error.message);
     }
-});
-    console.log(response.data);
-    navigate('/');
-} catch (error) {
-    
-    console.error('SignUp error:', error.response ? error.response.data : error.message);
-}
 };
 
 const toggleForm1 = () => {
     navigate('/');
-  }
+}
 
-    return (
-    <>
-<div className="ContainerStyle">
-<div className="FirstContainerStyle">
-    <p className="welcomeStyle">Welcome to</p>
-    <img
-                src={techimg}
-                className="techimg"
-    alt="img1"
-    />
-    <p className="sanay3yStyle">Sanay3y On The Go!</p>
-</div>
-<form className="SecondContainerStyle">
-    <h1>Sign up to your account</h1>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Full Name" />
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Email " />
-            <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Address" />
-            <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Phone Number" />
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Password" />
-    <h5 align={'center'}>Are you?</h5>
-    <div className="typedivsContainer" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', width: '600px', marginBottom: '0px' }}>
-        <div className="typeContaionerStyle" style={{background:divCustColor}} onClick={handleCust}>
-        <img src={custimg} alt="img1" className='typecustimg'/>
-        Customer
-    </div>
-        <div className="typeContaionerStyle"  style={{background:divTechColor}} onClick={handleTech}>
-        <img src={toolimg} alt="img1" className='typetechimg'/>
-        Technician
+return (
+    <div className="container-sign-up">
+        <div className="first-container-sign-up">
+            <p className="welcome-sign-up">Welcome to</p>
+            <img
+                        src={techimg}
+                        className="tech-img-sign-up"
+            alt="img1"
+            />
+            <p className="sanay3y-sign-up">Sanay3y On The Go!</p>
         </div>
+        <form className="second-container-sign-up">
+            <h1>Sign up to your account</h1>
+                    <input type="text" value={name} onChange={(e) => setName(e.target.value)}
+                        className="text-box-sign-up" placeholder="Full Name" />
+                    <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
+                        className="text-box-sign-up" placeholder="Email " />
+                    <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
+                        className="text-box-sign-up" placeholder="Address" />
+                    <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}
+                        className="text-box-sign-up" placeholder="Phone Number" />
+                    <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
+                        className="text-box-sign-up" placeholder="Password" />
+            <h4 align={'center'}>Are you?</h4>
+            <div className="type-div-container-sign-up" style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', alignItems: 'center', width: '600px', marginBottom: '0px' }}>
+                <div className="type-container-sign-up" style={{background:customerClr}} onClick={isCustomer}>
+                <img src={custimg} alt="img1" className='customer-img type-img-sign-up'/>
+                Customer
+            </div>
+                <div className="type-container-sign-up"  style={{background:techClr}} onClick={isTech}>
+                <img src={toolimg} alt="img1" className='tech-img type-img-sign-up'/>
+                Technician
+                </div>
+            </div>
+            {Tech && (
+            <div className='service-div'>
+                <select id="service-name" value={category} onChange={handleServiceChange}>
+                <option value="">Select a service</option>
+                {services.map((service) => (
+                    <option key={service.id} value={service.name}>
+                    {service.name}
+                    </option>
+                ))}
+                </select>
+            </div>
+            )}
+            <button type="button" onClick={handleSignUp} className="btn-sign-up">
+            Sign Up
+            </button>
+            <p className='switch-page-sign-up'>
+            Already have an account?{' '}
+            <span onClick={toggleForm1} className="under-lined-word-sign-up">
+                Login
+            </span>
+            </p>
+
+        </form>
     </div>
-    {isTech && (
-    <div className='serviceDiv'>
-        <select id="service" value={category} onChange={handleServiceChange}>
-        <option value="">Select a service</option>
-        {services.map((service) => (
-            <option key={service.id} value={service.name}>
-            {service.name}
-            </option>
-        ))}
-        </select>
-    </div>
-    )}
-    <button type="button" onClick={handleSignUp} className="SignUpBtnStyle">
-    Sign Up
-    </button>
-</form>
-    </div>
-    
-    <div className='navStyle'>
-    <p className='switchPageStyle'>
-      Already have an account?{' '}
-      <span onClick={toggleForm1} className="under-lined-word">
-        Login
-      </span>
-    </p>
-     </div>
-     </>
 );
 };
 

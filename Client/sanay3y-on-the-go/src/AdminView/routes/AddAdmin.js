@@ -65,28 +65,28 @@ try {
 };
     return (
     <>
-<div className="ContainerStyle">
-<div className="FirstContainerStyle">
-    <p className="welcomeStyle">Let's add</p>
+<div className="container-sign-up"  style={{height:"675px"}}>
+<div className="first-container-sign-up" style={{height:"675px"}}>
+    <p className="welcome-sign-up">Let's add</p>
     <img
                 src={techimg}
-                className="techimg"
+                className="tech-img-sign-up"
     alt="img1"
     />
-    <p className="sanay3yStyle">admins</p>
+    <p className="sanay3y-sign-up">admins</p>
 </div>
-<form className="SecondContainerStyle">
+<form className="second-container-sign-up "style={{height:"675px"}}>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Full Name" />
+                className="text-box-sign-up" placeholder="Full Name" />
             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Email " />
+                className="text-box-sign-up" placeholder="Email " />
             <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Address" />
+                className="text-box-sign-up" placeholder="Address" />
             <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Phone Number" />
+                className="text-box-sign-up" placeholder="Phone Number" />
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder="Password" />
-    <button type="button" onClick={handleAddAdmin} className="SignUpBtnStyle">
+                className="text-box-sign-up" placeholder="Password" />
+    <button type="button" onClick={handleAddAdmin} className="btn-sign-up">
     AddAdmin
     </button>
 </form>

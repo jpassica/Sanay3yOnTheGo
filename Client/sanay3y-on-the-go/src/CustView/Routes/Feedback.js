@@ -19,19 +19,16 @@ const Feedback = () => {
           'Content-Type': 'application/x-www-form-urlencoded'
         }
       });
-      // Handle the response as needed
       console.log("Order booked successfully:", response.data);
-      alert("thank you for your feedback!")
-
+      console.log("Thank you,your feedback has been recorded!");
     } catch (error) {
-      // Handle errors
       console.error("Error booking order:", error);
       alert("feedback submission encountered an error,try again")
     }
   }
   const sendFeedback = async () => {
-    console.log("send ")
-    if(feedback=="")
+    console.log("sending feedback")
+    if(feedback.length===0)
     {
       alert("please enter your feedback to submit")
       return
@@ -41,12 +38,10 @@ const Feedback = () => {
       alert("your feedback cannot be a number")
       return
     }
-    //post feedback here
     await postFeedback()
-
     alert("Thank you,your feedback has been recorded!");
   };
- 
+
   return (
     <div className="feedback-page">
       <form className="review-form" width="700px !important">

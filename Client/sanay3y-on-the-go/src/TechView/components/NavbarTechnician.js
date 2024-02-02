@@ -1,22 +1,17 @@
-import React from 'react'
-import '../../AdminView/styles/navAdmin.css'
-import { NavLink, useNavigate, useParams } from "react-router-dom";
-import '../styles/navbar.css'
+import React from "react";
+import { NavLink, useParams } from "react-router-dom";
+import "../../CustView/styles/navbar.css";
 
-const Navbar=()=> {
-    const{id}=useParams()
-    const navigate=useNavigate()
-    console.log("navbar",id)
-    const techId =id;
-    return (
-
-    <nav className="navbartech">
+const NavbarTechnician = () => {
+  const{id}=useParams()
+  console.log("navbar",id)
+  return (
+    <nav className="navbar">
+      <div className="container">
         <div className="logo"></div>
-    
-        <div >
-            <div className='nav-list'>
-                <ul className='technavitems'>
-                    <li>
+        <div className="nav-elements">
+          <ul>
+          <li>
                         <NavLink to={'/TechnicianHome/'+id}>Home</NavLink>
                     </li>
                     <li>
@@ -32,18 +27,19 @@ const Navbar=()=> {
                         <NavLink to={"/Account/"+id}>Account</NavLink>
                     </li>
                     <li>
-                        <NavLink to={"/TechNotifications/"+id}>Notification</NavLink>
-
-                    </li>
-                    <li>
                         <NavLink to={"/TechFeedback/"+id}>FeedBack</NavLink>
                     </li>
-                </ul>
-            </div>
-        </div>
-    </nav>   )
-}    
-export default Navbar
+                    <li>
+                        <NavLink to={"/TechNotifications/"+id}>Notifications</NavLink>
 
+                    </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default NavbarTechnician;
 
 

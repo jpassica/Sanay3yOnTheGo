@@ -25,19 +25,36 @@
 {
     display: flex;
     flex-direction: row;
-    /* justify-content: space-around; */
 }
-
 
 .edit-container{
     padding-top: 20px;
-    margin: 100px auto;
-    width: 60%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #FFDD61;
+    border-radius: 30px;
+}
+
+.edit-labels{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    padding-left:300px ;
+    row-gap: 65px;
+    width: 20%;
+}
+.edit-cells{
+    width: 60%;
+}
+.edit-page{
+    padding-top: 20px;
+    margin: 100px auto;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FFDD61;
     border-radius: 30px;
 }

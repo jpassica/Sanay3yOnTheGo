@@ -24,13 +24,11 @@ const Home = () => {
 
     return data;
   };
-    //fetch customer details of customer_id
     const fetchCustomer = async () => {
       const res = await axios.get(`http://localhost:3001/user/${id}`);
       return res.data;
     };
   
-    //fetching data on loading the page
     useEffect(() => {
       const getTechs = async () => {
         const getTechFromServer = await fetchTechnicians();
@@ -51,7 +49,6 @@ const Home = () => {
       getReward();
     }, []);
 
-  //fetching service categories
   const fetchServices = async () => {
     const res = await axios.get("http://localhost:3001/service");
     const data = res.data;

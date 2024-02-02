@@ -16,16 +16,17 @@ import ComplainsPage from './AdminView/routes/ComplainsPage';
 import ServicesPage from './AdminView/routes/ServicesPage';
 import NavBarAdmin from './AdminView/components/NavBarAdmin';
 import AddAdmin from './AdminView/routes/AddAdmin';
-//Technician general routes
+
+//Technician routes
 import TechnicianHome from './TechView/routes/TechnicianHome';
-import Navbar from './TechView/components/Navbar';
+import NavbarTechnician from './TechView/components/NavbarTechnician';
 import Orders from './TechView/routes/Orders';
 import Offers from './TechView/routes/Offers';
 import FeaturedWork from './TechView/routes/FeaturedWork';
 import AddOffer from './TechView/routes/AddOffer';
 import TechNotifications from './TechView/routes/Notifications';
 
-//Customer general routes
+//Customer routes
 import CustomerHome from './CustView/Routes/Home';
 import Bundles from './CustView/Routes/Bundles';
 import NavBarCust from './CustView/components/NavBarCust';
@@ -52,24 +53,24 @@ const Sanay3y = () => {
           {/* Admin routes*/}
         <Route exact path={`/AdminHome/:id`} element={<><NavBarAdmin /><AdminHome /></>} />
         <Route exact path="/Technicians/:id" element={<><NavBarAdmin/><TechniciansPage/></>} />
-        <Route exact path={`/CreateBundle/:id`} element={<><NavBarAdmin/><CreateBundle /></>} />
+        {/* <Route exact path={`/CreateBundle/:id`} element={<><NavBarAdmin/><CreateBundle /></>} /> */}
         <Route exact path={`/Feedbacks/:id`} element={<><NavBarAdmin/><FeedbacksPage /></>} />                  
         <Route exact path={`/Complaints/:id`} element={<><NavBarAdmin/><ComplainsPage /></>} />          
         <Route exact path={`/Services/:id`} element={<><NavBarAdmin /><ServicesPage /></>} />
         <Route exact path={`/AddAdmin/:id`} element={<><NavBarAdmin /><AddAdmin /></>} />
 
           {/* Technician general routes*/}
-        <Route exact path={`/TechnicianHome/:id`} element={<><Navbar/><TechnicianHome /></>} />          
-        <Route exact path="/Orders/:id" element={<><Navbar/><Orders /></>}/>
-        <Route exact path="/Offers/:id" element={<><Navbar/><Offers/></>}/>
-        <Route exact path="/FeaturedWork/:id" element={<><Navbar/><FeaturedWork /></>}/>
-        <Route exact path="/AddOffer/:id" element={<><Navbar/><AddOffer/></>}/>
-        <Route path="/TechNotifications/:id" element={<><Navbar/><TechNotifications /></>}/>
-        <Route exact path="/TechFeedback/:id" element={<><Navbar/><Feedback/></>}/>
+        <Route exact path={`/TechnicianHome/:id`} element={<><NavbarTechnician/><TechnicianHome /></>} />          
+        <Route exact path="/Orders/:id" element={<><NavbarTechnician/><Orders /></>}/>
+        <Route exact path="/Offers/:id" element={<><NavbarTechnician/><Offers/></>}/>
+        <Route exact path="/FeaturedWork/:id" element={<><NavbarTechnician/><FeaturedWork /></>}/>
+        <Route exact path="/AddOffer/:id" element={<><NavbarTechnician/><AddOffer/></>}/>
+        <Route path="/TechNotifications/:id" element={<><NavbarTechnician/><TechNotifications /></>}/>
+        <Route exact path="/TechFeedback/:id" element={<><NavbarTechnician/><Feedback/></>}/>
 
           {/* Customer general routes*/}
         <Route exact path={`/CustomerHome/:id`} element={<><NavBarCust/><CustomerHome /></>} />          
-        <Route exact path={`/Bundles/:id`} element={<><NavBarCust /><Bundles /></>} /> 
+        {/* <Route exact path={`/Bundles/:id`} element={<><NavBarCust /><Bundles /></>} />  */}
         <Route path="/TechDetails/:id/:TechId" element={<><NavBarCust /><TechDetails  /></>}/>
         <Route exact path={`/CustomerOrders/:id`} element={<><NavBarCust /><CustomerOrders /></>} />
         <Route path="/ReviewOrder/:id/:OrderId" element={<><NavBarCust /><ReviewOrder /></>} />

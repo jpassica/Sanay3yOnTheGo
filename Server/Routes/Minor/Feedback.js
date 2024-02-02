@@ -6,7 +6,7 @@ router.use(bodyParser.urlencoded({ extended: true }));
 import * as feedbackController from "../../Controllers/Minor/FeedbackController.js";
 
 router.route('/')
-    .get()
+    .get(feedbackController.countFeedbacks)
     .post(feedbackController.giveFeedback)
     .put()
     .patch(feedbackController.considerFeedback)

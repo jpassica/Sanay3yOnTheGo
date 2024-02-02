@@ -19,6 +19,11 @@ display: flex;
     margin-top: 50px;
 }
 
+.user-details{
+color: rgba(38, 15, 103, 0.89);
+font-weight: bolder;
+}
+
 .accont-container{
     width: 100%;
     height: 100%;

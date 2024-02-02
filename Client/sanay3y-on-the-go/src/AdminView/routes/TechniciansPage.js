@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/techPage.css';
 import Rate from '../../TechView/components/Rate';
@@ -47,12 +46,10 @@ const fetchTechnicians = async () => {
     try {
       const response = await axios.delete(`http://localhost:3001/user/${id}`);
       console.log(response.data);
-      alert('Technician banned successfully');
       const updatedTechs = await fetchTechnicians();
       setTechnicians(updatedTechs);
       handleFilterClick();
     } catch (error) {
-      alert('failed banned');
 
         console.error('Error fetching feedbacks:', error.message);
         throw error;

@@ -18,7 +18,7 @@ const makeRegOrder = async (req, res) => {
         }
 
         await db.query("INSERT INTO regularorder VALUES ($1, $2, $3, $4, $5);", [newOrder, req.body.header, 
-            req.body.description, req.body.price, tech]);
+            req.body.description,tech, req.body.price ]);
 
 
         res.send("Order created succesfully!");
@@ -29,7 +29,6 @@ const makeRegOrder = async (req, res) => {
     }
 };
 
-// support type results
 const getTechOrders = async (req, res) => {
     const id = req.params.id;
 
@@ -49,13 +48,13 @@ const getTechOrders = async (req, res) => {
 
         result = [...result, ...offer_query];
 
-        const bundle_query = (await db.query(`SELECT * FROM orders, bundle, isbundle, consistof
-        WHERE orders.order_id = isbundle.order_id
-        AND isbundle.bundle_id = bundle.bundle_id
-        AND bundle.bundle_id = consistof.bundle_id
-        AND consistof.tech_id = ${id};`)).rows;
+        // const bundle_query = (await db.query(`SELECT * FROM orders, bundle, isbundle, consistof
+        // WHERE orders.order_id = isbundle.order_id
+        // AND isbundle.bundle_id = bundle.bundle_id
+        // AND bundle.bundle_id = consistof.bundle_id
+        // AND consistof.tech_id = ${id};`)).rows;
 
-        result = [...result, ...bundle_query];
+        // result = [...result, ...bundle_query];
 
         console.log(result);
         res.send(JSON.stringify(result));
@@ -337,16 +336,16 @@ const getReviewsByTechID = async (req, res) => {
 
         result = [...result, ...offer_query];
 
-        // search in bundle
-        const bundle_query = (await db.query(`SELECT review.rating, review.content 
-        FROM review, orders, bundle, isbundle, consistof
-        WHERE review.order_id = orders.order_id
-        AND orders.order_id = isbundle.order_id
-        AND isbundle.bundle_id = bundle.bundle_id
-        AND bundle.bundle_id = consistof.bundle_id
-        AND consistof.tech_id = ${id};`)).rows;
+        // // search in bundle
+        // const bundle_query = (await db.query(`SELECT review.rating, review.content 
+        // FROM review, orders, bundle, isbundle, consistof
+        // WHERE review.order_id = orders.order_id
+        // AND orders.order_id = isbundle.order_id
+        // AND isbundle.bundle_id = bundle.bundle_id
+        // AND bundle.bundle_id = consistof.bundle_id
+        // AND consistof.tech_id = ${id};`)).rows;
 
-        result = [...result, ...bundle_query];
+        // result = [...result, ...bundle_query];
 
         console.log(JSON.stringify(result));
         res.send(JSON.stringify(result));

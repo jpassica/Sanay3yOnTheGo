@@ -64,19 +64,17 @@ const UserProfile = () => {
 return (
 
       <div class="containers" style={{width:"1000px"}}>
-                 <h4><b>Full Name:</b> {user.fullname}<hr/></h4>
+                 <h4><b class="user-details">Full Name:</b> {user.fullname}<hr/></h4>
                 
-                 <h4><b>Email Address:</b> {user.email}<hr/></h4>
+                 <h4><b class="user-details">Email Address:</b> {user.email}<hr/></h4>
 
-                 <h4><b>Phone Number:</b> 0{user.phone_number}<hr/></h4>
+                 <h4><b class="user-details">Phone Number:</b> 0{user.phone_number}<hr/></h4>
 
-                 <h4><b>Address:</b> {user.address}<hr/></h4>
-                 <h4><b>Password:</b> {user.password}<hr/></h4>
+                 <h4><b class="user-details">Address:</b> {user.address}<hr/></h4>
 
             {user.type === 't' &&
                 (<>
-                    <h4><b>service: </b> {user.name}<hr/></h4>
-                    {/* <h4><b>rate: </b> {user.rating}<hr/></h4> */}
+                    <h4><b class="user-details">service: </b> {user.name}<hr/></h4>
                     <Rate rating={user.rating}/>
                 </>
                 )

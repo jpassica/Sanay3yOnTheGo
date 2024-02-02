@@ -16,7 +16,7 @@ const EditProfile = () => {
   const [service, setService] = useState('')
   const [services, setServices] = useState([]);
 
-  const fetchuser = async () => {
+  const fetchUser = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/user/${id}`);
       console.log(response.data);
@@ -136,33 +136,6 @@ useEffect(() => {
         }
     }
     
-  useEffect(() => {
-    let isMounted = true;
-
-    const getuser = async () => {
-    try {
-        const getuserFromServer = await fetchuser();
-      if (isMounted) {
-      setUser(getuserFromServer)
-      setName(user.fullname)
-      setPhone_number(user.phone_number)
-      setEmail(user.email)
-      setAddress(user.address)
-        setPassword(user.password)
-        if (user.type=='t') {
-          setService(user.service_id)
-        }
-    }
-    } catch (error) {
-        console.log(error);
-    }
-    };
-
-    getuser();
-    return () => {
-      isMounted = false;
-    };
-  }, []);
 
   const handleReturnHome=()=>{
     window.location.href = `/Account/${id}`;
@@ -173,37 +146,45 @@ useEffect(() => {
   }
 
   return (
+    <div className='edit-page'>
     <form className="edit-container">
+      <div className='edit-labels'>
+        <div>
+       Name:  {'    '}
+        </div>
       <div>
-       Name:  {' '}
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder={user.fullname} />
+        Email: {'   '}
       </div>
       <div>
-        Email: {' '}
-            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder={user.email} />
-      </div>
-      <div>
-        Address: {' '}
-        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
-                className="SignUpTextBoxStyle" placeholder={user.address} />
+        Address: {'  '}
       </div>
       <div>
         Phone: {' '}
-        <input type="text" value={phone_number} onChange={(e) => setPhone_number(e.target.value)}
-          className="SignUpTextBoxStyle" placeholder={user.phone_number} />
       </div>
       <div>
         Password: {' '}
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
-          className="SignUpTextBoxStyle" placeholder={user.password} />
       </div>
       
+        {user.type == 't' && (
+          <div>
+            Service: {' '}
+          </div>
+        )}
+      </div>
       
+      <div className='edit-cells'>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)}
+                className="text-box-sign-up edit" placeholder={user.fullname} />
+            <input type="text" value={email} onChange={(e) => setEmail(e.target.value)}
+                className="text-box-sign-up edit" placeholder={user.email} />
+        <input type="text" value={address} onChange={(e) => setAddress(e.target.value)}
+                className="text-box-sign-up edit"  />
+        <input type="text" value={phone_number} onChange={(e) => setPhone_number(e.target.value)}
+          className="text-box-sign-up edit"  />
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)}
+          className="text-box-sign-up edit" />
+        
 {user.type=='t' && (
-    <div>
-    Service: {' '}
       <select id="service" value={service} onChange={handleServiceChange}>
         <option value="">Select a service</option>
         {services.map((service) => (
@@ -212,8 +193,12 @@ useEffect(() => {
             </option>
         ))}
         </select>
-    </div>
-    )}
+        )}
+        
+
+      </div>
+      
+      </form>
       <div style={{display:"flex", flexDirection:"col", gap:'30px' }}>
       <button type="button" onClick={handleEdit} className="buttona">
     Edit
@@ -222,8 +207,9 @@ useEffect(() => {
     Return
     </button>
       </div>
-      </form>
-    )
+    
+    </div>
+      )
 }
 
 export default EditProfile

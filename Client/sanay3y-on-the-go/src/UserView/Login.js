@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './styles/login.css';
+import './styles/signUp.css';
 import techimg from '../TechView/img/tech.png';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,7 +11,6 @@ const Login = () => {
 
   
   const handleLogin = async () => {
-    // Input validation
     if (!email.includes('@')) {
       alert('Please enter a valid email');
       return;
@@ -23,7 +22,6 @@ const Login = () => {
     }
 
     try {
-      // Make the login API call
       const response = await axios.post('http://localhost:3001/user/SignIn', {
         email: email,
         password: password,
@@ -61,38 +59,35 @@ const Login = () => {
     navigate('/SignUp');
   }
     return (
-    <>
-        <div className='ContainerStyle'>
+        <div className='container-sign-up'>
             
-            <div className="FirstContainerStyle">
-    <p className="welcomeStyle">Welcome to</p>
+            <div className="first-container-sign-up">
+    <p className="welcome-sign-up">Welcome to</p>
     <img
                 src={techimg}
-                className="techimg"
+                className="tech-img-sign-up"
     alt="img1"
     />
-    <p className="sanay3yStyle">Sanay3y On The Go!</p>
+    <p className="sanay3y-sign-up">Sanay3y On The Go!</p>
 </div>
-            <form className='SecondContainerStyle'>
+            <form className='second-container-sign-up'>
                 <h1>
                 Log In to Your Account
                 </h1>
-          <input type="text" required  value={email} onChange={(e) => setEmail(e.target.value)} className='loginTextBoxStyle' placeholder='Email' />
-          <input type="password" required  value={password} onChange={(e) => setPassword(e.target.value)} className='loginTextBoxStyle' placeholder='Password' />
-        <button type="button" onClick={handleLogin} className='loginBtnStyle'>
+          <input type="text" required  value={email} onChange={(e) => setEmail(e.target.value)} className='text-box-sign-up' placeholder='Email' />
+          <input type="password" required  value={password} onChange={(e) => setPassword(e.target.value)} className='text-box-sign-up' placeholder='Password' />
+        <button type="button" onClick={handleLogin} className='btn-sign-up'>
           Log In
-                </button>
-      </form>
-      </div>
-       <div className='navStyle'>
-       <p className='switchPageStyle'>
-        Don’t have an account yet?  {' '}
+            </button>
+            <p className='switch-page-sign-up'>
+        Don’t have an account?  {' '}
          <span onClick={toggleForm} style={{ cursor: 'pointer', textDecoration: 'underline', fontWeight: 'bold' }}>
          Sign Up
          </span>
        </p>
-        </div>
-        </>
+
+      </form>
+      </div>
     );
 }
 

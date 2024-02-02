@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Card from './Card'
 import '../styles/TechList.css'
-//assuming people data have a name,
 const TechList = ({TechData,filter,customer_id}) => {
   console.log("Tech list",customer_id)
 

@@ -58,10 +58,10 @@ const ComplainsPage = () => {
         return (<div className='complaint-container'>
                           {Complains.map((complaint) => (
                               <div className='complaint-data' key={complaint.id}>
-                                  <h5><b>complaint id:</b>{complaint.complaint_id} </h5>
-                                  <h6><b>customer: </b> {complaint.name} </h6>
-                                  <h6><b>order type: </b> {complaint.type} </h6>
-                                  <b>timestamp: </b> {
+                                  <h5><b>complaint id:</b>{" "+complaint.complaint_id} </h5>
+                                  <h6><b>customer: </b> {" "+complaint.name} </h6>
+                                  <h6><b>order type: </b> {" "+complaint.type} </h6>
+                                  <b>complaint date </b> {
                                       new Date(complaint.complaint_timestamp).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })                                      
                                   }
                                   <textarea  readOnly value={complaint.content}>

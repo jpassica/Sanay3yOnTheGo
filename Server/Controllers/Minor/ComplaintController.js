@@ -35,10 +35,10 @@ const getUnreviewedComplaints = async (req, res) => {
 
 const complain = async (req, res) => {
     try {
-        //await db.query("INSERT INTO complaint (content, customer_id, order_id) VALUES ($1, $2, $3);", 
-        //[req.body.content, req.body.customer_id, req.body.order_id]);
+        await db.query("INSERT INTO complaint (content, customer_id, order_id) VALUES ($1, $2, $3);", 
+        [req.body.content, req.body.customer_id, req.body.order_id]);
 
-        await db.query(`CALL InsertComplaint ('${req.body.content}', ${req.body.customer_id}, ${req.body.order_id});`)
+        // await db.query(`CALL InsertComplaint ('${req.body.content}', ${req.body.customer_id}, ${req.body.order_id});`)
 
         res.send("Complaint is sent successfully, help is on the way!");
     } catch (error) {
@@ -96,5 +96,16 @@ const considerComplaint = async (req, res) => {
         res.send("Couldn't consider complaint!");
     }
 }
+const countComplaints = async (req, res) => { 
+    try {
+        const result = await db.query("SELECT COUNT(*) FROM complaint WHERE reviewer_id IS NULL;");
+        const response = JSON.stringify(result.rows[0]);
+        console.log(result);
+        res.send(response);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
 
-export { complain, getUnreviewedComplaints, showComplaintDetails, considerComplaint };
+export { complain, getUnreviewedComplaints, showComplaintDetails, considerComplaint, countComplaints };

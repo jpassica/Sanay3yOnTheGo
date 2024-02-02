@@ -50,7 +50,6 @@ const considerFeedback = async (feedback_id) => {
       );
       console.log(response.data);
 
-      // If you want to update the UI after considering the feedback, you can fetch updated feedbacks
       const updatedFeedbacks = await fetchFeedbacks();
       setFeedbacks(updatedFeedbacks);
     } catch (error) {
@@ -60,13 +59,14 @@ const considerFeedback = async (feedback_id) => {
 
   return (
     <div className='feedback-container'>
+      
       {feedbacks.map((feedback) => (
         <div className='feedback-data' key={feedback.id}>
               <h5 align="center">
               <b>
-              feedback number :
+              feedback number : 
               </b>
-            {feedback.feedback_id}</h5>
+            {" "+ feedback.feedback_id}</h5>
               <h6 align="center">
             <b>
               feedback date 
@@ -77,7 +77,7 @@ const considerFeedback = async (feedback_id) => {
           <textarea readOnly value={feedback.content}></textarea>
           <button
             className='consider-btn'
-            onClick={() => considerFeedback(feedback.feedback_id)} // Pass a function reference
+            onClick={() => considerFeedback(feedback.feedback_id)}
           >
             Consider
           </button>

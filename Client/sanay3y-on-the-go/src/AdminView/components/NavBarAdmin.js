@@ -24,9 +24,9 @@ const NavBarAdmin = () => {
             <li>
                 <NavLink to={`/Technicians/${adminId}`}>Technicians</NavLink>
             </li>
-            <li>
+            {/* <li>
                 <NavLink to={`/CreateBundle/${adminId}`}>Create Bundles</NavLink>
-            </li>
+            </li> */}
             <li>
                 <NavLink to={`/AddAdmin/${adminId}`}>Add Admin</NavLink>
             </li>            

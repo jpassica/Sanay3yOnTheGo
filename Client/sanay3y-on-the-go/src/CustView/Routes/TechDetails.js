@@ -28,15 +28,10 @@ const TechDetails = () => {
   const [offers, setOffers] = useState([]);
   const [reviews, setReviews] = useState([]);
 
-  //tech id
   const {id,TechId } = useParams();
   console.log(id)
   console.log(TechId)
 
-  //fetch previous work of a certain tech
-  //fetch offers of a certain tech
-  //fetch reviews of a certain tech
-  //fetch el technician nafso
 
   const fetchPreviousWork = async () => {
     try{
@@ -83,27 +78,30 @@ const TechDetails = () => {
     }
     catch(e)
     {
-      alert("error in fetchinh tech's review")
+      alert("error in fetching tech's review")
     }
   };
   
   useEffect(() => {
     const getPrevWork = async () => {
       const getWorkFromServer = await fetchPreviousWork();
-      console.log(getWorkFromServer)
+      console.log(getWorkFromServer);
       setPreviousWork(getWorkFromServer);
     };
     const getOffers = async () => {
       const getOffersFromServer = await fetchOffers();
+      console.log(getOffersFromServer);
       setOffers(getOffersFromServer);
-    };
-    const getReviews = async () => {
-      const getReviewsFromServer = await fetchReviews();
-      setReviews(getReviewsFromServer);
     };
     const getTechnician = async () => {
       const getTechFromServer = await fetchTechnician();
       setTechnician(getTechFromServer);
+      console.log(getTechFromServer)
+    };
+    const getReviews = async () => {
+      const getReviewsFromServer = await fetchReviews();
+      setReviews(getReviewsFromServer);
+      console.log(getReviewsFromServer);
     };
 
     getOffers();
@@ -112,9 +110,6 @@ const TechDetails = () => {
     getTechnician();
   }, []);
 
-  //const getTechbyID = () => {
-  //return technicians.find(t=>t.id==id)
-  //};
   const toggleShow = () => {
     setShow(!show);
   };
@@ -135,18 +130,15 @@ const postOrder = async () => {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     });
-    // Handle the response 
     console.log("Order booked successfully:", response.data);
-    alert('Thank you,your custom order was successfully sent!wait for technician to accept')
+    alert('Thank you,your custom order was successfully sent! Wait for technician to accept')
   } catch (error) {
-    // Handle errors
     console.error("Error booking order:", error);
-    alert("oops!offer order encountred an error,try again")
+    alert("Oops! offer order encountred an error,try again")
   }
 };
 
 
-    //book offer order
     const postOfferOrder = async (offer_id) => {
       console.log(offer_id)
       try {
@@ -161,21 +153,15 @@ const postOrder = async () => {
           }
         });
     
-        // Handle the response 
         console.log("Offer booked successfully:", response.data);
         alert('Thank you,your offer order was successfully sent!wait for technician to accept')
       } catch (error) {
-        // Handle errors
         console.error("Error booking offer:", error);
-        alert('oops! offer booking encountred an error,try again')
-
+        alert('oops! Offer booking encountred an error,try again')
       }
     };
 
   const bookOffer = async (offer_id) => {
-
-
-    // Call the function to make the Axios POST request
     await postOfferOrder(offer_id);
   };
 
@@ -183,7 +169,7 @@ const postOrder = async () => {
 console.log(prevWork)
   const addOrder = async (e) => {
       console.log("price,order price")
-      e.preventDefault(); // Prevent the default form submission
+      e.preventDefault(); 
       console.log("current date",currentDate)
       if(OrderTitle==""||OrderDetails==""||!OrderPrice)
       {
@@ -194,7 +180,6 @@ console.log(prevWork)
       {
         alert("order title and order details cannot be numbers")
       }
-      // Call the function to make the Axios POST request
       await postOrder();
   };
 
