@@ -69,7 +69,14 @@ To get started with our service network:
 5. Go to the `cd Server` folder.
 6. Create the database using the script in the *CreateDB* file.
 7. Run the server using `nodemon server`.
-   
+
+## Screen shots 📷
+
+![image](https://github.com/jpassica/Sanay3yOnTheGo/assets/111378492/b44302ca-b281-41cd-a50a-5a0a2a1f54e1)
+![image](https://github.com/jpassica/Sanay3yOnTheGo/assets/111378492/b4d48526-2313-47e8-b92a-0bc8fc4d0502)
+![image](https://github.com/jpassica/Sanay3yOnTheGo/assets/111378492/a523dac2-8a55-4f12-9906-9281850eefe7)
+
+
 That's it! You're all set to explore our service network and enjoy the seamless experience. 🎉
 
 Happy networking! 🚀✨
