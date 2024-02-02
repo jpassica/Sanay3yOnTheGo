@@ -63,9 +63,12 @@ We welcome contributions from the community to make our service network even bet
 
 To get started with our service network:
 1. Clone this repository to your local machine.
-2. Install the necessary dependencies using `npm install`.
-3. Run the application using `npm start`.
-4. The script of creating the database is in CreateDB file.
+2. Go to the `cd Client/sanay3y-on-the-go` folder.
+3. Install the necessary dependencies using `npm install`.
+4. Run the application using `npm start`.
+5. Go to the `cd Server` folder.
+6. Create the database using the script in the *CreateDB* file.
+7. Run the server using `nodemon server`.
    
 That's it! You're all set to explore our service network and enjoy the seamless experience. 🎉
 
